@@ -1,4 +1,4 @@
-import { Amount, DateFormatter } from '../../shared/util/utils';
+import {Amount, DateFormatter} from '../../shared/util/utils';
 
 export type TransactionCategory = 'all' | 'stake' | 'coinbase' | 'send' | 'receive' | 'orphaned_stake' | 'internal_transfer';
 
@@ -18,6 +18,7 @@ export class Transaction {
     comment: string;
     n0: string;
     n1: string;
+  currency: string;
 
     outputs: any[];
 
@@ -46,6 +47,7 @@ export class Transaction {
     this.comment = json.comment;
     this.n0 = json.n0;
     this.n1 = json.n1;
+    this.currency = json.currency || 'NIX';
 
     this.outputs = json.outputs;
 
@@ -133,11 +135,17 @@ export class Transaction {
     }
   }
 
-
-
   /* Date stuff */
   public getDate(): string {
     return new DateFormatter(new Date(this.time * 1000)).dateFormatter();
+  }
+
+  public getShortMonth(): string {
+    return new Date(this.time * 1000).toLocaleDateString('en-use', {month: 'short'});
+  }
+
+  public getDayOfMonth(): number {
+    return new Date(this.time * 1000).getDate();
   }
 
   /* Narration */
@@ -150,5 +158,14 @@ export class Transaction {
     return false
   }
 
-
+  public getCategory(): string {
+    if (this.category === 'send') {
+      return `Sent ${this.currency}`;
+    } else if (this.category === 'receive') {
+      return `Received ${this.currency}`;
+    } else if (this.category === 'stake') {
+      return `Node earnings`;
+    }
+    return '';
+  }
 }

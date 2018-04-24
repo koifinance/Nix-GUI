@@ -1,21 +1,23 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
+// #2B1FD3 #00D4D1
+
 $app-primary-color: (
-  50: #e8fdf8,
-  100: #d1fbf1,
-  200: #a3f6e2,
-  300: #75f2d4,
-  400: #47edc5,
-  500: #03e8b0,
-  600: #03be91,
-  700: #029470,
-  800: #029471,
-  900: #006064,
-  A100: #8cf4db,
-  A200: #18ffff,
-  A400: #1aeab8,
-  A700: #03a981,
+  50: #fafafc,
+  100: #a6d1fc,
+  200: #86d0fc,
+  300: #5ab4fc,
+  400: #4298dc,
+  500: #107cd8,
+  600: #116ad7,
+  700: #1157d6,
+  800: #224cd5,
+  900: #2b1fd3,
+  A100: #5ab4fc,
+  A200: #657dfc,
+  A400: #107cd8,
+  A700: #0a60d6,
   contrast: (
     50: $black-87-opacity,
     100: $black-87-opacity,
@@ -35,20 +37,20 @@ $app-primary-color: (
 );
 
 $app-secondary-color: (
-  50: #e8fdf8,
-  100: #d1fbf1,
-  200: #a3f6e2,
-  300: #75f2d4,
-  400: #47edc5,
-  500: #03e8b0,
-  600: #03be91,
-  700: #029470,
-  800: #029471,
-  900: #006064,
-  A100: #47edc5,
-  A200: #75f2d4,
-  A400: #02a981,
-  A700: #03a981,
+  50: #fafafc,
+  100: #a6d1fc,
+  200: #86d0fc,
+  300: #5ab4fc,
+  400: #4298dc,
+  500: #107cd8,
+  600: #116ad7,
+  700: #1157d6,
+  800: #224cd5,
+  900: #2b1fd3,
+  A100: #116ad7, // or use 400
+  A200: #107cd8, // or use 300
+  A400: #0a60d6, // or use 500
+  A700: #1157d6, // or use #0a60d6
   contrast: (
     50: $black-87-opacity,
     100: $black-87-opacity,
@@ -57,13 +59,13 @@ $app-secondary-color: (
     400: $black-87-opacity,
     500: #fff,
     600: #fff,
-    700: $white-87-opacity,
-    800: $white-87-opacity,
+    700: #fff,
+    800: #fff,
     900: $white-87-opacity,
     A100: $black-87-opacity,
-    A200: #fff,
-    A400: #fff,
-    A700: #fff,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
   )
 );
 
