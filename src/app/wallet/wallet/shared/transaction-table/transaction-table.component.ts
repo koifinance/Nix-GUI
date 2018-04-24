@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { PageEvent } from '@angular/material';
-import { Log } from 'ng2-logger'
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {PageEvent} from '@angular/material';
+import {Log} from 'ng2-logger';
 
-import { slideDown } from 'app/core-ui/core.animations';
-import { Transaction } from '../transaction.model';
-import { TransactionService } from '../transaction.service';
+import {slideDown} from 'app/core-ui/core.animations';
+import {Transaction} from '../transaction.model';
+import {TransactionService} from '../transaction.service';
 
 @Component({
   selector: 'transaction-table',
@@ -36,7 +36,8 @@ export class TransactionsTableComponent implements OnInit {
     comment: true,
     blockHash: false,
     blockIndex: false,
-    expand: false
+    expand: false,
+    expansionPanel: false
   };
 
   /*
@@ -91,12 +92,6 @@ export class TransactionsTableComponent implements OnInit {
   public styleConfimations(confirm: number): string {
     if (confirm <= 0) {
       return 'confirm-none';
-    } else if (confirm >= 1 && confirm <= 4) {
-      return 'confirm-1';
-    } else if (confirm >= 5 && confirm <= 8) {
-      return 'confirm-2';
-    } else if (confirm >= 9 && confirm <= 12) {
-      return 'confirm-3'
     } else {
       return 'confirm-ok';
     }
@@ -104,7 +99,7 @@ export class TransactionsTableComponent implements OnInit {
 
   public resetPagination(): void {
     if (this.paginator) {
-      this.paginator.resetPagination(0)
+      this.paginator.resetPagination(0);
       this.txService.changePage(0);
     }
   }

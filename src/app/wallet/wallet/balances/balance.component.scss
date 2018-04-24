@@ -10,25 +10,30 @@
     color: $text;
   }
   & > .point {
-    color: $color;
-    margin: 0 2px;
+    color: $text;
   }
   & > .big {
-    font-size: 22px;
+    font-size: 24px;
     @media screen and (min-width: 1500px) {
       font-size: 28px;
     }
   }
   & > .small {
-    font-size: 11px;
+    font-size: 13px;
     @media screen and (min-width: 1500px) {
       font-size: 15px;
     }
   }
   & > .description {
     @extend %disable-select;
-    color: $text-muted;
-    text-transform: uppercase;
+    color: $text;
     margin-top: 6px;
+    margin-bottom: 20px;
+  }
+
+  & > .divider {
+    border-top: 1px solid darken($color-light-grey, 5%);
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 }

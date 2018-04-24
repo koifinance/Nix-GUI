@@ -1,42 +1,58 @@
-<mat-card class="balance-overview" fxLayoutWrap fxLayoutGap="3%">
-  <div class="balance-item" fxFlex="20">
-    <app-balance type="total_balance"></app-balance>
+<div class="overview-header" fxLayout.gt-lg="row" fxLayout.lt-md="column" fxLayoutGap="10%">
+  <div class="welcome-message" fxFlex="67" fxFlexOrder.lt-md="2">
+    Hello {{ selectedUser.name }}, the value of your balance <span class="highlight">went up 10.4%</span> last 24h!
   </div>
-  <div class="balance-item" fxFlex="17">
-    <app-balance type="balance"></app-balance>
+  <div class="user-selection" fxFlex="33" fxLayoutAlign="end center" fxFlexOrder.lt-md="1">
+    <mat-form-field floatPlaceholder="never">
+      <mat-select placeholder="Choose User" [(ngModel)]="userId" (change)="switchUser()">
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div class="balance-item" fxFlex="17">
-    <app-balance type="blind_balance"></app-balance>
-  </div>
-  <!--div class="balance-item" fxFlex="17">
-    <app-balance type="anon_balance"></app-balance>
-  </div-->
-  <div class="balance-item" fxFlex="17">
-    <app-balance type="staked_balance"></app-balance>
-  </div>
-</mat-card>
+</div>
+
+<div class="overview-balance" fxLayout.gt-lg="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
+     fxLayoutGap="5%">
+  <mat-card fxFlexOrder.lt-md="1" class="item total">
+    <app-balance type="total_balance" color="white"></app-balance>
+  </mat-card>
+  <mat-card fxFlexOrder.lt-md="2" class="item">
+    <div>
+      <app-balance type="balance"></app-balance>
+    </div>
+  </mat-card>
+  <mat-card fxFlexOrder.lt-md="3" class="item anon">
+    <div>
+      <app-balance type="anon_balance" color="white"></app-balance>
+    </div>
+  </mat-card>
+</div>
 
 
 <div class="overview-content" fxLayout.gt-lg="row" fxLayout.lt-md="column"  fxLayoutGap="40px">
-
-  <div class="recent-transactions" fxFlex="67" fxFlexOrder.lt-md="2">
+  <div class="recent-transactions" fxFlex="40" fxFlexOrder.lt-md="1">
     <app-header>
-      <ul class="header-nav">
-        <li>Recent Transactions</li>
-      </ul>
+      <h5>Recent Transactions</h5>
     </app-header>
     <transaction-table
-      [display]="{'txDisplayAmount': 5, 'header': false, 'internalHeader': true, 'category': true, 'confirmations': true}">
+      [display]="{'txDisplayAmount': 5, 'header': false}">
     </transaction-table>
   </div><!-- .recent-transactions -->
 
+  <div class="recent-transactions" fxFlex="60" fxFlexOrder.lt-md="2">
+    <app-header>
+      <h5>Nix <strong>$60.15</strong></h5>
+    </app-header>
+  </div>
 
-  <div class="overview-sidebar" fxFlex="33" fxLayoutWrap fxLayoutAlign="center start" fxFlexOrder.lt-md="1" >
+  <!--  <div class="overview-sidebar" fxFlex="33" fxLayoutWrap fxLayoutAlign="center start" fxFlexOrder.lt-md="1" >
 
-    <app-stakinginfo fxFlex.gt-sm="100" fxFlex.lt-md="calc(50% - 25px)"></app-stakinginfo>
-    <app-coldstake fxFlex.gt-sm="100" fxFlex.lt-md="calc(50% - 25px)"></app-coldstake>
-    
-  </div><!-- .overview-sidebar -->
+      <app-stakinginfo fxFlex.gt-sm="100" fxFlex.lt-md="calc(50% - 25px)"></app-stakinginfo>
+      <app-coldstake fxFlex.gt-sm="100" fxFlex.lt-md="calc(50% - 25px)"></app-coldstake>
+
+    </div>--><!-- .overview-sidebar -->
 
 
 </div><!-- .overview-content -->

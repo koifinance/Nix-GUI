@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Log } from 'ng2-logger';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Log} from 'ng2-logger';
 
-import { RpcStateService } from '../../../core/core.module';
+import {RpcStateService} from '../../../core/core.module';
 
-import { Amount } from '../../shared/util/utils';
+import {Amount} from '../../shared/util/utils';
 
 
 @Component({
@@ -14,6 +14,7 @@ import { Amount } from '../../shared/util/utils';
 export class BalanceComponent implements OnInit, OnDestroy {
 
   @Input() type: string; // "total_balance", "anon_balance", "balance", "staked_balance", "blind_balance"
+  @Input() color: string = '';
 
   private log: any = Log.create(`balance.component ${this.type}`);
   private destroyed: boolean = false;
@@ -39,11 +40,11 @@ export class BalanceComponent implements OnInit, OnDestroy {
 
     switch (this.type) {
       case 'total_balance':
-        return 'TOTAL BALANCE';
+        return 'Total balance';
       case 'balance':
-        return 'PUBLIC BALANCE';
+        return 'Pending (unconfirmed)';
       case 'anon_balance':
-        return 'PRIVATE BALANCE';
+        return 'Zerocoin';
       case 'blind_balance':
         return 'BLIND BALANCE';
       case 'staked_balance':

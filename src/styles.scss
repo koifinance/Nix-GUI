@@ -7,6 +7,40 @@ body {
   font-size: 12px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: 400;
+}
+
+h4, h5, h6 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 48px;
+}
+
+h3 {
+  font-size: 36px;
+  color: #4298dc;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
 .modal-backdrop.fade.in {
   background-color: #fff;
   opacity: 0.9;

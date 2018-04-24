@@ -1,7 +1,13 @@
 <div class="balance">
-  <span class="number big">{{balance.getIntegerPart()}}</span><!--
-  --><span class="point big">{{balance.dot()}}</span><!--
-  --><span class="number small">{{balance.getFractionalPart() || ''}}</span>
-
-  <p class="description">{{getTypeOfBalance()}}</p>
+  <p class="description" [style.color]="color">{{getTypeOfBalance()}}</p>
+  <span class="number big" [style.color]="color">{{balance.getIntegerPart()}}</span>
+  <span class="point big" [style.color]="color">{{balance.dot()}}</span>
+  <span class="number small" [style.color]="color">{{balance.getFractionalPart() || ''}}</span>
+  <div class="divider"></div>
+  <!-- ~ X.y BTC ($Z) -->
+  <span class="number small" [style.color]="color">0 BTC</span>
+  <!--<span class="point small" [style.color]="color"></span>-->
+  <!--<span class="number small" [style.color]="color"></span>-->
+  <!--<span class="number small" [style.color]="color">BTC</span>-->
+  <span class="number small" [style.color]="color">($0)</span>
 </div>

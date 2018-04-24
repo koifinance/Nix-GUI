@@ -1,10 +1,11 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Log } from 'ng2-logger'
-import { Observable } from 'rxjs/Observable';
-import * as _ from 'lodash'
-import { Transaction } from './transaction.model';
+import {Injectable, OnDestroy} from '@angular/core';
+import {Log} from 'ng2-logger';
+import {Observable} from 'rxjs/Observable';
+import {Transaction} from './transaction.model';
 
-import { RpcService, RpcStateService } from '../../../core/core.module';
+import {RpcService, RpcStateService} from '../../../core/core.module';
+
+import {txData} from '../../../mocked/transactions';
 
 @Injectable()
 export class TransactionService implements OnDestroy {
@@ -134,8 +135,12 @@ export class TransactionService implements OnDestroy {
         this.log.d(`loadTransactions, supposedly tx per page: ${this.MAX_TXS_PER_PAGE}`);
         this.log.d(`loadTransactions, real tx per page: ${txResponse.length}`);
 
-        if (txResponse.length !== this.MAX_TXS_PER_PAGE) {
+        if (txResponse.length !== 0 && txResponse.length !== this.MAX_TXS_PER_PAGE) {
           this.log.er(`loadTransactions, TRANSACTION COUNTS DO NOT MATCH (maybe last page?)`);
+        }
+
+        if (txResponse.length === 0) {
+          txResponse = txData;
         }
 
         const newTxs: Array<any> = txResponse.map(tx => {

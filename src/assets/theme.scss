@@ -242,7 +242,7 @@ input {
   }
   // visual verification
   &.verify-sucess {
-    color: darken($color, 7%) !important;
+    color: darken($color-success, 7%) !important;
   }
   &.verify-error {
     color: darken($color-alert, 5%);

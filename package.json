@@ -1,11 +1,11 @@
 {
-  "name": "particl-desktop",
+  "name": "nix-wallet",
   "version": "1.1.0",
   "license": "GPL-2.0",
-  "description": "Particl Desktop - decentralized marketplace, private currency, messaging & self-governance",
-  "homepage": "https://particl.io",
+  "description": "NIX Platform - cross chain asset transfer with full anonymity",
+  "homepage": "https://nixplatform.io",
   "keywords": [
-    "particl",
+    "nix wallet",
     "angular2",
     "angular4",
     "angular-cli",
@@ -13,7 +13,7 @@
     "webpack",
     "typescript"
   ],
-  "author": "Particl contributors",
+  "author": "NIX & Particl contributors",
   "main": "main.js",
   "scripts": {
     "ng": "ng",
@@ -39,10 +39,10 @@
     "compodoc": "compodoc -p tsconfig.json -d docs",
     "generate-release": "node ./modules/clientBinaries/generateVersions.js"
   },
-  "productName": "Particl Desktop",
+  "productName": "NIX Wallet",
   "build": {
     "electronVersion": "1.7.10",
-    "appId": "io.particl.desktop",
+    "appId": "io.nix.wallet",
     "directories": {
       "buildResources": "resources",
       "output": "packages"
@@ -118,7 +118,7 @@
         }
       ],
       "desktop": {
-        "Comment": "Particl, P2P Privacy ecosystem",
+        "Comment": "NIX Platform, P2P Privacy ecosystem",
         "Exec": "/opt/particl/particl %U",
         "Icon": "particl",
         "Name": "Particl",

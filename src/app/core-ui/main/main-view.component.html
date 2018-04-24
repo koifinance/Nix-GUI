@@ -3,26 +3,51 @@
 
     <div class="logo-area">
       <div class="logo">
-        <img src="./assets/particl-logo{{testnet ? '-testnet' : ''}}.svg"
-          alt="Particl">
+        <img src="./assets/nix-logo-dark.png" alt="NIX">
       </div>
     </div>
 
-    <mat-divider></mat-divider>
-
     <mat-content class="sidebar-section">
       <mat-list class="sidebar-item-group">
-        <a class="sidebar-item-link"
-          routerLinkActive="active" routerLink="/wallet/overview">
+        <a class="sidebar-item-link" routerLinkActive="active" routerLink="/wallet/overview">
           <mat-list-item class="sidebar-item">
-            <mat-icon class="icon" fontSet="partIcon" fontIcon="part-overview"></mat-icon>
             <span class="text">Overview</span>
           </mat-list-item>
         </a>
       </mat-list><!-- .sidebar-item-group -->
     </mat-content><!-- .sidebar-section -->
 
-    <mat-content class="sidebar-section" *ngIf="walletInitialized">
+    <mat-content class="sidebar-section">
+      <mat-list class="sidebar-item-group">
+        <a class="sidebar-item-link" routerLinkActive="active" routerLink="/wallet/send">
+          <mat-list-item class="sidebar-item">
+            <span class="text">Send</span>
+          </mat-list-item>
+        </a>
+      </mat-list><!-- .sidebar-item-group -->
+    </mat-content><!-- .sidebar-section -->
+
+    <mat-content class="sidebar-section">
+      <mat-list class="sidebar-item-group">
+        <a class="sidebar-item-link" routerLinkActive="active" routerLink="/wallet/receive">
+          <mat-list-item class="sidebar-item">
+            <span class="text">Receive</span>
+          </mat-list-item>
+        </a>
+      </mat-list><!-- .sidebar-item-group -->
+    </mat-content><!-- .sidebar-section -->
+
+    <mat-content class="sidebar-section">
+      <mat-list class="sidebar-item-group">
+        <a class="sidebar-item-link" routerLinkActive="active" routerLink="/wallet/history">
+          <mat-list-item class="sidebar-item">
+            <span class="text">Transactions</span>
+          </mat-list-item>
+        </a>
+      </mat-list><!-- .sidebar-item-group -->
+    </mat-content><!-- .sidebar-section -->
+
+    <!--<mat-content class="sidebar-section" *ngIf="walletInitialized">
       <mat-accordion [multi]="'multi'">
         <mat-expansion-panel #panel1 expanded="true" class="no-padding arrow-colored">
           <mat-expansion-panel-header>Wallet</mat-expansion-panel-header>
@@ -65,13 +90,13 @@
                 </mat-list-item>
               </a>
 
-            </mat-list><!-- .sidebar-item-group -->
+            </mat-list>&lt;!&ndash; .sidebar-item-group &ndash;&gt;
           </mat-content>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-content><!-- .sidebar-section -->
+    </mat-content>&lt;!&ndash; .sidebar-section &ndash;&gt;-->
 
-    <mat-content class="sidebar-section" *ngIf="walletInitialized === false">
+    <!--<mat-content class="sidebar-section" *ngIf="walletInitialized === false">
       <mat-accordion [multi]="'multi'">
         <mat-expansion-panel #panel1 expanded="true" class="no-padding arrow-colored">
           <mat-expansion-panel-header>Wallet</mat-expansion-panel-header>
@@ -88,23 +113,11 @@
                 </mat-list-item>
               </a>
 
-            </mat-list><!-- .sidebar-item-group -->
+            </mat-list>&lt;!&ndash; .sidebar-item-group &ndash;&gt;
           </mat-content>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-content><!-- .sidebar-section -->
-
-
-    <!-- <mat-content class="sidebar-section">
-      <mat-list class="sidebar-item-group">
-        <a class="sidebar-item-link" routerLinkActive="active" routerLink="/wallet/settings">
-          <mat-list-item class="sidebar-item">
-            <mat-icon class="icon" fontSet="partIcon" fontIcon="part-cog"></mat-icon>
-            <span class="text">Settings</span>
-          </mat-list-item>
-        </a>
-      </mat-list>
-    </mat-content> --><!-- .sidebar-section -->
+    </mat-content>&lt;!&ndash; .sidebar-section &ndash;&gt;
 
     <footer class="pin-to-bottom">
 
@@ -119,7 +132,7 @@
           <mat-list-item class="sidebar-item" *ngIf="daemonError != undefined && daemonError.error">
             <mat-icon class="icon" fontSet="partIcon" fontIcon="part-alert"></mat-icon>
 
-            <!-- TODO: better handling of errors / mix with modules/rpc/rpc.js -->
+            &lt;!&ndash; TODO: better handling of errors / mix with modules/rpc/rpc.js &ndash;&gt;
             <div *ngIf="daemonError.error.status">
               <span *ngIf="daemonError.error.status == 401" class="text">
                 RPC connection failed: check credentials
@@ -149,7 +162,7 @@
             <span class="text">Please create wallet first to access other tabs</span>
           </mat-list-item>
 
-        </mat-list><!-- .error.sidebar-item-group -->
+        </mat-list>&lt;!&ndash; .error.sidebar-item-group &ndash;&gt;
       </mat-content>
 
       <mat-content *ngIf="unlocked_until > 0">
@@ -164,7 +177,7 @@
         </mat-list>
       </mat-content>
 
-      <!-- Versions | TODO: move to separate component? -->
+      &lt;!&ndash; Versions | TODO: move to separate component? &ndash;&gt;
       <mat-content class="client-version">
         <div class="client item">
           Client <span class="version">{{ clientVersion }}</span>
@@ -174,21 +187,21 @@
         </div>
       </mat-content>
 
-      <!-- Sync progress -->
+      &lt;!&ndash; Sync progress &ndash;&gt;
       <mat-content class="sync-progress cursor-pointer" (click)="syncScreen()">
-        <!-- reused from syncing dialog -->
+        &lt;!&ndash; reused from syncing dialog &ndash;&gt;
         <app-percentage-bar #progress></app-percentage-bar>
       </mat-content>
 
-    </footer><!-- .pin-to-bottom -->
+    </footer>&lt;!&ndash; .pin-to-bottom &ndash;&gt;-->
 
   </mat-sidenav><!-- .sidebar -->
 
   <!-- Page header -->
   <!-- info/warning notification -->
-  <app-release-notification></app-release-notification>
+  <!--<app-release-notification></app-release-notification>-->
 
-  <mat-toolbar class="header-main">
+  <mat-toolbar class="header-main" *ngIf="testnet">
     <button fxLayout="row" fxLayoutAlign="center end" mat-button
       (click)="sidenav.toggle()" fxHide.gt-sm>
       <mat-icon fontSet="partIcon" fontIcon="part-hamburger"></mat-icon>

@@ -1,35 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,500');
 
 /* ------------------------------- *\
     Variables
 \* ------------------------------- */
 
-$font: "Open Sans", sans-serif;
+$font: 'Lato', sans-serif;
+$font-heading: 'Montserrat', sans-serif;
 
 // main colors
-$color: #02E8B0; // primary green-ish color
-$color-success: #4f8a10;
-$color-alert: #ec4b50;
-$color-warning: #f1cc00; // yellow-ish
-$color-info: #108cda; // blue-ish (e.g. status cold staking icon)
+$color: #107cd8;
+$color-secondary: #00d4d1;
+$color-white: #ffffff;
+$color-black: #060c24;
+$color-grey: #b4b4b6;
+$color-dark-grey: #4a4a4a;
+$color-light-grey: #fafafc;
+$color-success: #82d52f;
+$color-alert: #dd2828;
+$color-warning: #f9943d;
+$color-info: $color;
 
 // text colors
-$text: #232728; // default text color
-$text-muted: #7E8790; // grey (for section titles, descriptions etc.)
+$text: $color-black; // default text color
+$text-dark: lighten($color-dark-grey, 5%); // dark grey
+$text-muted: $color-grey; // grey
+$text-white: $color-white;
 
 // bg/element colors
-$bg: #fafafa; // light grey bg color
+$bg: $color-light-grey; // light grey bg color
 $bg-hover: darken($bg, 2%);
-$bg-black: #222828; // sidebar
+$bg-black: $color-black; // sidebar
 $bg-shadow: #dcdcdc; // lines, box shadows etc.
+$bg-white: $color-white;
 
 // UI
 $radius: 4px; // default border-radius
-
+$card-radius: 10px; // default border-radius for cards
 
 /* ------------------------------- *\
     Mixins
 \* ------------------------------- */
 
+@mixin gradient($place, $firstColor, $secondColor) {
+  background: linear-gradient($place, $firstColor, $secondColor);
+}
+
+@mixin primaryGradient() {
+  @include gradient(60deg, #2b1fd3 0%, #00d4d1 100%);
+}
+
+@mixin secondaryGradient() {
+  @include gradient(60deg, #060d1e 0%, #202d49 100%);
+}
 
 /* ------------------------------- *\
     Placeholder selectors

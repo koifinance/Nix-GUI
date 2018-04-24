@@ -14,7 +14,51 @@
 </div>
 
 <ng-container *ngFor="let tx of txService.txs">
-  <mat-expansion-panel class="history-list" [expanded]="checkExpandDetails(tx)">
+
+  <div class="transaction-list" fxLayout="row" fxLayoutGap="10px" *ngIf="!expansionPanel">
+    <div class="transaction-item" fxFlex="11" fxFlexOrder="1">
+      <div class="transaction-item-content">
+        <div class="month">
+          {{ tx.getShortMonth() }}
+        </div>
+        <div class="day multi-line">
+          {{ tx.getDayOfMonth() }}
+        </div>
+      </div>
+    </div>
+    <div class="transaction-item" fxFlex="13" fxFlexOrder="2">
+      <div class="transaction-item-content">
+        <div class="icon">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle-thin fa-stack-2x"></i>
+            <i class="fa fa-arrow-up fa-stack-1x"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="transaction-item" fxFlex="20" fxFlexOrder="3">
+      <div class="transaction-item-content">
+        <div class="category">
+          {{ tx.getCategory() }}
+        </div>
+        <div class="status multi-line">
+
+        </div>
+      </div>
+    </div>
+    <div class="transaction-item" fxFlex="50" fxFlexOrder="4" fxLayoutAlign="right">
+      <div class="transaction-item-content">
+        <div class="amount">
+          {{ tx.getAmount() }}
+        </div>
+        <div class="dollar-amount multi-line">
+          <mat-icon fontSet="partIcon" fontIcon="part-stake"></mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-expansion-panel class="history-list" [expanded]="checkExpandDetails(tx)" *ngIf="expansionPanel">
 
     <mat-expansion-panel-header fxLayout="row" fxLayoutGap="10px" (click)="showExpandedTransactionDetail(tx)" layout-padding>
 
