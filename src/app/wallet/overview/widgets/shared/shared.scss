@@ -1,4 +1,4 @@
-@import "./src/assets/_config"; // import shared colors etc.
+@import './src/assets/config'; // import shared colors etc.
 /*
   Values shared among widgets
 */
@@ -12,10 +12,14 @@
   Shared among widgets
 */
 
-span.point {
-  color: $color;
+span {
+  .point {
+    color: $color;
+  }
 }
 
-mat-card.multiple {
-  margin-bottom: 20px;
+mat-card {
+  .multiple {
+    margin-bottom: 20px;
+  }
 }

@@ -1,19 +1,19 @@
-@import "./src/assets/_config"; // import shared colors etc.
+@import './src/assets/config'; // import shared colors etc.
 
 .subtitle {
-  text-transform: uppercase;
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .mat-form-field {
+  font-family: 'Open Sans';
   width: 100%;
-  font-family: "Open Sans";
 }
 
 .mat-icon {
-  width: auto;
   height: auto;
   padding: 5px;
+  width: auto;
 }

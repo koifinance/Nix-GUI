@@ -1,4 +1,4 @@
-@import "./src/assets/_config"; // import shared colors etc.
+@import './src/assets/config'; // import shared colors etc.
 
 .container-block {
   padding-top: calc(35px - 1.25em); // offset padding from search input
@@ -10,16 +10,18 @@
 
 .search-address {
   margin-top: 9px;
+
   .mat-input-element {
-    width: calc(100% - 50px);
     height: 20px;
     margin-left: 0;
     padding-right: 50px;
+    width: calc(100% - 50px);
   }
+
   .mat-icon {
-    top: 4px;
-    right: 18px;
     font-size: 14px;
+    right: 18px;
+    top: 4px;
   }
 }
 
@@ -29,91 +31,97 @@
 
 .qr-card {
   padding: 24px 10px;
+
   .qrcode {
-    width: 180px;
     margin: 0 auto;
+    width: 180px;
   }
 }
 
 .address-details {
-  text-align: center;
   margin-top: 15px;
+  text-align: center;
   @media (max-width: 960px) {
     text-align: left;
   }
+
   .details-title {
-    font-weight: bold;
-    text-transform: uppercase;
     font-size: 1.2em;
-  }
-  .details-label {
     font-weight: bold;
     text-transform: uppercase;
-    color: #515153;
+  }
+
+  .details-label {
+    color: $color-dark-grey;
+    font-weight: bold;
     margin: 10px 0 25px;
+    text-transform: uppercase;
     @media (max-width: 960px) {
       margin: 10px 0 20px;
     }
   }
+
   .details-address {
-    font-family: monospace;
     color: $text-muted;
+    font-family: monospace;
     margin: 0 25px 20px;
     @media (max-width: 960px) {
       margin: 0 0 20px;
     }
   }
+
   .actions {
-    button.copy {
-      margin-bottom: 10px;
+    button {
+      .copy {
+        margin-bottom: 10px;
+      }
     }
+
     .mat-icon {
       height: 16px;
     }
   }
 }
- 
-/* ------------------------------- *\ 
-    Address list 
-\* ------------------------------- */ 
- 
+
+/* ------------------------------- *\
+    Address list
+\* ------------------------------- */
+
 .address-title { // section title (used/unused)
+  color: $text-muted;
   font-weight: normal;
   text-transform: uppercase;
-  color: $text-muted;
-  /*
-  &.first {
-    padding-top: 0;
-    height: auto;
-  }
-  */
 }
 
 .address-info { // address "card"
   margin-bottom: 12px;
+
   .address-id {
     color: $text-muted;
   }
+
   .address-label {
-    text-transform: uppercase;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
+
   .address {
+    background: transparent;
+    color: $text-muted;
+    font-family: monospace;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: monospace;
-    color: $text-muted;
-    background: transparent;
     transition: background .3s;
   }
+
   .address-actions { // copy, sign, ...
     .mat-icon {
-      width: auto;
-      height: auto;
       font-size: 16px;
+      height: auto;
+      width: auto;
     }
   }
 }

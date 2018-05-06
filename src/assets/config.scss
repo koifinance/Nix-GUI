@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,500');
+@import 'https://fonts.googleapis.com/css?family=Lato|Montserrat:400,500';
 
 /* ------------------------------- *\
     Variables
@@ -9,16 +9,19 @@ $font-heading: 'Montserrat', sans-serif;
 
 // main colors
 $color: #107cd8;
+$color-heading: #4298dc;
 $color-secondary: #00d4d1;
-$color-white: #ffffff;
+$color-white: #fff;
 $color-black: #060c24;
 $color-grey: #b4b4b6;
+$color-silver: #c0c0c0;
 $color-dark-grey: #4a4a4a;
 $color-light-grey: #fafafc;
 $color-success: #82d52f;
 $color-alert: #dd2828;
 $color-warning: #f9943d;
 $color-info: $color;
+$color-shadow: #333;
 
 // text colors
 $text: $color-black; // default text color
@@ -32,6 +35,8 @@ $bg-hover: darken($bg, 2%);
 $bg-black: $color-black; // sidebar
 $bg-shadow: #dcdcdc; // lines, box shadows etc.
 $bg-white: $color-white;
+$bg-warning: rgba($color-alert, .1);
+$bg-success: rgba($color-success, .1);
 
 // UI
 $radius: 4px; // default border-radius
@@ -41,15 +46,15 @@ $card-radius: 10px; // default border-radius for cards
     Mixins
 \* ------------------------------- */
 
-@mixin gradient($place, $firstColor, $secondColor) {
-  background: linear-gradient($place, $firstColor, $secondColor);
+@mixin gradient($place, $first-color, $second-color) {
+  background: linear-gradient($place, $first-color, $second-color);
 }
 
-@mixin primaryGradient() {
+@mixin primary-gradient() {
   @include gradient(60deg, #2b1fd3 0%, #00d4d1 100%);
 }
 
-@mixin secondaryGradient() {
+@mixin secondary-gradient() {
   @include gradient(60deg, #060d1e 0%, #202d49 100%);
 }
 
@@ -60,31 +65,28 @@ $card-radius: 10px; // default border-radius for cards
 
 %subtitle { // section titles / H2's
   @extend %disable-select;
-  font-size: 15px;
-  font-family: $font;
-  font-weight: normal;
-  text-transform: uppercase;
-  color: $text-muted;
   border-bottom: 1px solid $bg-shadow;
-  padding: 0 0 8px;
+  color: $text-muted;
+  font-family: $font;
+  font-size: 15px;
+  font-weight: normal;
   margin: 30px 0 25px;
+  padding: 0 0 8px;
+  text-transform: uppercase;
 }
-
 
 // enable/disable text selection
-%disable-select,
-.disable-select {
-  user-select: none;
+%disable-select, .disable-select {
   cursor: default;
-}
-%enable-select,
-.enable-select {
-  user-select: auto;
-  cursor: text;
+  user-select: none;
 }
 
+%enable-select, .enable-select {
+  cursor: text;
+  user-select: auto;
+}
 
 // Transition effects
 %tfx {
-  transition: all 0.17s;
+  transition: all .17s;
 }

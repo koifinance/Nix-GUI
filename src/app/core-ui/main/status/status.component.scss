@@ -1,11 +1,12 @@
-@import "./src/assets/_config"; // import shared colors etc.
+@import './src/assets/config'; // import shared colors etc.
 
 .icon {
   padding: 1px;
+
   .mat-icon {
-    width: auto;
-    height: auto;
     font-size: 16px;
+    height: auto;
+    width: auto;
   }
 
   // Encryption
@@ -15,10 +16,12 @@
 
   // Staking icon
   &.staking {
-    font-size: 0.8em;
+    font-size: .8em;
+
     &.enabled {
       color: $color-info;
     }
+
     &.disabled {
       color: darken($bg-shadow, 15%);
     }
@@ -26,10 +29,9 @@
 
   // Console
   &.console {
+    cursor: pointer;
     margin-left: 6px;
     position: relative;
     top: 1px;
-    cursor: pointer;
   }
-
 }

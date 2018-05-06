@@ -1,13 +1,12 @@
-@import "./src/assets/_config"; // import shared colors etc.
-
+@import './src/assets/config'; // import shared colors etc.
 
 // ------ UI ------ //
 
 .section {
   &.advanced { // "advanced options" fields
-    background: mix(white, $bg);
+    background: mix($color-white, $bg);
     border-top: 1px dashed darken($bg, 7%);
-    margin: 0 -24px 0 !important;
+    margin: 0 -24px !important;
     padding: 8px 24px;
   }
 }
@@ -17,49 +16,55 @@
 }
 
 .title { // box titles
-  text-transform: uppercase;
-  font-weight: bold;
   font-size: 13px;
+  font-weight: bold;
   margin: -4px 0 16px !important;
+  text-transform: uppercase;
+
   .advanced-options {
     float: right;
     position: relative;
-    top: -5px;
     right: -13px;
+    top: -5px;
   }
 }
 
 .subtitle { // subtitles (eg. "privacy level" in anon
-  text-transform: uppercase;
+  color: $color-grey;
   margin: 20px 0 10px;
-  color: grey;
+  text-transform: uppercase;
 }
 
 .balance { // balance selection radio buttons
   @extend %tfx;
-  padding: 8px 24px;
-  margin: 0 -24px !important;
   font-family: $font;
+  margin: 0 -24px !important;
+  padding: 8px 24px;
+
   &:hover {
     background: $bg-hover;
   }
+
   .name { // balance type
-    font-weight: bold;
     font-size: 14px;
+    font-weight: bold;
   }
+
   .desc { // available balance
     color: $text-muted;
     font-size: 11px;
+
     .amount {
       color: $color;
       font-weight: 600;
       margin-left: 5px;
     }
+
     .help-icon { // explanation of "1e-8" at blind balances (after sending all blind)
-      margin-left: 3px;
-      font-size: 14px;
       color: $color-info;
+      font-size: 14px;
       line-height: 0;
+      margin-left: 3px;
       position: relative;
       top: 2px;
     }
@@ -67,11 +72,10 @@
 }
 
 .mat-icon {
-  width: auto;
-  height: auto;
   font-size: 16px;
+  height: auto;
+  width: auto;
 }
-
 
 // ------ LAYOUT ------ //
 
@@ -83,13 +87,16 @@ app-header {
 
 .privacy-level { // slider in Anon TXs
   margin: 0 0 20px;
+
   .privacy-label {
+    cursor: pointer;
     font-weight: bold;
     padding-bottom: 10px;
-    cursor: pointer;
+
     &.medium {
       text-align: center;
     }
+
     &.high {
       text-align: right;
     }
@@ -102,15 +109,16 @@ app-header {
   .receiver-address { // recipient's addy & label
     margin-bottom: 30px !important;
   }
+
   .widget-help {
     margin-top: 0;
   }
-
 }
 
 .actions {
-  text-align: right;
   margin: 0;
+  text-align: right;
+
   button {
     margin: 0 0 0 12px;
   }
@@ -125,6 +133,6 @@ mat-form-field {
   }
 }
 
-.underliningSelect {
+.underlining-select {
   position: relative;
 }

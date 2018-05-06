@@ -1,4 +1,6 @@
-@import "./src/assets/_config"; // import shared colors etc.
+@import './src/assets/config'; // import shared colors etc.
+
+$list-item-bg: rgba($color, .04);
 
 .modal-content {
   overflow: visible; // gets rid of vertical scrollbars (not needed here)
@@ -6,10 +8,11 @@
 
 .search-address { // address/label search
   margin-top: 15px;
+
   .mat-icon {
-    top: 4px;
-    right: 18px;
     font-size: 14px;
+    right: 18px;
+    top: 4px;
   }
 }
 
@@ -19,14 +22,19 @@
 
 .mat-list {
   margin: 0 -24px;
+
   .mat-list-item {
-    &:not(.list-header):hover {
-      background: rgba($color, 0.04);
-      .address {
-        color: darken($color, 5%);
+    &:not(.list-header) {
+      &:hover {
+        background: $list-item-bg;
+
+        .address {
+          color: darken($color, 5%);
+        }
       }
     }
   }
+
   .mat-divider {
     margin: 0;
   }
@@ -34,30 +42,33 @@
 
 .list-header {
   padding: 0 8px;
+
   .address-list-header { // list column labels
+    color: $text-muted;
     font-family: $font;
-    text-transform: uppercase;
     font-size: 13px;
     font-weight: 400;
-    color: $text-muted;
+    text-transform: uppercase;
   }
 }
 
 .address-entry { // single address item
   cursor: pointer;
+  font-family: $font;
   font-size: 13px;
   padding: 0 8px;
-  font-family: $font;
+
   .label {
     font-weight: 700;
     text-transform: uppercase;
   }
+
   .address {
+    background: transparent;
+    color: $text-muted;
+    font-family: monospace;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: monospace;
-    color: $text-muted;
-    background: transparent;
     transition: background .3s;
   }
 }
