@@ -25,7 +25,10 @@ export class ColdstakeComponent implements OnDestroy {
   public encryptionStatus: string = 'Locked';
 
   private progress: Amount = new Amount(0, 2);
-  get coldstakeProgress(): number { return this.progress.getAmount() }
+
+  get coldstakeProgress(): number {
+    return this.progress.getAmount();
+  }
 
 
   hotstakingamount: number = 0.0;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { RpcService, RpcStateService } from 'app/core/core.module';
 import { ModalsService } from 'app/modals/modals.module';
@@ -39,7 +39,7 @@ export class FixWalletModalComponent implements OnInit {
         this.dialog.open(WalletFixedConfirmationComponent);
       },
       (error: any) => {}
-    )
+    );
   }
 
   dialogClose(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Log } from 'ng2-logger';
 
 import { BlockStatusService } from '../../../core/rpc/rpc.module';
@@ -43,6 +43,6 @@ export class PercentageBarComponent implements OnInit {
     this.syncPercentage = progress;
     this.syncString = progress === 100
       ? 'Fully synced'
-      : `${progress.toFixed(2)} %`
+      : `${progress.toFixed(2)} %`;
   }
 }

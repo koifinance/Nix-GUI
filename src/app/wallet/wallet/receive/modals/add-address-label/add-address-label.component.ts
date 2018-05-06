@@ -69,7 +69,7 @@ export class AddAddressLabelComponent implements OnInit {
           this.log.d(call, `addNewLabel: successfully executed ${call} ${callParams}`);
           this.onAddressAdd.emit(response);
           this.dialogRef.close();
-          this.flashNotificationService.open(msg)
+          this.flashNotificationService.open(msg);
         });
     }
   }

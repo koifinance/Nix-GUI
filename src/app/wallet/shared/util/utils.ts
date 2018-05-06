@@ -148,7 +148,7 @@ export class Duration {
 
 export class AddressHelper {
   addressPublicRegex: RegExp = /^[pPrR25][a-km-zA-HJ-NP-Z1-9]{25,52}$/;
-  addressPrivateRegex: RegExp = /^[Tt][a-km-zA-HJ-NP-Z1-9]{60,}$/
+  addressPrivateRegex: RegExp = /^[Tt][a-km-zA-HJ-NP-Z1-9]{60,}$/;
   addressBothRegex: RegExp = /^[pPrR25tT][a-km-zA-HJ-NP-Z1-9]{25,}$/;
 
   testAddress(address: string, type?: string): boolean {
@@ -178,7 +178,7 @@ export class DateFormatter {
       ((this.date.getMonth() + 1) < 10 ? '0' + (this.date.getMonth() + 1) : (this.date.getMonth() + 1)) + '-' +
       (this.date.getFullYear() < 10 ? '0' + this.date.getFullYear() : this.date.getFullYear()) + ' ' +
       this.hourSecFormatter()
-    )
+    );
   }
 
   public hourSecFormatter() {
@@ -186,6 +186,6 @@ export class DateFormatter {
         (this.date.getHours() < 10 ? '0' + this.date.getHours() : this.date.getHours()) + ':' +
         (this.date.getMinutes() < 10 ? '0' + this.date.getMinutes() : this.date.getMinutes()) + ':' +
         (this.date.getSeconds() < 10 ? '0' + this.date.getSeconds() : this.date.getSeconds())
-      )
+      );
   }
 }

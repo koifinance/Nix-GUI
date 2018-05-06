@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 
 import { Log } from 'ng2-logger';
-import { Amount } from '../../../../shared/util/utils';
 
 import { ModalsService } from 'app/modals/modals.service';
 import { RpcService, RpcStateService } from 'app/core/core.module';
@@ -49,7 +48,7 @@ export class RevertColdstakingComponent implements OnInit {
                 this.flashNotification.open(
                   'No stealth address found, please add a stealthaddress.', 'error');
                 return;
-            };
+            }
 
             this.log.d('return address', this.address);
 
@@ -69,7 +68,7 @@ export class RevertColdstakingComponent implements OnInit {
                     amount: utxo.amount,
                     inputs: [{ tx: utxo.txid, n: utxo.vout }]
                   });
-                };
+                }
               });
 
               this.utxos.txs.map(tx => {

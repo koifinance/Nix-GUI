@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { MatDialog } from '@angular/material';
 import { Log } from 'ng2-logger';
@@ -10,7 +10,7 @@ import { RpcService, RpcStateService } from '../../../../core/core.module';
 import { SnackbarService } from '../../../../core/snackbar/snackbar.service';
 import { ModalsService } from '../../../../modals/modals.service';
 
-import { QrCodeModalComponent} from '../qr-code-modal/qr-code-modal.component';
+import { QrCodeModalComponent } from '../qr-code-modal/qr-code-modal.component';
 import { DeleteConfirmationModalComponent } from '../../../shared/delete-confirmation-modal/delete-confirmation-modal.component';
 import { SignatureAddressModalComponent } from '../signature-address-modal/signature-address-modal.component';
 
@@ -67,8 +67,8 @@ export class AddressTableComponent implements OnInit, OnChanges {
     private _modals: ModalsService
   ) {
     this._addressService._addresses.subscribe((addresses) => {
-      this.addresses = addresses
-    })
+      this.addresses = addresses;
+    });
   }
 
   ngOnInit(): void {

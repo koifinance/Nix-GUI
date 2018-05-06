@@ -113,7 +113,7 @@ export class AddressLookupComponent implements OnInit {
                       this.filter = 'Public';
                       this.addressLookups.push(new Contact(contact.label, contact.address));
                     }
-                  })
+                  });
                 },
                 error => this.log.er('error!'));
           } else {

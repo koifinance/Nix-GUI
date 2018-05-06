@@ -13,11 +13,12 @@
     "curly": true,
     "eofline": true,
     "forin": true,
-    //"import-blacklist": [true, "rxjs"],
     "import-spacing": true,
-    "indent": {
-      "options": ["spaces", 2]
-    },
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
@@ -53,7 +54,6 @@
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
     "no-unused-expression": true,
-    "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
     "one-line": [
@@ -70,6 +70,7 @@
     ],
     "radix": true,
     "semicolon": [
+      true,
       "always"
     ],
     "triple-equals": [
@@ -87,7 +88,6 @@
         "variable-declaration": "nospace"
       }
     ],
-    "typeof-compare": true,
     "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
@@ -96,26 +96,22 @@
       "check-decl",
       "check-operator",
       "check-separator",
-      "check-type"
+      "check-type",
+      "check-module"
     ],
-
     "directive-selector": [true, "attribute", "app", "camelCase"],
-    /* "component-selector": [true, "element", "app", "kebab-case"],*
-     * Would be nice if we could make this apply to certain components only...
-     */
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
     "no-input-rename": true,
     "no-output-rename": true,
-
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-
     "component-class-suffix": [true, "Component"],
     "directive-class-suffix": [true, "Directive"],
-    "templates-use-public": true,
-    "no-access-missing-member": true,
-    "invoke-injectable": true
+    "linebreak-style": [
+      true,
+      "LF"
+    ]
   }
 }

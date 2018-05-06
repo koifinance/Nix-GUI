@@ -17,7 +17,7 @@ export class RpcMockService {
       if (method === 'getpeerinfo') {
         observer.next(mockgetpeerinfo);
       } else {
-        observer.next(true)
+        observer.next(true);
       }
 
       observer.complete();

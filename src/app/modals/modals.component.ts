@@ -2,14 +2,15 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
-  OnInit,
   DoCheck,
   ElementRef,
   HostListener,
+  OnDestroy,
+  OnInit,
   ViewChild,
-  ViewContainerRef, OnDestroy
+  ViewContainerRef
 } from '@angular/core';
-import { Log } from 'ng2-logger'
+import { Log } from 'ng2-logger';
 
 import { CreateWalletComponent } from './createwallet/createwallet.component';
 import { ColdstakeComponent } from './coldstake/coldstake.component';

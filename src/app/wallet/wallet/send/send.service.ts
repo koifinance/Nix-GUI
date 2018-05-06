@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Log } from 'ng2-logger'
+import { Log } from 'ng2-logger';
 
 import { RpcService } from '../../../core/core.module';
 import { SnackbarService } from '../../../core/snackbar/snackbar.service';
-
 /* fix wallet */
 import { MatDialog } from '@angular/material';
 import { FixWalletModalComponent } from 'app/wallet/wallet/send/fix-wallet-modal/fix-wallet-modal.component';
@@ -170,7 +169,7 @@ export class SendService {
   * Returns true if the RPC method is anonto...
   */
   isAnon(input: string): boolean {
-    return ['anontopart', 'anontoanon', 'anontoblind'].includes(input)
+    return ['anontopart', 'anontoanon', 'anontoblind'].includes(input);
   }
 
   /**

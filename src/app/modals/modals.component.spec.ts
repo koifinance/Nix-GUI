@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogRef } from '@angular/material';
 
-import { CoreModule, BlockStatusService } from '../core/core.module';
+import { BlockStatusService, CoreModule } from '../core/core.module';
 // TODO;: ^why blockstatus & providing it?
 import { ModalsModule, ModalsService } from './modals.module';
 import { SharedModule } from '../wallet/shared/shared.module';
@@ -9,7 +9,6 @@ import { CoreUiModule } from '../core-ui/core-ui.module';
 
 import { UnlockwalletComponent } from './unlockwallet/unlockwallet.component';
 import { ModalsComponent } from './modals.component';
-
 
 
 describe('ModalsComponent', () => {
@@ -50,7 +49,7 @@ describe('ModalsComponent', () => {
   });
 
   it('should get closeOnEscape', () => {
-    expect(component.closeOnEscape).toBeTruthy()
+    expect(component.closeOnEscape).toBeTruthy();
   });
 
   it('should get hasScrollY', () => {
@@ -58,6 +57,6 @@ describe('ModalsComponent', () => {
   });
 
   it('should get modal', () => {
-    expect(component.modal).toBeUndefined()
+    expect(component.modal).toBeUndefined();
   });
 });

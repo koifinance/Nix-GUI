@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  HostListener,
-  ViewChild,
-  ElementRef,
-  AfterViewChecked
-} from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { Log } from 'ng2-logger';
 
@@ -104,18 +97,18 @@ export class ConsoleModalComponent implements OnInit, AfterViewChecked {
 
   scrollToBottom() {
     if (this.disableScrollDown) {
-      return
+      return;
     }
     this.commandContainer.nativeElement.scrollTop = this.commandContainer.nativeElement.scrollHeight;
   }
 
   onScroll() {
-    const element = this.commandContainer.nativeElement
-    const atBottom = element.scrollHeight - element.scrollTop === element.clientHeight
+    const element = this.commandContainer.nativeElement;
+    const atBottom = element.scrollHeight - element.scrollTop === element.clientHeight;
     if (this.disableScrollDown && atBottom) {
-      this.disableScrollDown = false
+      this.disableScrollDown = false;
     } else {
-      this.disableScrollDown = true
+      this.disableScrollDown = true;
     }
   }
 

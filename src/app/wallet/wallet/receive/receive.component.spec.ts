@@ -6,8 +6,7 @@ import { CoreModule } from '../../../core/core.module';
 import { CoreUiModule } from '../../../core-ui/core-ui.module';
 import { ModalsModule } from '../../../modals/modals.module';
 
-import { SharedModule } from '../../shared/shared.module';  // is this even needed?
-
+import { SharedModule } from '../../shared/shared.module'; // is this even needed?
 import { ReceiveComponent } from './receive.component';
 
 describe('ReceiveComponent', () => {
@@ -61,7 +60,7 @@ describe('ReceiveComponent', () => {
   // });
 
   it('should get initialized', () => {
-    expect(component.initialized).toBeFalsy()
+    expect(component.initialized).toBeFalsy();
   });
 
   it('should get page', () => {

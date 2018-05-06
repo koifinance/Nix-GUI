@@ -567,6 +567,6 @@ const mockgetpeerinfo: any = [
       'bytesrecv_per_msg': {
       }
     }
-  ]
+];
 
   export default mockgetpeerinfo;

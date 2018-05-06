@@ -18,5 +18,5 @@ interface Window {
     removeListener: (channel: string, listener: Function) => void;
     removeAllListeners: (channel?: string) => void;
     listenerCount: (channel?: string) => number;
-  }
+  };
 }

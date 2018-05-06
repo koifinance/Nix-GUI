@@ -1,10 +1,10 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {PageEvent} from '@angular/material';
-import {Log} from 'ng2-logger';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { PageEvent } from '@angular/material';
+import { Log } from 'ng2-logger';
 
-import {slideDown} from 'app/core-ui/core.animations';
-import {Transaction} from '../transaction.model';
-import {TransactionService} from '../transaction.service';
+import { slideDown } from 'app/core-ui/core.animations';
+import { Transaction } from '../transaction.model';
+import { TransactionService } from '../transaction.service';
 
 @Component({
   selector: 'transaction-table',
@@ -54,7 +54,7 @@ export class TransactionsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.display = Object.assign({}, this._defaults, this.display); // Set defaults
-    this.log.d(`transaction-table: amount of transactions per page ${this.display.txDisplayAmount}`)
+    this.log.d(`transaction-table: amount of transactions per page ${this.display.txDisplayAmount}`);
     this.txService.postConstructor(this.display.txDisplayAmount);
   }
 

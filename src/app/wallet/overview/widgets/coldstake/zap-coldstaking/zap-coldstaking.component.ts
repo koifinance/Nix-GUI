@@ -65,7 +65,7 @@ export class ZapColdstakingComponent {
                 amount: utxo.amount,
                 inputs: [{ tx: utxo.txid, n: utxo.vout }]
               });
-            };
+            }
           });
 
           this._rpc.call('getnewaddress', ['""', 'false', 'false', 'true'])
