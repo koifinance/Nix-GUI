@@ -1,13 +1,16 @@
-@import "./src/assets/_config"; // import shared colors etc.
-@import '../shared/shared.scss';
+@import './src/assets/config';
+// import shared colors etc.
+@import '../shared/shared';
 
 .staking-overview { // listing of staking stats
   @extend %disable-select;
+
   th {
-    text-align: left;
-    padding-right: 20px;
     font-weight: normal;
+    padding-right: 20px;
+    text-align: left;
   }
+
   td {
     font-weight: 600;
   }

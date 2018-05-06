@@ -9,7 +9,6 @@ rules:
     - max-depth: 1
   border-zero:
     - 1
-    - convention: zero
   brace-style:
     - 1
     - allow-single-line: true
@@ -46,7 +45,7 @@ rules:
     - convention: hyphenatedlowercase
   indentation:
     - 1
-    - size: 4
+    - size: 2
   leading-zero:
     - 1
     - include: false
@@ -57,7 +56,7 @@ rules:
   mixins-before-declarations: 1
   nesting-depth:
     - 1
-    - max-depth: 3
+    - max-depth: 4
   no-color-keywords: 1
   no-color-literals: 1
   no-css-comments: 0
@@ -66,7 +65,7 @@ rules:
   no-empty-rulesets: 1
   no-extends: 0
   no-ids: 1
-  no-important: 1
+#  no-important: 1
   no-invalid-hex: 1
   no-mergeable-selectors: 1
   no-misspelled-properties:
@@ -83,7 +82,7 @@ rules:
   no-vendor-prefixes:
     - 1
     - additional-identifiers: []
-      excluded-identifiers: []
+      excluded-identifiers: [moz, ms, o, webkit]
   placeholder-in-extend: 1
   placeholder-name-format:
     - 1
@@ -131,7 +130,7 @@ rules:
         - 1
         - 2
         - 3
-  single-line-per-selector: 1
+#  single-line-per-selector: 1
   space-after-bang:
     - 1
     - include: false

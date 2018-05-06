@@ -1,11 +1,17 @@
-@import 'widgets/shared/shared.scss';
+@import 'widgets/shared/shared';
+
+$grey-12-opacity: rgba(0, 0, 0, .12);
+$grey-14-opacity: rgba(0, 0, 0, .14);
+$grey-20-opacity: rgba(0, 0, 0, .2);
 
 .overview-header {
-  padding: 4em 35px 15px;
   color: $text-dark;
   font-size: 14px;
+  padding: 4em 35px 15px;
+
   .welcome-message {
     font-size: 16px;
+
     .highlight {
       color: $text;
       font-weight: bold;
@@ -16,23 +22,27 @@
 .overview-balance { // list of balances
   @extend %disable-select;
   padding: 15px 50px;
+
   .item {
-    width: 225px;
-    height: 150px;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12) !important;
     border-radius: $card-radius;
+    box-shadow: 0 3px 1px -2px $grey-20-opacity, 0 2px 2px 0 $grey-14-opacity, 0 1px 5px 0 $grey-12-opacity !important;
+    height: 150px;
     padding-left: 40px;
+    width: 225px;
   }
+
   .total {
-    @include primaryGradient;
+    @include primary-gradient;
   }
+
   .anon {
-    @include secondaryGradient;
+    @include secondary-gradient;
   }
 }
 
 .overview-content { // area with widgets
   padding: 0 35px;
+
   h4, h5 {
     text-transform: uppercase;
   }

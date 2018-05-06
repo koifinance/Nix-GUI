@@ -1,26 +1,28 @@
-@import "./src/assets/_config"; // import shared colors etc.
-
+@import './src/assets/config'; // import shared colors etc.
 
 // Sidebar
 .sync-progress-wrapper {
+  border-top: 1px solid $color-black; // simulate sidebar divider
+  box-shadow: 0 1px 0 $color-shadow inset;
   padding: 15px 24px 0;
-  border-top: 1px solid #15191A; // simulate sidebar divider
-  box-shadow: 0 1px 0 #333 inset;
+
   .sync-info {
-    font-size: 11px;
-    text-transform: uppercase;
-    margin: 0 0 8px;
     color: $text-muted;
+    font-size: 11px;
+    margin: 0 0 8px;
+    text-transform: uppercase;
   }
-  .sync-spinner{
+
+  .sync-spinner {
     max-height: 30px;
-  }
-  .sync-spinner.mat-spinner {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin: 0 7px 0 0;
-    position: relative;
-    top: 3px;
+
+    &.mat-spinner {
+      display: inline-block;
+      height: 14px;
+      margin: 0 7px 0 0;
+      position: relative;
+      top: 3px;
+      width: 14px;
+    }
   }
 }

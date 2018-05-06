@@ -1,6 +1,11 @@
-@import "theme/partgui-theme";
-@import "./src/assets/_config"; // import shared colors etc.
+@import 'theme/partgui-theme';
+@import './src/assets/config'; // import shared colors etc.
 
+$alert-50-opacity: rgba($color-alert, .5);
+$white-50-opacity: rgba($color-white, .5);
+$white-90-opacity: rgba($color-white, .9);
+$black-51-opacity: rgba(0, 0, 0, .507);
+$color-pink: #ff69b4;
 
 /* ------------------------------- *\
     UI Elements
@@ -11,39 +16,37 @@
 .widget-help {
   @extend %disable-select;
   color: $text-muted;
+  cursor: help;
   font-size: 11px;
   margin-bottom: 25px;
-  cursor: help;
 }
-
 
 // ------ ADDRESSES ------ //
 
 .address, .address-label {
+  background: transparent;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: transparent;
   transition: background .3s;
   white-space: nowrap;
 }
 
 // ------ BUTTONS ------ //
 
-button,
-.mat-button,
-.mat-raised-button {
+button, .mat-button, .mat-raised-button {
   .mat-icon {
-    width: auto;
     height: auto;
     margin-right: 5px;
     position: relative;
     top: -1px;
+    width: auto;
   }
+
   &.small { // smaller buttons
-    min-width: auto;
-    line-height: 29px;
-    padding: 0 12px;
     font-size: 12px;
+    line-height: 29px;
+    min-width: auto;
+    padding: 0 12px;
   }
 }
 
@@ -53,18 +56,16 @@ button,
   }
 }
 
-
 // ------ SELECT BOX FIX ------ //
 
 .mat-select-panel {
-  background: white;
+  background: $color-white;
 }
 
-.underliningSelect {
-  border-bottom: .2px solid rgba(0, 0, 0, 0.507);
+.underlining-select {
+  border-bottom: .2px $black-51-opacity;
   line-height: 1.6em;
 }
-
 
 // ------ PROGRESS BARS ------ //
 
@@ -77,14 +78,14 @@ button,
   }
 }
 
-
 // ------ CARDS ------ //
 
-mat-card.mat-card { // FIXME: remove the !important and solve overwriting
-  font-family: $font;
-  box-shadow: 0 1px 0 $bg-shadow !important;
+mat-card {
+  .mat-card { // FIXME: remove the !important and solve overwriting
+    box-shadow: 0 1px 0 $bg-shadow !important;
+    font-family: $font;
+  }
 }
-
 
 // ------ TABS ------ //
 
@@ -92,19 +93,22 @@ mat-card.mat-card { // FIXME: remove the !important and solve overwriting
   .mat-tab-label {
     &.mat-tab-label-active { // keep active tabs black (not grey)
       opacity: 1;
-      .mat-icon { opacity: 0.9; }
+
+      .mat-icon {
+        opacity: .9;
+      }
     }
+
     .mat-icon {
       @extend %tfx;
       font-size: 14px;
       margin-right: 8px;
+      opacity: .5;
       position: relative;
-      top: 0.02em;
-      opacity: 0.5;
+      top: .02em;
     }
   }
 }
-
 
 // ------ EXPANSION PANELS ------ //
 
@@ -114,23 +118,30 @@ mat-card.mat-card { // FIXME: remove the !important and solve overwriting
       background: inherit !important; // disable darker bg on hover by default
     }
   }
+
   // sidebar/menu: no padding for panel's content (used in the sidebar)
   &.no-padding {
     .mat-expansion-panel-body {
       padding: 0;
     }
   }
+
   // sidebar/menu: color panel's arrow
   &.arrow-colored {
-    .mat-expansion-indicator::after {
-      @extend %tfx;
-      color: $text-muted;
+    .mat-expansion-indicator {
+      &::after {
+        @extend %tfx;
+        color: $text-muted;
+      }
     }
+
     // when expanded..
     &.mat-expanded {
       //background: darken($bg-black, 2%); // darken "submenu" background to more visually separate from the rest
-      .mat-expansion-indicator::after {
-        color: $color;
+      .mat-expansion-indicator {
+        &::after {
+          color: $color;
+        }
       }
     }
   }
@@ -141,15 +152,14 @@ mat-card.mat-card { // FIXME: remove the !important and solve overwriting
 
 .no-results {
   @extend %disable-select;
-  font-size: 18px;
-  color: darken($bg-shadow, 15%);
-  text-transform: uppercase;
-  text-align: center;
-  padding: 170px 0;
+  background: $white-50-opacity;
   border: 2px dashed $bg-shadow;
-  background: rgba(white, 0.5);
+  color: darken($bg-shadow, 15%);
+  font-size: 18px;
+  padding: 170px 0;
+  text-align: center;
+  text-transform: uppercase;
 }
-
 
 /* ------------------------------- *\
     Typography
@@ -157,25 +167,24 @@ mat-card.mat-card { // FIXME: remove the !important and solve overwriting
 
 // ------ Page subtitles ------ //
 
-.mat-list.list-data .mat-subheader { // "H2" subtitles in pages (e.g. "(un)used addresses" in Receive
-  @extend %subtitle;
-  height: auto;
-  margin: 10px 0 25px !important;
-  &.first {
-    margin-top: -10px !important;
-  }
-}
-
-
-/* ------------------------------- *\
-    Lists
-\* ------------------------------- */
-
 .mat-list {
+  &.list-data {
+    .mat-subheader { // "H2" subtitles in pages (e.g. "(un)used addresses" in Receive
+      @extend %subtitle;
+      height: auto;
+      margin: 10px 0 25px !important;
+
+      &.first {
+        margin-top: -10px !important;
+      }
+    }
+  }
+
   // sidebar/menu: smaller vertical padding of child lists
   &.sidebar-item-group {
     .mat-list-item {
       height: 42px;
+
       .mat-list-item-content {
         padding: 0 10px;
       }
@@ -184,18 +193,22 @@ mat-card.mat-card { // FIXME: remove the !important and solve overwriting
 }
 
 .icon-input { // input with icon (eg. Search in Address Book)
-  input.mat-input-element {
-    height: 20px;
+  input {
+    &.mat-input-element {
+      height: 20px;
+    }
   }
+
   .mat-icon {
+    cursor: pointer;
+    font-size: 21px;
+    height: auto;
     position: absolute;
     right: 0;
     top: 2px;
     width: auto;
-    height: auto;
-    font-size: 21px;
-    cursor: pointer;
   }
+
   .mat-form-field-underline {
     background-color: $bg-shadow;
   }
@@ -204,18 +217,19 @@ mat-card.mat-card { // FIXME: remove the !important and solve overwriting
 .list-data {
   .mat-list-item {
     font-size: 14px;
-    word-wrap: break-word;
     line-height: 22px;
+    word-wrap: break-word;
   }
+
   .mat-subheader {
     padding-left: 0;
     padding-right: 0;
   }
+
   .mat-divider {
     margin: 15px 0;
   }
 }
-
 
 /* ------------------------------- *\
     Forms
@@ -226,24 +240,28 @@ mat-card.mat-card { // FIXME: remove the !important and solve overwriting
 .mat-form-field {
   font-family: $font;
   line-height: normal;
+
   &.larger { // larger inputs
     font-size: 14px;
   }
+
   &.no-top-padding { // remove top space reserved for floating placeholders (if disabled)
     .mat-input-infix {
-      border-top: none;
+      border-top: 0;
     }
   }
 }
 
 input {
-  &[type="text"] {
-    border: none;
+  &[type='text'] {
+    border: 0;
   }
+
   // visual verification
-  &.verify-sucess {
+  &.verify-success {
     color: darken($color-success, 7%) !important;
   }
+
   &.verify-error {
     color: darken($color-alert, 5%);
   }
@@ -255,6 +273,7 @@ input {
   .mat-radio-button {
     margin-bottom: 12px;
   }
+
   h5 {
     margin-top: 0;
   }
@@ -263,17 +282,17 @@ input {
 .mat-radio-group {
   // send: full-width clickable radios
   &.block-radio {
-    .mat-radio-button .mat-radio-label {
-      width: 100%;
+    .mat-radio-button {
+      .mat-radio-label {
+        width: 100%;
+      }
     }
   }
 }
 
-
 /* ------------------------------- *\
     Scrollbars
 \* ------------------------------- */
-
 
 /* pseudo elements
 ::-webkit-scrollbar              {}
@@ -286,27 +305,30 @@ input {
 */
 
 ::-webkit-scrollbar-track {
-  border-radius: 15px;
   background-color: $bg-shadow;
+  border-radius: 15px;
 }
 
 ::-webkit-scrollbar {
   width: 6px;
 }
 
-::-webkit-scrollbar-thumb:vertical {
-  width: 6px;
-  //border-radius: 15px;
-  background-color: darken($bg-shadow, 20%);
+::-webkit-scrollbar-thumb {
+  &:vertical {
+    background-color: darken($bg-shadow, 20%);
+    //border-radius: 15px;
+    width: 6px;
+  }
 }
+
 .mat-drawer-container {
   background: $bg;
 }
+
 // scroll on by default, so the content doesn't jump on larger pages
 .mat-drawer-content {
   overflow-y: scroll !important;
 }
-
 
 /* ------------------------------- *\
     Dialogs
@@ -314,134 +336,135 @@ input {
 
 .cdk-overlay-container {
   .mat-dialog-container {
-    position: relative;
-    max-width: 800px;
     height: calc(100% - 24px);
-    margin: 24px auto auto auto;
+    margin: 24px auto auto;
+    max-width: 800px;
+    position: relative;
 
     // Dialogs (small)
     .dialog-content {
       margin: 15px -24px;
     }
+
     [mat-dialog-title] { // dialog title
       font-family: $font;
-      font-weight: 600;
       font-size: 20px;
+      font-weight: 600;
       margin-bottom: 15px;
       padding-right: 50px;
+
       &.text-center {
         padding: 0;
       }
     }
 
-    .small-close_button {
+    .small-close-button {
+      background: transparent;
+      border: 0;
+      color: $text-muted;
+      cursor: pointer;
+      min-width: 50px;
+      outline: none;
+      padding: 0;
       position: absolute;
       right: 10px; // align with modal's content padding
       top: 22px;
       z-index: 10;
-      background: transparent;
-      color: $text-muted;
-      min-width: 50px;
-      padding: 0;
-      border: none;
-      outline: none;
-      cursor: pointer;
+
       .mat-icon {
-        color: rgba($color-alert, 0.5);
         border-radius: 50%;
+        color: $alert-50-opacity;
         font-size: 22px;
         line-height: 1.4;
         margin: 0;
       }
+
       &:hover {
         .mat-icon {
           color: $color-alert;
         }
       }
     }
-    .close_button {
+
+    .close-button {
+      background: transparent;
+      color: $text-muted;
+      cursor: pointer;
+      min-width: 50px;
+      outline: none;
+      padding: 25px 38px;
       position: absolute;
       right: 0;
       top: 0;
       z-index: 10;
-      padding: 25px 38px;
-      background: transparent;
-      color: $text-muted;
-      min-width: 50px;
-      outline: none;
-      cursor: pointer;
+
       .mat-icon {
-        color: rgba($color-alert, 0.5);
         border-radius: 50%;
+        color: $alert-50-opacity;
         font-size: 24px;
         line-height: 1.4;
         margin: 0;
       }
+
       &:hover {
         .mat-icon {
           color: $color-alert;
         }
       }
     }
+
     .mat-wallet-content {
-      /*
-      max-height: 100% !important;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      */
       .mat-progress-spinner { // loading spinners
-        width: 100px;
+        background: $white-90-opacity;
+        border-radius: 50%;
+        box-shadow: 0 0 70px $color-silver;
         height: 100px;
+        left: calc((100% - 100px) / 2);
         padding: 0 !important;
         position: absolute;
-        left: calc((100% - 100px) / 2);
         top: calc((100% - 100px) / 2);
+        width: 100px;
         z-index: 10;
-        background: rgba(white, 0.9);
-        box-shadow: 0 0 70px silver;
-        border-radius: 50%;
+
         svg {
-          width: 70px !important;
           height: 70px !important;
           transform-origin: 50px 35px;
+          width: 70px !important;
         }
       }
     }
   }
 }
 
-
-
 /* ------------------------------- *\
     Pagination
 \* ------------------------------- */
 
 .mat-paginator {
-  margin-top: 40px;
-  display: flex;
   align-items: center;
+  border-bottom: 1px solid $bg-shadow;
+  display: flex;
+  font-family: $font;
   justify-content: flex-end;
+  margin-top: 40px;
   min-height: 56px;
   padding: 0 8px;
-  border-bottom: 1px solid $bg-shadow;
-  font-family: $font;
+
   .mat-icon-button {
     &:hover {
       background-color: $color;
       border-radius: $radius;
-      .mat-paginator-increment,
-      .mat-paginator-decrement {
-        border-color: white;
+
+      .mat-paginator-increment, .mat-paginator-decrement {
+        border-color: $color-white;
       }
     }
+
     &[disabled] {
-      .mat-paginator-increment,
-      .mat-paginator-decrement {
+      .mat-paginator-increment, .mat-paginator-decrement {
         border-color: $bg-shadow;
       }
+
       &:hover {
         background-color: transparent;
       }
@@ -449,26 +472,23 @@ input {
   }
 }
 
-
 /* ------------------------------- *\
     Helper classes
 \* ------------------------------- */
 
-.TO_DO {
-  box-shadow: 0 0 3px 1px hotpink;
+.to-do {
+  box-shadow: 0 0 3px 1px $color-pink;
 }
-
 
 // ------ LAYOUT ------ //
 
-.containerX {
+.container-x {
   width: 100%;
 }
 
 .container-block { // main container for content
   padding: 35px;
 }
-
 
 // ------ TEXT/FONTS ------ //
 

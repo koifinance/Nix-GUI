@@ -30,7 +30,7 @@
         </mat-radio-button>
         <mat-radio-button class="balance" value="blind_balance" fxFlex (click)="send.output = 'balance'">
           <div class="name">Blind</div>
-          <div class="desc">Available balance:<span *ngIf="!checkBalance('blind_balance')" class="amount">{{ getBalance('blind_balance') }}</span> 
+          <div class="desc">Available balance:<span *ngIf="!checkBalance('blind_balance')" class="amount">{{ getBalance('blind_balance') }}</span>
           <mat-icon *ngIf="checkBalance('blind_balance')" fontSet="partIcon" fontIcon="part-circle-question" class="help-icon" matTooltip="It is normal to have a very small balance in Blind even after transferring out everything. This is due to the way CT works and part of the privacy platform."></mat-icon></div>
         </mat-radio-button>
         <mat-radio-button class="balance" value="anon_balance" fxFlex disabled matTooltip="Not available – Anon transactions are currently being tested by researchers from NJIT">
@@ -180,7 +180,7 @@
           Send All
         </mat-checkbox>
         <!-- Choose currency -->
-        <mat-select class="underliningSelect" fxFlex="0 0 70px" name="currency" [(ngModel)]="send.currency"
+        <mat-select class="underlining-select" fxFlex="0 0 70px" name="currency" [(ngModel)]="send.currency"
                     placeholder="Currency">
           <mat-option value="part">PART</mat-option>
         </mat-select>

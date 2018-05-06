@@ -1,4 +1,4 @@
-@import "./src/assets/_config"; // import shared colors etc.
+@import './src/assets/config'; // import shared colors etc.
 
 /* ------------------------------- *\
     UI Elements
@@ -22,16 +22,17 @@
 // ------ SUBMENUS (Accordion) ------ //
 
 .mat-expansion-panel {
+  background: $bg-black;
   border-bottom: 1px solid darken($bg-black, 5%);
   box-shadow: 0 1px 0 lighten($bg-black, 5%) !important;
-  background: $bg-black;
+
   // submenu toggle
   .mat-expansion-panel-header {
+    color: lighten($text-muted, 5%);
     font-family: $font;
     font-size: 11.5px;
-    color: lighten($text-muted, 5%);
-    text-transform: uppercase;
     padding: 0 32px;
+    text-transform: uppercase;
   }
 }
 
@@ -40,51 +41,65 @@
 .sidebar-item {
   @extend %tfx;
   padding: 0 30px;
+
   .icon {
     @extend %tfx;
-    width: auto;
+    color: darken($bg-black, 15%);
     height: auto;
     margin: 0 16px 0 0;
-    color: darken($bg-black, 15%);
+    width: auto;
   }
+
   .text {
+    color: $text-muted;
     font-family: $font;
     font-size: 14px;
-    color: $text-muted;
   }
+
   &:hover {
     background: $bg-hover;
+
     .icon {
       color: darken($bg-black, 30%);
     }
-  }
-  &:hover .text {
-    color: $text;
-    font-size: 15px;
-    font-weight: 600;
+
+    .text {
+      color: $text;
+      font-size: 15px;
+      font-weight: 600;
+    }
   }
 }
 
-a.sidebar-item-link {
-  text-decoration: none;
-  outline: none;
-  &.active:before {
-    content: "";
-    position: absolute;
-    margin-top: 5px;
-    height: 30px;
-    width: 30px;
-    clip-path: polygon(40% 50%, 75% 0%, 0% 0%);
-    @include primaryGradient;
-    transform: rotate(-90deg);
-  }
-  &.active > .sidebar-item .icon { // highlight active menu item
-    color: $color !important;
-  }
-  &.active .text {
-    color: $text;
-    font-size: 15px;
-    font-weight: 600;
+a {
+  &.sidebar-item-link {
+    outline: none;
+    text-decoration: none;
+
+    &.active {
+      &::before {
+        @include primary-gradient;
+        clip-path: polygon(40% 50%, 75% 0%, 0% 0%);
+        content: '';
+        height: 30px;
+        margin-top: 5px;
+        position: absolute;
+        transform: rotate(-90deg);
+        width: 30px;
+      }
+
+      > .sidebar-item {
+        .icon { // highlight active menu item
+          color: $color !important;
+        }
+      }
+
+      .text {
+        color: $text;
+        font-size: 15px;
+        font-weight: 600;
+      }
+    }
   }
 }
 
@@ -92,32 +107,40 @@ a.sidebar-item-link {
 
 .notification {
   margin-bottom: 6px;
+
   .sidebar-item {
     margin: 4px 0;
+
     .icon {
       margin: 0 14px 0 0;
     }
+
     .text {
-      color: white;
+      color: $color-white;
+      display: inline-block;
       font-size: 11px;
       line-height: 1.5;
       padding: 0;
-      display: inline-block;
     }
+
     &:hover {
       background: none;
     }
   }
+
   &.error {
-    .icon,
-    &:hover .icon {
-      color: $color-alert;
+    .icon, &:hover {
+      .icon {
+        color: $color-alert;
+      }
     }
   }
+
   &.info {
-    .icon,
-    &:hover .icon {
-      color: $color-info;
+    .icon, &:hover {
+      .icon {
+        color: $color-info;
+      }
     }
   }
 }
@@ -130,54 +153,58 @@ a.sidebar-item-link {
 
 .sidebar { // AKA .mat-sidenav
   @extend %disable-select;
-  width: 250px;
   background-color: $bg-white;
   color: $text;
+  width: 250px;
 
   .logo {
     display: block;
     //height: 60px;
-    width: 175px;
     margin: 40px auto;
+    width: 175px;
   }
 
-  .logo-area img {
-    max-width: 175px;
+  .logo-area {
+    img {
+      max-width: 175px;
+    }
   }
 
   // widgets stuck to the bottom (sidebar's footer)
   .pin-to-bottom {
-    position: absolute;
     bottom: 0;
     left: 0;
+    position: absolute;
     right: 0;
 
     // Versions
     .client-version {
       @extend %enable-select;
-      padding: 0 24px;
+      color: $text-muted;
       display: block;
       font-size: 11px;
       line-height: 1.6;
-      color: $text-muted;
+      padding: 0 24px;
+
       .version {
         color: lighten($text-muted, 15%);
         margin-left: 2px;
       }
     }
-
   }
-
 }
 
 
 // ------ SYNC PROGRESS BAR ------ //
 
 .sync-bar {
-  .mat-progress-bar-fill::after {
-    background-color: $color;
+  .mat-progress-bar-fill {
+    &::after {
+      background-color: $color;
+    }
   }
 }
+
 .sync-progress {
   padding: 0 20px;
 }
@@ -188,12 +215,12 @@ a.sidebar-item-link {
 
 .header-main {
   @extend %disable-select;
-  border-bottom: 1px solid $bg-shadow;
   //background: #fff;
-  padding-left: 35px;
-  padding-right: 26px;
+  border-bottom: 1px solid $bg-shadow;
   font-family: $font;
-  text-transform: uppercase;
   font-size: 15px;
   font-weight: 700;
+  padding-left: 35px;
+  padding-right: 26px;
+  text-transform: uppercase;
 }

@@ -1,23 +1,24 @@
-@import "./src/assets/_config"; // import shared colors etc.
-
-@import "../shared/_modal-layout"; // shared layout for modals (dialog titles etc.)
-
+@import './src/assets/config';
+// import shared colors etc.
+@import '../shared/modal-layout'; // shared layout for modals (dialog titles etc.)
 
 .hot-stake-address {
-  width: 100%;
   font-family: monospace;
+  width: 100%;
 }
 
 .cold-stake-address {
-  width: 100%;
-  margin: 15px 0 0;
   font-family: monospace;
+  margin: 15px 0 0;
+  width: 100%;
 }
 
 @media only screen and (max-width: 480px) {
-  .wallet-buttons-container button {
-    float: none;
-    display: block;
-    margin: 10px auto 0;
+  .wallet-buttons-container {
+    button {
+      display: block;
+      float: none;
+      margin: 10px auto 0;
+    }
   }
 }

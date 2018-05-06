@@ -1,39 +1,41 @@
-@import "./src/assets/_config"; // import shared colors etc.
-
-@media screen and (min-width: 1280px) {
-}
+@import './src/assets/config'; // import shared colors etc.
 
 .balance {
   @extend %enable-select;
   padding-top: 7px;
-  & > .number {
+
+  > .number {
     color: $text;
   }
-  & > .point {
+
+  > .point {
     color: $text;
   }
-  & > .big {
+
+  > .big {
     font-size: 24px;
     @media screen and (min-width: 1500px) {
       font-size: 28px;
     }
   }
-  & > .small {
+
+  > .small {
     font-size: 13px;
     @media screen and (min-width: 1500px) {
       font-size: 15px;
     }
   }
-  & > .description {
+
+  > .description {
     @extend %disable-select;
     color: $text;
-    margin-top: 6px;
     margin-bottom: 20px;
+    margin-top: 6px;
   }
 
-  & > .divider {
+  > .divider {
     border-top: 1px solid darken($color-light-grey, 5%);
-    margin-top: 15px;
     margin-bottom: 15px;
+    margin-top: 15px;
   }
 }
