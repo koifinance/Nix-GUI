@@ -1,14 +1,14 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {Log} from 'ng2-logger';
-import {MatDialog} from '@angular/material';
-import {Observable} from 'rxjs/Observable';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Log } from 'ng2-logger';
+import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
-import {RpcService, RpcStateService} from '../../core/core.module';
-import {NewTxNotifierService} from 'app/core/rpc/rpc.module';
-import {ModalsService} from '../../modals/modals.module';
+import { RpcService, RpcStateService } from '../../core/core.module';
+import { NewTxNotifierService } from 'app/core/rpc/rpc.module';
+import { ModalsService } from '../../modals/modals.module';
 
 
 /*

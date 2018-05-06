@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Transaction } from './transaction.model';
 import { TransactionService } from './transaction.service';
+
 /*
     This is a fake mock service used for the TransactionService.
     The TransactionTableComponent provides its _own_ TransactionService,
@@ -37,4 +38,4 @@ export class MockTransactionService extends TransactionService {
       });
 
     }
-  };
+}

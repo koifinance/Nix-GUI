@@ -58,7 +58,7 @@ export class EncryptwalletComponent {
             error => {
               this._rpcState.set('ui:spinner', false);
               this.flashNotification.open('Wallet failed to encrypt properly!', 'err');
-              this.log.er('error encrypting wallet', error)
+              this.log.er('error encrypting wallet', error);
             });
       } else {
         this._rpcState.set('ui:spinner', false);

@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material';
 
 import { RpcModule } from '../../../../../core/rpc/rpc.module';
 import { SharedModule } from '../../../../shared/shared.module';
-import { CoreModule } from '../../../../../core/core.module'
+import { CoreModule } from '../../../../../core/core.module';
 
 import { CoreUiModule } from '../../../../../core-ui/core-ui.module';
 import { ModalsService } from '../../../../../modals/modals.service';

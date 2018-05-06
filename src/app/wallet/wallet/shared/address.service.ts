@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { Observable, Observer } from 'rxjs'; // use this for testing atm
-
 import { Address, deserialize } from './address.model';
 import { RpcService } from '../../../core/core.module';
 
@@ -48,7 +47,7 @@ export class AddressService {
   }
 
   getAddresses(): void {
-    this.updateAddressList()
+    this.updateAddressList();
   }
 
   private rpc_loadAddressCount_success(response: any): void {

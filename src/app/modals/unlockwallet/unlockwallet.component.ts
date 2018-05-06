@@ -57,8 +57,8 @@ export class UnlockwalletComponent {
       this.timeout = data.timeout;
     }
     this.showStakeOnly = Boolean(data.showStakeOnly);
-    this.stakeOnly = Boolean(data.stakeOnly)
-    this.autoClose = (data.autoClose !== false)
+    this.stakeOnly = Boolean(data.stakeOnly);
+    this.autoClose = (data.autoClose !== false);
   }
 
   closeModal(): void {

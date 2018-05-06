@@ -4,4 +4,4 @@ export class ReleaseNotification {
   prerelease: string;
   html_url: string;
   body: string;
-};
+}

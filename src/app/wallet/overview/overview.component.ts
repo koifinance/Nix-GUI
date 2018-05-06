@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Log} from 'ng2-logger';
+import { Component } from '@angular/core';
+import { Log } from 'ng2-logger';
 
 @Component({
   selector: 'app-overview',

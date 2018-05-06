@@ -2,17 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatExpansionModule, MatGridListModule, MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
   MatListModule,
   MatMenuModule,
+  MatPaginatorModule,
   MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatSelectModule,
   MatSidenavModule,
-  MatSnackBarModule, MatTabsModule, MatToolbarModule, MatRadioModule, MatInputModule,
-  MatTooltipModule,
-  MatSelectModule, MatPaginatorModule, MatProgressSpinnerModule, MatDialogModule
+  MatSnackBarModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 
-import {A11yModule} from '@angular/cdk/a11y';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Log } from 'ng2-logger';
 
@@ -144,7 +144,7 @@ export class ReceiveComponent implements OnInit {
     }
     /* @TODO: can be removed */
     if (this.addresses[type].length === 0) {
-      this.openNewAddress()
+      this.openNewAddress();
     } else {
       this.selectAddress(this.addresses[type][0]);
     }

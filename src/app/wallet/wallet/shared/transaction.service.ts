@@ -1,11 +1,11 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {Log} from 'ng2-logger';
-import {Observable} from 'rxjs/Observable';
-import {Transaction} from './transaction.model';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Log } from 'ng2-logger';
+import { Observable } from 'rxjs/Observable';
+import { Transaction } from './transaction.model';
 
-import {RpcService, RpcStateService} from '../../../core/core.module';
+import { RpcService, RpcStateService } from '../../../core/core.module';
 
-import {txData} from '../../../mocked/transactions';
+import { txData } from '../../../mocked/transactions';
 
 @Injectable()
 export class TransactionService implements OnDestroy {

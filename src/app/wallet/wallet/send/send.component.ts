@@ -1,5 +1,4 @@
-import { Component, ElementRef, ViewChild, HostListener } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Log } from 'ng2-logger';
 
@@ -65,7 +64,7 @@ export class SendComponent {
     this.send.input = 'balance';
     if (this.type === 'balanceTransfer') {
       this.send.toAddress = '';
-      this.send.output = 'blind_balance'
+      this.send.output = 'blind_balance';
       this.verifyAddress();
     }
     this.updateAmount();
@@ -174,16 +173,16 @@ export class SendComponent {
     const d = this.dialog.open(SendConfirmationModalComponent);
     const dc = d.componentInstance;
 
-    let txt = `Do you really want to send ${this.send.amount} ${this.send.currency.toUpperCase()} to ${this.send.toAddress}?`
+    let txt = `Do you really want to send ${this.send.amount} ${this.send.currency.toUpperCase()} to ${this.send.toAddress}?`;
     if (this.type === 'balanceTransfer') {
-      txt = `Do you really want to transfer the following balance ${this.send.amount} ${this.send.currency.toUpperCase()}?`
+      txt = `Do you really want to transfer the following balance ${this.send.amount} ${this.send.currency.toUpperCase()}?`;
     }
     dc.dialogContent = txt;
 
     dc.onConfirm.subscribe(() => {
       d.close();
       this.pay();
-    })
+    });
   }
 
   /** Payment function */
@@ -287,7 +286,7 @@ export class SendComponent {
       }
     }*/
     if (this.send.toLabel === '') {
-      this.send.toLabel = 'Empty Label'
+      this.send.toLabel = 'Empty Label';
     }
     const label = this.send.toLabel;
     const addr = this.send.toAddress;
@@ -295,7 +294,7 @@ export class SendComponent {
     this._rpc.call('manageaddressbook', ['newsend', addr, label])
       .subscribe(
         response => this.log.er('rpc_addLabel_success: successfully added label to address.'),
-        error => this.log.er('rpc_addLabel_failed: failed to add label to address.'))
+        error => this.log.er('rpc_addLabel_failed: failed to add label to address.'));
   }
 
   setPrivacy(level: number, prog: number): void {

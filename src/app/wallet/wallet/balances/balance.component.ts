@@ -1,9 +1,9 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Log} from 'ng2-logger';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Log } from 'ng2-logger';
 
-import {RpcStateService} from '../../../core/core.module';
+import { RpcStateService } from '../../../core/core.module';
 
-import {Amount} from '../../shared/util/utils';
+import { Amount } from '../../shared/util/utils';
 
 
 @Component({

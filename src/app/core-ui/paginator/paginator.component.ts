@@ -1,12 +1,5 @@
 import { PageEvent } from './page-event-model';
-import {
-  Component,
-  EventEmitter,
-  HostBinding,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
@@ -72,7 +65,7 @@ export class PaginatorComponent implements OnInit {
    */
   hasPreviousPage() {
     return this.pageIndex >= 1 && this.pageSize !== 0;
-  };
+  }
 
   /**
    * Whether there is a next page.
@@ -81,7 +74,7 @@ export class PaginatorComponent implements OnInit {
   hasNextPage() {
     const numberOfPages = Math.ceil(this.length / this.pageSize) - 1;
     return this.pageIndex < numberOfPages && this.pageSize !== 0;
-  };
+  }
 
   getRangeLabel(page: number, pageSize: number, length: number) {
     if (length === 0 || pageSize === 0) {
@@ -125,6 +118,6 @@ export class PaginatorComponent implements OnInit {
   }
 
   resetPagination(pageIndex: number): void {
-    this.pageIndex = pageIndex
+    this.pageIndex = pageIndex;
   }
 }

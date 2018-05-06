@@ -1,4 +1,4 @@
-import {Amount, DateFormatter} from '../../shared/util/utils';
+import { Amount, DateFormatter } from '../../shared/util/utils';
 
 export type TransactionCategory = 'all' | 'stake' | 'coinbase' | 'send' | 'receive' | 'orphaned_stake' | 'internal_transfer';
 
@@ -107,7 +107,9 @@ export class Transaction {
       } */
 
       // only use fake output to determine internal transfer
-      const fakeOutput = function (a: any, b: any) { return a - (b.vout === 65535 ? b.amount : 0); }
+     const fakeOutput = function (a: any, b: any) {
+       return a - (b.vout === 65535 ? b.amount : 0);
+     };
       return this.outputs.reduce(fakeOutput, 0);
     } else {
       return +this.amount;
@@ -155,7 +157,7 @@ export class Transaction {
         return this.outputs[key].narration;
       }
     }
-    return false
+    return false;
   }
 
   public getCategory(): string {

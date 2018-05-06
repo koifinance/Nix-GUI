@@ -21,7 +21,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "yarn run lint:ts && yarn run lint:html && yarn run lint:sass",
-    "lint:ts": "tslint \"src/**/*.ts\"",
+    "lint:ts": "tslint src/**/*.ts",
     "lint:html": "htmlhint --ignore **/documentation/**,**/docs/**,**/packages/**",
     "lint:sass": "sass-lint -v",
     "e2e": "ng e2e",

@@ -1,7 +1,4 @@
-import {
-  Component, Inject, forwardRef, ViewChild, ElementRef, ComponentRef, HostListener,
-  OnDestroy
-} from '@angular/core';
+import { Component, ComponentRef, ElementRef, forwardRef, HostListener, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { MatDialogRef } from '@angular/material';
 
@@ -161,7 +158,7 @@ export class CreateWalletComponent implements OnDestroy {
         this.errorString = '';
         if (this.rpcState.get('locked')) {
           // unlock wallet
-          this.step = 6
+          this.step = 6;
         } else {
           // wallet already unlocked
           this.importMnemonicSeed();
@@ -271,7 +268,7 @@ export class CreateWalletComponent implements OnDestroy {
       this.step++;
       this.doStep();
     }
-    this.passwordVerify = ''
+    this.passwordVerify = '';
     this.password = '';
   }
 
