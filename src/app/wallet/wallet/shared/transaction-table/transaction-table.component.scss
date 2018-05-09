@@ -6,11 +6,7 @@
   .transaction-item {
     color: $text-dark;
     font-size: 14px;
-
-    .transaction-item-content {
-      display: flex;
-      flex-direction: column;
-    }
+    margin-bottom: 30px;
 
     .multi-line {
       margin-top: 5px;
@@ -22,8 +18,32 @@
 
     .day {
       color: $text-muted;
-      font-size: 18px;
+      font-size: 15px;
       letter-spacing: 3px;
+    }
+
+    .status {
+      color: $text-muted;
+      font-size: 12px;
+      @media screen and (min-width: 1500px) {
+        font-size: 13px;
+      }
+
+      i {
+        margin-right: 3px;
+      }
+    }
+
+    .confirm-none {
+      color: $color-progress;
+    }
+
+    .confirm-ok {
+      color: $color-secondary;
+    }
+
+    .confirm-error {
+      color: $color-alert;
     }
   }
 }
@@ -67,8 +87,16 @@
       width: auto;
     }
 
-    &.confirm-none { // unconfirmed TXs
-      color: mix($color-alert, $color-warning, 100%);
+    &.confirm-none {
+      color: $color-warning;
+    }
+
+    &.confirm-ok {
+      color: lighten($color-success, 20%);
+    }
+
+    &.confirm-error {
+      color: $color-alert;
     }
 
     &.confirm-1 { // 1-4 confirmations
@@ -81,10 +109,6 @@
 
     &.confirm-3 { // 9-12 conf.
       color: mix($color-alert, $color-warning, 0%);
-    }
-
-    &.confirm-ok {
-      color: lighten($text-muted, 20%);
     }
   }
 

@@ -1,0 +1,4 @@
+<mat-progress-bar mode="indeterminate" *ngIf="priceService.loading"></mat-progress-bar>
+<div *ngIf="!priceService.loading">
+  <h5>Nix <strong>${{ priceService.price.price }}</strong></h5>
+</div>

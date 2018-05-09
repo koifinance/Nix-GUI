@@ -1,9 +1,10 @@
-<div class="overview-header" fxLayout.gt-lg="row" fxLayout.lt-md="column" fxLayoutGap="10%">
-  <div class="welcome-message" fxFlex="67" fxFlexOrder.lt-md="2">
+<div class="overview-header" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap.gt-md="5%" fxLayoutGap.lt-md="2%">
+  <div class="welcome-message" fxFlex="67" fxFlexOrder.lt-md="1">
     Hello {{ selectedUser.name }}, the value of your balance <span class="highlight">went up 10.4%</span> last 24h!
   </div>
-  <div class="user-selection" fxFlex="33" fxLayoutAlign="end center" fxFlexOrder.lt-md="1">
-    <mat-form-field floatPlaceholder="never">
+  <div class="user-selection" fxFlex="33" fxLayoutAlign.gt-md="end center" fxLayoutAlign.lt-md="start"
+       fxFlexOrder.lt-md="2">
+    <mat-form-field floatPlaceholder="never" class="no-top-padding">
       <mat-select placeholder="Choose User" [(ngModel)]="userId" (change)="switchUser()">
         <mat-option *ngFor="let user of users" [value]="user.id">
           {{ user.name }}
@@ -13,7 +14,7 @@
   </div>
 </div>
 
-<div class="overview-balance" fxLayout.gt-lg="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
+<div class="overview-balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
      fxLayoutGap="5%">
   <mat-card fxFlexOrder.lt-md="1" class="item total">
     <app-balance type="total_balance" color="white"></app-balance>
@@ -31,20 +32,18 @@
 </div>
 
 
-<div class="overview-content" fxLayout.gt-lg="row" fxLayout.lt-md="column"  fxLayoutGap="40px">
+<div class="overview-content" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="40px">
   <div class="recent-transactions" fxFlex="40" fxFlexOrder.lt-md="1">
-    <app-header>
-      <h5>Recent Transactions</h5>
-    </app-header>
+    <h5>Recent Transactions</h5>
     <transaction-table
       [display]="{'txDisplayAmount': 5, 'header': false}">
     </transaction-table>
   </div><!-- .recent-transactions -->
 
   <div class="recent-transactions" fxFlex="60" fxFlexOrder.lt-md="2">
-    <app-header>
-      <h5>Nix <strong>$60.15</strong></h5>
-    </app-header>
+    <price-chart>
+
+    </price-chart>
   </div>
 
   <!--  <div class="overview-sidebar" fxFlex="33" fxLayoutWrap fxLayoutAlign="center start" fxFlexOrder.lt-md="1" >

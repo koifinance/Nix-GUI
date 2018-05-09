@@ -67,7 +67,7 @@ export class TransactionService implements OnDestroy {
 
     // prevent multiple listeners
     if (this.listeningForUpdates) {
-      this.log.er(`Already listeniing for updates, postConstructor called twice?`);
+      this.log.error(`Already listening for updates, postConstructor called twice?`);
       return;
     }
 
