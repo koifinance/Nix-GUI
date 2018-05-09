@@ -20,6 +20,7 @@ $color-light-grey: #fafafc;
 $color-success: #82d52f;
 $color-alert: #dd2828;
 $color-warning: #f9943d;
+$color-progress: #f9dc1f;
 $color-info: $color;
 $color-shadow: #333;
 
@@ -35,8 +36,6 @@ $bg-hover: darken($bg, 2%);
 $bg-black: $color-black; // sidebar
 $bg-shadow: #dcdcdc; // lines, box shadows etc.
 $bg-white: $color-white;
-$bg-warning: rgba($color-alert, .1);
-$bg-success: rgba($color-success, .1);
 
 // UI
 $radius: 4px; // default border-radius

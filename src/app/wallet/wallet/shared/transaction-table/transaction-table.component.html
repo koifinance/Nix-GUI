@@ -31,7 +31,7 @@
         <div class="icon">
           <span class="fa-stack fa-lg">
             <i class="fa fa-circle-thin fa-stack-2x"></i>
-            <i class="fa fa-arrow-up fa-stack-1x"></i>
+            <i class="fa fa-stack-1x" [ngClass]="getCategoryIconStyle(tx.category)"></i>
           </span>
         </div>
       </div>
@@ -39,20 +39,18 @@
     <div class="transaction-item" fxFlex="20" fxFlexOrder="3">
       <div class="transaction-item-content">
         <div class="category">
-          {{ tx.getCategory() }}
+          {{ getCategoryText(tx.category, tx.currency) }}
         </div>
         <div class="status multi-line">
-
+          <i class="fa fa-circle" [ngClass]="getConfirmationsStyle(tx.confirmations)"></i>
+          {{ getConfirmationsText(tx.confirmations) }}
         </div>
       </div>
     </div>
-    <div class="transaction-item" fxFlex="50" fxFlexOrder="4" fxLayoutAlign="right">
+    <div class="transaction-item" fxFlex="50" fxFlexOrder="4" fxLayoutAlign="end">
       <div class="transaction-item-content">
         <div class="amount">
-          {{ tx.getAmount() }}
-        </div>
-        <div class="dollar-amount multi-line">
-          <mat-icon fontSet="partIcon" fontIcon="part-stake"></mat-icon>
+          {{ tx.getAmount() }} {{ tx.currency }}
         </div>
       </div>
     </div>
@@ -69,7 +67,7 @@
 
       <!-- Confirmations -->
       <mat-panel-title fxFlex="0 0 45px" fxFlex.lt-md="100" *ngIf="display.confirmations" class="history-confirmation"
-                       [ngClass]="styleConfimations(tx.getConfirmationCount())">
+                       [ngClass]="getConfirmationsStyle(tx.getConfirmationCount())">
         <span mat-line matTooltip="Confirmations" matTooltipPosition="before">
           <mat-icon fontSet="partIcon" fontIcon="part-circle-check" class="confirmations"></mat-icon>
           {{ tx.getConfirmationCount() }}

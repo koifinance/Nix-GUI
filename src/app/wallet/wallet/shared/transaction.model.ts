@@ -6,30 +6,30 @@ export class Transaction {
 
   type: string;
 
-    txid: string;
-    address: string ;
-    stealth_address: string;
-    label: string;
-    category: string;
-    amount: number;
-    reward: number;
-    fee: number;
-    time: number;
-    comment: string;
-    n0: string;
-    n1: string;
+  txid: string;
+  address: string;
+  stealth_address: string;
+  label: string;
+  category: string;
+  amount: number;
+  reward: number;
+  fee: number;
+  time: number;
+  comment: string;
+  n0: string;
+  n1: string;
   currency: string;
 
-    outputs: any[];
+  outputs: any[];
 
-    /* conflicting txs */
-    walletconflicts: any[];
+  /* conflicting txs */
+  walletconflicts: any[];
 
-    /* block info */
-    blockhash: string;
-    blockindex: number;
-    blocktime: number;
-    confirmations: number;
+  /* block info */
+  blockhash: string;
+  blockindex: number;
+  blocktime: number;
+  confirmations: number;
 
   constructor(json: any) {
     /* transactions */
@@ -68,48 +68,26 @@ export class Transaction {
     return this.stealth_address;
   }
 
-
   public getExpandedTransactionID(): string {
     return this.txid + this.getAmountObject().getAmount() + this.category;
   }
 
-
-  public getConfirmationCount(confirmations: number): string {
+  public getConfirmationCount(): string {
     if (this.confirmations > 12) {
       return '12+';
     }
     return this.confirmations.toString();
   }
 
-
   /* Amount stuff */
   public getAmount(): number {
-   if (this.category === 'internal_transfer') {
+    if (this.category === 'internal_transfer') {
       // add all elements in output array ( but exclude vout === 65535)
       // todo: check assumption that we own all outputs?
-      /*
-      const add = function (a: any, b: any) { return a + (b.vout === 65535 ? 0 : b.amount); }
-      return this.outputs.reduce(add, 0);
-      */
-
-/*
-      const blindStealthOutputCount = this.outputs.reduce(function (a: any, b: any) {
-        return a + (b.vout !== 65535 ? (b.stealth_address !== undefined ? 1 : 0) : 0);
-      }, 0);
-      console.log("blind_stealth_address count: " + blindStealthOutputCount);
-
-      // blind -> blind (own)
-      if(blindStealthOutputCount === 1) {
-        console.log("length should equal 2 =" + this.outputs.length);
-        const add = function (a: any, b: any) { return a + (b.stealth_address !== undefined ? b.amount : 0); }
-        console.log("returning shoud be 0.5 =  " + this.outputs.reduce(add, 0));
-        return this.outputs.reduce(add, 0);
-      } */
-
       // only use fake output to determine internal transfer
-     const fakeOutput = function (a: any, b: any) {
-       return a - (b.vout === 65535 ? b.amount : 0);
-     };
+      const fakeOutput = function (a: any, b: any) {
+        return a - (b.vout === 65535 ? b.amount : 0);
+      };
       return this.outputs.reduce(fakeOutput, 0);
     } else {
       return +this.amount;
@@ -121,20 +99,25 @@ export class Transaction {
     return new Amount(this.getAmount());
   }
 
-  /** Calculates the actual amount that was transfered, including the fee */
-  /* todo: fee is not defined in normal receive tx, wut? */
+  /**
+   * Calculates the actual amount that was transfered, including the fee
+   * todo: fee is not defined in normal receive tx, wut?
+   */
   public getNetAmount(): number {
     const amount: number = +this.getAmountObject().getAmount();
 
     /* If fee undefined then just return amount */
     if (this.fee === undefined) {
       return amount;
-    /* sent */
     } else if (amount < 0) {
       return new Amount(+amount + (+this.fee)).getAmount();
     } else {
       return new Amount(+amount - (+this.fee)).getAmount();
     }
+  }
+
+  public getAmountString(): string {
+    return '';
   }
 
   /* Date stuff */
@@ -143,11 +126,16 @@ export class Transaction {
   }
 
   public getShortMonth(): string {
-    return new Date(this.time * 1000).toLocaleDateString('en-use', {month: 'short'});
+    return new Date(this.time * 1000).toLocaleDateString('en-use', { month: 'short' });
   }
 
-  public getDayOfMonth(): number {
-    return new Date(this.time * 1000).getDate();
+  public getDayOfMonth(): string {
+    const day = new Date(this.time * 1000).getDate();
+    let dayStr: string;
+    if (day < 10) {
+      dayStr = '0' + day;
+    }
+    return dayStr;
   }
 
   /* Narration */
@@ -158,16 +146,5 @@ export class Transaction {
       }
     }
     return false;
-  }
-
-  public getCategory(): string {
-    if (this.category === 'send') {
-      return `Sent ${this.currency}`;
-    } else if (this.category === 'receive') {
-      return `Received ${this.currency}`;
-    } else if (this.category === 'stake') {
-      return `Node earnings`;
-    }
-    return '';
   }
 }

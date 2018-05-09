@@ -45,7 +45,8 @@ export class TransactionsTableComponent implements OnInit {
     If the unique identifier is present, then the details will be expanded.
   */
   private expandedTransactionID: string = undefined;
-  pageEvent: PageEvent; /* MatPaginator output */
+  pageEvent: PageEvent;
+  /* MatPaginator output */
   log: any = Log.create('transaction-table.component');
 
   constructor(public txService: TransactionService) {
@@ -89,12 +90,46 @@ export class TransactionsTableComponent implements OnInit {
     return (this.expandedTransactionID === tx.getExpandedTransactionID());
   }
 
-  public styleConfimations(confirm: number): string {
-    if (confirm <= 0) {
+  public getConfirmationsStyle(confirmations: number): string {
+    if (confirmations < 0) {
+      return 'confirm-error';
+    } else if (confirmations <= 1) {
       return 'confirm-none';
     } else {
       return 'confirm-ok';
     }
+  }
+
+  public getConfirmationsText(confirmations: number): string {
+    if (confirmations < 0) {
+      return 'Error';
+    } else if (confirmations <= 1) {
+      return 'Processing';
+    } else {
+      return 'Complete';
+    }
+  }
+
+  public getCategoryText(category: string, currency: string): string {
+    if (category === 'send') {
+      return `Sent ${currency}`;
+    } else if (category === 'receive') {
+      return `Received ${currency}`;
+    } else if (category === 'stake') {
+      return `Node earnings`;
+    }
+    return '';
+  }
+
+  public getCategoryIconStyle(category: string): string {
+    if (category === 'send') {
+      return 'fa-arrow-up';
+    } else if (category === 'receive') {
+      return 'fa-arrow-down';
+    } else if (category === 'receive') {
+      return 'fa-dollar-sign';
+    }
+    return '';
   }
 
   public resetPagination(): void {
