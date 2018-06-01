@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Log } from 'ng2-logger';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
+import { faCircle as faCircleSolid, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-overview',
@@ -8,25 +10,13 @@ import { Log } from 'ng2-logger';
 })
 export class OverviewComponent {
 
-  log: any = Log.create('over-view.component');
-  users: Array<any> = [
-    {id: 1, name: 'Luke'},
-    {id: 2, name: 'Darth'},
-  ];
-  selectedUser: any;
-  userId: number;
+  log: any = Log.create('overview.component');
+
+  faCircle: any = faCircle;
+  faQuestion: any = faQuestion;
+  faSync: any = faSync;
+  faCircleSolid: any = faCircleSolid;
 
   constructor() {
-    this.default();
-  }
-
-  default(): void {
-    this.userId = this.users[0].id;
-    this.switchUser();
-  }
-
-  switchUser(): void {
-    this.selectedUser = this.users.find(user => user.id === this.userId);
-    // this.log.info(this.selectedUser);
   }
 }

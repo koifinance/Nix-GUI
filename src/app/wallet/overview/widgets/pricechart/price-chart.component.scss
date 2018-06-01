@@ -1,6 +1,6 @@
 @import './src/assets/config'; // import shared colors etc.
 
-.balance {
+.price {
   @extend %enable-select;
   //padding-top: 5px;
 
@@ -17,20 +17,13 @@
   }
 
   .point {
-    color: $text;
+    color: $text-muted;
   }
 
   .big {
     font-size: 24px;
     @media screen and (min-width: 1500px) {
       font-size: 28px;
-    }
-  }
-
-  .medium {
-    font-size: 13px;
-    @media screen and (min-width: 1500px) {
-      font-size: 15px;
     }
   }
 
@@ -45,14 +38,5 @@
     border-top: 1px solid darken($color-light-grey, 5%);
     margin-bottom: 15px;
     margin-top: 15px;
-  }
-
-  .mat-raised-button {
-    line-height: 34px;
-    //min-width: 60px;
-
-    &.small {
-      min-width: 40px;
-    }
   }
 }

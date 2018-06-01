@@ -6,16 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { MaterialModule } from '../../core-ui/material/material.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './header/header.component';
-import {
-  DeleteConfirmationModalComponent
-} from './delete-confirmation-modal/delete-confirmation-modal.component';
+import { DeleteConfirmationModalComponent } from './delete-confirmation-modal/delete-confirmation-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   declarations: [
     HeaderComponent,
@@ -25,7 +25,8 @@ import {
     CommonModule,
     FormsModule,
     ClipboardModule,
-    HeaderComponent
+    HeaderComponent,
+    FontAwesomeModule
   ],
   entryComponents: [
     DeleteConfirmationModalComponent

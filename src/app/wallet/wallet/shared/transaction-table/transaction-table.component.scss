@@ -6,7 +6,7 @@
   .transaction-item {
     color: $text-dark;
     font-size: 14px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 
     .multi-line {
       margin-top: 5px;
@@ -29,8 +29,8 @@
         font-size: 13px;
       }
 
-      i {
-        margin-right: 3px;
+      fa-icon {
+        margin-right: 10px;
       }
     }
 

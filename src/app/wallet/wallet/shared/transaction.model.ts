@@ -1,6 +1,6 @@
 import { Amount, DateFormatter } from '../../shared/util/utils';
 
-export type TransactionCategory = 'all' | 'stake' | 'coinbase' | 'send' | 'receive' | 'orphaned_stake' | 'internal_transfer';
+export type TransactionCategory = 'all' | 'stake' | 'send' | 'receive' | 'node' | 'transfer';
 
 export class Transaction {
 
@@ -131,11 +131,7 @@ export class Transaction {
 
   public getDayOfMonth(): string {
     const day = new Date(this.time * 1000).getDate();
-    let dayStr: string;
-    if (day < 10) {
-      dayStr = '0' + day;
-    }
-    return dayStr;
+    return day < 10 ? '0' + day : day.toString();
   }
 
   /* Narration */

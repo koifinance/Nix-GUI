@@ -1,4 +1,18 @@
 <mat-progress-bar mode="indeterminate" *ngIf="priceService.loading"></mat-progress-bar>
-<div *ngIf="!priceService.loading">
-  <h5>Nix <strong>${{ priceService.price.price }}</strong></h5>
+<div *ngIf="!priceService.loading" class="price">
+
+  <p class="description">NIX Price</p>
+  <span class="number big">${{ priceService.price.price }}</span>
+  <div class="divider"></div>
+  <div fxLayout="row" fxLayoutGap="5px">
+    <span class="point small" fxFlex="50" fxFlexOrder="1">
+      <fa-icon [icon]="faBtc"></fa-icon>
+      {{ priceService.price.btcPrice }}
+    </span>
+    <span class="small" fxFlex="50" fxFlexOrder="2" fxLayoutAlign="end"
+          [style.color]="priceService.price.btcDailyChange > 0 ? 'green' : 'red'">
+      {{ getBTCDailyChange() }}
+    </span>
+  </div>
+
 </div>

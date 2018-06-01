@@ -10,7 +10,6 @@ import { RpcService, RpcStateService } from '../../core/core.module';
 import { NewTxNotifierService } from 'app/core/rpc/rpc.module';
 import { ModalsService } from '../../modals/modals.module';
 
-
 /*
  * The MainView is basically:
  * sidebar + router-outlet.

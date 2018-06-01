@@ -1,50 +1,67 @@
 <div class="overview-header" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap.gt-md="5%" fxLayoutGap.lt-md="2%">
-  <div class="welcome-message" fxFlex="67" fxFlexOrder.lt-md="1">
-    Hello {{ selectedUser.name }}, the value of your balance <span class="highlight">went up 10.4%</span> last 24h!
+
+  <div fxFlex="67" fxFlexOrder.lt-md="1">
+    <h5>Overview</h5>
   </div>
-  <div class="user-selection" fxFlex="33" fxLayoutAlign.gt-md="end center" fxLayoutAlign.lt-md="start"
+
+  <div class="actionable" fxFlex="33" fxLayoutAlign.gt-md="end center" fxLayoutAlign.lt-md="start"
        fxFlexOrder.lt-md="2">
-    <mat-form-field floatPlaceholder="never" class="no-top-padding">
-      <mat-select placeholder="Choose User" [(ngModel)]="userId" (change)="switchUser()">
-        <mat-option *ngFor="let user of users" [value]="user.id">
-          {{ user.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <fa-layers class="fa-fw" class="margin-right-25px">
+      <fa-icon [icon]="faCircle" size="2x"></fa-icon>
+      <fa-icon size="1x" transform="right-8" [icon]="faSync"></fa-icon>
+    </fa-layers>
+    <fa-layers class="fa-fw">
+      <fa-icon [icon]="faCircle" size="2x"></fa-icon>
+      <fa-icon size="1x" transform="right-6" [icon]="faQuestion"></fa-icon>
+    </fa-layers>
   </div>
+
 </div>
 
 <div class="overview-balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
-     fxLayoutGap="5%">
-  <mat-card fxFlexOrder.lt-md="1" class="item total">
-    <app-balance type="total_balance" color="white"></app-balance>
-  </mat-card>
-  <mat-card fxFlexOrder.lt-md="2" class="item">
-    <div>
-      <app-balance type="balance"></app-balance>
-    </div>
-  </mat-card>
-  <mat-card fxFlexOrder.lt-md="3" class="item anon">
-    <div>
-      <app-balance type="anon_balance" color="white"></app-balance>
-    </div>
-  </mat-card>
-</div>
+     fxLayoutGap="5%" fxFlexOrder.lt-md="3">
 
+  <mat-card class="item total" fxFlex="30" fxFlexOrder.lt-md="1">
+    <app-balance type="balance" color="white"></app-balance>
+  </mat-card>
 
-<div class="overview-content" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="40px">
-  <div class="recent-transactions" fxFlex="40" fxFlexOrder.lt-md="1">
-    <h5>Recent Transactions</h5>
-    <transaction-table
-      [display]="{'txDisplayAmount': 5, 'header': false}">
-    </transaction-table>
-  </div><!-- .recent-transactions -->
+  <mat-card class="item anon" fxFlex="30" fxFlexOrder.lt-md="2">
+    <app-balance type="anon_balance" color="white"></app-balance>
+  </mat-card>
 
-  <div class="recent-transactions" fxFlex="60" fxFlexOrder.lt-md="2">
+  <mat-card class="item" fxFlex="30" fxFlexOrder.lt-md="3">
     <price-chart>
 
     </price-chart>
-  </div>
+  </mat-card>
+
+</div>
+
+<div class="overview-content" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
+     fxLayoutGap="5%" fxFlexOrder.lt-md="4">
+
+  <mat-card class="item" fxFlex="65" fxFlexOrder.lt-md="1">
+    <div class="recent-transactions">
+      <p class="description">Recent Transactions</p>
+      <transaction-table
+        [display]="{'txDisplayAmount': 5, 'header': false}">
+      </transaction-table>
+    </div>
+  </mat-card>
+
+  <mat-card class="item" fxFlexOrder.lt-md="2" fxFlex="30">
+    <div class="node-status">
+      <p class="description">Node Status</p>
+      <span class="number big">2</span>
+      <span class="medium text"> Active Nodes</span>
+      <div class="divider"></div>
+      <span class="medium light">234 NIX earned so far this month</span>
+      <div class="medium light margin-top-40px">
+        <fa-icon [icon]="faCircleSolid" class="confirm-ok"></fa-icon>
+        No issues
+      </div>
+    </div>
+  </mat-card>
 
   <!--  <div class="overview-sidebar" fxFlex="33" fxLayoutWrap fxLayoutAlign="center start" fxFlexOrder.lt-md="1" >
 

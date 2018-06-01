@@ -13,7 +13,6 @@ import { PercentageBarComponent } from '../../modals/shared/percentage-bar/perce
 
 import { ReleaseNotificationComponent } from './release-notification/release-notification.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
