@@ -4,32 +4,38 @@ $grey-12-opacity: rgba(0, 0, 0, .12);
 $grey-14-opacity: rgba(0, 0, 0, .14);
 $grey-20-opacity: rgba(0, 0, 0, .2);
 
-.overview-header {
-  color: $text-dark;
-  font-size: 14px;
-  padding: 4em 35px 15px;
+.overview-header, .overview-content {
+  //color: $text-dark;
+  //font-size: 14px;
+  padding: 0 35px;
 
-  .welcome-message {
-    font-size: 16px;
-
-    .highlight {
-      color: $text;
-      font-weight: bold;
-    }
+  h4, h5 {
+    text-transform: uppercase;
   }
 }
 
-.overview-balance { // list of balances
+.overview-header {
+  fa-icon {
+    color: $text-dark;
+    cursor: pointer;
+  }
+}
+
+.overview-balance, .overview-content {
   @extend %disable-select;
-  padding: 15px 50px;
+  margin-top: 3em;
+  margin-bottom: 1em;
 
   .item {
     border-radius: $card-radius;
     box-shadow: 0 3px 1px -2px $grey-20-opacity, 0 2px 2px 0 $grey-14-opacity, 0 1px 5px 0 $grey-12-opacity !important;
-    height: 150px;
+    min-height: 300px;
     padding-left: 40px;
-    width: 225px;
   }
+}
+
+.overview-balance { // list of balances
+  padding: 0 35px;
 
   .total {
     @include primary-gradient;
@@ -40,11 +46,74 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
   }
 }
 
-.overview-content { // area with widgets
-  padding: 0 35px;
+.recent-transactions {
+  @extend %enable-select;
+  margin-left: 10px;
+  //padding-top: 5px;
 
-  h4, h5 {
-    text-transform: uppercase;
+  .description {
+    color: $text;
+    font-size: 16px;
+    margin-bottom: 20px;
+    //margin-top: 6px;
   }
 }
 
+.node-status {
+  @extend %enable-select;
+  //padding-top: 5px;
+
+  .description {
+    color: $text;
+    font-size: 16px;
+    margin-bottom: 20px;
+    //margin-top: 6px;
+  }
+
+  .number {
+    color: $text;
+  }
+
+  .light {
+    color: $text-muted;
+  }
+
+  .big {
+    font-size: 24px;
+    @media screen and (min-width: 1500px) {
+      font-size: 28px;
+    }
+  }
+
+  .medium {
+    font-size: 15px;
+    @media screen and (min-width: 1500px) {
+      font-size: 18px;
+    }
+  }
+
+  .small {
+    font-size: 11px;
+    @media screen and (min-width: 1500px) {
+      font-size: 13px;
+    }
+  }
+
+  .text {
+    text-transform: uppercase;
+  }
+
+  .divider {
+    border-top: 1px solid darken($color-light-grey, 5%);
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .confirm-ok {
+    color: $color-secondary;
+  }
+
+  fa-icon {
+    margin-right: 10px;
+  }
+}

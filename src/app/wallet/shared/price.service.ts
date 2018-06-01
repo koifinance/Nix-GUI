@@ -14,7 +14,7 @@ export class PriceService implements OnDestroy {
   liveDataPolling: any;
   price: Price;
   loading: boolean = true;
-  private livePriceUri: string = 'https://api.coinmarketcap.com/v2/ticker/1448/'; // Zoi
+  private livePriceUri: string = 'https://api.coinmarketcap.com/v2/ticker/1448/?convert=BTC'; // Zoi
 
   constructor(private http: HttpClient) {
   }

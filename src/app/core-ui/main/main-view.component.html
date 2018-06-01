@@ -202,11 +202,9 @@
   <!--<app-release-notification></app-release-notification>-->
 
   <mat-toolbar class="header-main" *ngIf="testnet">
-    <button fxLayout="row" fxLayoutAlign="center end" mat-button
-      (click)="sidenav.toggle()" fxHide.gt-sm>
+    <button mat-button (click)="sidenav.toggle()">
       <mat-icon fontSet="partIcon" fontIcon="part-hamburger"></mat-icon>
     </button>
-    {{ title }}
     <div class="container-x">
       <div fxLayout="row" fxFlex fxLayoutAlign="end center" fxcolor="accent"
         class="header-icons">

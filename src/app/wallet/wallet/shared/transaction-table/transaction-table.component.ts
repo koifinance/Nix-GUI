@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material';
 import { Log } from 'ng2-logger';
-
 import { slideDown } from 'app/core-ui/core.animations';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
+import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+
 import { Transaction } from '../transaction.model';
 import { TransactionService } from '../transaction.service';
 
@@ -10,7 +12,6 @@ import { TransactionService } from '../transaction.service';
   selector: 'transaction-table',
   templateUrl: './transaction-table.component.html',
   styleUrls: ['./transaction-table.component.scss'],
-  providers: [TransactionService],
   animations: [slideDown()]
 })
 
@@ -46,8 +47,10 @@ export class TransactionsTableComponent implements OnInit {
   */
   private expandedTransactionID: string = undefined;
   pageEvent: PageEvent;
-  /* MatPaginator output */
-  log: any = Log.create('transaction-table.component');
+
+  private log: any = Log.create('transaction-table.component');
+  private faCircle: any = faCircle;
+  private faCircleSolid: any = faCircleSolid;
 
   constructor(public txService: TransactionService) {
 
@@ -115,19 +118,19 @@ export class TransactionsTableComponent implements OnInit {
       return `Sent ${currency}`;
     } else if (category === 'receive') {
       return `Received ${currency}`;
-    } else if (category === 'stake') {
-      return `Node earnings`;
+    } else if (category === 'node') {
+      return `Node Earnings`;
     }
     return '';
   }
 
-  public getCategoryIconStyle(category: string): string {
+  public getCategoryIconStyle(category: string): any {
     if (category === 'send') {
-      return 'fa-arrow-up';
+      return faArrowUp;
     } else if (category === 'receive') {
-      return 'fa-arrow-down';
-    } else if (category === 'receive') {
-      return 'fa-dollar-sign';
+      return faArrowDown;
+    } else if (category === 'node') {
+      return faDollarSign;
     }
     return '';
   }

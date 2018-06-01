@@ -16,7 +16,7 @@
 <ng-container *ngFor="let tx of txService.txs">
 
   <div class="transaction-list" fxLayout="row" fxLayoutGap="10px" *ngIf="!expansionPanel">
-    <div class="transaction-item" fxFlex="11" fxFlexOrder="1">
+    <div class="transaction-item" fxFlex="12" fxFlexOrder="1">
       <div class="transaction-item-content">
         <div class="month">
           {{ tx.getShortMonth() }}
@@ -29,25 +29,29 @@
     <div class="transaction-item" fxFlex="13" fxFlexOrder="2">
       <div class="transaction-item-content">
         <div class="icon">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle-thin fa-stack-2x"></i>
-            <i class="fa fa-stack-1x" [ngClass]="getCategoryIconStyle(tx.category)"></i>
-          </span>
+          <fa-layers class="fa-fw">
+            <fa-icon [icon]="faCircle" size="2x"></fa-icon>
+            <fa-icon size="1x" transform="right-6" [icon]="getCategoryIconStyle(tx.category)"></fa-icon>
+          </fa-layers>
         </div>
       </div>
     </div>
-    <div class="transaction-item" fxFlex="20" fxFlexOrder="3">
+    <div class="transaction-item" fxFlex="25" fxFlexOrder="3">
       <div class="transaction-item-content">
         <div class="category">
           {{ getCategoryText(tx.category, tx.currency) }}
         </div>
-        <div class="status multi-line">
-          <i class="fa fa-circle" [ngClass]="getConfirmationsStyle(tx.confirmations)"></i>
+      </div>
+    </div>
+    <div class="transaction-item" fxFlex="25" fxFlexOrder="4">
+      <div class="transaction-item-content">
+        <div class="status">
+          <fa-icon [icon]="faCircleSolid" [ngClass]="getConfirmationsStyle(tx.confirmations)"></fa-icon>
           {{ getConfirmationsText(tx.confirmations) }}
         </div>
       </div>
     </div>
-    <div class="transaction-item" fxFlex="50" fxFlexOrder="4" fxLayoutAlign="end">
+    <div class="transaction-item" fxFlex="25" fxFlexOrder="5" fxLayoutAlign="end">
       <div class="transaction-item-content">
         <div class="amount">
           {{ tx.getAmount() }} {{ tx.currency }}

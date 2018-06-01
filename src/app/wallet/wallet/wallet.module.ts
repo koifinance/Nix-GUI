@@ -1,5 +1,4 @@
-import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders, NgModule } from '@angular/core';
 import { QRCodeModule } from 'angularx-qrcode';
 import { CommonModule } from '@angular/common';
 
@@ -28,8 +27,6 @@ import { SendConfirmationModalComponent } from './send/send-confirmation-modal/s
 import { SignatureAddressModalComponent } from './shared/signature-address-modal/signature-address-modal.component';
 import { FixWalletModalComponent } from './send/fix-wallet-modal/fix-wallet-modal.component';
 import { WalletFixedConfirmationComponent } from './send/fix-wallet-modal/wallet-fixed-confirmation/wallet-fixed-confirmation.component';
-
-
 
 @NgModule({
   imports: [
@@ -86,12 +83,12 @@ export class WalletModule {
       ngModule: WalletModule,
       providers: [
         AddressService,
-        SendService
+        SendService,
+        TransactionService
       ]
     };
   }
 }
-
 
 export { AddressBookComponent } from './address-book/address-book.component';
 export { ReceiveComponent } from './receive/receive.component';
