@@ -1,35 +1,45 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
 import { ClipboardModule } from 'ngx-clipboard';
-
-import { MaterialModule } from '../../core-ui/material/material.module';
+import { MaterialModule } from '../../material/material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HeaderComponent } from './header/header.component';
-import { DeleteConfirmationModalComponent } from './delete-confirmation-modal/delete-confirmation-modal.component';
+
+import { DirectiveModule } from './directive/directive.module';
+import { PaginatorComponent } from './paginator/paginator.component';
+// import { HeaderComponent } from './header/header.component';
+// import { DeleteConfirmationModalComponent } from './delete-confirmation-modal/delete-confirmation-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
+    ClipboardModule,
+    DirectiveModule,
+    FormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MaterialModule,
   ],
   declarations: [
-    HeaderComponent,
-    DeleteConfirmationModalComponent
+    // HeaderComponent,
+    // DeleteConfirmationModalComponent
+    PaginatorComponent
   ],
   exports: [
     CommonModule,
-    FormsModule,
     ClipboardModule,
-    HeaderComponent,
-    FontAwesomeModule
+    DirectiveModule,
+    FormsModule,
+    HttpClientModule,
+    // HeaderComponent,
+    FontAwesomeModule,
+    MaterialModule,
+    PaginatorComponent
   ],
   entryComponents: [
-    DeleteConfirmationModalComponent
+    // DeleteConfirmationModalComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule { }

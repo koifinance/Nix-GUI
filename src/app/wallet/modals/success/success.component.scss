@@ -1,0 +1,223 @@
+.wallet {
+  .divider[_ngcontent-c7] {
+    border-top: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  h5 {
+    display: inline;
+    color: #293246;
+    font-family: "Helvitica", sans-serif;
+    font-weight: 300;
+  }
+
+  .disabledinput {
+    background-color: #ECECEC;
+  }
+  .modalcontent {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .modaldetails {
+    padding: 24px;
+    background-color: #E0E3E7;
+  }
+
+  .fright {
+    float: right;
+  }
+
+  .fleft {
+    float: left;
+
+  }
+
+  .transdetail {
+    margin-bottom: 10px;
+
+  }
+
+  .qrimage {
+    padding-bottom: 15px;
+  }
+
+  .transtotal {
+    color: #4e4e4e;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+
+  }
+
+  .send {
+    padding: 40px 0px 20px 0px;
+
+  }
+
+  .sendbtn {
+    background-color: #108EFF;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    font-family: Helvitica, sans-serif;
+    font-weight:: 300;
+    height: 51px;
+    font-size: 22px;
+
+  }
+
+  .cancelbtn {
+    border-radius: 5px;
+    background-color: #E0E3E7;
+    box-shadow: none;
+    font-size: 22px;
+    font-family: Helvitica, sans-serif;
+    font-weight:: 300;
+    color: #4A4A4A;
+    height: 51px;
+  }
+
+  .modalinput {
+    font-size: 15px;
+    padding-left: 12px;
+    height: 40px;
+    border: 1px solid #979797;
+    margin-bottom: 5px;
+  }
+
+  .amountsend p {
+    font-size: 18px;
+    margin-bottom: -10px;
+
+  }
+
+  .sendto {
+    font-size: 18px;
+  }
+
+  .lbltotal {
+    font-size: 15px;
+  }
+
+  .saveaddress {
+    margin-top: 5px;
+  }
+
+  .walletbtn {
+    border-radius: 5px;
+    background-color: #E0E3E7;
+    box-shadow: none;
+    font-size: 22px;
+    font-family: Helvitica, sans-serif;
+    font-weight:: 300;
+    color: #4A4A4A;
+    height: 51px;
+
+  }
+
+  .donebtn {
+    padding: 40px 0px;
+  }
+
+}
+
+.vault {
+  .divider[_ngcontent-c7] {
+    border-top: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  h5 {
+    display: inline;
+    color: #293246;
+    font-family: "Helvitica", sans-serif;
+    font-weight: 300;
+  }
+
+  .modalcontent {
+    padding: 24px;
+  }
+
+  .modaldetails {
+    padding: 24px;
+    background-color: #E0E3E7;
+  }
+
+  .fright {
+    float: right;
+  }
+
+  .fleft {
+    float: left;
+
+  }
+
+  .transdetail {
+    margin-bottom: 10px;
+
+  }
+
+  .transtotal {
+    color: #4e4e4e;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+
+  }
+
+  .send {
+    background-color: lightblue;
+    font-size: 16px;
+    min-height: 70px;
+    margin-bottom: 10px;
+
+  }
+
+  .modalinput {
+    font-size: 15px;
+    padding-left: 12px;
+    height: 40px;
+    border: 1px solid #979797;
+    margin-bottom: 5px;
+  }
+
+  .amountsend p {
+    font-size: 18px;
+    margin-bottom: -10px;
+
+  }
+
+  .sendto {
+    font-size: 18px;
+  }
+
+  .lbltotal {
+    font-size: 15px;
+  }
+
+  .saveaddress {
+    margin-top: 5px;
+  }
+
+  .walletbtn {
+    border-radius: 5px;
+    background-color: #E0E3E7;
+    box-shadow: none;
+    font-size: 22px;
+    font-family: Helvitica, sans-serif;
+    font-weight:: 300;
+    color: #4A4A4A;
+    height: 51px;
+
+  }
+
+  .donebtn {
+    padding: 40px 0px;
+  }
+
+}
