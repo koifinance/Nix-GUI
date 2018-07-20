@@ -1,0 +1,116 @@
+<div *ngIf="data.walletType === 'wallet'" class="wallet">
+  <div class="modalcontent">
+    <h5 fxFlex="50">Receive NIX to Wallet</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Mom</span>
+        <span class="lastused" fxFlex="30" fxLayoutAlign="end">Last used: 06/06/2018</span>
+
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value"
+               value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+        <button class="dotbtn" fxFlex="10">...</button>
+        <button class="copybtn" fxFlex="15">Copy</button>
+      </div>
+
+    </div>
+
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Binance</span>
+        <span class="lastused" fxFlex="30" fxLayoutAlign="end">Last used: 06/06/2018</span>
+
+      </div>
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value"
+               value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+        <button class="dotbtn" fxFlex="10">...</button>
+        <button class="copybtn" fxFlex="15">Copy</button>
+      </div>
+
+    </div>
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Jackieboy</span>
+        <span class="lastused" fxFlex="30" fxLayoutAlign="end">Last used: 06/06/2018</span>
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value"
+               value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+        <button class="dotbtn" fxFlex="10">...</button>
+        <button class="copybtn" fxFlex="15">Copy</button>
+      </div>
+
+    </div>
+
+
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+      <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
+      <button class="sendbtn" mat-raised-button fxFlex="40" (click)="openSuccess('wallet')">New address</button>
+    </div>
+
+  </div>
+</div>
+
+
+<div *ngIf="data.walletType === 'vault'" class="vault">
+
+  <div class="modalcontent">
+    <h5 fxFlex="50">Deposit NIX to Ghost Vault</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="amountsend">
+      <p>Amount to Deposit</p>
+      <div fxLayout.gt-md="row">
+        <mat-form-field fxFlex="100">
+          <mat-select placeholder="Favorite food">
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{ food.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout.gt-md="row">
+        <div style="color:#b2b2b2" fxFlex="80">Available: 6,000.01 NIX</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modaldetails">
+    <div>
+      <div class="transdetail" fxLayout.gt-md="row">
+        <span class="modallabel" fxFlex="70">Sending</span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">1 <span> NIX</span></span>
+      </div>
+
+      <div class="transdetail" fxLayout.gt-md="row">
+        <span class="modallabel" fxFlex="70">Fee</span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+
+      </div>
+
+      <div class="transtotal" fxLayout.gt-md="row">
+        <span fxFlex="70">Total</span>
+        <span fxFlex="30" fxLayoutAlign="end">1.001<span> NIX</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+    <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
+    <button class="sendbtn" mat-raised-button fxFlex="40" (click)="openSuccess('vault')">Deposit to Vault</button>
+  </div>
+
+</div>
+

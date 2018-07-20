@@ -1,0 +1,166 @@
+<div *ngIf="data.walletType === 'wallet'" class="wallet">
+
+  <div *ngIf="data.actionType === 'send'" class="wallet">
+
+    <div class="modalcontent">
+      <h5 fxFlex="50">Send NIX from wallet</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+    </div>
+
+    <div class="successicon" fxLayout.gt-md="row"><img src="assets/icons/SVG/2B.svg" alt="Checkmark" fxFlex="100"
+                                                       fxLayoutAlign="center"></div>
+
+    <div class="amountsend" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
+    </div>
+
+    <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl</p>
+    </div>
+
+    <div class="modaldetails">
+      <div>
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Sending</span>
+          <span fxFlex="30" fxLayoutAlign="end">400 <span>NIX</span></span>
+        </div>
+
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Fee</span>
+          <span fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+
+        </div>
+
+        <div class="transtotal" fxLayout.gt-md="row">
+          <span fxFlex="70">Total</span>
+          <span fxFlex="30" fxLayoutAlign="end">400.001<span> NIX</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
+      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center">Done</button>
+    </div>
+
+  </div>
+
+  <div *ngIf="data.actionType === 'receive'" class="wallet">
+
+    <div class="modalcontent">
+      <h5>Receive NIX to Wallet</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+
+      <div class="qrimage" fxLayout.gt-md="row">
+        <img src="assets/icons/SVG/qrcode.svg" alt="QRcode" fxFlex="100" fxLayoutAlign="center">
+      </div>
+
+      <div fxLayout.gt-md="row">
+        <input class="modalinput disabledinput" matInput fxFlex="100" disabled="disabled" placeholder="Enter value"
+               value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+      </div>
+
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value"
+               value="Please enter a name for this address">
+      </div>
+
+      <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+        <button class="cancelbtn" mat-raised-button fxFlex="45">Back to addresses</button>
+        <button class="sendbtn" mat-raised-button fxFlex="45" (click)="openSuccess('wallet')">Done</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div *ngIf="data.walletType === 'vault'" class="vault">
+
+  <div *ngIf="data.actionType === 'send'" class="vault">
+    <div class="modalcontent">
+      <h5 fxFlex="50">Send NIX from Ghost Vault</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+    </div>
+
+    <div class="successicon" fxLayout.gt-md="row"><img src="assets/icons/SVG/2B_purple.svg" alt="Checkmark" fxFlex="100"
+                                                       fxLayoutAlign="center"></div>
+
+    <div class="amountsend" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
+    </div>
+
+
+    <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl</p>
+    </div>
+
+    <div class="modaldetails">
+      <div>
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Sending</span>
+          <span fxFlex="30" fxLayoutAlign="end">400 <span>NIX</span></span>
+        </div>
+
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Fee</span>
+          <span fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+
+        </div>
+
+        <div class="transtotal" fxLayout.gt-md="row">
+          <span fxFlex="70">Total</span>
+          <span fxFlex="30" fxLayoutAlign="end">400.001<span> NIX</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
+      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center">Done</button>
+    </div>
+  </div>
+
+  <div *ngIf="data.actionType === 'receive'" class="vault">
+    <div class="modalcontent">
+      <h5 fxFlex="50">Deposit NIX to Ghost Vault</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+    </div>
+
+    <div class="successicon" fxLayout.gt-md="row"><img src="assets/icons/SVG/2B_purple.svg" alt="Checkmark" fxFlex="100"
+                                                       fxLayoutAlign="center"></div>
+
+    <div class="amountsend" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
+    </div>
+
+
+    <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl</p>
+    </div>
+
+    <div class="modaldetails">
+      <div>
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Sending</span>
+          <span fxFlex="30" fxLayoutAlign="end">400 <span>NIX</span></span>
+        </div>
+
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Fee</span>
+          <span fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+
+        </div>
+
+        <div class="transtotal" fxLayout.gt-md="row">
+          <span fxFlex="70">Total</span>
+          <span fxFlex="30" fxLayoutAlign="end">400.001<span> NIX</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
+      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center">Done</button>
+    </div>
+  </div>
+
+</div>
