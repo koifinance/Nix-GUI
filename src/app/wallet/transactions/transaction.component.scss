@@ -1,0 +1,124 @@
+@import '../shared/shared';
+
+.mat-card {
+  background-color: $color-dark-grey;
+  color: $color-white;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.filters {
+
+  .mat-form-field-wrapper {
+    padding-bottom: 1em;
+  }
+
+  .filter-label {
+    font-family: Helvetica, sans serif;
+    font-size: 16px;
+    color: $color-white;
+    padding-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .filter-label-text {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: .1em;
+  }
+
+  .amount-field {
+    background: rgba(0, 0, 0, 0.30);
+    border-radius: 4px;
+    font-size: 12px;
+    color: $color-white !important;
+    padding-left: 10px;
+    font-weight: 300;
+  }
+
+  .nix-field {
+    background: $color-white;
+    border-radius: 4px;
+    font-size: 12px;
+    color: $color-black;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-weight: 300;
+
+    .nix-label {
+      font-size: 10px;
+      color: $text-muted;
+      text-align: right;
+      padding-right: 10px;
+    }
+  }
+
+  .apply-btn {
+    background: #108EFF;
+    border-radius: 4px;
+    font-size: 12px;
+    color: $color-white;
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .clear-btn {
+    border: 1px solid #9B9B9B;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #EAEAEA;
+    text-align: center;
+    font-weight: 300;
+    background: none;
+    text-transform: uppercase;
+    margin-left: 15px;
+  }
+
+  .period-field {
+    background: rgba(0, 0, 0, 0.30);
+    border-radius: 4px;
+    font-size: 12px;
+    color: $color-white;
+    padding-left: 10px;
+    font-weight: 300;
+  }
+
+  .period-field, .amount-field {
+
+    ::ng-deep.mat-select-value, ::ng-deep.mat-select-arrow {
+      color: $color-white;
+    }
+  }
+}
+
+.transactions {
+  margin: 0 35px;
+
+  .mat-tab-group {
+    margin-bottom: 20px;
+
+    &.mat-primary {
+      .mat-ink-bar {
+        background-color: $color-dark-grey;
+      }
+    }
+  }
+
+  ::ng-deep.mat-table {
+
+    .mat-header-row {
+      background: $color-dark-white;
+    }
+
+    .mat-header-cell, .mat-cell {
+      color: $color-dark-grey;
+      font-size: 14px;
+    }
+
+    .mat-header-cell {
+      color: $color-black;
+    }
+  }
+}
+

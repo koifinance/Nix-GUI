@@ -1,0 +1,133 @@
+<mat-drawer-container>
+
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content class="overview">
+    <page-header heading="Overview" [navbar]="help"></page-header>
+
+    <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
+         fxLayoutGap="5%" fxFlexOrder.lt-md="3">
+
+      <!-- TODO move this to a balance component -->
+
+      <mat-card fxFlexOrder.lt-md="1" fxFlex="30" class="item total">
+        <div class="balance">
+          <p class="description" style="color:white">Wallet</p>
+          <span class="number big" style="color:white">12,340</span>
+          <span class="point big" style="color:white">.</span>
+          <span class="number medium" style="color:white">0134</span>
+          <span class="medium" style="color:white"> NIX</span>
+          <div class="divider"></div>
+          <span class="number small" style="color:white">6</span>
+          <span class="point small" style="color:white">.</span>
+          <span class="number small" style="color:white">6344</span>
+          <span class="small" style="color:white"> BTC</span>
+          <span class="number small" style="color:white"> ($63,082)</span>
+          <div class="pending margin-top-20px">
+            <span class="number medium" style="color:white">-100</span>
+            <span class="point small" style="color:white">.</span>
+            <span class="number small" style="color:white">00</span>
+            <span class="small" style="color:white"> NIX pending</span>
+          </div>
+          <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
+            <button class="send-btn" mat-raised-button (click)="openSend('wallet')">
+              <img src="./assets/icons/SVG/arrow-up-nix.svg" alt="sent">
+              Send
+            </button>
+            <button class="receive-btn" mat-raised-button (click)="openReceive('wallet')">
+              <img src="./assets/icons/SVG/arrow-down-nix.svg" alt="Received">
+              Receive
+            </button>
+            <button mat-raised-button class="dots-btn small">...</button>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card fxFlexOrder.lt-md="2" fxFlex="30" class="item anon">
+
+        <div class="balance">
+          <p class="description">Ghost Vault</p>
+          <span class="number big">6,000</span>
+          <span class="point big">.</span>
+          <span class="number medium">00</span>
+          <span class="number medium"> Ghosted NIX</span>
+          <div class="divider"></div>
+          <span class="number small">3</span>
+          <span class="point small">.</span>
+          <span class="number small">2285</span>
+          <span class="number small"> BTC</span>
+          <span class="number small"> ($30,672)</span>
+          <div class="pending margin-top-20px"></div>
+
+          <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
+            <button class="send-btn" mat-raised-button (click)="openSend('vault')">
+              <img src="./assets/icons/SVG/arrow-up-white.svg" alt="Sent">
+              Send
+            </button>
+            <button class="receive-btn" mat-raised-button (click)="openReceive('vault')">
+              <img src="./assets/icons/SVG/arrow-down-black.svg" alt="Received">
+              Deposit
+            </button>
+            <button mat-raised-button class="dots-btn small">...</button>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card fxFlexOrder.lt-md="3" fxFlex="30" class="item">
+        <div class="price">
+          <p class="description">NIX Price</p>
+          <span class="number big">$51.12</span>
+          <div class="divider"></div>
+
+          <div fxLayout="row" fxLayoutGap="5px">
+            <span class="point small" fxFlex="50" fxFlexOrder="1">
+              <fa-icon [icon]="faBtc"></fa-icon>
+              0.000838000
+            </span>
+            <span class="small" fxFlex="50" fxFlexOrder="2" fxLayoutAlign="end" style="color:green">
+              +12.53%
+            </span>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="content-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
+         fxLayoutGap="5%" fxFlexOrder.lt-md="4">
+
+      <mat-card class="item" fxFlex="65" fxFlexOrder.lt-md="1">
+        <div class="recent-transactions">
+          <p class="description">Recent Transactions</p>
+
+          <transaction-table
+            [display]="{numTransactions: 5, columns: transactionColumns, header: false}"></transaction-table>
+
+          <div>
+            <a class="link text-uppercase" routerLink="/transactions">Show All</a>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="item" fxFlexOrder.lt-md="2" fxFlex="30">
+        <div class="node-status">
+          <p class="description">Node Status</p>
+          <span class="number big">2</span>
+          <span class="medium text"> Active Nodes</span>
+          <div class="divider"></div>
+          <span class="medium light">234 NIX earned so far this month</span>
+          <div class="medium light margin-top-40px">
+            <fa-icon [icon]="faCircleSolid" class="confirm-ok"></fa-icon>
+            No issues
+          </div>
+        </div>
+      </mat-card>
+
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+
+

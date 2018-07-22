@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+  <title>up-arrow</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <filter x="-1.3%" y="-1.7%" width="102.5%" height="104.7%" filterUnits="objectBoundingBox" id="filter-1">
+      <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+      <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+      <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.106119792 0" type="matrix" in="shadowBlurOuter1"
+                     result="shadowMatrixOuter1"></feColorMatrix>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+  <g id="NIX-UI---Screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Screen-1.1---Overview" transform="translate(-722.000000, -370.000000)" fill="#FFFFFF" fill-rule="nonzero">
+      <g id="Content" transform="translate(304.000000, 57.000000)">
+        <g id="2---Vault-tile" filter="url(#filter-1)" transform="translate(151.000000, 78.000000)">
+          <g id="Action-buttons" transform="translate(0.000000, 228.000000)">
+            <g id="Send" transform="translate(258.000000, 0.000000)">
+              <path
+                d="M31,18 C31,13.0375204 26.9624796,9 22,9 C17.0375204,9 13,13.0375204 13,18 C13,22.9624796 17.0375204,27 22,27 C26.9624796,27 31,22.9624796 31,18 Z M13.8992659,18 C13.8992659,13.5330343 17.5330343,9.89926591 22,9.89926591 C26.4669657,9.89926591 30.1007341,13.5330343 30.1007341,18 C30.1007341,22.4669657 26.4669657,26.1007341 22,26.1007341 C17.5330343,26.1007341 13.8992659,22.4669657 13.8992659,18 Z M22.3193312,22.228385 L24.8482871,19.699429 C25.0244698,19.5232463 25.0244698,19.2406199 24.8482871,19.0644372 C24.6721044,18.8882545 24.389478,18.8882545 24.2132953,19.0644372 L22.4514682,20.8262643 L22.4514682,14.0909462 C22.4514682,13.841354 22.2495922,13.639478 22,13.639478 C21.7504078,13.639478 21.5485318,13.841354 21.5485318,14.0909462 L21.5485318,20.8225938 L19.7867047,19.0607667 C19.610522,18.884584 19.3278956,18.884584 19.1517129,19.0607667 C18.9755302,19.2369494 18.9755302,19.5195759 19.1517129,19.6957586 L21.6806688,22.2247145 C21.7687602,22.3128059 21.8825449,22.3568515 22,22.3568515 C22.1174551,22.3568515 22.2312398,22.3164763 22.3193312,22.228385 Z"
+                id="up-arrow"
+                transform="translate(22.000000, 18.000000) rotate(-180.000000) translate(-22.000000, -18.000000) "></path>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

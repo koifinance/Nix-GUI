@@ -1,0 +1,95 @@
+<div *ngIf="!vaultInitialized" class="vault-init">
+
+  <div class="image" fxLayoutAlign="center">
+    <img src="./assets/icons/SVG/ghost.svg" alt="Ghost" fxFlex="100" fxLayoutAlign="center">
+  </div>
+
+  <p fxLayout="row" fxLayoutAlign="center">
+    Move or send NIX to your Ghost vault in order to anonymise it. Think of your vault as a secret swiss bank account
+    that only you know about.
+  </p>
+
+  <p fxLayout="row" fxLayoutAlign="center">
+    The longer that NIX is held in your Ghost vault, the more anonymous
+    it becomes.
+  </p>
+
+  <div fxLayout="row" fxLayoutAlign="center">
+    <button fxLayoutAlign="center" class="create-btn" mat-raised-button (click)="createVault()">
+      Create Ghost Vault
+    </button>
+  </div>
+</div>
+
+<mat-drawer-container *ngIf="vaultInitialized">
+
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content class="vault">
+    <page-header heading="Ghost Vault" [navbar]="help"></page-header>
+
+    <p class="desc">
+      Moving or sending NIX to this address will ‘ghost’ it - making it completely private to
+      everyone except you.
+      NIX sent from your ghost vault is untraceable (provided that you are sending to another ghost address). Learn
+      more
+    </p>
+
+    <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
+         fxLayoutGap="5%" fxFlexOrder.lt-md="3">
+
+      <!-- TODO Move this to its own balance component -->
+
+      <div fxFlexOrder.lt-md="1" fxFlex="25">
+        <div fxLayout="row" class="label">Balance</div>
+        <div fxLayout="row" class="nix-row">
+          <p class="nix">5000 <span class="suffix-label"> Ghosted NIX</span>
+          <p>
+        </div>
+        <div class="divider" fxFlex="80"></div>
+        <div fxLayout="row" class="btc">
+          <p>6.63444<span> BTC</span><span> ($63,082)</span></p></div>
+      </div>
+
+      <div fxFlexOrder.lt-md="2" fxFlex="25">
+        <div fxLayout="row" class="label">Pending (unconfirmed)</div>
+        <div fxLayout="row" class="nix-row">
+          <p class="nix">0<span class="suffix-label"></span>
+          <p>
+        </div>
+        <div class="divider" fxFlex="80"></div>
+        <div fxLayout="row" class="btc">
+          <p>0<span> BTC</span><span> ($0)</span></p></div>
+      </div>
+
+      <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3"
+           fxFlex="50" fxLayoutGap="30px" fxLayoutAlign="space-around center">
+
+        <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
+          <img class="cursor-pointer" src="./assets/icons/SVG/arrow-down-md.svg"
+               alt="Deposit" fxFlex="100" (click)="open('receive')">
+          <div class="icon-text" fxLayoutAlign="left">Deposit From Wallet</div>
+        </div>
+
+        <div fxFlexOrder="2" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
+          <img class="cursor-pointer" src="./assets/icons/SVG/arrow-up-md.svg"
+               alt="Withdraw" fxFlex="100">
+          <div class="icon-text" fxLayoutAlign="left">Withdraw To Wallet</div>
+        </div>
+
+        <div fxFlexOrder="3" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
+          <img class="cursor-pointer" src="./assets/icons/SVG/send-md.svg"
+               alt="Send" fxFlex="100" (click)="open('receive')">
+          <div class="icon-text" fxLayoutAlign="left">Send Anonymously</div>
+        </div>
+      </div>
+    </div>
+
+    <h5>Recent ghost vault transactions</h5>
+
+    <transaction-table [display]="{columns: transactionColumns}"></transaction-table>
+  </mat-drawer-content>
+</mat-drawer-container>
+

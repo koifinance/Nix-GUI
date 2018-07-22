@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+  <title>down-arrow</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <filter x="-1.3%" y="-1.7%" width="102.5%" height="104.7%" filterUnits="objectBoundingBox" id="filter-1">
+      <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+      <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+      <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.106119792 0" type="matrix" in="shadowBlurOuter1"
+                     result="shadowMatrixOuter1"></feColorMatrix>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+  <g id="NIX-UI---Screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Screen-1.1---Overview" transform="translate(-820.000000, -370.000000)" fill="#4A4A4A" fill-rule="nonzero">
+      <g id="Content" transform="translate(304.000000, 57.000000)">
+        <g id="2---Vault-tile" filter="url(#filter-1)" transform="translate(151.000000, 78.000000)">
+          <path
+            d="M387.101983,246 C387.101983,241.03752 383.041587,237 378.050992,237 C373.060396,237 369,241.03752 369,246 C369,250.96248 373.060396,255 378.050992,255 C383.041587,255 387.101983,250.96248 387.101983,246 Z M369.904361,246 C369.904361,241.533034 373.558717,237.899266 378.050992,237.899266 C382.543266,237.899266 386.197622,241.533034 386.197622,246 C386.197622,250.466966 382.543266,254.100734 378.050992,254.100734 C373.558717,254.100734 369.904361,250.466966 369.904361,246 Z M378.372132,250.228385 L380.915416,247.699429 C381.092597,247.523246 381.092597,247.24062 380.915416,247.064437 C380.738235,246.888254 380.454008,246.888254 380.276827,247.064437 L378.505018,248.826264 L378.505018,242.090946 C378.505018,241.841354 378.301998,241.639478 378.050992,241.639478 C377.799985,241.639478 377.596965,241.841354 377.596965,242.090946 L377.596965,248.822594 L375.825156,247.060767 C375.647975,246.884584 375.363748,246.884584 375.186567,247.060767 C375.009386,247.236949 375.009386,247.519576 375.186567,247.695759 L377.729851,250.224715 C377.818442,250.312806 377.932871,250.356852 378.050992,250.356852 C378.169112,250.356852 378.283541,250.316476 378.372132,250.228385 Z"
+            id="down-arrow"
+            transform="translate(378.050992, 246.000000) rotate(-360.000000) translate(-378.050992, -246.000000) "></path>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

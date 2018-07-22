@@ -1,0 +1,40 @@
+<mat-drawer-container fullscreen>
+
+  <mat-drawer #sidenav mode="side" opened="true" disableClose="true" class="sidebar">
+
+    <div class="logo-area">
+      <div class="logo">
+        <img src="./assets/nix-logo.png" alt="NIX">
+      </div>
+    </div>
+
+    <mat-list class="sidebar-item-group">
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./overview">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Overview</span>
+        </mat-list-item>
+      </a>
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./vault">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Ghost Vault</span>
+        </mat-list-item>
+      </a>
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./transactions">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Transactions</span>
+        </mat-list-item>
+      </a>
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./nodes">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Ghost Node</span>
+        </mat-list-item>
+      </a>
+    </mat-list>
+
+  </mat-drawer>
+
+  <mat-drawer-content class="page">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container>

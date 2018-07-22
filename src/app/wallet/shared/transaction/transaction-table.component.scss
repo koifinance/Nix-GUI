@@ -1,0 +1,47 @@
+@import '../shared';
+
+mat-table {
+  background: transparent;
+
+  mat-header-row {
+    border: none;
+    min-height: 40px;
+  }
+
+  mat-row {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  mat-cell {
+    color: $color-dark-grey;
+    font-size: 14px;
+    overflow: inherit;
+  }
+
+  .confirm-none {
+    color: $color-progress;
+  }
+
+  .confirm-ok {
+    color: $color-secondary;
+  }
+
+  .confirm-error {
+    color: $color-alert;
+  }
+
+  .multi-line {
+    margin-top: 5px;
+  }
+
+  .month {
+    text-transform: uppercase;
+  }
+
+  .day {
+    letter-spacing: 2.3px;
+  }
+}
+
+

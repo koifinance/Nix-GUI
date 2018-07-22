@@ -2,8 +2,6 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Log } from 'ng2-logger';
 
-import { BlockStatusService, RpcService, RpcStateService } from '../core/core.module';
-
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ModalsComponent } from './modals.component';
 import { SendComponent } from './send/send.component';

@@ -2,8 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { WalletModule } from './wallet/wallet.module';
+import { CoreModule } from './core/core.module';
+
 import { routing } from './app.routing';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -12,9 +16,11 @@ import { routing } from './app.routing';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CoreModule.forRoot(),
     routing,
+    WalletModule
   ],
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
 })
 
 export class AppModule {

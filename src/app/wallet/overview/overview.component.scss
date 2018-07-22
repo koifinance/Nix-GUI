@@ -1,0 +1,274 @@
+@import '../shared/shared';
+
+$grey-12-opacity: rgba(0, 0, 0, .12);
+$grey-14-opacity: rgba(0, 0, 0, .14);
+$grey-20-opacity: rgba(0, 0, 0, .2);
+
+.overview {
+  padding: 0 35px;
+
+  .balance-row, .content-row {
+    margin-top: 3em;
+    margin-bottom: 1em;
+
+    .item {
+      border-radius: $card-radius;
+      box-shadow: 0 3px 1px -2px $grey-20-opacity, 0 2px 2px 0 $grey-14-opacity, 0 1px 5px 0 $grey-12-opacity !important;
+      min-height: 300px;
+      padding-left: 40px;
+    }
+  }
+
+  .balance-row {
+
+    .item {
+
+      &.total {
+        @include primary-gradient;
+
+        .send-btn {
+          border-radius: 5px;
+          font-weight: 300;
+        }
+
+        .receive-btn {
+          background: rgba(0, 0, 0, 0.14);
+          color: $color-white;
+          border-radius: 5px;
+          font-weight: 300;
+        }
+
+        .dots-btn {
+          background: rgba(0, 0, 0, 0.14);
+          color: $color-white;
+          border-radius: 5px;
+          font-weight: 300;
+        }
+      }
+
+      &.anon {
+
+        .send-btn {
+          background-image: linear-gradient(-45deg, #13006D 0%, #6F00F5 100%);
+          border-radius: 5px;
+          font-weight: 300;
+          color: $color-white;
+        }
+
+        .receive-btn {
+          background: #F4F4F5;
+          color: black;
+          border-radius: 3px;
+          font-weight: 300;
+
+        }
+
+        .dots-btn {
+          background: #F4F4F5;
+          color: black;
+          border-radius: 3px;
+          font-weight: 300;
+        }
+      }
+
+      .balance {
+        //color: #293246;
+
+        .description {
+          color: $text;
+          font-size: 16px;
+          margin-bottom: 20px;
+          //margin-top: 6px;
+        }
+
+        .number {
+          color: $text;
+        }
+
+        .point {
+          color: $text;
+        }
+
+        .big {
+          font-size: 24px;
+          @media screen and (min-width: 1500px) {
+            font-size: 28px;
+          }
+        }
+
+        .medium {
+          font-size: 13px;
+          @media screen and (min-width: 1500px) {
+            font-size: 15px;
+          }
+        }
+
+        .small {
+          font-size: 11px;
+          @media screen and (min-width: 1500px) {
+            font-size: 13px;
+          }
+        }
+
+        .divider {
+          border-top: 1px solid darken($color-light-grey, 5%);
+          margin-bottom: 15px;
+          margin-top: 15px;
+        }
+
+        .mat-raised-button {
+          line-height: 34px;
+          //min-width: 60px;
+
+          &.small {
+            min-width: 40px;
+          }
+        }
+      }
+
+      .price {
+
+        .description {
+          color: $text;
+          font-size: 16px;
+          margin-bottom: 20px;
+          //margin-top: 6px;
+        }
+
+        .number {
+          color: $text;
+        }
+
+        .point {
+          color: $text-muted;
+        }
+
+        .big {
+          font-size: 24px;
+          @media screen and (min-width: 1500px) {
+            font-size: 28px;
+          }
+        }
+
+        .small {
+          font-size: 11px;
+          @media screen and (min-width: 1500px) {
+            font-size: 13px;
+          }
+        }
+
+        .divider {
+          border-top: 1px solid darken($color-light-grey, 5%);
+          margin-bottom: 15px;
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+
+  .content-row {
+
+    .recent-transactions {
+      margin-left: 10px;
+      //padding-top: 5px;
+
+      .description {
+        color: $text;
+        font-size: 16px;
+        margin-bottom: 20px;
+        //margin-top: 6px;
+      }
+
+      ::ng-deep.mat-table {
+
+        .mat-header-row, .mat-row {
+          padding: 0;
+        }
+
+        .mat-row {
+          border: none;
+        }
+
+        .date {
+          display: list-item;
+          list-style-type: none;
+        }
+
+        .month {
+          font-size: 12px;
+        }
+
+        .day {
+          color: #9B9B9B;
+          //color: $text-muted;
+          font-size: 17px;
+        }
+      }
+
+      .link {
+        color: $text-muted;
+        font-size: 11px;
+        text-decoration: none;
+      }
+    }
+
+    .node-status {
+      //padding-top: 5px;
+
+      .description {
+        color: $text;
+        font-size: 16px;
+        margin-bottom: 20px;
+        //margin-top: 6px;
+      }
+
+      .number {
+        color: $text;
+      }
+
+      .light {
+        color: $text-muted;
+      }
+
+      .big {
+        font-size: 24px;
+        @media screen and (min-width: 1500px) {
+          font-size: 28px;
+        }
+      }
+
+      .medium {
+        font-size: 15px;
+        @media screen and (min-width: 1500px) {
+          font-size: 18px;
+        }
+      }
+
+      .small {
+        font-size: 11px;
+        @media screen and (min-width: 1500px) {
+          font-size: 13px;
+        }
+      }
+
+      .text {
+        text-transform: uppercase;
+      }
+
+      .divider {
+        border-top: 1px solid darken($color-light-grey, 5%);
+        margin-bottom: 15px;
+        margin-top: 15px;
+      }
+
+      .confirm-ok {
+        color: $color-secondary;
+      }
+
+      fa-icon {
+        margin-right: 10px;
+      }
+    }
+  }
+
+}
