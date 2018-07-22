@@ -1,0 +1,45 @@
+::ng-deep.mat-drawer {
+  width: 400px;
+  padding: 24px;
+
+  .help-header {
+    margin-bottom: 90px;
+
+    h5 {
+      display: inline;
+      color: #293246;
+      font-weight: 300;
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 26px;
+    }
+
+    .label {
+      font-size: 16px;
+    }
+
+    .close-button {
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .help-items {
+    padding-right: 40px;
+
+    .divider {
+      border-top: 1px solid #EAEAEA;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+
+    .item {
+      font-size: 18px;
+
+      p {
+        font-size: 16px;
+        padding-bottom: 20px;
+      }
+    }
+  }
+}

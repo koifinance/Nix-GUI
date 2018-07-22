@@ -1,0 +1,148 @@
+@import '../shared/shared';
+
+.vault-init {
+  padding: 50px;
+
+  .image {
+    min-height: 300px;
+  }
+
+  .create-btn {
+    background-image: linear-gradient(-45deg, #13006D 0%, #6F00F5 100%);
+    color: white;
+    min-height: 20px;
+    border-radius: 5px;
+    font-weight: 300;
+  }
+
+  p {
+    text-align: center;
+    font-size: 15px;
+  }
+}
+
+.vault {
+  color: white;
+  background-image: linear-gradient(65deg, #13006D 6%, #6F00F5 100%);
+  padding: 0 35px;
+
+  ::ng-deep.header {
+    padding: 0;
+  }
+
+  .desc {
+    text-align: left;
+    padding-bottom: 40px;
+    font-size: 15px;
+  }
+
+  .balance {
+    background: rgba(0, 0, 0, 0.20);
+    border-radius: 5px;
+    padding: 24px;
+    color: white;
+    font-weight: 300;
+
+    p {
+      font-weight: 300;
+    }
+
+    .label {
+      font-size: 17px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      font-weight: 300;
+      padding-bottom: 40px;
+    }
+
+    .nix-row {
+
+    }
+
+    .suffix-label {
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .nix {
+      font-size: 42px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    .btc {
+      font-size: 15px;
+      color: #9B9B9B;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    .divider {
+      border: 1px solid #BDBBBB;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+
+    .icon-text {
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      min-height: 200px;
+    }
+
+    img {
+      margin-bottom: 15px;
+    }
+  }
+
+  .coloricon {
+    padding-right: 1.2em;
+  }
+
+  ::ng-deep.mat-table {
+
+    .mat-header-row {
+      background: rgba(0, 0, 0, 0.20);
+      margin-bottom: 10px;
+    }
+
+    .mat-row {
+      border: none;
+    }
+
+    .mat-header-cell, .mat-cell {
+      color: $color-white;
+      font-weight: 300;
+    }
+
+    .date {
+      display: list-item;
+      list-style-type: none;
+    }
+
+    .month {
+      font-size: 12px;
+    }
+
+    .day {
+      font-size: 17px;
+    }
+
+    .category {
+      font-size: 16px;
+    }
+
+    .status {
+      font-size: 14px;
+    }
+
+    .amount {
+      font-size: 16px;
+    }
+  }
+}
+
+

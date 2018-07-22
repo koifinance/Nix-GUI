@@ -1,4 +1,4 @@
-@import 'theme/partgui-theme';
+@import 'theme/nix-theme';
 @import './src/assets/config'; // import shared colors etc.
 
 $alert-50-opacity: rgba($color-alert, .5);
@@ -6,6 +6,7 @@ $white-50-opacity: rgba($color-white, .5);
 $white-90-opacity: rgba($color-white, .9);
 $black-51-opacity: rgba(0, 0, 0, .507);
 $color-pink: #ff69b4;
+$color-blue: #108eff;
 
 /* ------------------------------- *\
     UI Elements
@@ -334,16 +335,47 @@ input {
     Dialogs
 \* ------------------------------- */
 
+.cdk-overlay-backdrop-showing + .cdk-global-overlay-wrapper {
+  .cdk-overlay-pane {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    max-width: 100% !important;
+    position: absolute !important;
+    width: 100%;
+  }
+}
+
 .cdk-overlay-container {
+  .cdk-overlay-backdrop-showing + .cdk-global-overlay-wrapper {
+    .mat-dialog-container {
+      position: fixed !important;
+    }
+  }
+
+  .small-dialog {
+    .mat-dialog-container {
+      height: auto;
+      width: 532px;
+    }
+  }
+
   .mat-dialog-container {
     height: calc(100% - 24px);
     margin: 24px auto auto;
     max-width: 800px;
     position: relative;
-
+    padding: 0;
+    background-color: #f7f7f7;
     // Dialogs (small)
     .dialog-content {
       margin: 15px -24px;
+    }
+
+    .mat-dialog-content {
+      margin: 0;
+      padding: 0;
+      max-height: none;
     }
 
     [mat-dialog-title] { // dialog title
@@ -506,4 +538,18 @@ input {
   img {
     display: inline !important;
   }
+}
+
+// ------ Form Custom ------ //
+.mat-form-field-underline {
+  display: none;
+  height: 0;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0.5em;
 }

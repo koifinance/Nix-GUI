@@ -1,0 +1,113 @@
+@import '../shared/shared';
+
+mat-drawer {
+  padding: 37px 28px 10px;
+  background-color: $bg-white;
+  color: $text;
+  width: 25%;
+}
+
+mat-drawer-content {
+  overflow-y: auto !important;
+  width: 75%;
+}
+
+.sidebar {
+
+  .content {
+    color: $color-black;
+
+    .heading {
+      font-size: 26px;
+      font-weight: 300;
+    }
+
+    .text {
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    p {
+      &.text {
+        margin-top: 2em;
+      }
+    }
+
+    mat-form-field {
+      margin-top: 3em;
+    }
+
+    .password {
+      border: 1px solid $color-grey;
+      border-radius: 4px;
+      margin-left: 10px;
+      padding-left: 10px;
+      padding-top: 2px;
+    }
+
+    .password-toggle {
+      margin-left: 10px;
+      font-size: 11px;
+      color: $color-grey;
+      margin-top: -5px;
+
+      fa-icon {
+        margin-right: 5px;
+      }
+
+      .mat-button {
+        padding-left: 0;
+      }
+    }
+
+    .important {
+      color: #FF0000;
+    }
+  }
+
+  .actions {
+
+    .create-new-btn {
+      background-image: linear-gradient(45deg, #13006D 0%, #6F00F5 100%);
+      border-radius: 5px;
+      font-size: 20px;
+      color: #FFFFFF;
+      text-align: center;
+      font-weight: 300;
+      margin-bottom: 20px;
+      box-shadow: none;
+      padding: 8px;
+    }
+
+    .restore-btn {
+      background: #F4F4F5;
+      border-radius: 5px;
+      font-size: 20px;
+      color: #4A4A4A;
+      text-align: center;
+      font-weight: 300;
+      box-shadow: none;
+      padding: 8px;
+    }
+
+    mat-checkbox {
+      font-size: 16px;
+      margin-bottom: 15px;
+
+      ::ng-deep .mat-checkbox-layout {
+        white-space: pre-wrap;
+      }
+    }
+
+    .error {
+      color: #FF0000;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  }
+
+  small {
+    color: $text-muted;
+    font-size: 90%;
+  }
+}

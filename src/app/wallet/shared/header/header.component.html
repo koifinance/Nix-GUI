@@ -1,0 +1,31 @@
+<div class="header" fxLayout="row" fxLayoutGap="5%">
+
+  <div fxFlex="67" fxFlexOrder="1">
+    <h5 class="text-uppercase">{{ heading }}</h5>
+  </div>
+
+  <div class="actions" fxFlex="33" fxLayoutAlign="end center" fxFlexOrder="2">
+
+    <button *ngIf="showFilters" class="filter-btn" mat-raised-button (click)="toggleFilter()">
+      <img src="assets/icons/SVG/filter-icon-black.svg" alt="up-arrow">
+      Filter
+    </button>
+
+    <button *ngIf="showFilters" class="download-btn" mat-raised-button>
+      <img src="assets/icons/SVG/download-icon.svg" alt="up-arrow">
+      Download history
+    </button>
+
+    <!--<fa-layers class="fa-fw" class="margin-right-25px">
+      <fa-icon [icon]="faCircle" size="2x"></fa-icon>
+      <fa-icon size="1x" transform="right-8" [icon]="faSync"></fa-icon>
+    </fa-layers>
+    <fa-layers class="fa-fw" (click)="help.toggle()">
+      <fa-icon [icon]="faCircle" size="2x"></fa-icon>
+      <fa-icon size="1x" transform="right-6" [icon]="faQuestion"></fa-icon>
+    </fa-layers>-->
+
+    <img class="cursor-pointer" src="./assets/icons/SVG/sync.svg" alt="Sync">
+    <img class="cursor-pointer" src="./assets/icons/SVG/help.svg" alt="Help" (click)="navbar.toggle()">
+  </div>
+</div>

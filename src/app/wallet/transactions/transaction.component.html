@@ -1,0 +1,82 @@
+<mat-drawer-container>
+
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <page-header heading="Transactions History" [showFilters]="true" [navbar]="help"></page-header>
+
+    <mat-card *ngIf="showFilter" class="filters">
+      <div fxLayout="row" fxLayoutGap="5%">
+        <div class="filter-label" fxFlex="67" fxFlexOrder="1">
+          Filter
+        </div>
+        <div fxFlex="33" fxLayoutAlign="end center" fxFlexOrder="2">
+          <img class="cursor-pointer" src="assets/icons/SVG/times-white.svg" alt="" (click)="toggleFilter()">
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="5%">
+        <div fxLayout="column" fxFlex="33" fxFlexOrder="1">
+          <p class="filter-label-text">Amount</p>
+          <div>
+            <mat-form-field class="amount-field" fxLayoutFlex="40" fxAlign="start">
+              <mat-select [(value)]="amountFilter">
+                <mat-option>Select Amount</mat-option>
+                <mat-option value="all">All</mat-option>
+                <mat-option value="gt">More than</mat-option>
+                <mat-option value="lt">Less than</mat-option>
+                <mat-option value="eq">Is equal to</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="nix-field" fxFlex="40" fxLayoutFlex="end">
+              <input matInput type="text" [(ngModel)]="amountFilterValue">
+              <span matSuffix class="nix-label">NIX</span>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout="column" fxFlex="67" fxFlexOrder="2">
+          <p class="filter-label-text">Period</p>
+          <div fxLayout="row" fxFlex="70">
+            <mat-form-field class="period-field" fxFlex="30">
+              <mat-select [(value)]="dateFilter">
+                <mat-option>Select Period</mat-option>
+                <mat-option value="all">All</mat-option>
+                <mat-option value="week">Past week</mat-option>
+                <mat-option value="month">Past month</mat-option>
+                <mat-option value="threemo">Past 3 months</mat-option>
+                <mat-option value="sixmo">Past 6 months</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div fxFlex="70" fxLayoutAlign="end">
+              <button class="apply-btn" mat-raised-button (click)="applyFilter()">Apply</button>
+              <button class="clear-btn" mat-raised-button>Clear</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-card>
+
+    <div class="transactions">
+
+      <mat-tab-group (selectedTabChange)="setCategory($event)">
+        <mat-tab label="ALL"></mat-tab>
+        <mat-tab label="SENT"></mat-tab>
+        <mat-tab label="RECEIVED"></mat-tab>
+        <mat-tab label="TRANSFERS"></mat-tab>
+        <mat-tab label="NODE REWARDS"></mat-tab>
+      </mat-tab-group>
+
+      <transaction-table [filterFunc]="filterData" [display]="{longDate: true}"></transaction-table>
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+
+

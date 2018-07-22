@@ -1,0 +1,10 @@
+<mat-drawer-container>
+
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <page-header heading="Ghost Nodes" [navbar]="help"></page-header>
+  </mat-drawer-content>
+</mat-drawer-container>
