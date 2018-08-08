@@ -1,28 +1,46 @@
-# particl-desktop – UI
+<hr />
+<div align="center">
+    <img src="images/nix_full.png" alt="Logo" width='300px' height='auto'/>
+</div>
+<hr />
 
-![UI Preview](preview.gif)
+# NIX Desktop GUI
 
-> *"Particl is an open source project that aims to restore the balance of privacy on the internet."*
 
-We provide a decentralized privacy platform with a suite of tools to enhance your online privacy:
+### What is NIX?
+---
 
-* **An anonymous cryptocurrency** – send and receive the PART cryptocurrency without revealing the transaction history
-* **End-to-end encrypted messaging** – communicate in a secure and decentralized manner without revealing your IP address
-* **A private marketplace** – buy and sell goods without leaving a trace
+NIX is a digital currency that combines Atomic Swaps/Smart Contracts and privacy using our unique, innovative Ghost Protocol to provide the world with a truly anonymous and decentralized transfer of assets for the cross-chain era
 
-This repository is the user interface that works in combination with our [`particl-core`](https://github.com/particl/particl-core).
+### Key Features
+---
 
-[![Download the packaged wallet for Mac, Windows and Linux](download-button.png)](https://github.com/particl/particl-desktop/releases)
+* NIX utilizes a custom built privacy library that integrates Zerocoin/Stealthoutputs/Bulletproofs and TOR support. This allows transaction privacy in its fullest and most trustless form.
 
-# Contribute
+* NIX aims to create a privatized DEX platform built on top of already developed DEX volumes to conduct privatized atomic swaps through use of NIX’s privacy library.
 
-[![Snyk](https://snyk.io/test/github/particl/particl-desktop/badge.svg)](https://snyk.io/test/github/particl/particl-desktop)
-[![Build Status](https://travis-ci.org/particl/particl-desktop.svg?branch=master)](https://travis-ci.org/particl/particl-desktop)
-[![Coverage Status](https://coveralls.io/repos/github/particl/particl-desktop/badge.svg?branch=master)](https://coveralls.io/github/particl/particl-desktop?branch=master)
-[![Code Climate](https://codeclimate.com/github/particl/particl-desktop/badges/gpa.svg)](https://codeclimate.com/github/particl/particl-desktop)
-[![Greenkeeper badge](https://badges.greenkeeper.io/particl/particl-desktop.svg)](https://greenkeeper.io/)
+* Ghost Protocol and Ghost Vault to enhance privacy features.
 
-> Be sure to read our [Contributing Guidelines](CONTRIBUTING.md) first
+For more information, please visit [NixPlatform.io](https://nixplatform.io/nixplatform.io) or read the [whitepaper](https://nixplatform.io/docs/NIX-Platform-Whitepaper.pdf).
+
+
+### Guides & Documentation
+
+* [White Paper](https://nixplatform.io/docs/NIX-Platform-Whitepaper.pdf)
+* [NIX Ghost Nodes](https://nixplatform.zendesk.com/hc/en-us/articles/360005044571-Setting-up-your-Ghost-Node)
+
+
+### Links & Resources
+---
+
+* [NIX Website](https://nixplatform.io)
+* [Discord Chat](https://chat.nixplatform.io/)
+* [Reddit](https://reddit.com/r/nixplatform)
+* [Medium](https://medium.com/@nixplatform)
+* [Twitter](https://twitter.com/nixplatform)
+* [GitHub wiki](https://github.com/nixplatform/nixcore/wiki)
+
+This repository is the user interface that works in combination with [`Nix Core`](https://github.com/NixPlatform/NixCore/).
 
 ## Development
 
@@ -32,8 +50,8 @@ This repository is the user interface that works in combination with our [`parti
 * Download + Install [git](https://git-scm.com/)
 
 ```bash
-git clone https://github.com/particl/particl-desktop
-cd particl-desktop
+git clone https://github.com/nixcore/nix-gui
+cd nix-gui
 yarn install
 ```
 
@@ -45,12 +63,12 @@ yarn install
    * `-testnet` – for running on testnet (omit for running the client on mainnet)
    * `-opendevtools` – automatically opens Developer Tools on client launch
 
-#### Interact with particl-core daemon
+#### Interact with nix-core daemon
 
 You can directly interact with the daemon ran by the Electron version.
 
 ```
-./particl-cli -testnet getblockchaininfo
+./nix-cli -testnet getblockchaininfo
 ```
 
 ## Running
@@ -64,7 +82,3 @@ You can directly interact with the daemon ran by the Electron version.
 * `yarn run package:win` – Windows
 * `yarn run package:mac` – OSX
 * `yarn run package:linux` – Linux
-
-## Contributors
-
-Join us in [#particl-dev:matrix.org](https://riot.im/app/#/room/#particl-dev:matrix.org) on [Riot](https://riot.im)
