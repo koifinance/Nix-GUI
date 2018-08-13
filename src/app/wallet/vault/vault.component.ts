@@ -46,5 +46,6 @@ export class VaultComponent implements OnInit, OnDestroy {
 
   createVault() {
     // set rpc state variable `ui:vaultInitialized` after success
+    this.vaultInitialized = true;
   }
 }

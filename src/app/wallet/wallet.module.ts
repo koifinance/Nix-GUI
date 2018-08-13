@@ -15,6 +15,7 @@ import { TransactionsComponent } from './transactions/transaction.component';
 import { CreateComponent } from './create/create.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RestoreComponent } from './restore/restore.component';
+import { GhostComponent } from './ghost/ghost.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RestoreComponent } from './restore/restore.component';
     TransactionsComponent,
     VaultComponent,
     WelcomeComponent,
+    GhostComponent,
   ],
   imports: [
     ModalsModule,
