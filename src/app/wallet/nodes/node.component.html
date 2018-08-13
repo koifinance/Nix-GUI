@@ -1,10 +1,103 @@
-<mat-drawer-container>
+<mat-drawer-container fullscreen>
+  <mat-drawer position="end" mode="side" opened class="sidebar" fxLayout="column">
 
-  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
-    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+    <div class="content" [fxFlex]="85">
+      <div *ngIf="step === 1">
+
+      </div>
+      <div *ngIf="step === 2">
+        <div class="text1">
+          You cannot spend these NIX while they are assigned to a node, but you can unlock them again whenever you want by transferring
+          them back to your wallet and stopping your node.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <div *ngIf="step === 1">
+        <div fxLayout="row">
+
+          <button fxFlex="100" class="restore-btn" mat-raised-button (click)="nextStep()">
+            Next
+          </button>
+        </div>
+      </div>
+      <div *ngIf="step === 2">
+        <div fxLayout="row">
+
+          <button fxFlex="100" class="restore-btn" mat-raised-button (click)="nextStep()">
+            CONFIRM
+          </button>
+        </div>
+        <br>
+        <div fxLayout="row">
+
+          <button fxFlex="100" class="restore-btn" mat-raised-button>
+            Save progress for later
+          </button>
+        </div>
+      </div>
+    </div>
   </mat-drawer>
 
-  <mat-drawer-content>
-    <page-header heading="Ghost Nodes" [navbar]="help"></page-header>
+  <mat-drawer-content class="content">
+
+    <div fxLayout="row">
+      <div class="back-button" fxFlex="15">
+        <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="prevStep()">
+        <div class="caption">Back</div>
+      </div>
+
+      <div class="text" fxFlex="70">
+        <p class="title">{{ stepTitle() }}</p>
+        <p class="subtitle">Step {{ step - 1 }} of 3</p>
+        <mat-progress-bar mode="determinate" class="progress-bar" [value]="stepProgress()"></mat-progress-bar>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <div *ngIf="step === 1" class="text">
+        <p class="htxt">Give your Ghost node a name</p>
+        <p>
+          <mat-form-field class="password">
+            <input matInput [type]="text" placeholder="My Ghost node" [(ngModel)]="walletNewPassword">
+          </mat-form-field>
+        </p>
+        <p class="htxt">Static IP address of your VPS</p>
+        <p>
+          <mat-form-field class="password inputWidth">
+            <input matInput [type]="text" placeholder="IP address" [(ngModel)]="walletRepeatPassword">
+          </mat-form-field>
+        </p>
+        <p>
+          <a>Where do I find this?</a>
+        </p>
+      </div>
+
+      <div *ngIf="step === 2">
+        <p class="htxt">Next we will move 40,000 NIX from your wallet to your node</p>
+        <div class="cover">
+          <div class="row">
+            <div class="col m6">
+              sending
+            </div>
+            <div class="col m6">
+              40 000 NIX
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="body" *ngIf="step === 4">Use your phrase to complete the missing words</p>
+      <div fxLayout="row wrap" fxLayoutAlign="start space-evenly" class="body">
+        <div class="phrase" fxFlex="16" *ngFor="let phrase of recoveryPhrase; index as i">
+          <small>{{ i + 1 }}</small>
+          {{ phrase }}
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+    </div>
+
   </mat-drawer-content>
 </mat-drawer-container>
