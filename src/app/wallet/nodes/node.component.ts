@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faq } from './faq';
 import { FAQ } from '../shared/faq.model';
+import { ModalsService } from '../modals/modals.service';
 
 @Component({
   selector: 'wallet-node',
@@ -40,6 +41,7 @@ export class NodesComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private modalsService: ModalsService,
   ) {
   }
 
@@ -81,7 +83,7 @@ export class NodesComponent implements OnInit {
   }
 
   stepProgress(): number {
-    const step = this.step ;
+    const step = this.step;
     if (step < 3) {
       return step * 33;
     }
@@ -89,19 +91,37 @@ export class NodesComponent implements OnInit {
   }
 
   stepTitle(): string {
-    const step = this.step ;
+    const step = this.step;
     if (step === 1) {
       return 'Set-up Ghost node';
     } else if (step === 2) {
       return 'Transfer NIX to Ghost node';
     }
+    else if (step === 3) {
+      return 'Set up Virtual Private Service (VPS)';
+    }
     return 'Confirm your recovery phrase';
   }
 
-
+  open(modal: string) {
+    const data: any = {
+      forceOpen: true,
+      walletType: 'transaction',
+      modalsService: this.modalsService
+    };
+    this.modalsService.openSmall(modal, data);
+  }
 
   goTo(route: string) {
     this.router.navigate([`/${route}`]);
+  }
+
+  goTopage(route: string) {
+    this.router.navigate(['./main/nodes']);
+  }
+
+  goToNextpage(route: string) {
+    this.router.navigate(['./main/multi/nodes']);
   }
 
 }

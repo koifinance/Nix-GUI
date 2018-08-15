@@ -9,13 +9,15 @@ import { ModalsService } from './modals.service';
 import { SendComponent } from './send/send.component';
 import { ReceiveComponent } from './receive/receive.component';
 import { SuccessComponent } from './success/success.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
   declarations: [
     ModalsComponent,
     SendComponent,
     ReceiveComponent,
-    SuccessComponent
+    SuccessComponent,
+    TransactionComponent
   ],
   imports: [
     CommonModule,

@@ -16,6 +16,7 @@ import { CreateComponent } from './create/create.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RestoreComponent } from './restore/restore.component';
 import { GhostComponent } from './ghost/ghost.component';
+import { MultinodesComponent } from './multinodes/multinodes.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { GhostComponent } from './ghost/ghost.component';
     VaultComponent,
     WelcomeComponent,
     GhostComponent,
+    MultinodesComponent,
   ],
   imports: [
     ModalsModule,

@@ -11,14 +11,27 @@
           them back to your wallet and stopping your node.
         </div>
       </div>
-
+      <div *ngIf="step === 3">
+        <div class="text">
+          Finally, you need to configure your VPS. This is done outside of the NIX wallet.
+        </div>
+        <div class="text">
+          A detailed guide for setting up your NIX ghost nodes VPS can be found here:
+          <br>
+          <a>VPS set-up guide </a>
+        </div>
+        <div class="text important">
+          WARNING:
+          <br/> Please keep your node key safe and never share it with anyone else
+        </div>
+      </div>
     </div>
 
     <div class="actions">
       <div *ngIf="step === 1">
         <div fxLayout="row">
 
-          <button fxFlex="100" class="restore-btn" mat-raised-button (click)="nextStep()">
+          <button fxFlex="100" class="restore-btns" mat-raised-button (click)="nextStep()">
             Next
           </button>
         </div>
@@ -26,14 +39,29 @@
       <div *ngIf="step === 2">
         <div fxLayout="row">
 
-          <button fxFlex="100" class="restore-btn" mat-raised-button (click)="nextStep()">
+          <button fxFlex="100" class="restore-btns" mat-raised-button (click)="nextStep()">
             CONFIRM
           </button>
         </div>
         <br>
         <div fxLayout="row">
 
-          <button fxFlex="100" class="restore-btn" mat-raised-button>
+          <button fxFlex="100" class="restore-btn1" mat-raised-button (click)="open('transaction')">
+            Save progress for later
+          </button>
+        </div>
+      </div>
+      <div *ngIf="step === 3">
+        <div fxLayout="row">
+
+          <button fxFlex="100" class="restore-btns" mat-raised-button (click)="goToNextpage()">
+            I have set up my VPS
+          </button>
+        </div>
+        <br>
+        <div fxLayout="row">
+
+          <button fxFlex="100" class="restore-btn1" mat-raised-button>
             Save progress for later
           </button>
         </div>
@@ -51,14 +79,14 @@
 
       <div class="text" fxFlex="70">
         <p class="title">{{ stepTitle() }}</p>
-        <p class="subtitle">Step {{ step - 1 }} of 3</p>
+        <p class="subtitle">Step {{ step }} of 3</p>
         <mat-progress-bar mode="determinate" class="progress-bar" [value]="stepProgress()"></mat-progress-bar>
       </div>
     </div>
 
     <div class="wrapper">
 
-      <div *ngIf="step === 1" class="text">
+      <div *ngIf="step === 1" class="text-content">
         <p class="htxt">Give your Ghost node a name</p>
         <p>
           <mat-form-field class="password">
@@ -76,19 +104,58 @@
         </p>
       </div>
 
-      <div *ngIf="step === 2">
+      <div *ngIf="step === 2" class="text-content">
         <p class="htxt">Next we will move 40,000 NIX from your wallet to your node</p>
-        <div class="cover">
-          <div class="row">
-            <div class="col m6">
-              sending
+        <div class="modaldetails">
+          <div>
+            <div class="transdetail" fxLayout.gt-md="row">
+              <span class="modallabel" fxFlex="70">Sending</span>
+              <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">1
+                <span> NIX</span>
+              </span>
             </div>
-            <div class="col m6">
-              40 000 NIX
+
+            <div class="transdetail" fxLayout.gt-md="row">
+              <span class="modallabel" fxFlex="70">Fee</span>
+              <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">0.001
+                <span> NIX</span>
+              </span>
+
+            </div>
+
+            <div class="transtotal" fxLayout.gt-md="row">
+              <span fxFlex="70">Total</span>
+              <span fxFlex="30" fxLayoutAlign="end">1.001
+                <span> NIX</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br> Available: 56,789.012 NIX
+      </div>
+
+      <div *ngIf="step === 3" class="text-content">
+        <p class="htxt">You will need the following Ghost node key in order to complete the VPS set-up:</p>
+        <div class="modaldetails">
+          <div>
+            <span class="modallabel1">Node key</span>
+            <br>
+            <br>
+            <div class="transdetail" fxLayout.gt-md="row">
+              <span class="modallabel1"></span>
+              <br>
+              <br>
+              <span class="modallabel" fxFlex="50">ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG</span>
+              <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">
+                <button class="copybtn" fxFlex="50">Copy</button>
+              </span>
             </div>
           </div>
         </div>
       </div>
+
+
       <p class="body" *ngIf="step === 4">Use your phrase to complete the missing words</p>
       <div fxLayout="row wrap" fxLayoutAlign="start space-evenly" class="body">
         <div class="phrase" fxFlex="16" *ngFor="let phrase of recoveryPhrase; index as i">
