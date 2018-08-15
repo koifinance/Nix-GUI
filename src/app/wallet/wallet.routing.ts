@@ -10,6 +10,7 @@ import { TransactionsComponent } from './transactions/transaction.component';
 import { VaultComponent } from './vault/vault.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { GhostComponent } from './ghost/ghost.component';
+import { MultinodesComponent } from './multinodes/multinodes.component';
 // import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
       { path: 'vault', component: VaultComponent, data: { title: 'Ghost Vault', page: 'vault' } },
       { path: 'transactions', component: TransactionsComponent, data: { title: 'Transaction History', page: 'transactions' } },
       { path: 'nodes', component: GhostComponent, data: { title: 'Ghost Nodes', page: 'nodes' } },
-      { path: 'ghost', component: NodesComponent, data: { title: 'Ghost Nodes', page: 'nodes' } },
+      { path: 'ghost', component: NodesComponent, data: { title: 'Ghost Nodes', page: 'ghost' } },
+      { path: 'multi/nodes', component: MultinodesComponent, data: { title: 'Muliti  Nodes', page: 'mulitinodes' } },
 
       // { path: 'settings', component: SettingsComponent, data: { title: 'Settings' } },
     ]

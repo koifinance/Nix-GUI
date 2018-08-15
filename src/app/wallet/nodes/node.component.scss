@@ -14,6 +14,9 @@ mat-drawer-content {
 
 .sidebar {
 
+  .important {
+    color: #FF0000;
+  }
   .content {
     color: $color-black;
 
@@ -285,4 +288,73 @@ mat-drawer-content {
 }
 .cover{
   background: #4A4A4A;
+}
+.modaldetails {
+  padding: 24px;
+  background-color: #E0E3E7;
+}
+.transdetail {
+  margin-bottom: 10px;
+
+}
+.modallabel {
+  font-size: 16px;
+}
+.nixlabel {
+  font-size: 20px;
+}
+
+.transtotal {
+  color: #4e4e4e;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+
+}
+.sidebar{
+  .actions{
+     .restore-btns {
+  background: #070707;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 300;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 8px;
+}
+  }
+}
+
+.sidebar{
+  .actions{
+     .restore-btn1 {
+  background: #cbcbcb;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #000;
+  text-align: center;
+  font-weight: 300;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 8px;
+}
+  }
+}
+
+.copybtn {
+  background-color: #108eff;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+
+}
+a{
+  color: #108eff;
+}
+
+.text-content{
+  margin-left: -40px;
 }

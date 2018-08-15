@@ -1,0 +1,193 @@
+.desc {
+    text-align: left;
+    font-size: 15px;
+    margin-left: 43px;
+  }
+
+
+  @import '../shared/shared';
+
+.vault-init {
+  padding: 50px;
+
+  .image {
+    min-height: 300px;
+  }
+
+  .create-btn {
+    background-image: linear-gradient(-45deg, #13006D 0%, #6F00F5 100%);
+    color: rgb(192, 77, 77);
+    min-height: 20px;
+    border-radius: 5px;
+    font-weight: 300;
+  }
+
+  p {
+    text-align: center;
+    font-size: 15px;
+  }
+}
+
+.vault {
+  color: rgb(192, 77, 77);
+  background-image: linear-gradient(65deg, #13006D 6%, #6F00F5 100%);
+  padding: 0 35px;
+
+  ::ng-deep.header {
+    padding: 0;
+  }
+
+
+  .balance {
+    background: rgba(0, 0, 0, 0.20);
+    border-radius: 5px;
+    padding: 24px;
+    color: rgb(192, 77, 77);
+    font-weight: 300;
+
+    p {
+      font-weight: 300;
+    }
+
+    .icon-text {
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      min-height: 200px;
+    }
+
+    img {
+      margin-bottom: 15px;
+    }
+  }
+
+  .coloricon {
+    padding-right: 1.2em;
+  }
+
+  ::ng-deep.mat-table {
+
+    .mat-header-row {
+      background: rgba(0, 0, 0, 0.20);
+      margin-bottom: 10px;
+    }
+
+    .mat-row {
+      border: none;
+    }
+
+    .mat-header-cell, .mat-cell {
+      color: $color-white;
+      font-weight: 300;
+    }
+
+    .date {
+      display: list-item;
+      list-style-type: none;
+    }
+
+    .month {
+      font-size: 12px;
+    }
+
+    .day {
+      font-size: 17px;
+    }
+
+    .category {
+      font-size: 16px;
+    }
+
+    .status {
+      font-size: 14px;
+    }
+
+    .amount {
+      font-size: 16px;
+    }
+  }
+}
+
+.card {
+    display: inline-block;
+    margin: 8px;
+    padding: 12px 16px 16px 16px;
+    border-radius: 2px;
+    background-color: #FFF;
+    margin-left: 45px;
+  }
+  .card div {
+    display: inline-block;
+    vertical-align: text-top;
+    margin-top: 4px;
+  }
+  .zdepth1 {
+    z-index: 10;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);  /* Firefox 3.5 - 3.6 */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
+
+  a{
+      color: deepskyblue;
+  }
+
+  .nix1{
+    font-size: 16px;
+    color: #000;
+    letter-spacing: 0;
+    margin: 0;
+    font-weight: bold;
+  }
+  .divider1 {
+    border: 1px solid rgb(168, 135, 135) ;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    width : 100px;
+  }
+
+  .tableHead{
+    margin-left: 45px;
+  }
+
+  .card2{
+    width: 300px;
+  }
+  .card1{
+    width: 450px;
+  }
+
+  .label {
+    font-size: 14px;
+    color: #000;
+    letter-spacing: 0;
+    font-weight: 300;
+    padding-bottom: 40px;
+  }
+  .suffix-label {
+    font-size: 15px;
+    letter-spacing: 0;
+  }
+
+
+  .nix {
+    font-size: 42px;
+    color: rgb(192, 77, 77);
+    letter-spacing: 0;
+    margin: 0;
+  }
+
+  .btc {
+    font-size: 15px;
+    color: rgb(153, 143, 143);
+    letter-spacing: 0;
+    margin: 0;
+  }
+
+  .divider {
+    border: 1px solid rgb(182, 38, 38);
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }

@@ -1,0 +1,77 @@
+<mat-drawer-container>
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <page-header heading="Ghost Node" [navbar]="help"></page-header>
+    <p class="desc">
+      A Ghost node is the term used for NIX masternodes, which help secure the network by completing special tasks on the
+      <br>blockchain and ensuring quick transactions. Node holders earn NIX for providing this service. Learn more
+    </p>
+
+    <div class="card zdepth1 card1">
+      <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="6">
+        <div fxFlexOrder.lt-md="1" fxFlex="100">
+          <div fxLayout="row" class="label">NIX locked in Ghost nodes</div>
+          <div fxLayout="row" class="nix-row">
+            <p class="nix1">40,000
+              <span class="suffix-label">NIX</span>
+              <p>
+          </div>
+          <div class="divider1"></div>
+          <div fxLayout="row" class="btc">
+            12.3456 BTC ($123,456)
+          </div>
+        </div>
+
+
+        <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="30px" fxLayoutAlign="space-around center">
+
+          <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
+            <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" (click)="open('receive')">
+            <div class="icon-text" fxLayoutAlign="center">SET-UP NEW NODE</div>
+          </div>
+          <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
+            <img class="cursor-pointer" src="./assets/icons/SVG/cancel.svg" alt="Deposit" fxFlex="100" (click)="open('receive')">
+            <div class="icon-text" fxLayoutAlign="center">CANCEL A NODE</div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card zdepth1 card2">
+      <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
+        <div fxFlexOrder.lt-md="1" fxFlex="100">
+          <div fxLayout="row" class="label">Available node rewards</div>
+          <div fxLayout="row" class="nix-row">
+            <p class="nix1">+ 00
+              <span class="suffix-label"> Ghosted NIX</span>
+              <p>
+          </div>
+          <div class="divider1" fxFlex="80"></div>
+          <div fxLayout="row" class="btc">
+            <a>View reward history</a>
+          </div>
+        </div>
+
+
+        <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="150px" fxLayoutAlign="space-around center">
+
+          <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
+            <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" (click)="open('receive')">
+            <div class="icon-text" fxLayoutAlign="center">WITHDRAW REWARDS</div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    <h5 class="tableHead">My Ghost Nodes</h5>
+    <div class="tableHead">
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
