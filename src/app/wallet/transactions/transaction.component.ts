@@ -1,3 +1,4 @@
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { Subscription } from 'rxjs/Subscription';
@@ -22,6 +23,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   dateFilter: string = 'all';
   categoryFilterValue: string = 'all';
   faq: Array<FAQ> = faq;
+  
   filterData = (transaction: Transaction, filter: any): boolean => {
     let result = true;
 

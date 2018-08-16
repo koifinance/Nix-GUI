@@ -1,0 +1,127 @@
+@import '../shared/shared';
+
+// mat-drawer {
+//   padding: 37px 28px 10px;
+//   // background-color: $bg-white;
+//   // color: $text;
+//   width: 25%;
+// }
+
+mat-drawer-content {
+  overflow-y: auto !important;
+  width: 100%;
+}
+
+
+.content {
+
+  .back-button {
+    margin-left: 3.5em;
+
+    img {
+      cursor: pointer;
+      margin-top: 3em;
+    }
+
+    .caption {
+      // color: #9B9B9B;
+      font-size: 14px;
+      margin-top: 15px;
+      padding-left: 15px;
+      text-transform: capitalize;
+    }
+  }
+
+  .text {
+    // color: #4A4A4A;
+    width: 100%;
+
+    .title {
+      font-size: 26px;
+      margin-top: 2em;
+    }
+
+    .subtitle {
+      font-size: 16px;
+    }
+
+    .body {
+      font-size: 20px;
+      line-height: 32px;
+    }
+
+    div {
+      &.body {
+        font-size: 18px;
+        margin-top: 2em;
+      }
+    }
+
+    .phrase {
+      margin-bottom: 1.5em;
+      padding-right: 25px;
+
+      small {
+        // color: #9B9B9B;
+        font-size: 10px;
+        margin-right: 5px;
+      }
+    }
+
+    .icons {
+      margin-top: 2em;
+
+      img {
+        cursor: pointer;
+      }
+
+      .caption {
+        // color: #9B9B9B;
+        font-size: 14px;
+        margin-top: 10px;
+        margin-left: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  ::ng-deep .mat-progress-bar-fill::after {
+    background-color: #6D00F2;
+  }
+
+  // ::ng-deep .mat-progress-bar-buffer {
+  //   background: #DEDEDE;
+  // }
+
+  .wrapper {
+    display: flex;
+    left: 17em;
+    max-width: 70%;
+    position: relative;
+    top: 5em;
+
+   
+
+    mat-error {
+      font-size: 75%;
+      margin-top: 2px
+    }
+  }
+}
+
+
+::ng-deep.mat-table {
+
+  .mat-header-row {
+    border:1px solid transparent !important;
+  }
+
+  .mat-header-cell, .mat-cell {
+    color: #ffffff !important;
+    font-size: 14px;
+  }
+
+  .mat-header-cell {
+    color: #ffffff !important;
+  }
+}

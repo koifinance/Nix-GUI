@@ -1,0 +1,65 @@
+<mat-drawer-container fullscreen class="reward-history-body">
+    <mat-drawer-content class="content">
+        <div fxLayout="row">
+            <div class="back-button" fxFlex="15">
+                <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="goTo('welcome')">
+                <div>Ghost Nodes</div>
+            </div>
+            <div fxFlex="85">
+                <!-- <page-header heading="My Ghost Node reward history" [navbar]="help"></page-header> -->
+                <div class="header" fxLayout="row" fxLayoutGap="5%">
+
+                    <div fxFlex="50" fxFlexOrder="1">
+                        <h5 class="">My Ghost Node reward history</h5>
+                    </div>
+
+                    <div class="actions" fxFlex="50" fxLayoutAlign="end center" fxFlexOrder="2">
+                        <div class="fa-list-icon">
+                            <fa-icon [icon]="faListUl" size="2x"></fa-icon>
+                        </div>
+                        <div class="chart-empty-box"></div>
+                        <mat-form-field class="reward-filter">
+                                <mat-select class="mat-option-text-custom" [formControl]="panelColor">
+                                    <mat-option value="red" class="mat-option-text-custom">ALL OF MY NODES</mat-option>
+                                    <mat-option value="green">Green Nodes</mat-option>
+                                    <mat-option value="blue">Blue Nodes</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        <img class="cursor-pointer" src="./assets/icons/SVG/sync.svg" alt="Sync" class="refresh-img">
+                        <img class="cursor-pointer" src="./assets/icons/SVG/help.svg" alt="Help" class="help-img" (click)="navbar.toggle()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="15"></div>
+            <div fxFlex="8" class="top-align">
+                <div class="title5">TOTAL MATURED</div>
+            </div>
+            <div fxFlex="35">
+                <span class="large-no">1234</span>
+                <span class="small-no">.123</span>
+                <span class="large-no">NIX</span>
+                <span class="small-no">($1234.56)</span>
+            </div>
+            <div fxFlex="7" class="top-align">
+                <div class="title5">IMMATURED</div>
+            </div>
+            <div fxFlex="35">
+                <span class="yellow-color">
+                    <span class="large-no">17</span>
+                    <span class="small-no">.9200</span>
+                    <span class="large-no">NIX</span>
+                </span>
+
+            </div>
+        </div>
+        <div class="empty-space2"></div>
+        <div fxLayout="row">
+                <div fxFlex="15"></div>
+                <div fxFlex="75" class="chart-box">
+                    <p>Chart</p>
+                </div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
