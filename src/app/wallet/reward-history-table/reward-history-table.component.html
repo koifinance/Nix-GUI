@@ -1,0 +1,101 @@
+<mat-drawer-container fullscreen class="reward-history-body">
+    <mat-drawer-content class="content">
+        <div fxLayout="row">
+            <div class="back-button" fxFlex="15">
+                <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="goTo('welcome')">
+                <div>Ghost Nodes</div>
+            </div>
+            <div fxFlex="85">
+                <div class="header" fxLayout="row" fxLayoutGap="5%">
+                    <div fxFlex="50" fxFlexOrder="1">
+                        <h5 class="">My Ghost Node reward history</h5>
+                    </div>
+                    <div class="actions" fxFlex="50" fxLayoutAlign="end center" fxFlexOrder="2">
+                        <div class="table-fa-list-icon">
+                            <fa-icon [icon]="faListUl" size="2x"></fa-icon>
+                        </div>
+                        <div class="table-empty-box"></div>
+                        <!-- <fa-layers class="fa-fw" class="margin-right-25px">
+                            <fa-icon [icon]="faCircle" size="2x"></fa-icon>
+                            <fa-icon size="1x" transform="right-8" [icon]="faSync"></fa-icon>
+                        </fa-layers>
+                        <fa-layers class="fa-fw" (click)="help.toggle()">
+                            <fa-icon [icon]="faCircle" size="2x"></fa-icon>
+                            <fa-icon size="1x" transform="right-6" [icon]="faQuestion"></fa-icon>
+                        </fa-layers> -->
+
+                        <mat-form-field class="reward-filter">
+                            <mat-select [formControl]="panelColor" panelClass="example-panel-{{panelColor.value}}">
+                                <mat-option value="red">ALL OF MY NODES</mat-option>
+                                <mat-option value="green">Green Nodes</mat-option>
+                                <mat-option value="blue">Blue Nodes</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <img class="cursor-pointer" src="./assets/icons/SVG/sync.svg" alt="Sync" class="refresh-img">
+                        <img class="cursor-pointer" src="./assets/icons/SVG/help.svg" alt="Help" class="help-img" (click)="navbar.toggle()">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div fxLayout="row">
+            <div fxFlex="15"></div>
+            <div fxFlex="8" class="top-align">
+                <div class="title5">TOTAL MATURED</div>
+            </div>
+            <div fxFlex="35">
+                <span class="large-no">1234</span>
+                <span class="small-no">.123</span>
+                <span class="large-no">NIX</span>
+                <span class="small-no">($1234.56)</span>
+            </div>
+            <div fxFlex="7" class="top-align">
+                <div class="title5">IMMATURED</div>
+            </div>
+            <div fxFlex="35">
+                <span class="yellow-color">
+                    <span class="large-no">17</span>
+                    <span class="small-no">.9200</span>
+                    <span class="large-no">NIX</span>
+                </span>
+
+            </div>
+        </div>
+        <div class="empty-space1"></div>
+
+        <div fxLayout="row">
+            <div fxFlex="70"></div>
+            <div fxFlex="20" fxLayoutAlign="end center" fxFlexOrder="2">
+                <button class="filter-download-btn">
+                    <!-- <img src="assets/icons/SVG/filter-icon-black.svg" alt="up-arrow">  -->
+                    <fa-icon [icon]="faFilter"></fa-icon>
+                    Filter
+                </button>
+
+                <button class="filter-download-btn">
+                    <!-- <img src="assets/icons/SVG/download-icon.svg" alt="up-arrow">  -->
+                    <fa-icon [icon]="faDownload"></fa-icon>
+                    Download history
+                </button>
+            </div>
+        </div>
+
+        <div fxLayout="row">
+            <div fxFlex="15"></div>
+            <div class="title3" fxFlex="55">Transactions</div>
+        </div>
+
+        <div class="empty-space2"></div>
+        <div fxLayout="row">
+            <div fxFlex="15"></div>
+            <div class="custom-table" fxFlex="75">
+                <transaction-table></transaction-table>
+            </div>
+        </div>
+
+
+
+    </mat-drawer-content>
+</mat-drawer-container>

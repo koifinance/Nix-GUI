@@ -17,6 +17,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RestoreComponent } from './restore/restore.component';
 import { GhostComponent } from './ghost/ghost.component';
 import { MultinodesComponent } from './multinodes/multinodes.component';
+import { RewardHistoryTableComponent } from './reward-history-table/reward-history-table.component';
+import { RewardHistoryChartComponent } from './reward-history-chart/reward-history-chart.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MultinodesComponent } from './multinodes/multinodes.component';
     VaultComponent,
     WelcomeComponent,
     GhostComponent,
-    MultinodesComponent,
+	MultinodesComponent,
+    RewardHistoryTableComponent,
+    RewardHistoryChartComponent,
   ],
   imports: [
     ModalsModule,

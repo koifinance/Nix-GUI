@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { faCircle } from '@fortawesome/free-regular-svg-icons';
-import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
-import { faBtc } from '@fortawesome/free-brands-svg-icons';
+  import { Component, OnInit } from '@angular/core';
+  import { faCircle } from '@fortawesome/free-regular-svg-icons';
+  import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
+  import { faBtc } from '@fortawesome/free-brands-svg-icons';
 
-import { ModalsService } from '../modals/modals.service';
-import { TransactionService } from '../shared/transaction/transaction.service';
-import { FAQ } from '../shared/faq.model';
-import { faq } from './faq';
+  import { ModalsService } from '../modals/modals.service';
+  import { TransactionService } from '../shared/transaction/transaction.service';
+  import { FAQ } from '../shared/faq.model';
+  import { faq } from './faq';
 
 @Component({
   selector: 'wallet-overview',
@@ -32,6 +32,15 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  
+  openGhostNode1(walletType: string) {
+    const data: any = {
+      forceOpen: true,
+      walletType: walletType,
+      modalsService: this.modalsService
+    };
+    this.modalsService.openSmall('ghostNode1', data);
   }
 
   openSend(walletType: string) {
@@ -94,3 +103,4 @@ export class OverviewComponent implements OnInit {
     return '';
   }
 }
+

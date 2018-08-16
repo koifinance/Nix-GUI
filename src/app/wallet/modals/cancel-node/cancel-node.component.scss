@@ -1,0 +1,109 @@
+.wallet {
+
+    .divider[_ngcontent-c7] {
+      border-top: 1px solid #EAEAEA;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+  
+    h5 {
+      display: inline;
+      color: #4a4a4a;
+      font-family: "Roboto", sans-serif;
+    }
+  
+    .modalcontent {
+      padding: 24px;
+    }
+  
+    .modaldetails {
+      padding: 24px;
+      background-color: #E0E3E7;
+    }
+  
+    .fright {
+      float: right;
+    }
+  
+    .fleft {
+      float: left;
+  
+    }
+  
+    .transdetail {
+      margin-bottom: 10px;
+  
+    }
+  
+    .transtotal {
+      color: #4e4e4e;
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 10px;
+  
+    }
+  
+    .send {
+      padding: 40px 24px;
+    }
+  
+    .sendbtn {
+      background-image: linear-gradient(45deg, #13006D 0%, #6F00F5 100%);
+      color: white;
+      width: 100%;
+      border-radius: 5px;
+      font-family: Helvitica, sans-serif;
+      font-weight: 300;
+      height: 51px;
+      font-size: 22px;
+  
+    }
+  
+    .cancelbtn {
+      border-radius: 5px;
+      background-color: #E0E3E7;
+      box-shadow: none;
+      font-size: 22px;
+      font-family: Helvitica, sans-serif;
+      font-weight: 300;
+      color: #4A4A4A;
+      height: 51px;
+    }
+    .modalinput {
+      font-size: 15px;
+      padding-left: 12px;
+      height: 40px;
+      border: 1px solid #979797;
+      margin-bottom: 5px;
+    }
+  
+    .amountsend {
+      margin-bottom: 20px;
+    }
+  
+    .lbltotal {
+      font-size: 15px;
+    }
+  
+    .saveaddress {
+      margin-top: 5px;
+    }
+  
+    .vaultbtn {
+      background-color: #293246;
+      color: white;
+    }
+  
+    .modallabel {
+      font-size: 16px;
+    }
+  
+    .nixlabel {
+      font-size: 20px;
+    }
+  }
+  
+  .cancel-warning{
+background-color: #f1f12c;
+padding: 15px;
+  }

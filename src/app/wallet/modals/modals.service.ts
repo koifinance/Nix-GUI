@@ -7,6 +7,9 @@ import { ModalsComponent } from './modals.component';
 import { SendComponent } from './send/send.component';
 import { ReceiveComponent } from './receive/receive.component';
 import { SuccessComponent } from './success/success.component';
+import { GhostNode1Component } from './ghost-node1/ghost-node1.component';
+import { EditNodeComponent } from './edit-node/edit-node.component';
+import { CancelNodeComponent } from './cancel-node/cancel-node.component';
 
 @Injectable()
 export class ModalsService implements OnDestroy {
@@ -16,7 +19,11 @@ export class ModalsService implements OnDestroy {
   messages: Object = {
     send: SendComponent,
     receive: ReceiveComponent,
-    success: SuccessComponent
+    success: SuccessComponent,
+    ghostNode1: GhostNode1Component,
+    editNode: EditNodeComponent ,
+    cancelNode: CancelNodeComponent
+
   };
   private message: Subject<any> = new Subject<any>();
   private progress: Subject<Number> = new Subject<Number>();

@@ -10,6 +10,9 @@ import { SendComponent } from './send/send.component';
 import { ReceiveComponent } from './receive/receive.component';
 import { SuccessComponent } from './success/success.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { EditNodeComponent } from './edit-node/edit-node.component';
+import { GhostNode1Component } from './ghost-node1/ghost-node1.component';
+import { CancelNodeComponent } from './cancel-node/cancel-node.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,11 @@ import { TransactionComponent } from './transaction/transaction.component';
     SendComponent,
     ReceiveComponent,
     SuccessComponent,
-    TransactionComponent
+	  TransactionComponent,
+    GhostNode1Component,
+    EditNodeComponent,
+    CancelNodeComponent,
+    CancelNodeComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +42,10 @@ import { TransactionComponent } from './transaction/transaction.component';
     ModalsComponent,
     SendComponent,
     ReceiveComponent,
-    SuccessComponent
+    SuccessComponent,
+    GhostNode1Component,
+    EditNodeComponent,
+    CancelNodeComponent
   ]
 })
 export class ModalsModule {
