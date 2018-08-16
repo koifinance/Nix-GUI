@@ -1,0 +1,86 @@
+@import './src/assets/config';
+
+.wallet {
+
+  .divider[_ngcontent-c7] {
+    border-top: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+    // margin-top: 15px;
+  }
+
+  h5 {
+    display: inline;
+    color: #293246;
+    font-family: "Helvitica", sans-serif;
+    font-weight: 300;
+  }
+
+  .modalcontent {
+    padding: 24px;
+    border-radius: 5px;
+  }
+
+  .modaldetails {
+    padding: 24px;
+    background-color: #F8F8F8;
+  }
+
+  .fright {
+    float: right;
+  }
+
+  .fleft {
+    float: left;
+
+  }
+
+
+
+  .send {
+    padding: 40px 0px 20px 0px;
+
+  }
+
+  .sendbtn {
+    background-color: #108EFF;
+    color: white;
+    width: 120px !important;
+    border-radius: 5px;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    height: 40px !important;
+    font-size: 14px;
+  }
+
+  .cancelbtn {
+    border-radius: 5px;
+    background-color: #E0E3E7;
+    width: 120px !important;
+    box-shadow: none;
+    font-size: 14px;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    color: #4A4A4A;
+    height: 40px !important;
+  }
+
+  .copybtn {
+    background-color: #108eff;
+    color: white;
+    font-size: 10px;
+    border-radius: 5px;
+    border: none;
+    float: right;
+    margin-right: -300px;
+    margin-top: -27px;
+    padding: 7px;
+    width: 50px;
+
+  }
+ 
+
+
+
+}
+
+

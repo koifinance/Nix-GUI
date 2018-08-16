@@ -16,6 +16,9 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { SendComponent } from './send/send.component';
 import { ReceiveComponent } from './receive/receive.component';
 import { SuccessComponent } from './success/success.component';
+import { GhostNode1Component } from './ghost-node1/ghost-node1.component';
+import { EditNodeComponent } from './edit-node/edit-node.component';
+import { CancelNodeComponent } from './cancel-node/cancel-node.component';
 
 @Component({
   selector: 'app-modals',
@@ -24,7 +27,10 @@ import { SuccessComponent } from './success/success.component';
   entryComponents: [
     SendComponent,
     ReceiveComponent,
-    SuccessComponent
+    SuccessComponent,
+    GhostNode1Component,
+    EditNodeComponent,
+    CancelNodeComponent
   ]
 })
 export class ModalsComponent implements DoCheck, OnInit, OnDestroy {

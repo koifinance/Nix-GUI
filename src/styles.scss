@@ -781,3 +781,101 @@ a {
     text-decoration: none;
   }
 }
+.reward-history-body{
+  // background-image: linear-gradient(65deg, #13006D 6%, #6F00F5 100%) !important;
+  background-image: linear-gradient(65deg, #0c0c24 6%, #171844 100%) !important;
+  // background-color: #171844 !important;
+  color: #ffffff !important
+}
+// .table-content{
+//  width: 85% !important; 
+// }
+.custom-table{
+  color: #ffffff !important;
+}
+.large-no{
+  font-size: 30px;
+}
+.small-no{
+  font-size: 10px;
+}
+.yellow-color{
+  color:yellow;
+}
+.title5{
+  font-size: 10px;
+}
+.title3{
+  font-size: 12px;
+}
+.top-align{
+  margin-top: -10px;
+}
+.filter-download-btn{
+  border: 1px solid #ffffff !important;
+  background-color: unset !important;
+  color: #ffffff;
+  font-size: 10px !important;
+  border-radius: 5px !important;
+  padding: 7px;
+  margin-right: 5px;
+}
+
+.empty-space1{
+  padding: 25px;
+}
+.empty-space2{
+  padding: 15px;
+}
+.reward-filter{
+  background-color: #87878c54;
+  padding-right: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+  border-radius: 5px;
+  text-align: center !important;
+}
+.refresh-img{
+  padding-right: 20px;
+}
+.help-img{
+  padding-right: 30px;
+}
+.fa-list-icon{
+  background-color: #87878c54;
+    padding: 7px;
+    border-radius: 3px;
+    width: 48px;
+    text-align: center;
+}
+.table-fa-list-icon{
+  background-color: #ffffff;
+  padding: 7px;
+  border-radius: 3px;
+  width: 48px;
+  text-align: center;
+  color: #000 !important;
+}
+.table-empty-box{
+  background-color: #87878c54;
+  width: 48px;
+  height: 38px;
+  margin: 5px;
+  border-radius: 3px;
+}
+.chart-empty-box{
+  background-color: #ffffff;
+  width: 48px;
+  height: 38px;
+  margin: 5px;
+  border-radius: 3px;
+}
+.mat-table .mat-header-row {
+  background: #3d3e52;
+}
+.chart-box{
+height: 450px;
+text-align: center;
+font-size: 30px;
+border: 2px solid;
+}
