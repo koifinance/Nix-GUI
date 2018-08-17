@@ -21,6 +21,9 @@ import { EditNodeComponent } from './edit-node/edit-node.component';
 import { CancelNodeComponent } from './cancel-node/cancel-node.component';
 import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { PasswordchangeComponent } from './passwordchange/passwordchange.component';
+import { RecoveryComponent } from './recovery/recovery.component';
+import { AddaddressComponent } from './addaddress/addaddress.component';
 
 @Component({
   selector: 'app-modals',
@@ -34,7 +37,10 @@ import { TransactionComponent } from './transaction/transaction.component';
     EditNodeComponent,
     CancelNodeComponent,
     TransactionComponent,
-    WithdrawRewardsComponent
+    WithdrawRewardsComponent,
+    PasswordchangeComponent,
+    RecoveryComponent,
+    AddaddressComponent
   ]
 })
 export class ModalsComponent implements DoCheck, OnInit, OnDestroy {

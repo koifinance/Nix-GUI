@@ -1,0 +1,35 @@
+.sendbtn {
+    background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    height: 39px;
+    font-size: 22px;
+    margin-top: 15px;
+  }
+
+  .htxt{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    margin-top: 50px;
+}
+
+.selector {
+    border: 1px solid  rgb(80, 77, 77);
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-top: 2px;
+    width: 270px;
+  }
+  .text-content{
+      margin-left: 5px;
+  }
+
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #3e3939;
+    width: 33px;
+    height: 4px;
+}

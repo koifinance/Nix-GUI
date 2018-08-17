@@ -1,0 +1,180 @@
+@import './src/assets/config';
+
+.processing-trans {
+
+  .divider[_ngcontent-c7] {
+    border-top: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  h5 {
+    display: inline;
+    color: #293246;
+    font-family: "Helvitica", sans-serif;
+    font-weight: 300;
+  }
+
+  .modalcontent {
+    padding: 24px;
+  }
+
+  .modaldetails {
+    padding: 24px;
+    background-color: #F8F8F8;
+  }
+
+  .fright {
+    float: right;
+  }
+
+  .fleft {
+    float: left;
+
+  }
+
+  .send {
+    padding: 40px 0px 20px 0px;
+
+  }  
+
+  .cancelbtn {
+    border-radius: 5px;
+    background-color: #E0E3E7;
+    width: 300px !important;
+    box-shadow: none;
+    font-size: 14px;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    color: #4A4A4A;
+    height: 40px !important;
+  }
+
+  .modalinput {
+    font-size: 15px;
+    padding-left: 12px;
+    height: 35px;
+    border: 1px solid #CBCBCB;
+    margin-bottom: 0px;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
+
+  .amountsend {
+    margin-bottom: 20px;
+  }
+
+  .recipientdtls {
+    margin-bottom: 10px;
+    margin-top: 15px;
+
+  }
+
+  .recipient {
+    font-size: 14px;
+    font-weight: 300;
+    color: #4A4A4A;
+  }
+  .processing-img {
+    width: 250px;
+    margin: 0 auto;
+  }
+  
+}
+.custom-input-group {
+  position: relative;
+  // color: #aaa;
+  font-size: 16px;
+  width: 475px;
+}
+
+.custom-input-group input {
+  width: 475px;
+  height: 40px;
+  background: #fcfcfc;
+  border: 1px solid #aaa9;
+  border-radius: 3px;
+}
+
+.custom-input-group input {
+     text-indent: 15px;
+  }
+  .amount-input input{
+      font-size: 15px;
+  }
+.custom-input-group .fa-icon { 
+  position: absolute;
+  top: 10px;
+  left: 375px;
+}
+.custom-input-group .input-end-text{
+  position: absolute;
+  top: 10px;
+  left: 365px;
+}
+.custom-input-group .input-text{
+  position: absolute;
+  top: 17px;
+  left: 45px;
+  font-size: 11px;
+  color: #adaaaa;
+}
+
+.htxt{
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.sendbtn {
+  background-image:  linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+  font-family: Helvitica, sans-serif;
+  font-weight: 300;
+  height: 40px;
+  font-size: 22px;
+
+}
+
+.cancelbtn {
+  border-radius: 5px;
+  background-color: #E0E3E7;
+  box-shadow: none;
+  font-size: 22px;
+  font-family: Helvitica, sans-serif;
+  font-weight: 300;
+  color: #4A4A4A;
+  height: 51px;
+}
+.size{
+  width: 475px;
+}
+.recipientdtls {
+    margin-bottom: 10px;
+    margin-top: 15px;
+
+  }
+
+  .recipient {
+    font-size: 14px;
+    font-weight: 300;
+    color: #4A4A4A;
+  }
+
+  .password-toggle {
+    margin-left: 10px;
+    font-size: 11px;
+    color: $color-grey;
+    margin-top: -5px;
+  
+    fa-icon {
+      margin-right: 5px;
+    }
+  
+    .mat-button {
+      padding-left: 0;
+    }
+  }

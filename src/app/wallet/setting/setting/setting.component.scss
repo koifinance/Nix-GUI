@@ -1,0 +1,35 @@
+.settings {
+    margin: 30px 35px;
+  
+    .mat-tab-group {
+      margin-bottom: 20px;
+  
+      &.mat-primary {
+        .mat-ink-bar {
+          background-color: rgb(80, 77, 77);
+        }
+      }
+    }
+  
+    ::ng-deep.mat-table {
+  
+      .mat-header-row {
+        background: rgb(80, 77, 77);
+      }
+  
+      .mat-header-cell, .mat-cell {
+        color: rgb(80, 77, 77);
+        font-size: 14px;
+      }
+  
+      .mat-header-cell {
+        color: #000000;
+      }
+    }
+  }
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #3e3939;
+    width: 33px;
+    height: 4px;
+}
+ 

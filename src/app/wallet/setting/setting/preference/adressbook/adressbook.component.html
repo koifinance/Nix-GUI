@@ -1,0 +1,29 @@
+<div class="text-content">
+    <mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="Name">
+            <div *matHeaderCellDef>Name</div>
+            <div *matCellDef>Ghost node1</div>
+        </ng-container>
+
+        <ng-container matColumnDef="Type">
+            <div *matHeaderCellDef>Type</div>
+            <div class="description-cell" *matCellDef></div>
+        </ng-container>
+
+        <ng-container matColumnDef="Address">
+            <div *matHeaderCellDef>Address</div>
+            <div class="duration-cell" *matCellDef></div>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+
+
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+        <button class="sendbtn" mat-raised-button fxFlex="15" (click)="openAddress()">Add new</button>
+    </div>
+</div>
