@@ -1,0 +1,75 @@
+<div class="withdraw-node">
+
+  <div class="modalcontent">
+    <h5 fxFlex="50">Cancel node & unlock NIX</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+      <div class="available-reward">
+        You can withdraw rewards at any time without affecting your node set-up
+      </div>
+    </div>
+
+    <div class="amountsend">
+      <p>Amount to withdraw </p>
+      <div fxLayout.gt-md="row">
+        <div class="custom-input-group amount-input">  
+            <input value="300">
+            <span class="input-text">($10,224)</span>
+            <span class="input-end-text">
+                NIX
+            </span>
+          </div>
+      </div>
+      <div fxLayout.gt-md="row">
+        <div class="available-reward" fxFlex="80">Available rewards: 1,234.123 NIX</div>
+      </div>
+    </div>
+
+    <div class="sendto">
+      <p>To</p>
+      <div fxLayout.gt-md="row">
+        <div class="custom-input-group">  
+            <input value="NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl">
+            <span class="fa-icon">
+                <fa-icon [icon]="faAddressBook"></fa-icon>
+            </span>
+          </div>
+      </div>
+      <div class="available-reward">
+        <mat-checkbox class="saveaddress">Save to address book for future use</mat-checkbox>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modaldetails">
+    <div>
+      <div class="transdetail" fxLayout.gt-md="row">
+        <span class="modallabel" fxFlex="70">Withdrawing</span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">300
+          <span>&nbsp; NIX</span>
+        </span>
+      </div>
+
+      <div class="transdetail" fxLayout.gt-md="row">
+        <span class="modallabel" fxFlex="70">Fee</span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">0.001
+          <span>&nbsp; NIX</span>
+        </span>
+
+      </div>
+
+      <div class="transtotal" fxLayout.gt-md="row">
+        <span fxFlex="70">Total</span>
+        <span fxFlex="30" fxLayoutAlign="end">300.001
+          <span>&nbsp; NIX</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="send buttons" fxLayout="row" fxLayoutAlign="end">
+    <button class="removebtn" mat-raised-button>Withdraw</button>
+  </div>
+
+</div>

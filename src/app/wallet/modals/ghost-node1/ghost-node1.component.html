@@ -1,4 +1,4 @@
-<div *ngIf="data.walletType === 'wallet'" class="wallet">
+<div class="viewNode">
   <div class="modalcontent">
     <h5 fxFlex="50">Ghost Node 1</h5>
     <div _ngcontent-c7="" class="divider"></div>
@@ -77,8 +77,8 @@
     <div _ngcontent-c7="" class="divider"></div>
 
     <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-      <button class="cancelbtn" mat-raised-button (click)="openCancel('wallet')">Cancel</button>
-      <button class="sendbtn" mat-raised-button (click)="openSuccess('wallet')">Edit</button>
+      <button class="cancelbtn" mat-raised-button (click)="openCancel()">Cancel</button>
+      <button class="sendbtn" mat-raised-button (click)="openEdit()">Edit</button>
     </div>
 
   </div>

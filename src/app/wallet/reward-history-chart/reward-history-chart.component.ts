@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faListUl } from '@fortawesome/free-solid-svg-icons';
+import { faListUl, faBook } from '@fortawesome/free-solid-svg-icons';
 import {FormControl} from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import {FormControl} from '@angular/forms';
 })
 export class RewardHistoryChartComponent implements OnInit {
   faListUl: any = faListUl;
+  faBook: any = faBook;
   panelColor = new FormControl('red');
 
   constructor() {

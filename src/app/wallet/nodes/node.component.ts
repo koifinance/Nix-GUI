@@ -103,15 +103,14 @@ export class NodesComponent implements OnInit {
     return 'Confirm your recovery phrase';
   }
 
-  open(modal: string) {
+  openTrans() {
     const data: any = {
-      forceOpen: true,
-      walletType: 'transaction',
+      forceOpen: true,      
       modalsService: this.modalsService
     };
-    this.modalsService.openSmall(modal, data);
+    this.modalsService.openSmall('transaction', data);
   }
-
+  
   goTo(route: string) {
     this.router.navigate([`/${route}`]);
   }

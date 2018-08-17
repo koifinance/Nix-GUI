@@ -1,17 +1,9 @@
 @import '../shared/shared';
 
-// mat-drawer {
-//   padding: 37px 28px 10px;
-//   // background-color: $bg-white;
-//   // color: $text;
-//   width: 25%;
-// }
-
 mat-drawer-content {
   overflow-y: auto !important;
   width: 100%;
 }
-
 
 .content {
 
@@ -123,5 +115,11 @@ mat-drawer-content {
 
   .mat-header-cell {
     color: #ffffff !important;
+  }
+}
+
+.reward-filter{
+  ::ng-deep.mat-select-value, ::ng-deep.mat-select-arrow {
+    color: #ffffff;
   }
 }

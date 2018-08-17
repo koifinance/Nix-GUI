@@ -1,7 +1,20 @@
-<div *ngIf="data.walletType === 'transaction'" class="wallet">
+<div class="processing-trans">
   <div class="modalcontent">
+    <h5 fxFlex="50">Processing transaction</h5>
+    <div _ngcontent-c7="" class="divider"></div>
 
-    sharmi
+    <div class="amountsend">
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient">You need to wait 15 confirmations in order to generate a NODE KEY, or can close this message and finish your node
+          set-up later</span>
+      </div>
+    </div>
+
+    <img src="../../../../assets/icons/SVG/ghost.svg" class="processing-img" fxLayoutAlign="center">
+
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="center">
+      <button class="cancelbtn" mat-raised-button>I’ll finish set-up later</button>
+    </div>
+
   </div>
-
 </div>

@@ -19,6 +19,8 @@ import { SuccessComponent } from './success/success.component';
 import { GhostNode1Component } from './ghost-node1/ghost-node1.component';
 import { EditNodeComponent } from './edit-node/edit-node.component';
 import { CancelNodeComponent } from './cancel-node/cancel-node.component';
+import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 @Component({
   selector: 'app-modals',
@@ -30,7 +32,9 @@ import { CancelNodeComponent } from './cancel-node/cancel-node.component';
     SuccessComponent,
     GhostNode1Component,
     EditNodeComponent,
-    CancelNodeComponent
+    CancelNodeComponent,
+    TransactionComponent,
+    WithdrawRewardsComponent
   ]
 })
 export class ModalsComponent implements DoCheck, OnInit, OnDestroy {

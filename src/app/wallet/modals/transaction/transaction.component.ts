@@ -12,6 +12,9 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
   }
 
+  setData(data: any) {
+    this.data = data;
+  }
 
   openSuccess(walletType: string) {
     const data: any = {

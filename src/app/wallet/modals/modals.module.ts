@@ -13,6 +13,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { EditNodeComponent } from './edit-node/edit-node.component';
 import { GhostNode1Component } from './ghost-node1/ghost-node1.component';
 import { CancelNodeComponent } from './cancel-node/cancel-node.component';
+import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CancelNodeComponent } from './cancel-node/cancel-node.component';
     GhostNode1Component,
     EditNodeComponent,
     CancelNodeComponent,
-    CancelNodeComponent
+    TransactionComponent,
+    WithdrawRewardsComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,9 @@ import { CancelNodeComponent } from './cancel-node/cancel-node.component';
     SuccessComponent,
     GhostNode1Component,
     EditNodeComponent,
-    CancelNodeComponent
+    CancelNodeComponent,
+    TransactionComponent,
+    WithdrawRewardsComponent
   ]
 })
 export class ModalsModule {

@@ -1,4 +1,4 @@
-.cancel-node {
+.withdraw-node {
 
     .divider[_ngcontent-c7] {
       border-top: 1px solid #EAEAEA;
@@ -71,14 +71,18 @@
       font-size: 14px;
       height: 40px !important;
     }
-    .modalinput {
-      font-size: 15px;
-      padding-left: 12px;
-      height: 40px;
-      border: 1px solid #979797;
-      margin-bottom: 5px;
+    
+    .available-reward{
+        color:#b2b2b2;
+        margin-top: 10px;
+        ::ng-deep.mat-checkbox {          
+                
+                    // border: 1px solid #b2b2b2 !important;
+                    color: #b2b2b2 !important;
+                  
+            
+          }
     }
-  
     .amountsend {
       margin-bottom: 20px;
     }
@@ -94,30 +98,60 @@
     .nixlabel {
       font-size: 14px;
     }
+    mat-checkbox{
+        .saveaddress {
+            border: 1px solid #b2b2b2 !important;
+            color: #b2b2b2;
+          }
+    }
+    
+  }
+
+
+  
+  .modalinput {
+    font-size: 15px;
+    padding-left: 12px;
+    height: 40px;
+    border: 1px solid #97979785;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+  
+.custom-input-group {
+    position: relative;
+    // color: #aaa;
+    font-size: 16px;
   }
   
-  .cancel-warning{
-    background-color: #ffc107ba;
-    padding: 15px;
+  .custom-input-group input {
+    width: 402px;
+    height: 40px;
+    background: #fcfcfc;
+    border: 1px solid #aaa9;
+    border-radius: 3px;
   }
-  .cancelNode-dropdown{
-    background-color: #ffffff;
-    border-radius: 4px;
-    border: 1px solid #00000029;
-    padding-left: 15px;
-    padding-right: 10px;
-    font-size: 13px;
-    
-    ::ng-deep.mat-select-arrow {
-      border-left: 8px solid transparent !important;
-        border-right: 8px solid transparent !important;
-        border-top: 11px solid !important;
-        // padding-top:0 !important ;    
+  
+  .custom-input-group input {
+       text-indent: 15px;
     }
+    .amount-input input{
+        font-size: 15px;
+    }
+  .custom-input-group .fa-icon { 
+    position: absolute;
+    top: 10px;
+    left: 375px;
   }
-  .mat-select-arrow {    
-    border-left: 8px solid transparent !important;
-    border-right: 8px solid transparent !important;
-    border-top: 11px solid !important;    
-}
-
+  .custom-input-group .input-end-text{
+    position: absolute;
+    top: 10px;
+    left: 365px;
+  }
+  .custom-input-group .input-text{
+    position: absolute;
+    top: 17px;
+    left: 45px;
+    font-size: 11px;
+    color: #adaaaa;
+  }
