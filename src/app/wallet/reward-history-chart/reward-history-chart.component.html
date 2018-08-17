@@ -3,14 +3,14 @@
         <div fxLayout="row">
             <div class="back-button" fxFlex="15">
                 <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="goTo('welcome')">
-                <div>Ghost Nodes</div>
+                <div class="backbtn-name">Ghost Nodes</div>
             </div>
             <div fxFlex="85">
                 <!-- <page-header heading="My Ghost Node reward history" [navbar]="help"></page-header> -->
-                <div class="header" fxLayout="row" fxLayoutGap="5%">
+                <div class="header" fxLayout="row">
 
                     <div fxFlex="50" fxFlexOrder="1">
-                        <h5 class="">My Ghost Node reward history</h5>
+                        <h5 class="reward-title">My Ghost Node reward history</h5>
                     </div>
 
                     <div class="actions" fxFlex="50" fxLayoutAlign="end center" fxFlexOrder="2">
@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+        <div class="empty-space2"></div>
         <div fxLayout="row">
             <div fxFlex="15"></div>
             <div fxFlex="8" class="top-align">

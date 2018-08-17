@@ -1,6 +1,7 @@
 @import './src/assets/config';
 
 .modal {
+  border-radius: 5px;
   &.in {
     .modal-dialog {
       height: 100%;
@@ -13,7 +14,7 @@
 .modal-content {
   background: none;
   border: 0;
-  border-radius: 0;
+  // border-radius: 0;
   box-shadow: none;
   margin-bottom: 45px;
 }

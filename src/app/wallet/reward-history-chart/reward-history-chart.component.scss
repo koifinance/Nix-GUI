@@ -221,3 +221,8 @@ mat-drawer-content {
 .mat-option {
   background-color: #87878c54 !important;
 }
+.reward-filter{
+  ::ng-deep.mat-select-value, ::ng-deep.mat-select-arrow {
+    color: #ffffff;
+  }
+}

@@ -1,4 +1,4 @@
-<div *ngIf="data.walletType === 'wallet'" class="wallet">
+<div class="cancel-node">
 
   <div class="modalcontent">
     <h5 fxFlex="50">Cancel node & unlock NIX</h5>
@@ -7,55 +7,55 @@
     <div class="amountsend">
       <p>Select node to stop</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="Ghost node 1">
-      </div>
-      <!-- <p>Select node to stop</p>
-      <div fxLayout.gt-md="row">
-        <mat-form-field fxFlex="100">
-          <mat-select>
-            <mat-option [value]="food.value">
-              {{ food.viewValue }}
-            </mat-option>
+        <!-- <div class="modalinput" fxFlex="100"> -->
+        <mat-form-field class="cancelNode-dropdown" fxFlex="100">
+          <mat-select [formControl]="stopNode">
+            <mat-option value="1">Ghost node 1</mat-option>
+            <mat-option value="2">Ghost node 2</mat-option>
+            <mat-option value="3">Ghost node 3</mat-option>
           </mat-select>
         </mat-form-field>
-    </div> -->
-  </div>
-  <div class="cancel-warning">
+      </div>
+
+    </div>
+    <div class="cancel-warning">
       <p>WARNING: Cancelling this node will delete it and transfer 40,000 NIX back to your main wallet. </p>
-    
-       <p><b>Your VPS service will be unaffacted though so you may need to update this manually</b></p>
-    </div>
-</div>
 
-<div class="modaldetails">
-  <div>
-    <div class="transdetail" fxLayout.gt-md="row">
-      <span class="modallabel" fxFlex="70">Sending to your wallet</span>
-      <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">40,000
-        <span> NIX</span>
-      </span>
-    </div>
-
-    <div class="transdetail" fxLayout.gt-md="row">
-      <span class="modallabel" fxFlex="70">Fee</span>
-      <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">0.001
-        <span> NIX</span>
-      </span>
-
-    </div>
-
-    <div class="transtotal" fxLayout.gt-md="row">
-      <span fxFlex="70">Total</span>
-      <span fxFlex="30" fxLayoutAlign="end">39,999.999
-        <span> NIX</span>
-      </span>
+      <p>
+        <b>Your VPS service will be unaffacted though so you may need to update this manually</b>
+      </p>
     </div>
   </div>
-</div>
 
-<div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-  <button class="cancelbtn" mat-raised-button fxFlex="48">Cancel</button>
-  <button class="sendbtn" mat-raised-button fxFlex="48">Remove Node</button>
-</div>
+  <div class="modaldetails">
+    <div>
+      <div class="transdetail" fxLayout.gt-md="row">
+        <span class="modallabel" fxFlex="70">Sending to your wallet</span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">40,000
+          <span>&nbsp;NIX</span>
+        </span>
+      </div>
+
+      <div class="transdetail" fxLayout.gt-md="row">
+        <span class="modallabel" fxFlex="70">Fee</span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">0.001
+          <span>&nbsp;NIX</span>
+        </span>
+
+      </div>
+
+      <div class="transtotal" fxLayout.gt-md="row">
+        <span fxFlex="70">Total</span>
+        <span fxFlex="30" fxLayoutAlign="end">39,999.999
+          <span>&nbsp;NIX</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+    <button class="cancelbtn" mat-raised-button>Cancel</button>
+    <button class="removebtn" mat-raised-button>Remove Node</button>
+  </div>
 
 </div>

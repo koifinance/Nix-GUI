@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-cancel-node',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CancelNodeComponent implements OnInit {
   data: any;
-
+  stopNode = new FormControl('1');
   constructor() {
   }
 

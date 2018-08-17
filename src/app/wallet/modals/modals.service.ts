@@ -10,6 +10,8 @@ import { SuccessComponent } from './success/success.component';
 import { GhostNode1Component } from './ghost-node1/ghost-node1.component';
 import { EditNodeComponent } from './edit-node/edit-node.component';
 import { CancelNodeComponent } from './cancel-node/cancel-node.component';
+import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 @Injectable()
 export class ModalsService implements OnDestroy {
@@ -22,7 +24,9 @@ export class ModalsService implements OnDestroy {
     success: SuccessComponent,
     ghostNode1: GhostNode1Component,
     editNode: EditNodeComponent ,
-    cancelNode: CancelNodeComponent
+    cancelNode: CancelNodeComponent,
+    withdrawRewards: WithdrawRewardsComponent,
+    transaction: TransactionComponent
 
   };
   private message: Subject<any> = new Subject<any>();
@@ -46,6 +50,9 @@ export class ModalsService implements OnDestroy {
     this.open(modal, 'small-dialog', data);
   }
 
+  openxSmall(modal: string, data: any) {
+    this.open(modal, 'xsmall-dialog', data);
+  }
   /**
    * Open a modal
    * @param {string} modal      The name of the modal to open

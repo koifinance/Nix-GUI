@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { Subscription } from 'rxjs/Subscription';
 import { MatTabChangeEvent } from '@angular/material';
@@ -8,7 +7,7 @@ import { faListUl, faFilter, faDownload } from '@fortawesome/free-solid-svg-icon
 
 import { ModalsService } from '../modals/modals.service';
 import { Transaction } from '../shared/transaction/transaction.model';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { FAQ } from '../shared/faq.model';
 
 
@@ -29,7 +28,6 @@ export class RewardHistoryTableComponent implements OnInit {
 
   ngOnInit() {
 
- 
   }
 
 }
