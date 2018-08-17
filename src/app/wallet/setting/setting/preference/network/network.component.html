@@ -1,0 +1,51 @@
+<div class="text-content">
+
+    <div class="saveMap">
+        <mat-checkbox>Map port using UPnP</mat-checkbox>
+    </div>
+    <div class="saveMap">
+        <mat-checkbox>Allow incoming connections</mat-checkbox>
+    </div>
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="saveMap1">
+        <mat-checkbox>Connect through SOCKS5 proxy (default proxy):</mat-checkbox>
+    </div>
+    <div class="send buttons" fxLayout="row">
+        <p class="spaceing">Proxy IP : </p>
+        <div class="custom-input-group amount-input">
+            <input class="input-group size" placeholder="127.0.0.1">
+        </div>
+        <p class="spaceing1">Port :</p>
+        <div class="custom-input-group1 amount-input">
+            <input class="input-group size" placeholder="9090">
+        </div>
+    </div>
+
+    <div class="send buttons" fxLayout="row">
+        <p class="spaceing">Used for reaching peers via : </p>
+        <mat-checkbox class="spaces">IPv4</mat-checkbox>
+        <mat-checkbox class="spaces">IPv6</mat-checkbox>
+        <mat-checkbox class="spaces">Tor</mat-checkbox>
+    </div>
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="saveMap1">
+        <mat-checkbox>Use separate SOCKS5 proxy to reach peers via Tor hidden services :</mat-checkbox>
+    </div>
+
+    <div class="send buttons" fxLayout="row">
+        <p class="spaceing">Proxy IP : </p>
+        <div class="custom-input-group amount-input">
+            <input class="input-group size" placeholder="127.0.0.1">
+        </div>
+        <p class="spaceing1">Port :</p>
+        <div class="custom-input-group1 amount-input">
+            <input class="input-group size" placeholder="9090">
+        </div>
+    </div>
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+        <button class="sendbtn" mat-raised-button fxFlex="10">Save</button>
+        <button class="cancelbtn" mat-raised-button fxFlex="20">Reset options</button>
+    </div>
+</div>

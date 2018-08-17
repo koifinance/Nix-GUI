@@ -1,0 +1,94 @@
+.saveMap {
+    margin-top: 5px;
+  }
+
+  .text-content{
+    margin-left: 5px;
+    margin-top: 35px;
+}
+
+
+.saveMap1 {
+    margin-top: 35px;
+    margin-bottom: 5px;
+  }
+  .divider {
+    border-top: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .sendbtn {
+    background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    height: 39px;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+
+  .cancelbtn {
+    border-radius: 5px;
+    background-color: #E0E3E7;
+    box-shadow: none;
+    font-size: 16px;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    color: #4A4A4A;
+    height: 39px;
+    margin-right: 680px;
+    margin-top: 15px;
+  }
+
+  .spaces{
+   margin-right: 25px;
+   margin-top: 5px;
+  }
+  .spaceing1{
+    margin-left: 25px;
+  }
+
+  .custom-input-group {
+    position: relative;
+    // color: #aaa;
+    font-size: 16px;
+  }
+  
+  .custom-input-group input {
+    width: 200px;
+    height: 40px;
+    background: #fcfcfc;
+    border: 1px solid #aaa9;
+    border-radius: 3px;
+    margin-left: 16px;
+  }
+
+  .custom-input-group1 input {
+    width: 100px;
+    height: 40px;
+    background: #fcfcfc;
+    border: 1px solid #aaa9;
+    border-radius: 3px;
+    margin-left: 16px;
+  }
+  
+  .custom-input-group input {
+       text-indent: 15px;
+    }
+    .amount-input input{
+        font-size: 15px;
+    }
+ 
+  .custom-input-group .input-text{
+    position: absolute;
+    top: 17px;
+    left: 45px;
+    font-size: 11px;
+    color: #adaaaa;
+  }
+  .send{
+    margin-top: 15px;
+  }

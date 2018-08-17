@@ -19,6 +19,12 @@ import { GhostComponent } from './ghost/ghost.component';
 import { MultinodesComponent } from './multinodes/multinodes.component';
 import { RewardHistoryTableComponent } from './reward-history-table/reward-history-table.component';
 import { RewardHistoryChartComponent } from './reward-history-chart/reward-history-chart.component';
+import { GhostNodeComponent } from './multinodes/table/ghost-node/ghost-node.component';
+import { SettingComponent } from './setting/setting/setting.component';
+import { PreferencesComponent } from './setting/setting/preference/preferences/preferences.component';
+import { SecurityComponent } from './setting/setting/preference/security/security.component';
+import { AdressbookComponent } from './setting/setting/preference/adressbook/adressbook.component';
+import { NetworkComponent } from './setting/setting/preference/network/network.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,12 @@ import { RewardHistoryChartComponent } from './reward-history-chart/reward-histo
 	MultinodesComponent,
     RewardHistoryTableComponent,
     RewardHistoryChartComponent,
+    GhostNodeComponent,
+    SettingComponent,
+    PreferencesComponent,
+    SecurityComponent,
+    AdressbookComponent,
+    NetworkComponent,
   ],
   imports: [
     ModalsModule,

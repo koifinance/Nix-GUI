@@ -12,6 +12,9 @@ import { EditNodeComponent } from './edit-node/edit-node.component';
 import { CancelNodeComponent } from './cancel-node/cancel-node.component';
 import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { PasswordchangeComponent } from './passwordchange/passwordchange.component';
+import { RecoveryComponent } from './recovery/recovery.component';
+import { AddaddressComponent } from './addaddress/addaddress.component';
 
 @Injectable()
 export class ModalsService implements OnDestroy {
@@ -26,7 +29,10 @@ export class ModalsService implements OnDestroy {
     editNode: EditNodeComponent ,
     cancelNode: CancelNodeComponent,
     withdrawRewards: WithdrawRewardsComponent,
-    transaction: TransactionComponent
+    transaction: TransactionComponent,
+    passwordChange : PasswordchangeComponent,
+    recoveryPharse : RecoveryComponent,
+    newAddress : AddaddressComponent
 
   };
   private message: Subject<any> = new Subject<any>();
