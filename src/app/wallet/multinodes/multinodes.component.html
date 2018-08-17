@@ -61,7 +61,7 @@
         <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="150px" fxLayoutAlign="space-around center">
 
           <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
-            <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" (click)="openWithDraw()">
+            <img class="cursor-pointer1" src="./assets/icons/SVG/arrow-up-nix.svg" alt="Deposit" fxFlex="100" (click)="openWithDraw()">
             <div class="icon-text" fxLayoutAlign="center">WITHDRAW REWARDS</div>
           </div>
 
@@ -72,6 +72,7 @@
     </div>
     <h5 class="tableHead">My Ghost Nodes</h5>
     <div class="tableHead">
+      <app-ghost-node></app-ghost-node>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

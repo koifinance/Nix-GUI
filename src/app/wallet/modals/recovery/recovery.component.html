@@ -1,0 +1,41 @@
+<div class="processing-trans">
+  <div class="modalcontent">
+    <h5 fxFlex="50">Export wallet recovery phrase</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="amountsend">
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient">You can use your recovery phrase to restore you wallet or install it on another computer.
+
+        </span>
+
+      </div>
+    </div>
+    <div class="amountsend">
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient">
+          Please ensure your recovery phrase is written down or printed and then stored in a secure location.
+        </span>
+      </div>
+    </div>
+    <div class="amountsend">
+      <p class="htxt">Enter password to export recovery phrase</p>
+      <div fxLayout.gt-md="row">
+        <div class="custom-input-group amount-input">
+          <input class="input-group size" placeholder="Enter password">
+        </div>
+      </div>
+    </div>
+
+    <div class="password-toggle">
+      <button mat-button (click)="togglePassword()">
+        <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+        {{ passwordLabelText() }} password
+      </button>
+    </div>
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+      <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
+      <button class="sendbtn" mat-raised-button fxFlex="40">Export</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="processing-trans">
+  <div class="modalcontent">
+    <h5 fxFlex="50">Add new address</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+      <p class="htxt">Name</p>
+      <div fxLayout.gt-md="row">
+        <div class="custom-input-group amount-input">
+          <input class="input-group size" placeholder="please enter a name for this address">
+        </div>
+      </div>
+    </div>
+    <div class="amountsend">
+      <p class="htxt">Address</p>
+      <div fxLayout.gt-md="row">
+        <div class="custom-input-group1 amount-input">
+          <input class="input-group " placeholder="Destination address">
+        </div>
+        <button class="copybtn" fxFlex="15">paste</button>
+      </div>
+    </div>
+
+    <div class="password-toggle">
+      <button mat-button (click)="togglePassword()">
+        <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+        {{ passwordLabelText() }} password
+      </button>
+    </div>
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+      <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
+      <button class="sendbtn" mat-raised-button fxFlex="40">Save</button>
+    </div>
+  </div>
+</div>

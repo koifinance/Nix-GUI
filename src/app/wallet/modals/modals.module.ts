@@ -14,6 +14,9 @@ import { EditNodeComponent } from './edit-node/edit-node.component';
 import { GhostNode1Component } from './ghost-node1/ghost-node1.component';
 import { CancelNodeComponent } from './cancel-node/cancel-node.component';
 import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.component';
+import { PasswordchangeComponent } from './passwordchange/passwordchange.component';
+import { RecoveryComponent } from './recovery/recovery.component';
+import { AddaddressComponent } from './addaddress/addaddress.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.co
     EditNodeComponent,
     CancelNodeComponent,
     TransactionComponent,
-    WithdrawRewardsComponent
+    WithdrawRewardsComponent,
+    PasswordchangeComponent,
+    RecoveryComponent,
+    AddaddressComponent,
   ],
   imports: [
     CommonModule,

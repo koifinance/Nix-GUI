@@ -1,0 +1,57 @@
+.mat-table .mat-header-row {
+    background: #f1f1f1;
+}
+
+.ng-star-inserted{
+    margin-right: 100px;
+}
+
+.sendbtn {
+    background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    height: 39px;
+    font-size: 22px;
+    margin-top: 15px;
+  }
+  .text-content{
+    margin-left: 5px;
+    margin-top: 35px;
+}
+
+
+mat-table {
+  background: transparent;
+
+  mat-header-row {
+    border: none;
+    min-height: 40px;
+  }
+
+  mat-row {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  mat-cell {
+    font-size: 14px;
+    overflow: inherit;
+  }
+
+ 
+
+  .multi-line {
+    margin-top: 5px;
+  }
+
+  .month {
+    text-transform: uppercase;
+  }
+
+  .day {
+    letter-spacing: 2.3px;
+  }
+}

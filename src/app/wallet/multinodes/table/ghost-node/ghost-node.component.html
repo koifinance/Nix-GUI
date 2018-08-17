@@ -1,0 +1,25 @@
+<mat-table [dataSource]="dataSource">
+  
+  <ng-container matColumnDef="Name">
+      <div *matHeaderCellDef>Name</div>
+      <div *matCellDef>Ghost node1</div>
+  </ng-container>
+
+  <ng-container matColumnDef="Status">
+      <div *matHeaderCellDef>Status</div>
+      <div class="description-cell"
+                *matCellDef>ssssssss</div>
+  </ng-container>
+
+  <ng-container matColumnDef="Active for">
+      <div *matHeaderCellDef>Active for</div>
+      <div class="duration-cell"
+                *matCellDef>ssssss</div>
+  </ng-container>
+  
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  
+</mat-table>
+
