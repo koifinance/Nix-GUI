@@ -1,16 +1,17 @@
 @import './src/assets/config';
 
-.wallet {
+.viewNode {
 
   .divider[_ngcontent-c7] {
     border-top: 1px solid #EAEAEA;
     margin-bottom: 15px;
-    // margin-top: 15px;
+    margin-top: 15px;
   }
 
   h5 {
     display: inline;
-    color: #293246;
+    // color: #293246;
+    color: #000000;
     font-family: "Helvitica", sans-serif;
     font-weight: 300;
   }
@@ -44,7 +45,7 @@
   .sendbtn {
     background-color: #108EFF;
     color: white;
-    width: 120px !important;
+    width: 150px !important;
     border-radius: 5px;
     font-family: Helvitica, sans-serif;
     font-weight: 300;
@@ -55,7 +56,7 @@
   .cancelbtn {
     border-radius: 5px;
     background-color: #E0E3E7;
-    width: 120px !important;
+    width: 150px !important;
     box-shadow: none;
     font-size: 14px;
     font-family: Helvitica, sans-serif;

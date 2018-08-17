@@ -1,6 +1,6 @@
 @import './src/assets/config';
 
-.wallet {
+.editNode {
 
   .divider[_ngcontent-c7] {
     border-top: 1px solid #EAEAEA;
@@ -78,10 +78,11 @@
   .modalinput {
     font-size: 15px;
     padding-left: 12px;
-    height: 40px;
+    height: 35px;
     border: 1px solid #CBCBCB;
     margin-bottom: 0px;
     border-radius: 5px;
+    background-color: #ffffff;
   }
 
   .amountsend {

@@ -357,8 +357,18 @@ input {
     .mat-dialog-container {
       height: auto;
       width: 532px;
+      border-radius: 5px;
     }
   }
+
+  .xsmall-dialog {
+    .mat-dialog-container {
+      height: 600px;
+      width: 450px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+}
 
   .mat-dialog-container {
     height: calc(100% - 24px);

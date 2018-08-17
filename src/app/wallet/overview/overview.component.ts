@@ -34,14 +34,13 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
   }
   
-  openGhostNode1(walletType: string) {
-    const data: any = {
-      forceOpen: true,
-      walletType: walletType,
-      modalsService: this.modalsService
-    };
-    this.modalsService.openSmall('ghostNode1', data);
-  }
+  // openGhostNode1() {
+  //   const data: any = {
+  //     forceOpen: true,
+  //     modalsService: this.modalsService
+  //   };
+  //   this.modalsService.openSmall('ghostNode1', data);
+  // }
 
   openSend(walletType: string) {
     const data: any = {
