@@ -15,7 +15,6 @@ import { HeaderComponent } from './header/header.component';
 import { HelpComponent } from './help/help.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { TransactionTableComponent } from './transaction/transaction-table.component';
-import { CustomHeaderComponent } from './custom-header/custom-header.component';
 
 // import { DeleteConfirmationModalComponent } from './delete-confirmation-modal/delete-confirmation-modal.component';
 
@@ -35,7 +34,6 @@ import { CustomHeaderComponent } from './custom-header/custom-header.component';
     HelpComponent,
     PaginatorComponent,
     TransactionTableComponent,
-    CustomHeaderComponent,
   ],
   exports: [
     CommonModule,

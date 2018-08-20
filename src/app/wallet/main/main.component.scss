@@ -4,11 +4,47 @@
   border-bottom: 1px solid lighten($bg-black, 5%);
   border-top: 1px solid darken($bg-black, 5%);
 }
+.sidebar-bottom-items {
+  margin-top: 250px;
+  // font-size: 12px !important;
+}
+.sidebar-item1 {
+  @extend %tfx;
+  padding: 0 30px;
 
+  .icon {
+    @extend %tfx;
+    color: darken($bg-black, 15%);
+    height: auto;
+    margin: 0 16px 0 0;
+    width: auto;
+  }
+
+  .text {
+    color: $text-muted;
+    font-family: $font;
+    font-size: 14px;
+  }
+
+  &:hover {
+    background: $bg-hover;
+
+    .icon {
+      color: darken($bg-black, 30%);
+    }
+
+    .text {
+      color: $text;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+}
 .sidebar-section {
   .sidebar-item-group {
     padding-top: 0;
   }
+  
 }
 
 .mat-expansion-panel {
@@ -130,6 +166,7 @@ a {
 }
 
 .sidebar { // AKA .mat-sidenav
+  overflow: hidden;
   @extend %disable-select;
   background-color: $bg-white;
   color: $text;

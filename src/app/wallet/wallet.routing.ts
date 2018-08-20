@@ -15,6 +15,9 @@ import { RewardHistoryChartComponent } from './reward-history-chart/reward-histo
 import { RewardHistoryTableComponent } from './reward-history-table/reward-history-table.component';
 import { SettingComponent } from './setting/setting/setting.component';
 // import { SettingsComponent } from './settings/settings.component';
+import { UpdatesComponent } from './updates/updates.component';
+import { DownloadingUpdateComponent } from './updates/downloading-update/downloading-update.component';
+import { OutOfDateComponent } from './updates/out-of-date/out-of-date.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -22,7 +25,7 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent, data: { title: 'Create', page: 'create' } },
   { path: 'restore', component: RestoreComponent, data: { title: 'Restore', page: 'restore' } },
   { path: 'reward-history-table', component: RewardHistoryTableComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-table' } },
-      { path: 'reward-history-chart', component: RewardHistoryChartComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-chart' } },
+  { path: 'reward-history-chart', component: RewardHistoryChartComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-chart' } },
   {
     path: 'main',
     component: MainComponent,
@@ -36,6 +39,9 @@ const routes: Routes = [
       { path: 'ghost', component: NodesComponent, data: { title: 'Ghost Nodes', page: 'ghost' } },
       { path: 'multi/nodes', component: MultinodesComponent, data: { title: 'Muliti  Nodes', page: 'mulitinodes' } },
       { path: 'settings', component: SettingComponent, data: { title: 'Settings' } },
+      { path: 'updates', component: UpdatesComponent, data: { title: 'Updates', page: 'updates' } },
+      { path: 'downloading-updates', component: DownloadingUpdateComponent, data: { title: 'Downloading Updates', page: 'downloading-updates' } },
+      { path: 'updates/out-of-date', component: OutOfDateComponent, data: { title: 'Out Of Date Update', page: 'out-of-date' } },
     ]
   },
 ];
