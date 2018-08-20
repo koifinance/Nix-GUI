@@ -19,12 +19,12 @@
                         </div>
                         <div class="chart-empty-box"></div>
                         <mat-form-field class="reward-filter">
-                                <mat-select class="mat-option-text-custom" [formControl]="panelColor">
-                                    <mat-option value="red" class="mat-option-text-custom">ALL OF MY NODES</mat-option>
-                                    <mat-option value="green">Green Nodes</mat-option>
-                                    <mat-option value="blue">Blue Nodes</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                            <mat-select class="mat-option-text-custom" [formControl]="panelColor">
+                                <mat-option value="red" class="mat-option-text-custom">ALL OF MY NODES</mat-option>
+                                <mat-option value="green">Green Nodes</mat-option>
+                                <mat-option value="blue">Blue Nodes</mat-option>
+                            </mat-select>
+                        </mat-form-field>
                         <img class="cursor-pointer" src="./assets/icons/SVG/sync.svg" alt="Sync" class="refresh-img">
                         <img class="cursor-pointer" src="./assets/icons/SVG/help.svg" alt="Help" class="help-img" (click)="navbar.toggle()">
                     </div>
@@ -57,10 +57,10 @@
         </div>
         <div class="empty-space2"></div>
         <div fxLayout="row">
-                <div fxFlex="15"></div>
-                <div fxFlex="75" class="chart-box">
-                    <p>Chart</p>
-                </div>
+            <div fxFlex="15"></div>
+            <div fxFlex="75" class="chart-box">
+                <p>Chart</p>
+            </div>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>
