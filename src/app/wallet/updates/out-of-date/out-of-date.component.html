@@ -1,0 +1,43 @@
+<mat-drawer-container>
+
+    <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+      <help-bar [navbar]="help" [faq]="faq"></help-bar>
+    </mat-drawer>
+  
+    <mat-drawer-content class="updates">
+      <div class="header" fxLayout="row">
+        <div fxFlex="50" fxFlexOrder="1">
+          <h5>Updates</h5>
+        </div>
+      </div>
+  
+      <div class="updates-content" fxLayout="row" fxLayoutGap="2%">
+        <img class="updates-img" src="../../../../assets/icons/SVG/exclamation-circle.svg">
+        <p class="updates-description">Your wallet is out of date.
+          <br>Please download the latest version</p>
+      </div>
+      <div class="updates-content" fxLayout="column">
+        <div class="updates-version" fxLayout="row">
+          <div fxFlex="120px">
+            <p><b>Your wallet:</b></p>
+          </div>
+          <div fxFlex="150px" class="red-color">
+            <p>v 1.0.0.1</p>
+          </div>
+        </div>
+        <div class="updates-version" fxLayout="row">
+          <div fxFlex="120px">
+            <p><b>Latest version:</b></p>
+          </div>
+          <div fxFlex="70px">
+            <p>v 1.4.0.1</p>
+          </div>
+          <div class="version-link" fxFlex="200px">(view on Github)</div>
+        </div>
+      </div>
+  
+      <div class="update-btn" fxLayout="row" fxLayoutAlign="start">
+          <button class="update-wallet-btn" mat-raised-button (click)="GoToDownlod()" >Update wallet</button>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>

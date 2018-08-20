@@ -19,6 +19,9 @@ import { GhostComponent } from './ghost/ghost.component';
 import { MultinodesComponent } from './multinodes/multinodes.component';
 import { RewardHistoryTableComponent } from './reward-history-table/reward-history-table.component';
 import { RewardHistoryChartComponent } from './reward-history-chart/reward-history-chart.component';
+import { UpdatesComponent } from './updates/updates.component';
+import { DownloadingUpdateComponent } from './updates/downloading-update/downloading-update.component';
+import { OutOfDateComponent } from './updates/out-of-date/out-of-date.component';
 import { GhostNodeComponent } from './multinodes/table/ghost-node/ghost-node.component';
 import { SettingComponent } from './setting/setting/setting.component';
 import { PreferencesComponent } from './setting/setting/preference/preferences/preferences.component';
@@ -37,9 +40,12 @@ import { NetworkComponent } from './setting/setting/preference/network/network.c
     VaultComponent,
     WelcomeComponent,
     GhostComponent,
-	MultinodesComponent,
+    MultinodesComponent,
     RewardHistoryTableComponent,
     RewardHistoryChartComponent,
+	  UpdatesComponent,
+    DownloadingUpdateComponent,
+    OutOfDateComponent,
     GhostNodeComponent,
     SettingComponent,
     PreferencesComponent,
