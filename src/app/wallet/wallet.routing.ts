@@ -18,6 +18,8 @@ import { SettingComponent } from './setting/setting/setting.component';
 import { UpdatesComponent } from './updates/updates.component';
 import { DownloadingUpdateComponent } from './updates/downloading-update/downloading-update.component';
 import { OutOfDateComponent } from './updates/out-of-date/out-of-date.component';
+import { AboutNixComponent } from './about-nix/about-nix.component';
+import { HelpComponent } from './help/help.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -42,6 +44,8 @@ const routes: Routes = [
       { path: 'updates', component: UpdatesComponent, data: { title: 'Updates', page: 'updates' } },
       { path: 'downloading-updates', component: DownloadingUpdateComponent, data: { title: 'Downloading Updates', page: 'downloading-updates' } },
       { path: 'updates/out-of-date', component: OutOfDateComponent, data: { title: 'Out Of Date Update', page: 'out-of-date' } },
+      { path: 'about-NIX', component: AboutNixComponent, data: { title: 'About Nix', page: 'about-nix' } },
+      { path: 'help', component: HelpComponent, data: { title: 'Help', page: 'help' } },
     ]
   },
 ];
