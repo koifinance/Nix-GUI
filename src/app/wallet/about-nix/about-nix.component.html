@@ -1,0 +1,65 @@
+<mat-drawer-container>
+
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content class="updates">
+    <div class="header" fxLayout="row">
+      <div fxFlex="50" fxFlexOrder="1">
+        <h5>About NIX</h5>
+      </div>
+    </div>
+
+    <div class="updates-content" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="2%">
+      <p class="updates-description" fxFlex="75">NIX is both a digital currency and a platform that offers mechanisms to privatize coins that do not otherwise possess
+        their own native, privacy-based protocols. The NIX Platform combines Atomic Swaps and privacy using our unique, innovative
+        Ghost Protocol to provide the world with a truly anonymous and decentralized transfer of assets for the cross-chain
+        era.</p>
+    </div>
+    <div class="updates-content" fxLayout="column" fxLayoutGap="0%">
+      <div>
+        <p>
+          <b>Website</b>
+        </p>
+        <p class="version-link">https://nixplatform.io/</p>
+      </div>
+      <div>
+        <p>
+          <b>White paper</b>
+        </p>
+        <p class="version-link">https://nixplatform.io/docs/NIX-Platform-Whitepaper.pdf</p>
+      </div>
+      <div>
+        <p>
+          <b>NIX general FAQs</b>
+        </p>
+        <p class="version-link">https://nixplatform.zendesk.com</p>
+      </div>
+      <div>
+        <p>
+          <b>NIX team</b>
+        </p>
+        <p class="version-link">https://nixplatform.io/information/team/</p>
+      </div>
+      <div>
+        <p>
+          <b>Github</b>
+        </p>
+        <p class="version-link">https://github.com/nixplatform</p>
+      </div>
+    </div>
+    <div class="updates-content">
+      <p><b>Social channels</b></p>
+    </div>
+    <div  fxLayout="row" fxLayoutGap="1%">
+        <img class="svg-img" src="../../../assets/icons/SVG/twitter-logo-silhouette.svg">
+        <img class="png-img" src="../../../assets/icons/SVG/social-media2.PNG">
+        <img class="svg-img" src="../../../assets/icons/SVG/telegram-logo.svg">
+        <img class="svg-img" src="../../../assets/icons/SVG/bitcoin-logo.svg">
+        <img class="svg-img" src="../../../assets/icons/SVG/reddit.svg">
+        <img class="png-img" src="../../../assets/icons/SVG/social-media6.PNG">
+    </div>
+      
+  </mat-drawer-content>
+</mat-drawer-container>

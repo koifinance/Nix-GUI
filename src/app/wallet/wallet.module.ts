@@ -28,6 +28,8 @@ import { PreferencesComponent } from './setting/setting/preference/preferences/p
 import { SecurityComponent } from './setting/setting/preference/security/security.component';
 import { AdressbookComponent } from './setting/setting/preference/adressbook/adressbook.component';
 import { NetworkComponent } from './setting/setting/preference/network/network.component';
+import { AboutNixComponent } from './about-nix/about-nix.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { NetworkComponent } from './setting/setting/preference/network/network.c
     SecurityComponent,
     AdressbookComponent,
     NetworkComponent,
+    AboutNixComponent,
+    HelpComponent,
   ],
   imports: [
     ModalsModule,
