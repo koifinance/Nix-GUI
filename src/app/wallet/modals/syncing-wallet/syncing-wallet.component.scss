@@ -1,0 +1,46 @@
+@import './src/assets/config';
+
+.syncing-wallet {
+
+  .divider[_ngcontent-c7] {
+    border-top: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  h5 {
+    display: inline;
+    // color: #293246;
+    color: #000000;
+    font-family: "Helvitica", sans-serif;
+    font-weight: 300;
+  }
+
+  .modalcontent {
+    padding: 24px;
+  }
+
+  .fright {
+    float: right;
+  }
+
+  .fleft {
+    float: left;
+
+  }
+ 
+  .estimated-time {
+    margin-bottom: 10px;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Helvitica", sans-serif;
+    font-weight: 300;
+  }
+
+  .syncing-img {
+    width: 265px;
+    margin: 0 auto;
+  }
+  
+}
