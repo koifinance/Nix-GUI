@@ -30,6 +30,7 @@ import { AdressbookComponent } from './setting/setting/preference/adressbook/adr
 import { NetworkComponent } from './setting/setting/preference/network/network.component';
 import { AboutNixComponent } from './about-nix/about-nix.component';
 import { HelpComponent } from './help/help.component';
+import { NixPriceChartComponent } from './overview/nix-price-chart/nix-price-chart.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { HelpComponent } from './help/help.component';
     NetworkComponent,
     AboutNixComponent,
     HelpComponent,
+    NixPriceChartComponent,
   ],
   imports: [
     ModalsModule,

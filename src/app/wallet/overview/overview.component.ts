@@ -34,6 +34,14 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
   }
   
+  openSyncingWallet() {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService
+    };
+    this.modalsService.openSmall('syncingWallet', data);
+  }
+
   // openGhostNode1() {
   //   const data: any = {
   //     forceOpen: true,

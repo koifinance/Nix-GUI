@@ -1,0 +1,178 @@
+@import '../../shared/shared';
+mat-drawer {
+  padding: 37px 28px 10px;
+  background-color: $bg-white;
+  color: $text;
+  width: 25%;
+}
+
+mat-drawer-content {
+  overflow-y: auto !important;
+  width: 100%;
+}
+.nix-price-body{
+  background-image: linear-gradient(65deg, #0a0909fa 6%, #151414 100%) !important;
+  color: #ffffff !important;
+}
+  small {
+    color: $text-muted;
+    font-size: 90%;
+  }
+
+.content {
+
+  .back-button {
+    margin-left: 3.5em;
+
+    img {
+      cursor: pointer;
+      margin-top: 3em;
+    }
+
+    .caption {
+      color: #9B9B9B;
+      font-size: 14px;
+      margin-top: 15px;
+      padding-left: 15px;
+      text-transform: capitalize;
+    }
+  }
+
+  .text {
+    color: #4A4A4A;
+    width: 100%;
+
+    .title {
+      font-size: 26px;
+      margin-top: 2em;
+    }
+
+    .subtitle {
+      font-size: 16px;
+    }
+
+    .body {
+      font-size: 20px;
+      line-height: 32px;
+    }
+
+    div {
+      &.body {
+        font-size: 18px;
+        margin-top: 2em;
+      }
+    }
+
+    .phrase {
+      margin-bottom: 1.5em;
+      padding-right: 25px;
+
+      small {
+        color: #9B9B9B;
+        font-size: 10px;
+        margin-right: 5px;
+      }
+    }
+
+    .icons {
+      margin-top: 2em;
+
+      img {
+        cursor: pointer;
+      }
+
+      .caption {
+        color: #9B9B9B;
+        font-size: 14px;
+        margin-top: 10px;
+        margin-left: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  ::ng-deep .mat-progress-bar-fill::after {
+    background-color: #6D00F2;
+  }
+
+  ::ng-deep .mat-progress-bar-buffer {
+    background: #DEDEDE;
+  }
+
+  .wrapper {
+    display: flex;
+    left: 17em;
+    max-width: 70%;
+    position: relative;
+    top: 5em;   
+
+    mat-error {
+      font-size: 75%;
+      margin-top: 2px
+    }
+  }
+}
+
+
+.mat-option {
+  background-color: #87878c54 !important;
+}
+.price-filter{
+  background-color: #87878c54;
+  padding-right: 10px;
+  margin-left: 25px;
+  margin-right: 15px;
+  border-radius: 4px;
+  text-align: center !important;
+  width: 80px;
+  height: 39px;
+
+  ::ng-deep.mat-select-value, ::ng-deep.mat-select-arrow {
+    color: #ffffff;
+  }
+  
+
+}
+.price-box{
+  background-color: #87878c54;
+  width: 207px;
+  height: 38px;
+  margin-right: 40px;
+  border-radius: 3px;
+  padding: 10px 27px;
+  }
+
+.chart-feilds {
+  font-size: 10px;
+  color: #dadae254;
+  cursor: pointer;
+  }
+.fa-caretup-icon {
+  // color: #dadae254;
+  color: green;
+  cursor: pointer;
+  padding-left: 18px;
+  font-size: 16px;
+
+  :active{
+    color: green;
+  }
+
+  :hover {
+    font-size: 18px;
+  }
+}
+
+.feilds-value1 {
+  position: fixed;
+  margin-top: 17px;
+  cursor: pointer;
+  color: green;
+
+  :active{
+    color: green;
+  }
+}
+.up-value{
+  margin-top: -4px;
+}

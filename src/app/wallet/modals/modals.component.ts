@@ -1,15 +1,5 @@
-import {
-  Component,
-  ComponentFactoryResolver,
-  ComponentRef,
-  DoCheck,
-  ElementRef,
-  HostListener,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, DoCheck, ElementRef,
+  HostListener, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,6 +14,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { PasswordchangeComponent } from './passwordchange/passwordchange.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AddaddressComponent } from './addaddress/addaddress.component';
+import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
 
 @Component({
   selector: 'app-modals',
@@ -40,7 +31,8 @@ import { AddaddressComponent } from './addaddress/addaddress.component';
     WithdrawRewardsComponent,
     PasswordchangeComponent,
     RecoveryComponent,
-    AddaddressComponent
+    AddaddressComponent,
+    SyncingWalletComponent
   ]
 })
 export class ModalsComponent implements DoCheck, OnInit, OnDestroy {
