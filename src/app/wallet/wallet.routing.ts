@@ -20,6 +20,7 @@ import { DownloadingUpdateComponent } from './updates/downloading-update/downloa
 import { OutOfDateComponent } from './updates/out-of-date/out-of-date.component';
 import { AboutNixComponent } from './about-nix/about-nix.component';
 import { HelpComponent } from './help/help.component';
+import { NixPriceChartComponent } from './overview/nix-price-chart/nix-price-chart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'restore', component: RestoreComponent, data: { title: 'Restore', page: 'restore' } },
   { path: 'reward-history-table', component: RewardHistoryTableComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-table' } },
   { path: 'reward-history-chart', component: RewardHistoryChartComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-chart' } },
+  { path: 'overview/nix-price-chart', component: NixPriceChartComponent, data: { title: 'NIX price chart', page: 'nix-price-chart' } },
   {
     path: 'main',
     component: MainComponent,

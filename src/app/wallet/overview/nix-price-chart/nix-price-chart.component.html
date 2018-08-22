@@ -1,0 +1,90 @@
+<mat-drawer-container fullscreen class="nix-price-body">
+  <mat-drawer-content class="content">
+    <div fxLayout="row">
+      <div class="back-button" fxFlex="15">
+        <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="goTo('welcome')">
+        <div class="backbtn-name">Ghost Nodes</div>
+      </div>
+      <div fxFlex="85">
+        <!-- <page-header heading="My Ghost Node reward history" [navbar]="help"></page-header> -->
+        <div class="header" fxLayout="row">
+
+          <div fxFlex="50" fxFlexOrder="1">
+            <h5 class="reward-title">NIX price chart</h5>
+          </div>
+
+          <div class="actions" fxFlex="50" fxLayoutAlign="end center" fxFlexOrder="2">
+            <mat-form-field class="price-filter">
+              <mat-select [formControl]="panelColor">
+                <mat-option value="usd">USD</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="price-box" fxLayout="row" fxLayoutGap="7%">
+              <div>1H</div>
+              <div>1D</div>
+              <div>1W</div>
+              <div>1M</div>
+              <div>1Y</div>
+              <div>ALL</div>
+            </div>
+
+            <img class="cursor-pointer" src="./assets/icons/SVG/sync.svg" alt="Sync" class="refresh-img">
+            <img class="cursor-pointer" src="./assets/icons/SVG/help.svg" alt="Help" class="help-img" (click)="navbar.toggle()">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="empty-space2"></div>
+    <div fxLayout="row">
+      <div fxFlex="15"></div>
+
+      <div fxFlex="75">
+        <div fxLayout="row" fxLayoutGap="20px">
+          <div fxFlex="15">
+            <span class="large-no">$51.12</span>
+          </div>
+          <div fxFlex="15">
+            <div fxLayout="column" class="up-value">
+              <span class="fa-caretup-icon">
+                <fa-icon [icon]="faCaretUp"></fa-icon>
+              </span>
+              <span class="feilds-value1">+12.53%</span>
+            </div>
+          </div>
+          <div fxFlex="15">
+            <div fxLayout="column" fxLayoutGap="2px">
+              <span class="chart-feilds">MARKET CAP</span>
+              <span class="feilds-value">$ 277.52M</span>
+            </div>
+          </div>
+          <div fxFlex="15">
+            <div fxLayout="column" fxLayoutGap="2px">
+              <span class="chart-feilds">LOW - HIGH (24H)</span>
+              <span class="feilds-value">$ 2.76 - $3.12</span>
+            </div>
+          </div>
+          <div fxFlex="15">
+            <div fxLayout="column" fxLayoutGap="2px">
+              <span class="chart-feilds">VOL (24H)</span>
+              <span class="feilds-value">$ 1.87M</span>
+            </div>
+          </div>
+          <div fxFlex="15">
+            <div fxLayout="column" fxLayoutGap="2px">
+              <span class="chart-feilds">CURRENT vs. MAX SUPPLY</span>
+              <span class="feilds-value">$ 5.8M - x.xM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="empty-space2"></div>
+    <div fxLayout="row">
+      <div fxFlex="15"></div>
+      <div fxFlex="75" class="chart-box">
+        <p>Chart</p>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

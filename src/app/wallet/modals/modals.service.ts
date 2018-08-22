@@ -15,6 +15,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { PasswordchangeComponent } from './passwordchange/passwordchange.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AddaddressComponent } from './addaddress/addaddress.component';
+import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
 
 @Injectable()
 export class ModalsService implements OnDestroy {
@@ -32,7 +33,8 @@ export class ModalsService implements OnDestroy {
     transaction: TransactionComponent,
     passwordChange : PasswordchangeComponent,
     recoveryPharse : RecoveryComponent,
-    newAddress : AddaddressComponent
+    newAddress : AddaddressComponent,
+    syncingWallet: SyncingWalletComponent
 
   };
   private message: Subject<any> = new Subject<any>();
