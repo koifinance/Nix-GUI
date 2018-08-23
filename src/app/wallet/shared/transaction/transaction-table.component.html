@@ -58,7 +58,7 @@
 <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="category">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>      
-      <mat-cell class="category">     
+      <mat-cell class="category" *matCellDef="let element">     
           <div fxLayout="row" fxLayoutGap="20px">
             <!-- <fa-layers class="fa-fw icon" fxFlexOrder="1">
               <fa-icon [icon]="faCircle" size="2x"></fa-icon>
@@ -72,13 +72,13 @@
     </ng-container>
     <ng-container matColumnDef="amount">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
-      <mat-cell class="amount">
+      <mat-cell class="amount" *matCellDef="let element">
           17.9200 NIX
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="address">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
-      <mat-cell class="address">
+      <mat-cell class="address" *matCellDef="let element">
           To:  Ghost node 1
       </mat-cell>
     </ng-container>

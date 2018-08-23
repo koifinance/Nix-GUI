@@ -18,21 +18,5 @@ export class GhostNode1Component implements OnInit {
     this.data = data;
   }
 
-  openEdit() {
-    const data: any = {
-      forceOpen: true,
-      // actionType: 'send'
-    };
-    this.data.modalsService.forceClose();
-    this.data.modalsService.openSmall('editNode', data);
-  }
-  // openCancel() {
-  //   // const data: any = {
-  //   //   forceOpen: true,
-  //   //   // walletType: walletType,
-  //   //   // actionType: 'receive'
-  //   // };
-  //   this.data.modalsService.forceClose();
-  //   this.data.modalsService.openSmall('cancelNode');
-  // }
+
 }

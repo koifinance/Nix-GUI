@@ -9,7 +9,11 @@
       A Ghost node is the term used for NIX masternodes, which help secure the network by completing special tasks on the
       <br>blockchain and ensuring quick transactions. Node holders earn NIX for providing this service. Learn more
     </p>
-
+    <!-- <div class="warning">
+    <div class="desc1">
+        One or more of your Ghost nodes requires a new start. Trouble shooting guide
+    </div>
+    </div> -->
     <div class="card zdepth1 card1">
       <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="6">
         <div fxFlexOrder.lt-md="1" fxFlex="100">
@@ -24,20 +28,16 @@
             12.3456 BTC ($123,456)
           </div>
         </div>
-
-
         <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="30px" fxLayoutAlign="space-around center">
 
           <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
-            <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" (click)="openViewNode()">
+            <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" >
             <div class="icon-text" fxLayoutAlign="center">SET-UP NEW NODE</div>
           </div>
           <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
-            <img class="cursor-pointer" src="./assets/icons/SVG/cancel.svg" alt="Deposit" fxFlex="100" (click)="openCancel()">
+            <img class="cursor-pointer" src="./assets/icons/SVG/cancel.svg" alt="Deposit" fxFlex="100" >
             <div class="icon-text" fxLayoutAlign="center">CANCEL A NODE</div>
           </div>
-
-
         </div>
       </div>
     </div>
@@ -48,12 +48,12 @@
           <div fxLayout="row" class="label">Available node rewards</div>
           <div fxLayout="row" class="nix-row">
             <p class="nix1">+ 00
-              <span class="suffix-label"> Ghosted NIX</span>
+              <span class="suffix-label">. 1234 NIX</span>
               <p>
           </div>
           <div class="divider1" fxFlex="80"></div>
           <div fxLayout="row" class="btc">
-            <a>View reward history</a>
+            <a href="reward-history-table">View reward history</a>
           </div>
         </div>
 
@@ -64,8 +64,6 @@
             <img class="cursor-pointer1" src="./assets/icons/SVG/arrow-up-nix.svg" alt="Deposit" fxFlex="100" (click)="openWithDraw()">
             <div class="icon-text" fxLayoutAlign="center">WITHDRAW REWARDS</div>
           </div>
-
-
 
         </div>
       </div>
