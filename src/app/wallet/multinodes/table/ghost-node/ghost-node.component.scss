@@ -1,6 +1,16 @@
 .mat-table .mat-header-row {
     background: #f1f1f1;
 }
-.ng-star-inserted{
-    margin-right: 100px;
-}
+.matHeader{
+    margin-right: 150px;
+  }
+  .matCell{
+    padding-right: 125px;
+  }
+  .matCell1{
+    padding-right: 95px;
+    cursor: pointer;
+  }
+.confirm-ok {
+    color: orange;
+  }

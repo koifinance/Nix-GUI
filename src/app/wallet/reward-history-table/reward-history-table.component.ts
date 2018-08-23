@@ -9,6 +9,7 @@ import { ModalsService } from '../modals/modals.service';
 import { Transaction } from '../shared/transaction/transaction.model';
 import { FormControl } from '@angular/forms';
 import { FAQ } from '../shared/faq.model';
+import { Router } from '@angular/router';
 
 
 
@@ -24,10 +25,13 @@ export class RewardHistoryTableComponent implements OnInit {
 
   panelColor = new FormControl('red');
 
-  constructor(private modalsService: ModalsService) { }
+  constructor(private modalsService: ModalsService,private router: Router,) { }
 
   ngOnInit() {
 
   }
 
+  goToPage() {
+    this.router.navigate(['./main/multi/nodes']);
+  }
 }

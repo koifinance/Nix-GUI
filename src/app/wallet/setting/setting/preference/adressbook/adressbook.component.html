@@ -1,21 +1,33 @@
 <div class="text-content">
-    <mat-table [dataSource]="dataSource">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="Name">
-            <div *matHeaderCellDef>Name</div>
-            <div *matCellDef>Ghost node1</div>
+            <div *matHeaderCellDef class="matHeader">Name</div>
+            <div  *matCellDef="let element" class="matCell">{{element.name}}</div>
         </ng-container>
 
         <ng-container matColumnDef="Type">
-            <div *matHeaderCellDef>Type</div>
-            <div class="description-cell" *matCellDef></div>
+            <div *matHeaderCellDef class="matHeader">Type</div>
+            <div *matCellDef="let element" class="matCell">{{element.type}}</div>
         </ng-container>
 
         <ng-container matColumnDef="Address">
-            <div *matHeaderCellDef>Address</div>
-            <div class="duration-cell" *matCellDef></div>
+            <div *matHeaderCellDef class="matHeader">Address</div>
+            <div  *matCellDef="let element" class="matCell">
+                {{element.address}}
+            </div>
+            
         </ng-container>
-
+        <ng-container matColumnDef="Action">
+                <div *matHeaderCellDef class="matHeader"></div>
+                <div  *matCellDef="let element" class="matCell">
+                <fa-icon [icon]="faEdit" class="confirm-ok"></fa-icon>
+                  {{element.action}}
+                   
+                </div>
+                
+            </ng-container>
+       
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

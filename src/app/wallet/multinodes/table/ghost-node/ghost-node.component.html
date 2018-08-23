@@ -1,25 +1,45 @@
 <mat-table [dataSource]="dataSource">
-  
-  <ng-container matColumnDef="Name">
-      <div *matHeaderCellDef>Name</div>
-      <div *matCellDef>Ghost node1</div>
-  </ng-container>
 
-  <ng-container matColumnDef="Status">
-      <div *matHeaderCellDef>Status</div>
-      <div class="description-cell"
-                *matCellDef>ssssssss</div>
-  </ng-container>
+    <ng-container matColumnDef="Name">
+        <div *matHeaderCellDef class="matHeader">Name</div>
+        <div *matCellDef="let element" class="matCell">{{element.name}}</div>
+    </ng-container>
+    <ng-container matColumnDef="Status">
+        <div *matHeaderCellDef class="matHeader">Status</div>
+        <div *matCellDef="let element" class="matCell">
+            <fa-icon [icon]="faCircleSolid" class="confirm-ok"></fa-icon>
+            {{element.status}}
+        </div>
+    </ng-container>
+    <ng-container matColumnDef="Active for">
+        <div *matHeaderCellDef class="matHeader">Active</div>
+        <div *matCellDef="let element" class="matCell">
+            {{element.activefor}}
+        </div>
+    </ng-container>
+    <ng-container matColumnDef="Action1">
+        <div *matHeaderCellDef class="matHeader"></div>
+        <div *matCellDef="let element" class="matCell1" (click)="openViewNode()">
+            <fa-icon [icon]="faFileAlt"></fa-icon>
+            {{element.action1}}
+        </div>
+    </ng-container>
+    <ng-container matColumnDef="Action2">
+        <div *matHeaderCellDef class="matHeader"></div>
+        <div *matCellDef="let element" class="matCell1"  (click)="openEdit()">
+            <fa-icon [icon]="faEdit"></fa-icon>
+            {{element.action2}}
+        </div>
+    </ng-container>
+    <ng-container matColumnDef="Action3" >
+        <div *matHeaderCellDef class="matHeader"></div>
+        <div *matCellDef="let element" class="matCell1" (click)="openCancel()">
+            <fa-icon [icon]="faTimes"></fa-icon>
+            {{element.action3}}
+        </div>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-  <ng-container matColumnDef="Active for">
-      <div *matHeaderCellDef>Active for</div>
-      <div class="duration-cell"
-                *matCellDef>ssssss</div>
-  </ng-container>
-  
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
 </mat-table>
-
