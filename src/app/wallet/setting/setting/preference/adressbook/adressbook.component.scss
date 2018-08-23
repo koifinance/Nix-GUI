@@ -2,9 +2,9 @@
     background: #f1f1f1;
 }
 
-.ng-star-inserted{
-    margin-right: 100px;
-}
+// .ng-star-inserted{
+//     margin-right: 100px;
+// }
 
 .sendbtn {
     background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
@@ -54,4 +54,10 @@ mat-table {
   .day {
     letter-spacing: 2.3px;
   }
+}
+.matHeader{
+  margin-right: 150px;
+}
+.matCell{
+  padding-right: 115px;
 }

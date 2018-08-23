@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FAQ } from '../shared/faq.model';
+import { faq } from './faq';
 import { ModalsService } from '../modals/modals.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ModalsService } from '../modals/modals.service';
   styleUrls: ['./multinodes.component.scss']
 })
 export class MultinodesComponent implements OnInit {
-
+  faq: Array<FAQ> = faq;
   transactionColumns: string[] = ['Name', 'Status', 'Active for'];
   constructor(private modalsService: ModalsService) { }
 
@@ -23,20 +24,8 @@ export class MultinodesComponent implements OnInit {
     this.modalsService.openxSmall('withdrawRewards', data);
   }
 
-  openViewNode() {
-    const data: any = {
-      forceOpen: true,
-      modalsService: this.modalsService
-    };
-    this.modalsService.openSmall('ghostNode1', data);
-  }
+  
 
-  openCancel() {
-    const data: any = {
-      forceOpen: true,
-      modalsService: this.modalsService
-    };
-    this.modalsService.openSmall('cancelNode', data);
-  }
+ 
 
 }

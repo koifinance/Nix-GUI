@@ -15,7 +15,6 @@ import { FilterService } from '../../transactions/filter.service';
   styleUrls: ['./transaction-table.component.scss'],
 })
 export class TransactionTableComponent implements OnInit, OnDestroy {
-
   @Input() display: any;
   @Input() columns: string[];
   @Input() filterFunc: any;
