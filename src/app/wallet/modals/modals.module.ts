@@ -18,6 +18,8 @@ import { PasswordchangeComponent } from './passwordchange/passwordchange.compone
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AddaddressComponent } from './addaddress/addaddress.component';
 import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
+import { RestoreWalletComponent } from './restore-wallet/restore-wallet.component';
+import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.componen
     RecoveryComponent,
     AddaddressComponent,
     SyncingWalletComponent,
+    RestoreWalletComponent,
+    CreateWalletComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +62,9 @@ import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.componen
     CancelNodeComponent,
     TransactionComponent,
     WithdrawRewardsComponent,
-    SyncingWalletComponent
+    SyncingWalletComponent,
+    RestoreWalletComponent,
+    CreateWalletComponent
   ]
 })
 export class ModalsModule {

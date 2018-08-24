@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { faArrowUp, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,9 +12,11 @@ import { faArrowUp, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 export class NixPriceChartComponent implements OnInit {
   panelColor = new FormControl('usd');
   faCaretUp: any = faCaretUp;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-
+  goToMain() {
+      this.router.navigate(['./main/overview']);
+  }
 }

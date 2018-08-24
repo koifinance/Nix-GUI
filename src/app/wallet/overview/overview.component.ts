@@ -7,6 +7,7 @@
   import { TransactionService } from '../shared/transaction/transaction.service';
   import { FAQ } from '../shared/faq.model';
   import { faq } from './faq';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'wallet-overview',
@@ -27,13 +28,16 @@ export class OverviewComponent implements OnInit {
 
   constructor(
     public txService: TransactionService,
-    private modalsService: ModalsService) {
+    private modalsService: ModalsService,
+    private router: Router) {
 
   }
 
   ngOnInit() {
   }
-  
+  goToChart() {
+      this.router.navigate(['./overview/nix-price-chart']);
+  }
   openSyncingWallet() {
     const data: any = {
       forceOpen: true,
@@ -41,14 +45,6 @@ export class OverviewComponent implements OnInit {
     };
     this.modalsService.openSmall('syncingWallet', data);
   }
-
-  // openGhostNode1() {
-  //   const data: any = {
-  //     forceOpen: true,
-  //     modalsService: this.modalsService
-  //   };
-  //   this.modalsService.openSmall('ghostNode1', data);
-  // }
 
   openSend(walletType: string) {
     const data: any = {

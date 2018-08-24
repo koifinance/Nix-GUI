@@ -2,7 +2,6 @@ import { Component, ComponentFactoryResolver, ComponentRef, DoCheck, ElementRef,
   HostListener, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
 import { SendComponent } from './send/send.component';
 import { ReceiveComponent } from './receive/receive.component';
 import { SuccessComponent } from './success/success.component';
@@ -15,6 +14,8 @@ import { PasswordchangeComponent } from './passwordchange/passwordchange.compone
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AddaddressComponent } from './addaddress/addaddress.component';
 import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
+import { RestoreWalletComponent } from './restore-wallet/restore-wallet.component';
+import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 
 @Component({
   selector: 'app-modals',
@@ -32,7 +33,9 @@ import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.componen
     PasswordchangeComponent,
     RecoveryComponent,
     AddaddressComponent,
-    SyncingWalletComponent
+    SyncingWalletComponent,
+    RestoreWalletComponent,
+    CreateWalletComponent
   ]
 })
 export class ModalsComponent implements DoCheck, OnInit, OnDestroy {
