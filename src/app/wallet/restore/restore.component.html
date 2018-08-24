@@ -1,3 +1,94 @@
-<p>
-  restore works!
-</p>
+<mat-drawer-container fullscreen>
+  <mat-drawer position="end" mode="side" opened class="sidebar" fxLayout="column">
+
+    <div class="content" [fxFlex]="85">
+      <!-- <div *ngIf="step === 1">
+        <div class="text">
+          You would have been provided with this recovery phrase when you first created the wallet that you are attempting to restore.
+        </div>
+      </div> -->
+      <div *ngIf="step === 1">
+        <div class="text">
+          You would have been provided with this recovery phrase when you first created the wallet that you are attempting to restore.
+        </div>
+        <div *ngIf="incorrectChecked" class="restore-sidebar-red-text">
+          <div class="red-title">Incorrect passphrase</div>
+          <div class="red-text">
+            <p>We don’t recognise that passphrase I’m afraid - please try again</p>
+            <p>Get help</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="step === 2">
+      </div>
+    </div>
+
+    <div class="actions">
+      <div *ngIf="incorrectChecked" fxLayout="row">
+        <button fxFlex="100" class="restore-step2-btn" mat-raised-button (click)="nextStep()">
+          Next step
+        </button>
+      </div>
+      <div *ngIf="!incorrectChecked" fxLayout="row">
+        <button fxFlex="100" class="restore-btn" mat-raised-button (click)="nextStep()">
+          Next step
+        </button>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content class="content">
+    <!-- Step 2 onwards -->
+    <div>
+      <div fxLayout="row">
+        <div class="back-button" fxFlex="15">
+          <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="prevStep()">
+          <div class="caption">Back</div>
+        </div>
+
+        <div class="text" fxFlex="70">
+          <p class="title">{{ stepTitle() }}</p>
+          <p class="subtitle">Step {{ step }} of 2</p>
+          <mat-progress-bar mode="determinate" class="progress-bar" [value]="stepProgress()"></mat-progress-bar>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="text" *ngIf="2 > step">
+          <!-- <p class="body" *ngIf="step === 1">Please enter the passphrase for the wallet you want to recover</p> -->
+          <p class="body" *ngIf="step === 1">
+              <mat-checkbox [(ngModel)]="incorrectChecked">Check Incorrect passphrase</mat-checkbox>
+          </p>
+          <p class="body" *ngIf="step === 1">            
+            Please enter the passphrase for the wallet you want to recover</p>
+          <div *ngIf="!incorrectChecked" fxLayout="row wrap" fxLayoutAlign="start space-evenly" class="body">
+            <div class="phrase" fxFlex="16" *ngFor="let phrase of recoveryPhrase; index as i">
+              <small>{{ i + 1 }}</small>
+              <!-- {{ phrase }} -->
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+          <div *ngIf="incorrectChecked" fxLayout="row wrap" fxLayoutAlign="start space-evenly" class="body">
+            <div class="phrase" fxFlex="16" *ngFor="let phrase of recoveryPhrase; index as i">
+              <small>{{ i + 1 }}</small>
+              {{ phrase }}
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+
+        </div>
+        <div *ngIf="step === 2" class="password-body">
+          <div class="password-body-head">Enter the password for the wallet you are trying to restore</div>
+          <div class="password-textbox">
+            <mat-form-field class="password">
+              <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletNewPassword"
+                required>
+            </mat-form-field>
+            <mat-error *ngIf="showContentError">Field is required</mat-error>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

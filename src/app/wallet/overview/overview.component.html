@@ -8,7 +8,7 @@
     <page-header heading="Overview" [navbar]="help"></page-header>
 
     <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
-         fxLayoutGap="5%" fxFlexOrder.lt-md="3">
+         fxLayoutGap="3%" fxFlexOrder.lt-md="3">
 
       <!-- TODO move this to a balance component -->
 
@@ -90,12 +90,15 @@
               +12.53%
             </span>
           </div>
+          <div class="small-chart" (click)="goToChart()">
+            Chart
+          </div>
         </div>
       </mat-card>
     </div>
 
     <div class="content-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
-         fxLayoutGap="5%" fxFlexOrder.lt-md="4">
+         fxLayoutGap="3%" fxFlexOrder.lt-md="4">
 
       <mat-card class="item" fxFlex="65" fxFlexOrder.lt-md="1">
         <div class="recent-transactions">

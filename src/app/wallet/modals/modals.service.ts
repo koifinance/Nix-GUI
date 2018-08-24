@@ -16,6 +16,8 @@ import { PasswordchangeComponent } from './passwordchange/passwordchange.compone
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AddaddressComponent } from './addaddress/addaddress.component';
 import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
+import { RestoreWalletComponent } from './restore-wallet/restore-wallet.component';
+import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 
 @Injectable()
 export class ModalsService implements OnDestroy {
@@ -34,7 +36,9 @@ export class ModalsService implements OnDestroy {
     passwordChange : PasswordchangeComponent,
     recoveryPharse : RecoveryComponent,
     newAddress : AddaddressComponent,
-    syncingWallet: SyncingWalletComponent
+    syncingWallet: SyncingWalletComponent,
+    restoreWallet: RestoreWalletComponent,
+    createWallet: CreateWalletComponent
 
   };
   private message: Subject<any> = new Subject<any>();

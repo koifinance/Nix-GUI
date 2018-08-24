@@ -7,7 +7,8 @@ export const faq: Array<FAQ> = [
   },
   {
     question: 'Adding NIX to your vault',
-    answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat tristique cursus.`
+    answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat tristique cursus. 
+    Phasellus volutpat suscipit sodales. Sed ac orci faucibus, rutrum est porttitor, tempus sem. .`
   },
   {
     question: 'Sending anonymously',
