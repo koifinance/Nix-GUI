@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { ModalsService } from '../modals/modals.service';
 
 @Component({
   selector: 'wallet-create',
@@ -77,7 +78,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   private destroyed: boolean = false;
 
   constructor(
-    private router: Router,
+    private router: Router, private modalsService: ModalsService
   ) {
   }
 
@@ -98,9 +99,14 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   nextStep() {
     if (this.step === 4) {
-      this.step++;
-      this.goTo('main');
-      return;
+        const data: any = {
+          forceOpen: true,
+          modalsService: this.modalsService
+        };
+        this.modalsService.openSmall('createWallet', data);
+      // this.step++;
+      // this.goTo('main');
+      // return;
     }
 
     if (!this.walletWizard[this.step].valid()) {

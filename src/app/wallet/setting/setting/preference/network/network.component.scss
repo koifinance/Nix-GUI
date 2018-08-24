@@ -44,8 +44,7 @@
   }
 
   .spaces{
-   margin-right: 25px;
-   margin-top: 5px;
+    margin: 5px 15px;
   }
   .spaceing1{
     margin-left: 25px;
@@ -66,7 +65,7 @@
     margin-left: 16px;
   }
 
-  .custom-input-group1 input {
+  .custom-input-group1 input{
     width: 100px;
     height: 40px;
     background: #fcfcfc;
@@ -74,7 +73,9 @@
     border-radius: 3px;
     margin-left: 16px;
   }
-  
+  .placehold-pad {
+    padding-left: 15px;
+  }
   .custom-input-group input {
        text-indent: 15px;
     }
