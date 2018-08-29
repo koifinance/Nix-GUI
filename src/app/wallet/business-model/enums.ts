@@ -4,10 +4,14 @@ export enum TxType {
   ANON = 'anon'
 }
 
+export enum payType {
+  sendPayment = 'sendpayment'
+}
 
 export enum ApiEndpoints {
-  SendTypeTo = 'sendtypeto',
+  SendTypeTo = 'sendtoaddress',
   ListStealthAddresses = 'liststealthaddresses',
   FilterTransactions = 'filtertransactions',
-
+  ListTransactions = 'listtransactions',
+  GetWalletInfo = 'getwalletinfo'
 }

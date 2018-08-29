@@ -9,8 +9,9 @@ export const environment = {
   envName: 'dev',
   version: require('../../package.json').version,
   nixHost: 'localhost',
-  nix_MainNet_Port :4201,
-  nixPort: 4200,
+  releasesUrl: 'https://api.github.com/repos/particl/particl-desktop/releases/latest',
+  nix_MainNet_Port :51735,
+  nixPort: 51935,
   rpcUserName :'test',
-  rpcPassword :'12345678',
+  rpcPassword :'test',
 };
