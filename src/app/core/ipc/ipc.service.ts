@@ -6,7 +6,6 @@ import { ListenerEvent, ObservableFactoryFunction, Receiver } from './ipc.types'
 
 // RxIPC related stuffs
 
-
 @Injectable()
 export class IpcService {
 
