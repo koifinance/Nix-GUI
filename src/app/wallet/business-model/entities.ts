@@ -256,3 +256,82 @@ export class TransactionBuilder implements ITransactionBuilder {
     }
 }
 
+
+// main wallet infor ui
+export interface walletinfo {
+    walletname: string,
+    walletversion: number,
+    balance: number,
+    unconfirmed_balance : number,
+    immature_balance: number,
+    txcount: number,
+    keypoololdest: number,
+    keypoolsize: number,
+    keypoolsize_hd_internal: number,
+    paytxfee: number,
+    hdmasterkeyid: string
+}
+
+export class walletinformation implements walletinfo {
+
+    walletname: string;
+    walletversion: number;
+    balance: number;
+    unconfirmed_balance : number;
+    immature_balance: number;
+    txcount: number;
+    keypoololdest: number;
+    keypoolsize: number;
+    keypoolsize_hd_internal: number;
+    paytxfee: number;
+    hdmasterkeyid: string;
+
+    constructor(data?: walletinfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.walletname = data["walletname"];
+            this.walletversion = data["walletversion"];
+            this.balance = data["balance"];
+            this.unconfirmed_balance = data["unconfirmed_balance"];
+            this.immature_balance = data["immature_balance"];
+            this.txcount = data["txcount"];
+            this.keypoololdest = data["keypoololdest"];
+            this.keypoolsize = data["keypoolsize"];
+            this.keypoolsize_hd_internal = data["keypoolsize_hd_internal"];
+            this.paytxfee = data["paytxfee"];
+            this.hdmasterkeyid = data["hdmasterkeyid"];
+        }
+    }
+
+    static fromJS(data: any): walletinformation {
+        let result = new walletinformation();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        this.walletname = data["walletname"];
+            this.walletversion = data["walletversion"];
+            this.balance = data["balance"];
+            this.unconfirmed_balance = data["unconfirmed_balance"];
+            this.immature_balance = data["immature_balance"];
+            this.txcount = data["txcount"];
+            this.keypoololdest = data["keypoololdest"];
+            this.keypoolsize = data["keypoolsize"];
+            this.keypoolsize_hd_internal = data["keypoolsize_hd_internal"];
+            this.paytxfee = data["paytxfee"];
+            this.hdmasterkeyid = data["hdmasterkeyid"];
+        return data;
+    }
+}
+
+

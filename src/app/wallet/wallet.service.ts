@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
-import { TransactionBuilder } from './business-model/entities';
+import { TransactionBuilder, walletinformation,  } from './business-model/entities';
 import { ApiEndpoints } from './business-model/enums';
 import { WalletLogService } from './wallet.log.service';
 
@@ -20,12 +20,12 @@ export class WalletService {
 
   /* Sends a transaction */
   public sendTransaction(tx: TransactionBuilder) {
-    
+    debugger
     tx.estimateFeeOnly = false;
 
     this.send(tx)
       .subscribe(
-        success => this.rpc_send_success(success, tx.toAddress, tx.amount),
+        // success => this.rpc_send_success(success, tx.toAddress, tx.amount),
         error => this.rpc_send_failed(error.message, tx.toAddress, tx.amount));
   }
 
@@ -61,7 +61,7 @@ export class WalletService {
         tx.toAddress = stealthAddress;
         // execute transaction
         this.send(tx).subscribe(
-          success => this.rpc_send_success(success, stealthAddress, tx.amount),
+          // success => this.rpc_send_success(success, stealthAddress, tx.amount),
           error => this.rpc_send_failed(error.message, stealthAddress, tx.amount));
       },
       error => this.rpc_send_failed('transferBalance, Failed to get stealth address')
@@ -83,6 +83,7 @@ export class WalletService {
    * Estimates if estimateFeeOnly === true.
    */
   private send(tx: TransactionBuilder): Observable<any> {
+    debugger
     return this._rpc.call(ApiEndpoints.SendTypeTo, [tx.input, tx.output, [{
       address: tx.toAddress,
       amount: tx.amount,
@@ -91,13 +92,38 @@ export class WalletService {
     }], tx.comment, tx.commentTo, tx.ringsize, 64, tx.estimateFeeOnly]);
   }
 
-  private rpc_send_success(json: any, address: string, amount: number) {
+ 
+
+   /* get wallet info */
+   public getwalletinformation(wallet : walletinformation) {
+    this.walletinfo(wallet)
+      .subscribe(
+        success => this.rpc_send_success(success),
+        error => this.rpc_send_failed(error.message));
+      }
+  
+  private walletinfo(wallet : walletinformation): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GetWalletInfo,).map(
+      wallet => wallet);
+  }
+
+
+  /* get recent transaction info */
+  public getrecentTransaction() {
+    this.listTransaction()
+      .subscribe(
+        success => this.rpc_send_success(success),
+        error => this.rpc_send_failed(error.message));
+      }
+  
+  private listTransaction(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.ListTransactions).map(
+      transaction => transaction);
+  }
+
+  private rpc_send_success(json: any) {
     this.log.d(`rpc_send_success, succesfully executed transaction with txid ${json}`);
 
-    // Truncate the address to 16 characters only
-    const trimAddress = address.substring(0, 16) + '...';
-    const txsId = json.substring(0, 45) + '...';
-    // this.flashNotification.open(`Succesfully sent ${amount} PART to ${trimAddress}!\nTransaction id: ${txsId}`, 'warn');
   }
 
   private rpc_send_failed(message: string, address?: string, amount?: number) {
@@ -111,7 +137,4 @@ export class WalletService {
       // this.fixWallet();
     }
   }
-
-
-
 }
