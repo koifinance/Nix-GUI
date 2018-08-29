@@ -9,7 +9,11 @@ import { faq } from './faq';
 import { Router } from '@angular/router';
 import { IWalletInfo, WalletInfo } from '../business-model/entities';
 import { WalletService } from '../wallet.service';
-
+import { TransactionBuilder } from '../business-model/entities';
+import { payType } from '../business-model/enums';
+import { RpcStateService } from '../../core/core.module';
+import { Amount } from '../shared/util/utils';
+import { Log } from 'ng2-logger';
 @Component({
   selector: 'wallet-overview',
   templateUrl: './overview.component.html',
@@ -25,22 +29,40 @@ export class OverviewComponent implements OnInit {
   faArrowDown: any = faArrowDown;
   faBtc: any = faBtc;
   faq: Array<FAQ> = faq;
+  TransactionBuilder:TransactionBuilder;
   transactionColumns: string[] = ['date', 'category', 'confirmations', 'amount'];
-
+  private destroyed: boolean = false;
   private _walletInfo: IWalletInfo = new WalletInfo();
-
+  private _balance: Amount = new Amount(0);
+  private log: any = Log.create(`balance.component `);
+  get balance() {
+    return this._balance;
+  }
   constructor(
     private modalsService: ModalsService,
     private router: Router ,
+    private walletSerices: WalletService,
+    private _rpcState: RpcStateService
     ) {
 
   }
+  
   ngOnInit() {
-    // this._walletInfo.walletBalance=0;
+    this.getwalletinformation();
   }
+
+  private getwalletinformation() {
+   this._rpcState.observe('getwalletinfo')
+   .takeWhile(() => !this.destroyed)
+    .subscribe(  
+      balance => this._balance = new Amount(balance),
+    error => this.log.error('Failed to get balance, ', error));
+  }
+
   goToChart() {
     this.router.navigate(['./overview/nix-price-chart']);
   }
+  
   openSyncingWallet() {
     const data: any = {
       forceOpen: true,
@@ -108,6 +130,21 @@ export class OverviewComponent implements OnInit {
       return faDollarSign;
     }
     return '';
+  }
+
+  private sendTransaction(): void {
+    debugger
+    if (payType.sendPayment) {
+      // edit label of address
+      this.walletSerices.sendTransaction(this.TransactionBuilder);
+    } else {
+      this.walletSerices.transferBalance(
+        this.TransactionBuilder);
+    }
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true;
   }
 }
 
