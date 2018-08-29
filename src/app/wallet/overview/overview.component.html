@@ -1,17 +1,12 @@
 <mat-drawer-container>
-
   <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
     <help-bar [navbar]="help" [faq]="faq"></help-bar>
   </mat-drawer>
 
   <mat-drawer-content class="overview">
     <page-header heading="Overview" [navbar]="help"></page-header>
-
-    <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
-         fxLayoutGap="3%" fxFlexOrder.lt-md="3">
-
+    <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
       <!-- TODO move this to a balance component -->
-
       <mat-card fxFlexOrder.lt-md="1" fxFlex="30" class="item total">
         <div class="balance">
           <p class="description" style="color:white">Wallet</p>
@@ -33,20 +28,17 @@
           </div>
           <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
             <button class="send-btn" mat-raised-button (click)="openSend('wallet')">
-              <img src="./assets/icons/SVG/arrow-up-nix.svg" alt="sent">
-              Send
+              <img src="./assets/icons/SVG/arrow-up-nix.svg" alt="sent"> Send
             </button>
             <button class="receive-btn" mat-raised-button (click)="openReceive('wallet')">
-              <img src="./assets/icons/SVG/arrow-down-nix.svg" alt="Received">
-              Receive
+              <img src="./assets/icons/SVG/arrow-down-nix.svg" alt="Received"> Receive
             </button>
             <button mat-raised-button class="dots-btn small" (click)="openSyncingWallet()">...</button>
-          </div>         
+          </div>
         </div>
       </mat-card>
 
       <mat-card fxFlexOrder.lt-md="2" fxFlex="30" class="item anon">
-
         <div class="balance">
           <p class="description">Ghost Vault</p>
           <span class="number big">6,000</span>
@@ -60,27 +52,22 @@
           <span class="number small"> BTC</span>
           <span class="number small"> ($30,672)</span>
           <div class="pending margin-top-20px"></div>
-
           <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
             <button class="send-btn" mat-raised-button (click)="openSend('vault')">
-              <img src="./assets/icons/SVG/arrow-up-white.svg" alt="Sent">
-              Send
+              <img src="./assets/icons/SVG/arrow-up-white.svg" alt="Sent"> Send
             </button>
             <button class="receive-btn" mat-raised-button (click)="openReceive('vault')">
-              <img src="./assets/icons/SVG/arrow-down-black.svg" alt="Received">
-              Deposit
+              <img src="./assets/icons/SVG/arrow-down-black.svg" alt="Received"> Deposit
             </button>
             <button mat-raised-button class="dots-btn small">...</button>
           </div>
         </div>
       </mat-card>
-
       <mat-card fxFlexOrder.lt-md="3" fxFlex="30" class="item">
         <div class="price">
           <p class="description">NIX Price</p>
           <span class="number big">$51.12</span>
           <div class="divider"></div>
-
           <div fxLayout="row" fxLayoutGap="5px">
             <span class="point small" fxFlex="50" fxFlexOrder="1">
               <fa-icon [icon]="faBtc"></fa-icon>
@@ -97,22 +84,16 @@
       </mat-card>
     </div>
 
-    <div class="content-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
-         fxLayoutGap="3%" fxFlexOrder.lt-md="4">
-
+    <div class="content-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="4">
       <mat-card class="item" fxFlex="65" fxFlexOrder.lt-md="1">
         <div class="recent-transactions">
           <p class="description">Recent Transactions</p>
-
-          <transaction-table
-            [display]="{numTransactions: 5, columns: transactionColumns, header: false}"></transaction-table>
-
+          <transaction-table [display]="{numTransactions: 5, columns: transactionColumns, header: false}"></transaction-table>
           <div>
             <a class="link text-uppercase" routerLink="/transactions">Show All</a>
           </div>
         </div>
       </mat-card>
-
       <mat-card class="item" fxFlexOrder.lt-md="2" fxFlex="30">
         <div class="node-status">
           <p class="description">Node Status</p>
@@ -126,11 +107,6 @@
           </div>
         </div>
       </mat-card>
-
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
-
-
-
-

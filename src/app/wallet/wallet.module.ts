@@ -31,6 +31,8 @@ import { NetworkComponent } from './setting/setting/preference/network/network.c
 import { AboutNixComponent } from './about-nix/about-nix.component';
 import { HelpComponent } from './help/help.component';
 import { NixPriceChartComponent } from './overview/nix-price-chart/nix-price-chart.component';
+import { WalletLogService } from './wallet.log.service';
+import { WalletService } from './wallet.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,7 @@ import { NixPriceChartComponent } from './overview/nix-price-chart/nix-price-cha
     MainComponent,
     WelcomeComponent,
   ],
-  providers: [FilterService],
+  providers: [FilterService,WalletService,WalletLogService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
