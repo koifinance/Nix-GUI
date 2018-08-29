@@ -7,5 +7,10 @@ declare const require: any;
 export const environment = {
   production: false,
   envName: 'dev',
-  version: require('../../package.json').version
+  version: require('../../package.json').version,
+  nixHost: 'localhost',
+  nix_MainNet_Port :4201,
+  nixPort: 4200,
+  rpcUserName :'test',
+  rpcPassword :'12345678',
 };
