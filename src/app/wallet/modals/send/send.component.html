@@ -7,7 +7,7 @@
     <div class="amountsend">
       <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="400">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="400" [(ngModel)]="sendToNix.amount">
       </div>
       <div fxLayout.gt-md="row">
         <div style="color:#b2b2b2" fxFlex="80">Available: 12,000.01 NIX</div>
@@ -18,7 +18,7 @@
     <div class="sendto">
       <p>To</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="NXefjjohhdofhgij">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="NXefjjohhdofhgij"  [(ngModel)]="sendToNix.address">
       </div>
       <div class="saveaddress">
         <mat-checkbox>Save to address book for future use</mat-checkbox>
@@ -49,7 +49,7 @@
 
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
     <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
-    <button class="sendbtn" mat-raised-button fxFlex="40" (click)="openSuccess('wallet')">Send NIX</button>
+    <button class="sendbtn" mat-raised-button fxFlex="40" (click)="sendData()">Send NIX</button>
   </div>
 
 </div>

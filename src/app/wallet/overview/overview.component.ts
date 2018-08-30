@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
 import { faBtc } from '@fortawesome/free-brands-svg-icons';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { IWalletInfo, WalletInfo } from '../business-model/entities';
 import { WalletService } from '../wallet.service';
 import { TransactionBuilder } from '../business-model/entities';
-import { payType } from '../business-model/enums';
+import { payType, ApiEndpoints } from '../business-model/enums';
 import { RpcStateService } from '../../core/core.module';
 import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
@@ -19,7 +19,7 @@ import { Log } from 'ng2-logger';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, OnDestroy {
 
   faCircle: any = faCircle;
   faQuestion: any = faQuestion;
@@ -29,10 +29,10 @@ export class OverviewComponent implements OnInit {
   faArrowDown: any = faArrowDown;
   faBtc: any = faBtc;
   faq: Array<FAQ> = faq;
-  TransactionBuilder:TransactionBuilder;
+  TransactionBuilder: TransactionBuilder;
   transactionColumns: string[] = ['date', 'category', 'confirmations', 'amount'];
   private destroyed: boolean = false;
-  private _walletInfo: IWalletInfo = new WalletInfo();
+  walletInfo: IWalletInfo = new WalletInfo();
   private _balance: Amount = new Amount(0);
   private log: any = Log.create(`balance.component `);
   get balance() {
@@ -40,29 +40,32 @@ export class OverviewComponent implements OnInit {
   }
   constructor(
     private modalsService: ModalsService,
-    private router: Router ,
+    private router: Router,
     private walletSerices: WalletService,
     private _rpcState: RpcStateService
-    ) {
+  ) {
 
   }
-  
+
   ngOnInit() {
     this.getwalletinformation();
   }
 
   private getwalletinformation() {
-   this._rpcState.observe('getwalletinfo')
-   .takeWhile(() => !this.destroyed)
-    .subscribe(  
-      balance => this._balance = new Amount(balance),
-    error => this.log.error('Failed to get balance, ', error));
+    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(walletInfo => {
+        debugger;
+        //this._balance = new Amount(balance)
+        this.walletInfo = new WalletInfo(walletInfo).toJSON();
+      },
+        error => this.log.error('Failed to get balance, ', error));
   }
 
   goToChart() {
     this.router.navigate(['./overview/nix-price-chart']);
   }
-  
+
   openSyncingWallet() {
     const data: any = {
       forceOpen: true,
