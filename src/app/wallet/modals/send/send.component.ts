@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-// import { ModalsService } from '../modals.service';
+import { WalletService } from '../../wallet.service';
+import { RpcStateService } from '../../../core/core.module';
+import { WalletSendToNix, IWalletSendToNix } from '../../business-model/entities';
+import { Log } from 'ng2-logger';
 
 @Component({
   selector: 'app-send',
@@ -11,8 +13,13 @@ import { Component, OnInit } from '@angular/core';
 export class SendComponent implements OnInit {
 
   data: any;
+  private log: any = Log.create(`send to nix `);
+  sendToNix: IWalletSendToNix = new WalletSendToNix();
+  constructor(
+    private walletServices: WalletService,
+    private _rpcState: RpcStateService
+  ) {
 
-  constructor() {
   }
 
   ngOnInit() {
@@ -20,6 +27,13 @@ export class SendComponent implements OnInit {
 
   setData(data: any) {
     this.data = data;
+  }
+
+  sendData() {
+     var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {  
+      this.openSuccess('wallet');
+    }, error => this.log.error('Failed to get balance, ', error));
+    
   }
 
   openSuccess(walletType: string) {

@@ -94,7 +94,7 @@ exports.call = function(method, params, callback) {
       try {
         console.log('status code :' +response.statusCode);
         console.log('data :' +  data)
-        // data = JSON.parse(data);
+        data = JSON.parse(data);
       } catch(e) {
         log.error('ERROR: should not happen', e, data);
         callback(e);

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
-import { TransactionBuilder, walletinformation,  } from './business-model/entities';
+import { TransactionBuilder, walletinformation, IWalletSendToNix,  } from './business-model/entities';
 import { ApiEndpoints } from './business-model/enums';
 import { WalletLogService } from './wallet.log.service';
 
@@ -84,7 +84,7 @@ export class WalletService {
    */
   private send(tx: TransactionBuilder): Observable<any> {
     debugger
-    return this._rpc.call(ApiEndpoints.SendTypeTo, [tx.input, tx.output, [{
+    return this._rpc.call(ApiEndpoints.ListTransactions, [tx.input, tx.output, [{
       address: tx.toAddress,
       amount: tx.amount,
       subfee: tx.subtractFeeFromAmount,
@@ -114,7 +114,7 @@ export class WalletService {
       .subscribe(
         success => this.rpc_send_success(success),
         error => this.rpc_send_failed(error.message));
-      }
+  }
   
   private listTransaction(): Observable<any> {
     return this._rpc.call(ApiEndpoints.ListTransactions).map(
@@ -130,11 +130,16 @@ export class WalletService {
     // this.flashNotification.open(`Transaction Failed ${message}`, 'err');
     this.log.er('rpc_send_failed, failed to execute transaction!');
     this.log.er(message);
-
     /* Detect bug in older wallets with Blind inputs */
     // AddBlindedInputs: GetBlind failed for
     if (message.search('AddBlindedInput') !== -1) {
       // this.fixWallet();
     }
   }
+
+  //send amount to NIX
+  public SendToNix(wallet : IWalletSendToNix): Observable<any> {
+    return this._rpc.call(ApiEndpoints.SendToAddress).map(wallet => wallet);
+  }
+
 }

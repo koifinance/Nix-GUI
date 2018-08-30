@@ -9,7 +9,7 @@ export enum payType {
 }
 
 export enum ApiEndpoints {
-  SendTypeTo = 'sendtoaddress',
+  SendToAddress = 'sendtoaddress',
   ListStealthAddresses = 'liststealthaddresses',
   FilterTransactions = 'filtertransactions',
   ListTransactions = 'listtransactions',
