@@ -10,7 +10,7 @@
       <mat-card fxFlexOrder.lt-md="1" fxFlex="30" class="item total">
         <div class="balance">
           <p class="description" style="color:white">Wallet</p>
-          <span class="number big" style="color:white">{{balance.getIntegerPart()}}</span>
+          <span class="number big" style="color:white">{{ walletInfo.balance}}</span>
           <span class="point big" style="color:white">.</span>
           <span class="number medium" style="color:white">1234</span>
           <span class="medium" style="color:white"> NIX</span>
@@ -41,7 +41,7 @@
       <mat-card fxFlexOrder.lt-md="2" fxFlex="30" class="item anon">
         <div class="balance">
           <p class="description">Ghost Vault</p>
-          <span class="number big">6,000</span>
+          <span class="number big">{{ walletInfo.ghost_vault}}</span>
           <span class="point big">.</span>
           <span class="number medium">00</span>
           <span class="number medium"> Ghosted NIX</span>

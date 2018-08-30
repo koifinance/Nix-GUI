@@ -45,7 +45,7 @@
       <div fxFlexOrder.lt-md="1" fxFlex="25">
         <div fxLayout="row" class="label">Balance</div>
         <div fxLayout="row" class="nix-row">
-          <p class="nix">5000 <span class="suffix-label"> Ghosted NIX</span>
+          <p class="nix"> {{walletInfo.ghost_vault}} <span class="suffix-label"> Ghosted NIX</span>
           <p>
         </div>
         <div class="divider" fxFlex="80"></div>
@@ -56,7 +56,7 @@
       <div fxFlexOrder.lt-md="2" fxFlex="25">
         <div fxLayout="row" class="label">Pending (unconfirmed)</div>
         <div fxLayout="row" class="nix-row">
-          <p class="nix">0<span class="suffix-label"></span>
+          <p class="nix"> {{walletInfo.ghost_vault_unconfirmed}} <span class="suffix-label"></span>
           <p>
         </div>
         <div class="divider" fxFlex="80"></div>
