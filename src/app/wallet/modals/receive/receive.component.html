@@ -12,8 +12,7 @@
       </div>
 
       <div fxLayout.gt-md="row" fxLayoutGap="5px">
-        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value"
-               value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" [(ngModel)]="receivedNixInfo.addresses[0]">
         <button class="dotbtn" fxFlex="10">...</button>
         <button class="copybtn" fxFlex="15">Copy</button>
       </div>
@@ -28,8 +27,7 @@
 
       </div>
       <div fxLayout.gt-md="row" fxLayoutGap="5px">
-        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value"
-               value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" [(ngModel)]="receivedNixInfo.addresses[1]">
         <button class="dotbtn" fxFlex="10">...</button>
         <button class="copybtn" fxFlex="15">Copy</button>
       </div>
@@ -45,8 +43,7 @@
       </div>
 
       <div fxLayout.gt-md="row" fxLayoutGap="5px">
-        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value"
-               value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" [(ngModel)]="receivedNixInfo.addresses[2]">
         <button class="dotbtn" fxFlex="10">...</button>
         <button class="copybtn" fxFlex="15">Copy</button>
       </div>
@@ -55,7 +52,7 @@
 
 
     <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-      <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
+      <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()">Cancel</button>
       <button class="sendbtn" mat-raised-button fxFlex="40" (click)="openSuccess('wallet')">New address</button>
     </div>
 
@@ -70,12 +67,12 @@
     <div _ngcontent-c7="" class="divider"></div>
 
     <div class="amountsend">
-      <p>Amount to Deposit</p>
+      <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
         <mat-form-field fxFlex="100">
-          <mat-select placeholder="Favorite food">
-            <mat-option *ngFor="let food of foods" [value]="food.value">
-              {{ food.viewValue }}
+          <mat-select placeholder="Amount">
+            <mat-option *ngFor="let Amount of Amounts" [value]="Amount.value" >
+              {{ Amount.viewValue }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -108,7 +105,7 @@
   </div>
 
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-    <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
+    <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()">Cancel</button>
     <button class="sendbtn" mat-raised-button fxFlex="40" (click)="openSuccess('vault')">Deposit to Vault</button>
   </div>
 

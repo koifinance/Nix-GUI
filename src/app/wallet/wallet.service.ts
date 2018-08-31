@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
-import { TransactionBuilder, walletinformation, IWalletSendToNix,  } from './business-model/entities';
+import { TransactionBuilder, walletinformation, IWalletSendToNix, IRecieveNixToWallet, IAddNode } from './business-model/entities';
 import { ApiEndpoints } from './business-model/enums';
 import { WalletLogService } from './wallet.log.service';
 
@@ -20,7 +20,6 @@ export class WalletService {
 
   /* Sends a transaction */
   public sendTransaction(tx: TransactionBuilder) {
-    debugger
     tx.estimateFeeOnly = false;
 
     this.send(tx)
@@ -83,7 +82,6 @@ export class WalletService {
    * Estimates if estimateFeeOnly === true.
    */
   private send(tx: TransactionBuilder): Observable<any> {
-    debugger
     return this._rpc.call(ApiEndpoints.ListTransactions, [tx.input, tx.output, [{
       address: tx.toAddress,
       amount: tx.amount,
@@ -137,9 +135,30 @@ export class WalletService {
     }
   }
 
-  //send amount to NIX
-  public SendToNix(wallet : IWalletSendToNix): Observable<any> {
-    return this._rpc.call(ApiEndpoints.SendToAddress).map(wallet => wallet);
+  // Send for wallet
+    public SendToNix(wallet : IWalletSendToNix): Observable<any> {
+    let array =[];
+    array.push(wallet.amount);
+    array.push(wallet.address);
+    return this._rpc.call(ApiEndpoints.SendToAddress, array);
   }
 
+  // Send from Ghost Vault
+    public SendToNixVault(vault : IWalletSendToNix): Observable<any> {
+    let array =[];
+    array.push(vault.amount);
+    array.push(vault.address);
+    return this._rpc.call(ApiEndpoints.SendToAddress,array);
+  }
+  
+  public receivedNix(receiveNix : IRecieveNixToWallet): Observable<any> {
+    let array =[];
+    array.push(receiveNix.account);
+    return this._rpc.call(ApiEndpoints.receivedNix,[receiveNix.account]);
+  }
+
+  // add a node
+  public addNode(adnode : IAddNode): Observable<any> {
+    return this._rpc.call(ApiEndpoints.addNode,[adnode.node,adnode.action]);
+  }
 }
