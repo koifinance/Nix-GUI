@@ -81,6 +81,7 @@
     border: 1px solid #CBCBCB;
     margin-bottom: 0px;
     border-radius: 5px;
+    width: 348px;
   }
 
   .amountsend {
@@ -101,7 +102,8 @@
     font-size: 14px;
     border-radius: 5px;
     border: none;
-
+    width: 60px;
+    height: 40px;
   }
 
   .dotbtn {
@@ -110,6 +112,8 @@
     font-size: 14px;
     border-radius: 5px;
     border: none;
+    width: 50px;
+    height: 40px;
   }
 
   .lastused {
@@ -209,14 +213,7 @@
     border: 1px solid #CBCBCB;
     margin-bottom: 0px;
     border-radius: 5px;
-  }
-
-  .modalinput {
-    font-size: 15px;
-    padding-left: 12px;
-    height: 40px;
-    border: 1px solid #979797;
-    margin-bottom: 0px;
+    width: 300px;
   }
 
   .modallabel {

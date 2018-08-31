@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faq } from './faq';
 import { FAQ } from '../shared/faq.model';
 import { ModalsService } from '../modals/modals.service';
+import { RpcStateService, SnackbarService } from '../../core/core.module';
+import { AddNode, IAddNode } from '../business-model/entities';
+import { WalletService } from '../wallet.service';
 
 @Component({
   selector: 'wallet-node',
   templateUrl: './node.component.html',
   styleUrls: ['./node.component.scss']
 })
-export class NodesComponent implements OnInit {
+export class NodesComponent implements OnInit, OnDestroy {
 
   faq: Array<FAQ> = faq;
 
@@ -38,18 +41,17 @@ export class NodesComponent implements OnInit {
   ];
   private log: any = Log.create('create.component');
   private destroyed: boolean = false;
+  addnode: IAddNode = new AddNode();
 
   constructor(
     private router: Router,
     private modalsService: ModalsService,
+    private walletServices: WalletService,
+    private _rpcState: RpcStateService, private flashNotification: SnackbarService,
   ) {
   }
 
   ngOnInit() {
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed = true;
   }
 
   togglePassword() {
@@ -61,6 +63,23 @@ export class NodesComponent implements OnInit {
   }
 
   nextStep() {
+    if(this.step===1) {
+        this.addNODE();
+       
+    }
+  }
+
+  // add node
+  addNODE() {
+    var result = this.walletServices.addNode(this.addnode).subscribe(res => {  
+      this.nextNode();
+    }, error => {
+     this.flashNotification.open('Failed to add node!', 'err');
+     this.log.er('Failed to add node', error)
+   });
+  }
+
+  nextNode() {
     if (this.step === 4) {
       this.step++;
       this.goTo('main');
@@ -75,7 +94,6 @@ export class NodesComponent implements OnInit {
     this.showContentError = false;
     this.showSidebarError = false;
   }
-
   prevStep() {
     this.showSidebarError = false;
     this.showContentError = false;
@@ -121,6 +139,10 @@ export class NodesComponent implements OnInit {
 
   goToNextpage(route: string) {
     this.router.navigate(['./main/multi/nodes']);
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
   }
 
 }

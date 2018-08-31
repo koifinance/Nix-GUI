@@ -48,7 +48,7 @@
   </div>
 
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-    <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
+    <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()" >Cancel</button>
     <button class="sendbtn" mat-raised-button fxFlex="40" (click)="sendData()">Send NIX</button>
   </div>
 
@@ -63,7 +63,7 @@
     <div class="amountsend">
       <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="1">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="1" [(ngModel)]="sendToNixvault.amount">
       </div>
       <div fxLayout.gt-md="row">
         <div style="color:#b2b2b2" fxFlex="80">Available: 6,000.01 NIX</div>
@@ -74,7 +74,7 @@
     <div class="sendto">
       <p>To</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="NXefjjohhdofhgij">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="NXefjjohhdofhgij" [(ngModel)]="sendToNixvault.address">
       </div>
       <div class="saveaddress">
         <mat-checkbox>Save to address book for future use</mat-checkbox>
@@ -104,8 +104,8 @@
   </div>
 
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-    <button class="cancelbtn" mat-raised-button fxFlex="48">Cancel</button>
-    <button class="sendbtn" mat-raised-button fxFlex="48" (click)="openSuccess('vault')">Send ghosted NIX</button>
+    <button class="cancelbtn" mat-raised-button fxFlex="48" (click)="close()">Cancel</button>
+    <button class="sendbtn" mat-raised-button fxFlex="48" (click)="sendGhostVaultData()">Send ghosted NIX</button>
   </div>
 
 </div>

@@ -90,13 +90,13 @@
         <p class="htxt">Give your Ghost node a name</p>
         <p>
           <mat-form-field class="password">
-            <input matInput [type]="text" placeholder="My Ghost node" [(ngModel)]="walletNewPassword">
+            <input matInput [type]="text" placeholder="My Ghost node" [(ngModel)]="addnode.action">
           </mat-form-field>
         </p>
         <p class="htxt">Static IP address of your VPS</p>
         <p>
           <mat-form-field class="password inputWidth">
-            <input matInput [type]="text" placeholder="IP address" [(ngModel)]="walletRepeatPassword">
+            <input matInput [type]="text" placeholder="IP address" [(ngModel)]="addnode.node">
           </mat-form-field>
         </p>
         <p>

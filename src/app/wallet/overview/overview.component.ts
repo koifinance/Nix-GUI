@@ -41,7 +41,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   constructor(
     private modalsService: ModalsService,
     private router: Router,
-    private walletSerices: WalletService,
+    private walletServices: WalletService,
     private _rpcState: RpcStateService
   ) {
 
@@ -55,7 +55,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
-        debugger;
         //this._balance = new Amount(balance)
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
       },
@@ -136,12 +135,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   private sendTransaction(): void {
-    debugger
     if (payType.sendPayment) {
       // edit label of address
-      this.walletSerices.sendTransaction(this.TransactionBuilder);
+      this.walletServices.sendTransaction(this.TransactionBuilder);
     } else {
-      this.walletSerices.transferBalance(
+      this.walletServices.transferBalance(
         this.TransactionBuilder);
     }
   }
