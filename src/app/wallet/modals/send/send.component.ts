@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ComponentRef, ViewContainerRef } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
+
 import { WalletService } from '../../wallet.service';
-import { RpcStateService } from '../../../core/core.module';
+import { RpcStateService, SnackbarService } from '../../../core/core.module';
+
 import { WalletSendToNix, IWalletSendToNix } from '../../business-model/entities';
+import { wallet } from '../../datamodel/model';
 import { Log } from 'ng2-logger';
 
 @Component({
@@ -10,17 +14,22 @@ import { Log } from 'ng2-logger';
   styleUrls: ['./send.component.scss'],
   // providers: [ModalsService]
 })
-export class SendComponent implements OnInit {
-
+export class SendComponent implements OnInit, OnDestroy {
   data: any;
-  private log: any = Log.create(`send to nix `);
   sendToNix: IWalletSendToNix = new WalletSendToNix();
+  sendToNixvault: IWalletSendToNix = new WalletSendToNix();
+
+  private log: any = Log.create(`send to nix `);
+  private destroyed: boolean = false;
+  private modalContainer: ViewContainerRef;
+  modal: ComponentRef<Component>;
+
   constructor(
     private walletServices: WalletService,
-    private _rpcState: RpcStateService
-  ) {
+    private _rpcState: RpcStateService, private flashNotification: SnackbarService,
+    public _dialogRef: MatDialogRef<SendComponent>) {
 
-  }
+    }
 
   ngOnInit() {
   }
@@ -29,12 +38,28 @@ export class SendComponent implements OnInit {
     this.data = data;
   }
 
+ // send for wallet
+
   sendData() {
      var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {  
       this.openSuccess('wallet');
-    }, error => this.log.error('Failed to get balance, ', error));
-    
+    }, error => {
+     this.flashNotification.open('Wallet Failed to get balance!', 'err');
+     this.log.er('Failed to get balance', error)
+   });
   }
+  
+  // Send from Ghost Vault
+
+  sendGhostVaultData() {
+    var result = this.walletServices.SendToNixVault(this.sendToNixvault).subscribe(res => {
+     this.openSuccess('vault');
+   }, 
+   error => {
+    this.flashNotification.open('Ghost vault Failed to get balance!', 'err');
+    // this.log.er('Ghost vault Failed to get balance', error)
+  });
+ }
 
   openSuccess(walletType: string) {
     const data: any = {
@@ -44,5 +69,16 @@ export class SendComponent implements OnInit {
     };
     this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
+  }
+  
+  close(): void {
+    this._dialogRef.close();
+    // remove and destroy message
+    this.modalContainer.remove();
+    this.modal.destroy();
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true;
   }
 }

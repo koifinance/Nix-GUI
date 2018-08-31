@@ -13,5 +13,7 @@ export enum ApiEndpoints {
   ListStealthAddresses = 'liststealthaddresses',
   FilterTransactions = 'filtertransactions',
   ListTransactions = 'listtransactions',
-  GetWalletInfo = 'getwalletinfo'
+  GetWalletInfo = 'getwalletinfo',
+  receivedNix = 'getaddressesbyaccount',
+  addNode = 'addnode'
 }

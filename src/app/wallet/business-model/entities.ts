@@ -98,18 +98,21 @@ export class WalletSendToNix implements IWalletSendToNix {
 
 //recieve nix to wallet
 export interface IRecieveNixToWallet {
-    id: string;
-    mom: string;
-    binance: string;
-    jackieboy: string;
+    account: string;
+    addresses: Array<any>;
+    
+    // mom: string;
+    // binance: string;
+    // jackieboy: string;
 }
 
 export class RecieveNixToWallet implements IRecieveNixToWallet {
-
-    id: string;
-    mom: string;
-    binance: string;
-    jackieboy: string;
+    account: string;
+    addresses: Array<any>;
+      
+    // mom: string;
+    // binance: string;
+    // jackieboy: string;
 
     constructor(data?: IRecieveNixToWallet) {
         if (data) {
@@ -120,30 +123,7 @@ export class RecieveNixToWallet implements IRecieveNixToWallet {
         }
     }
 
-    init(data?: any) {
-        if (data) {
-            this.id = data["id"];
-            this.mom = data["mom"];
-            this.binance = data["binance"];
-            this.jackieboy = data["jackieboy"];
-        }
-    }
-
-    static fromJS(data: any): RecieveNixToWallet {
-        let result = new RecieveNixToWallet();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["mom"] = this.mom;
-        data["binance"] = this.binance;
-        data["jackieboy"] = this.jackieboy;
-        return data;
-    }
-}
+   }
 
 
 //transaction class - have to check these props
@@ -326,6 +306,46 @@ export class walletinformation implements walletinfo {
         this.keypoolsize_hd_internal = data["keypoolsize_hd_internal"];
         this.paytxfee = data["paytxfee"];
         this.hdmasterkeyid = data["hdmasterkeyid"];
+        return data;
+    }
+}
+
+// add node
+export interface IAddNode {
+    node: number;
+    action: string;
+}
+
+export class AddNode implements IAddNode {
+    node: number;
+    action: string;
+
+    constructor(data?: IAddNode) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.node = data["node"];
+            this.action = data["action"];
+        }
+    }
+
+    static fromJS(data: any): AddNode {
+        let result = new AddNode();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["node"] = this.node;
+        data["action"] = this.action;
         return data;
     }
 }
