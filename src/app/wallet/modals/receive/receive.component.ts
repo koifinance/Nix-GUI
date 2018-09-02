@@ -33,7 +33,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     this.receivedNixInfo.account = 'jhon';
     this.receivedNixInfo.addresses = [];
     //initiate the call
-    this._rpcState.registerStateCall(ApiEndpoints.receivedNix, 1000, [this.receivedNixInfo.account]);
+    this._rpcState.registerStateCall(ApiEndpoints.ReceivedNix, 1000, [this.receivedNixInfo.account]);
     //receive the data
     this.getReceivedNixToWallet();
 
@@ -51,7 +51,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     this.receivedNixInfo.addresses[1] = 'NNqe34X87ckw6UNHrhRJdUakPYxRNZQSaw';
     this.receivedNixInfo.addresses[2] = 'NdqXnS2TLHFLUA3LmQQmMqYQ2biA5jg71z';
 
-    this._rpcState.observe(ApiEndpoints.receivedNix)
+    this._rpcState.observe(ApiEndpoints.ReceivedNix)
       .takeWhile(() => !this.destroyed)
       .subscribe(receivedInfo => {
         //this.receivedNixInfo.addresses = receivedInfo;
