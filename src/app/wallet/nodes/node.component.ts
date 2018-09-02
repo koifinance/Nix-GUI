@@ -67,13 +67,12 @@ export class NodesComponent implements OnInit, OnDestroy {
         this.addNODE();
        
     }
-    this.nextNode();
   }
 
   // add node
   addNODE() {
     var result = this.walletServices.addNode(this.addnode).subscribe(res => {  
-      
+      this.nextNode();
     }, error => {
      this.flashNotification.open('Failed to add node!', 'err');
      this.log.er('Failed to add node', error)
