@@ -8,6 +8,8 @@ import { RpcService, RpcStateService } from '../../../core/core.module';
 
 import { txData } from './mocked-transactions';
 import { Subject } from 'rxjs/Subject';
+import { TransactionInfo } from '../../business-model/entities';
+import { ApiEndpoints } from '../../business-model/enums';
 
 @Injectable()
 export class TransactionService implements OnDestroy {
@@ -188,4 +190,11 @@ export class TransactionService implements OnDestroy {
   loadedData() {
     this.transactionEvent.next('loaded');
   }
+
+
+    // get all transaction
+    public getallTransaction(transactions :TransactionInfo): Observable<any> {
+      return this.rpc.call(ApiEndpoints.GetTrasaction).map(
+        transactions => transactions);
+    }
 }
