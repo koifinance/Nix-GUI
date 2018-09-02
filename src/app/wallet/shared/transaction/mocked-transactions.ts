@@ -9,6 +9,7 @@ export const txData: Array<Object> = [
     reward: 0.05,
     time: 1525834212,
     confirmations: 4,
+    status: 'pending'
   },
   {
     txid: 'id2',
@@ -20,6 +21,7 @@ export const txData: Array<Object> = [
     reward: 0.05,
     time: 1525528800,
     confirmations: 0,
+    status: 'pending'
   },
   {
     txid: 'id3',
@@ -31,6 +33,7 @@ export const txData: Array<Object> = [
     reward: 0.05,
     time: 1524165900,
     confirmations: 1,
+    status: 'success'
   },
   {
     txid: 'id4',
@@ -42,6 +45,7 @@ export const txData: Array<Object> = [
     reward: 0.05,
     time: 1524255000,
     confirmations: -1,
+    status: 'success'
   },
 ];
 

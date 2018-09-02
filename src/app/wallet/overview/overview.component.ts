@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { IWalletInfo, WalletInfo } from '../business-model/entities';
 import { WalletService } from '../wallet.service';
 import { TransactionBuilder } from '../business-model/entities';
-import { payType, ApiEndpoints } from '../business-model/enums';
+import { payType, ApiEndpoints, categories, message } from '../business-model/enums';
 import { RpcStateService } from '../../core/core.module';
 import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
@@ -48,17 +48,29 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    //call listtransaction using params 'account,count,from'
+    this._rpcState.registerStateCall(ApiEndpoints.ListTransaction, 1000, [this.listTransaction]);
     this.getwalletinformation();
+    this.listTransaction();
   }
 
+   //get wallet informations
   private getwalletinformation() {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
-        //this._balance = new Amount(balance)
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
       },
-        error => this.log.error('Failed to get balance, ', error));
+        error => this.log.error(message.walletMessage, error));
+  }
+
+   // get recent transactions
+   private listTransaction() {
+    this._rpcState.observe(ApiEndpoints.ListTransaction)
+      .subscribe(res => {
+        console.log(res)
+      },
+        error => this.log.error(message.recentTransactionMessage, error));
   }
 
   goToChart() {
@@ -113,37 +125,28 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   public getCategoryText(category: string, currency: string): string {
-    if (category === 'send') {
+    if (categories.Send) {
       return `Sent ${currency}`;
-    } else if (category === 'receive') {
+    } else if (categories.Receive) {
       return `Received ${currency}`;
-    } else if (category === 'node') {
+    } else if (categories.Node) {
       return `Node Earnings`;
     }
     return '';
   }
 
   public getCategoryIconStyle(category: string): any {
-    if (category === 'send') {
+    if (categories.Send) {
       return faArrowUp;
-    } else if (category === 'receive') {
+    } else if (categories.Receive) {
       return faArrowDown;
-    } else if (category === 'node') {
+    } else if (categories.Node) {
       return faDollarSign;
     }
     return '';
   }
 
-  private sendTransaction(): void {
-    if (payType.sendPayment) {
-      // edit label of address
-      this.walletServices.sendTransaction(this.TransactionBuilder);
-    } else {
-      this.walletServices.transferBalance(
-        this.TransactionBuilder);
-    }
-  }
-
+  
   ngOnDestroy() {
     this.destroyed = true;
   }
