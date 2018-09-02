@@ -351,3 +351,232 @@ export class AddNode implements IAddNode {
 }
 
 
+// main recent transaction infor ui
+export interface recentTransactionInfo {
+    account: string;
+    count: number;
+    from: number;
+}
+
+export class IrecentTransactionInfo implements recentTransactionInfo {
+
+    account: string = 'tabby';
+    count: number = 10;
+    from: number =0;
+
+    constructor(data?: recentTransactionInfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.account = data["account"];
+            this.count = data["count"];
+            this.from = data["from"];
+        }
+    }
+
+    static fromJS(data: any): IrecentTransactionInfo {
+        let result = new IrecentTransactionInfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["account"] = this.account;
+        data["count"] = this.count;
+        data["from"] = this.from;
+        return data;
+    }
+}
+export interface TransactionInfo {
+    txid: string ;
+    input: TxType ;
+    output: TxType ;
+    toAddress: string;
+    toLabel: string;
+    address: string;
+    amount: number;
+    comment: string;
+    commentTo: string;
+    narration: string;
+    numsignatures: number;
+    validAddress: boolean;
+    validAmount: boolean;
+    isMine: boolean;
+    currency: string ;
+    ringsize: number ;
+    subtractFeeFromAmount: boolean ;
+    estimateFeeOnly: boolean ;
+}
+
+export class ITransactionInfo implements TransactionInfo {
+
+    txid: string = 'c8ee6c919e5b258f1e29e03c04baa2318b95ede030aa14a25cb9f060ade10cbd';
+    input: TxType = TxType.PUBLIC;
+    output: TxType = TxType.PUBLIC;
+    toAddress: string;
+    toLabel: string;
+    address: string;
+    amount: number;
+    comment: string;
+    commentTo: string;
+    narration: string;
+    numsignatures: number = 1;
+    validAddress: boolean;
+    validAmount: boolean;
+    isMine: boolean;
+    currency: string = 'part';
+    ringsize: number = 8;
+    subtractFeeFromAmount: boolean = false;
+    estimateFeeOnly: boolean = true;
+
+    constructor(data?: TransactionInfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.txid = null;
+            this.input = data["input"];
+            this.output = data["output"];
+            this.toAddress = data["toAddress"];
+            this.toLabel = data["toLabel"];
+            this.amount = data["amount"];
+            this.comment = data["comment"];
+            this.commentTo = data["commentTo"];
+            this.narration = data["narration"];
+            this.numsignatures = data["numsignatures"];
+            this.validAddress = data["validAddress"];
+            this.validAmount = data["validAmount"];
+            this.isMine = data["isMine"];
+            this.currency = data["currency"];
+            this.ringsize = data["ringsize"];
+            this.subtractFeeFromAmount = data["subtractFeeFromAmount"];
+            this.estimateFeeOnly = data["estimateFeeOnly"];
+        }
+    }
+
+    static fromJS(data: any): ITransactionInfo {
+        let result = new ITransactionInfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["txid"] = this.txid;
+        data["input"] = this.input;
+        data["output"] = this.output;
+        data["toAddress"] = this.toAddress;
+        data["toLabel"] = this.toLabel;
+        data["address"] = this.address;
+        data["amount"] = this.amount;
+        data["comment"] = this.comment;
+        data["commentTo"] = this.commentTo;
+        data["narration"] = this.narration;
+        data["numsignatures"] = this.numsignatures;
+        data["validAddress"] = this.validAddress;
+        data["validAmount"] = this.validAmount;
+        data["isMine"] = this.isMine;
+        data["currency"] = this.currency;
+        data["ringsize"] = this.ringsize;
+        data["subtractFeeFromAmount"] = this.subtractFeeFromAmount;
+        data["estimateFeeOnly"] = this.estimateFeeOnly;
+        return data;
+    }
+}
+
+// add node
+export interface IAddBook {
+    action: string;
+    address: string;
+    label: string;
+}
+
+export class AddBook implements IAddBook {
+    action: string;
+    address: string;
+    label: string;
+
+    constructor(data?: IAddBook) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.action = data["action"];
+            this.address = data["address"];
+            this.label = data["label"];
+        }
+    }
+
+    static fromJS(data: any): AddBook {
+        let result = new AddBook();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["action"] = this.action;
+        data["address"] = this.address;
+        data["label"] = this.label;
+        return data;
+    }
+}
+
+export interface IPassword {
+    password: string;
+    stakeOnly: boolean;
+  }
+
+  export class encryptpassword implements IPassword {
+    password: string;
+    stakeOnly: boolean;
+
+    constructor(data?: IPassword) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.password = data["password"];
+            this.stakeOnly = data["stakeOnly"];
+        }
+    }
+
+    static fromJS(data: any): encryptpassword {
+        let result = new encryptpassword();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["password"] = this.password;
+        data["stakeOnly"] = this.stakeOnly;
+        return data;
+    }
+}  
