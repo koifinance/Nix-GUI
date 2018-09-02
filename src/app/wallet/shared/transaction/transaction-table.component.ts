@@ -8,9 +8,6 @@ import { TransactionService } from './transaction.service';
 import { Transaction } from './transaction.model';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { FilterService } from '../../transactions/filter.service';
-import { RpcStateService } from '../../../core/core.module';
-import { ApiEndpoints, categories, message } from '../../business-model/enums';
-import { TransactionInfo, ITransactionInfo } from '../../business-model/entities';
 
 @Component({
   selector: 'transaction-table',
@@ -22,8 +19,6 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   @Input() columns: string[];
   @Input() filterFunc: any;
   dataSource: MatTableDataSource<Transaction>;
-  public testDataSource : any;
-  trasactionAllNix: TransactionInfo = new ITransactionInfo();
   faCircleSolid: any = faCircleSolid;
   faCircle: any = faCircle;
   private log: any = Log.create('transaction-table.component');
@@ -41,18 +36,14 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   constructor(
     public transactionService: TransactionService,
     private filterService: FilterService,
-    private _rpcState: RpcStateService,
   ) {
   }
 
   ngOnInit() {
-    this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.trasactionAllNix.txid]);
-    this.Transactions();
     this.display = Object.assign({}, this.defaults, this.display);
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
     this.transactionService.postConstructor(this.display.numTransactions);
     this.dataSource = new MatTableDataSource<Transaction>();
-    this.testDataSource = new MatTableDataSource<Transaction[]>();
 
     if (this.filterFunc) {
       this.dataSource.filterPredicate = (transaction, filter) => {
@@ -62,8 +53,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
 
     this.transactionSubscription = this.transactionService.transactionEvent
       .subscribe(value => {
-       this.testDataSource =   this.transactionService.transactions;
-        this.dataSource.data = this.testDataSource;
+        this.dataSource.data = this.transactionService.transactions;
       });
 
     this.filterSubscription = this.filterService.filterEvent
@@ -101,33 +91,36 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   }
 
   public getCategoryText(category: string, currency: string): string {
-    if (categories.Send) {
+    if (category === 'send') {
       return `Sent ${currency}`;
-    } else if (categories.Receive) {
+    } else if (category === 'receive') {
       return `Received ${currency}`;
-    } else if (categories.Node) {
+    } else if (category === 'node') {
       return `Node Earnings`;
     }
     return '';
   }
 
   public getCategoryIconStyle(category: string): any {
-    if (categories.Send) {
+    if (category === 'send') {
       return faArrowUp;
-    } else if (categories.Receive) {
+    } else if (category === 'receive') {
       return faArrowDown;
-    } else if (categories.Node) {
+    } else if (category === 'node') {
       return faDollarSign;
     }
     return '';
   }
 
- // get all transaction
- private Transactions() {
-  this._rpcState.observe(ApiEndpoints.GetTrasaction)
-    .subscribe(res => {
-      console.log(res);
-    },
-      error => this.log.error(message.transactionMessage, error));
-}  
+  /*public getCategoryIconStyle(category: string): string {
+    const path = './assets/icons/SVG/';
+    if (category === 'send') {
+      return path + 'arrow-up-nix.svg';
+    } else if (category === 'receive') {
+      return path +  'arrow-down-black.svg';
+    } else if (category === 'node') {
+      return path +  '';
+    }
+    return path;
+  }*/
 }

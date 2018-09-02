@@ -3,6 +3,7 @@ import { Amount, DateFormatter } from '../utils';
 export class Transaction {
 
   type: string;
+
   txid: string;
   address: string;
   stealthAddress: string;
@@ -16,6 +17,7 @@ export class Transaction {
   n0: string;
   n1: string;
   currency: string;
+
   outputs: any[];
 
   /* conflicting txs */
