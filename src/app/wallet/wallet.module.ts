@@ -6,6 +6,8 @@ import { SharedModule } from './shared/shared.module';
 import { routing } from './wallet.routing';
 
 import { FilterService } from './transactions/filter.service';
+import { HttpClientModule } from '@angular/common/http'; 
+import {HttpModule} from '@angular/http';
 
 import { MainComponent } from './main/main.component';
 import { OverviewComponent } from './overview/overview.component';
@@ -65,6 +67,8 @@ import { WalletService } from './wallet.service';
     ModalsModule,
     routing,
     SharedModule,
+    HttpClientModule,
+    HttpModule
   ],
   exports: [
     MainComponent,

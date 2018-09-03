@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
-import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, recentTransactionInfo, IAddBook, TransactionInfo, IPassword } from './business-model/entities';
+import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, recentTransactionInfo, IAddBook, TransactionInfo, IPassword, IBitcoinprice } from './business-model/entities';
 import { ApiEndpoints, typeOfAddresses } from './business-model/enums';
-
+import { Http } from '@angular/http';
 @Injectable()
 export class WalletService {
   filters: any = {
@@ -20,8 +20,13 @@ export class WalletService {
   private addressCount: number = 0;
   unlockTimeout: number = 60;
   private validWords: string[];
-  constructor(private _rpc: RpcService, private rpcState: RpcStateService) {
+  constructor(private _rpc: RpcService, private rpcState: RpcStateService,private http:Http) {
 
+  }
+
+  // get bit coin
+  public getBitcoin (price : IBitcoinprice): Observable<any> {
+    return this.http.get(ApiEndpoints.GetBtc).map(response => response.json());
   }
 
   // Send for wallet
@@ -97,6 +102,7 @@ export class WalletService {
         return;
       });
   }
+  
 
   // get all transaction
   public getallTransaction(transactions :TransactionInfo): Observable<any> {
@@ -139,6 +145,7 @@ export class WalletService {
       response => success(response),
       error => Array(24).fill('error'));
 }
+
 
 validateWord(word: string): boolean {
   if (!this.validWords) {

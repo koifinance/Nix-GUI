@@ -6,7 +6,6 @@
         <div class="backbtn-name">Ghost Nodes</div>
       </div>
       <div fxFlex="85">
-        <!-- <page-header heading="My Ghost Node reward history" [navbar]="help"></page-header> -->
         <div class="header" fxLayout="row">
 
           <div fxFlex="50" fxFlexOrder="1">
@@ -41,7 +40,7 @@
       <div fxFlex="75">
         <div fxLayout="row" fxLayoutGap="20px">
           <div fxFlex="15">
-            <span class="large-no">$51.12</span>
+            <span class="large-no">{{bitcoinprice.USD.price | currency:"USD":true}}</span>
           </div>
           <div fxFlex="15">
             <div fxLayout="column" class="up-value">
@@ -54,7 +53,7 @@
           <div fxFlex="15">
             <div fxLayout="column" fxLayoutGap="2px">
               <span class="chart-feilds">MARKET CAP</span>
-              <span class="feilds-value">$ 277.52M</span>
+              <span class="feilds-value">{{bitcoinprice.USD.market_cap | currency:"USD":true}}</span>
             </div>
           </div>
           <div fxFlex="15">
@@ -66,7 +65,7 @@
           <div fxFlex="15">
             <div fxLayout="column" fxLayoutGap="2px">
               <span class="chart-feilds">VOL (24H)</span>
-              <span class="feilds-value">$ 1.87M</span>
+              <span class="feilds-value">{{bitcoinprice.USD.volume_24h | currency:"USD":true}}</span>
             </div>
           </div>
           <div fxFlex="15">
