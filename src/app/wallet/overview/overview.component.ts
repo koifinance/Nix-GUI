@@ -7,10 +7,10 @@ import { ModalsService } from '../modals/modals.service';
 import { FAQ } from '../shared/faq.model';
 import { faq } from './faq';
 import { Router } from '@angular/router';
-import { IWalletInfo, WalletInfo } from '../business-model/entities';
+import { IWalletInfo, WalletInfo, IBitcoinprice, bitcoinprice, IrecentTransactionInfo, recentTransactionInfo } from '../business-model/entities';
 import { WalletService } from '../wallet.service';
 import { TransactionBuilder } from '../business-model/entities';
-import { payType, ApiEndpoints, categories, message } from '../business-model/enums';
+import {  ApiEndpoints, categories, message } from '../business-model/enums';
 import { RpcStateService } from '../../core/core.module';
 import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
@@ -33,8 +33,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
   transactionColumns: string[] = ['date', 'category', 'confirmations', 'amount'];
   private destroyed: boolean = false;
   walletInfo: IWalletInfo = new WalletInfo();
+  trasactionInfo : recentTransactionInfo = new IrecentTransactionInfo();
   private _balance: Amount = new Amount(0);
   private log: any = Log.create(`balance.component `);
+  
+  bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
+  public bitcoinprice;
   get balance() {
     return this._balance;
   }
@@ -49,9 +53,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //call listtransaction using params 'account,count,from'
+    this._rpcState.registerStateCall(ApiEndpoints.ListTransaction, 1000, [this.trasactionInfo.account,this.trasactionInfo.count,this.trasactionInfo.from]);
     this._rpcState.registerStateCall(ApiEndpoints.ListTransaction, 1000, [this.listTransaction]);
     this.getwalletinformation();
     this.listTransaction();
+    this.getBitcoinpriceinfo();
   }
 
    //get wallet informations
@@ -71,6 +77,17 @@ export class OverviewComponent implements OnInit, OnDestroy {
         console.log(res)
       },
         error => this.log.error(message.recentTransactionMessage, error));
+  }
+
+  // get bitcoin price
+  private getBitcoinpriceinfo() {
+    debugger
+    this.walletServices.getBitcoin(this.bitcoinpriceInfo)
+    .subscribe(bitcoinpriceInfos => {
+      debugger
+      this.bitcoinprice = bitcoinpriceInfos.data.quotes;
+    },
+        error => this.log.error(message.bitcoinpriceMessage, error));
   }
 
   goToChart() {

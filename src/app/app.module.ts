@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 
 import { WalletModule } from './wallet/wallet.module';
 import { CoreModule } from './core/core.module';
-
+import { HttpClientModule } from '@angular/common/http'; 
 import { routing } from './app.routing';
-
+import {HttpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -18,7 +18,9 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     CoreModule.forRoot(),
     routing,
-    WalletModule
+    WalletModule,
+    HttpClientModule,
+    HttpModule
   ],
   bootstrap: [AppComponent],
 })

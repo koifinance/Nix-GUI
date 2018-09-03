@@ -418,7 +418,7 @@ export interface TransactionInfo {
 
 export class ITransactionInfo implements TransactionInfo {
 
-    txid: string = 'c8ee6c919e5b258f1e29e03c04baa2318b95ede030aa14a25cb9f060ade10cbd';
+    txid: string = '3535d04ae144bf2993f8bdc8fef1ebac414c8b75ca58f6ea533844d81b85e107';
     input: TxType = TxType.PUBLIC;
     output: TxType = TxType.PUBLIC;
     toAddress: string;
@@ -577,6 +577,122 @@ export interface IPassword {
         data = typeof data === 'object' ? data : {};
         data["password"] = this.password;
         data["stakeOnly"] = this.stakeOnly;
+        return data;
+    }
+}  
+
+
+// main bitcoin price infor ui
+export interface IBitcoinprice {
+    convert: string;
+}
+
+export class bitcoinprice implements IBitcoinprice {
+
+    convert: string = 'BTC';
+
+    constructor(data?: IBitcoinprice) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.convert = data["convert"];
+        }
+    }
+
+    static fromJS(data: any): bitcoinprice {
+        let result = new bitcoinprice();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["convert"] = this.convert;
+        return data;
+    }
+}
+export interface IGetblockchaininfo {
+    "chain": string,
+    "blocks": number,
+    "headers": number,
+    "bestblockhash": string,
+    "moneysupply": string,
+    "difficulty": number,
+    "mediantime": number,
+    "verificationprogress": number,
+    "initialblockdownload": boolean,
+    "chainwork": string,
+    "size_on_disk": number,
+    "pruned": boolean
+  }
+
+  export class getblockchaininfo implements IGetblockchaininfo {
+    "chain": string;
+    "blocks": number;
+    "headers": number;
+    "bestblockhash": string;
+    "moneysupply": string;
+    "difficulty": number;
+    "mediantime": number;
+    "verificationprogress": number;
+    "initialblockdownload": boolean;
+    "chainwork": string;
+    "size_on_disk": number;
+    "pruned": boolean
+
+    constructor(data?: IGetblockchaininfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.chain = data["chain"];
+            this.blocks = data["blocks"];
+            this.headers = data["headers"];
+            this.bestblockhash = data["bestblockhash"];
+            this.moneysupply = data["moneysupply"];
+            this.difficulty = data["difficulty"];
+            this.mediantime = data["mediantime"];
+            this.verificationprogress = data["verificationprogress"];
+            this.initialblockdownload = data["initialblockdownload"];
+            this.chainwork = data["chainwork"];
+            this.size_on_disk = data["size_on_disk"];
+            this.pruned = data["pruned"];
+        }
+    }
+
+    static fromJS(data: any): getblockchaininfo {
+        let result = new getblockchaininfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["chain"] = this.chain;
+        data["blocks"] = this.blocks;
+        data["headers"] = this.headers;
+        data["bestblockhash"] = this.bestblockhash;
+        data["moneysupply"] = this.moneysupply;
+        data["difficulty"] = this.difficulty;
+        data["mediantime"] = this.mediantime;
+        data["verificationprogress"] = this.verificationprogress;
+        data["initialblockdownload"] = this.initialblockdownload;
+        data["chainwork"] = this.chainwork ;
+        data["size_on_disk"] = this.size_on_disk;
+        data["pruned"] = this.pruned;
         return data;
     }
 }  

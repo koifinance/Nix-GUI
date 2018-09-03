@@ -22,7 +22,8 @@ export enum categories {
 export enum message {
   walletMessage = 'Failed to get wallet information',
   recentTransactionMessage = 'Failed to get recent transaction',
-  transactionMessage = 'Failed to get transaction, '
+  transactionMessage = 'Failed to get transaction, ',
+  bitcoinpriceMessage  = 'Failed to get bit coin price,'
 }
 
 export enum ApiEndpoints {
@@ -44,5 +45,7 @@ export enum ApiEndpoints {
   Walletpassphrase = "walletpassphrase",
   Walletpassphrasechange = 'walletpassphrasechange' ,
   Mnemonic = "mnemonic",
-  Extkeygenesisimport = "extkeygenesisimport"
+  Extkeygenesisimport = "extkeygenesisimport",
+  GetBtc = 'https://api.coinmarketcap.com/v2/ticker/2991/?convert=BTC',
+  Getblockchaininfo = 'getblockchaininfo'
 }
