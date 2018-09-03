@@ -7,7 +7,8 @@
 
       <div class="estimated-time" fxLayout="column" fxLayoutAlign="center">
         <div>Estimated time</div>
-        <div>24 mins</div>
+        <div>{{blockchaininfo.headers - blockchaininfo.blocks  | number: '.4'}}</div>
+        <div>{{blockchaininfo.verificationprogress}}</div>
       </div>
   </div>
 </div>
