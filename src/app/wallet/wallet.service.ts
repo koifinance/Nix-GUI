@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
-import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, recentTransactionInfo, IAddBook, TransactionInfo, IPassword, IBitcoinprice } from './business-model/entities';
+import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, recentTransactionInfo, IAddBook, TransactionInfo, IPassword, IBitcoinprice, ISetAccount } from './business-model/entities';
 import { ApiEndpoints, typeOfAddresses } from './business-model/enums';
 import { Http } from '@angular/http';
 @Injectable()
@@ -32,11 +32,6 @@ export class WalletService {
   // Send for wallet
     public SendToNix(wallet : IWalletSendToNix): Observable<any> {
     return this._rpc.call(ApiEndpoints.SendToAddress, [wallet.amount,wallet.address]);
-  }
-
-  // Send from Ghost Vault
-    public SendToNixVault(vault : IWalletSendToNix): Observable<any> {
-    return this._rpc.call(ApiEndpoints.SendToAddress,[vault.amount,vault.address]);
   }
   
   public receivedNix(receiveNix : IRecieveNixToWallet): Observable<any> {
@@ -76,6 +71,11 @@ export class WalletService {
   public filterAddressList(): Observable<any> {
     return this._rpc.call(ApiEndpoints.Filteraddresses, this.rpc_getParams());
   }
+
+  // To add address
+public receiveNIXToWallet(setaccount : ISetAccount): Observable<any> {
+  return this._rpc.call(ApiEndpoints.Setaccount, [setaccount.address,setaccount.account]);
+}
 
   private rpc_getParams() {
     if (typeOfAddresses.Send) {

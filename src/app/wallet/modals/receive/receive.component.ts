@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material';
 
 import { RpcStateService, SnackbarService } from '../../../core/core.module';
 
-import { payType, ApiEndpoints } from '../../business-model/enums';
+import { payType, ApiEndpoints, message } from '../../business-model/enums';
 import { IRecieveNixToWallet, RecieveNixToWallet } from '../../business-model/entities';
 import { Log } from 'ng2-logger';
 
@@ -55,8 +55,10 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       .takeWhile(() => !this.destroyed)
       .subscribe(receivedInfo => {
         //this.receivedNixInfo.addresses = receivedInfo;
-      },
-        error => this.log.error('Failed to get balance, ', error));
+      },error => {
+        this.flashNotification.open(message.SendAmount, 'err');
+        this.log.er(message.SendAmount, error)
+      });
   }
 
   openSuccess(walletType: string) {

@@ -6,6 +6,7 @@ export interface IWalletInfo {
     balance: number;
     ghost_vault: number;
     ghost_vault_unconfirmed: number;
+    encryptionstatus: string;
 }
 
 export class WalletInfo implements IWalletInfo {
@@ -13,6 +14,7 @@ export class WalletInfo implements IWalletInfo {
     balance: number;
     ghost_vault: number;
     ghost_vault_unconfirmed: number;
+    encryptionstatus: string;
 
     constructor(data?: IWalletInfo) {
         if (data) {
@@ -28,6 +30,7 @@ export class WalletInfo implements IWalletInfo {
             this.balance = data["balance"];
             this.ghost_vault = data["ghost_vault"];
             this.ghost_vault_unconfirmed = data["ghost_vault_unconfirmed"];
+            this.encryptionstatus = data["encryptionstatus"];
         }
     }
 
@@ -42,6 +45,7 @@ export class WalletInfo implements IWalletInfo {
         data["balance"] = this.balance;
         data["ghost_vault"] = this.ghost_vault === undefined ? 0.00000000 : this.ghost_vault;
         data["ghost_vault_unconfirmed"] = this.ghost_vault_unconfirmed === undefined ? 0.00000000 : this.ghost_vault_unconfirmed;
+        data["encryptionstatus"]= this.encryptionstatus;
         return data;
     }
 }
@@ -695,4 +699,79 @@ export interface IGetblockchaininfo {
         data["pruned"] = this.pruned;
         return data;
     }
-}  
+}
+
+// get new adresses
+export interface IGetNewAddress {
+    address: string;
+}
+
+export class GetNewAddress implements IGetNewAddress {
+    address: string;
+
+    constructor(data?: IGetNewAddress) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.address = data["address"];
+        }
+    }
+
+    static fromJS(data: any): GetNewAddress {
+        let result = new GetNewAddress();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["address"] = this.address;
+        return data;
+    }
+}
+
+export interface ISetAccount {
+    address: string;
+    account: string;
+}
+
+export class SetAccount implements ISetAccount {
+    address: string;
+    account: string;
+
+    constructor(data?: ISetAccount) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.address = data["address"];
+            this.account = data["account"];
+        }
+    }
+
+    static fromJS(data: any): SetAccount {
+        let result = new SetAccount();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["address"] = this.address;
+        data["account"] = this.account;
+        return data;
+    }
+}

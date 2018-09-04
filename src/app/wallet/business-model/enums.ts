@@ -22,8 +22,15 @@ export enum categories {
 export enum message {
   walletMessage = 'Failed to get wallet information',
   recentTransactionMessage = 'Failed to get recent transaction',
-  transactionMessage = 'Failed to get transaction, ',
-  bitcoinpriceMessage  = 'Failed to get bit coin price,'
+  transactionMessage = 'Failed to get transaction', 
+  bitcoinpriceMessage  = 'Failed to get bit coin price',
+  AddressAddedMessage = 'Failed to add address!',
+  EnterData= 'Please enter the data!',
+  SendAmount = 'Wallet Failed to get balance!',
+  GetNewAddress = 'Failed to get new address',
+  ReceiveNIXtoWallet = 'Wallet Failed Receive NIX to Wallet!',
+  GetAddress = 'Failed to get addresses',
+  SendAmountToVaultMessage = 'Ghost vault Failed to get balance!',
 }
 
 export enum ApiEndpoints {
@@ -47,5 +54,8 @@ export enum ApiEndpoints {
   Mnemonic = "mnemonic",
   Extkeygenesisimport = "extkeygenesisimport",
   GetBtc = 'https://api.coinmarketcap.com/v2/ticker/2991/?convert=BTC',
-  Getblockchaininfo = 'getblockchaininfo'
+  Getblockchaininfo = 'getblockchaininfo',
+  Getnewaddress ="getnewaddress",
+  Setaccount = "setaccount",
+  GhostnodeListConf = "ghostnode list-conf"
 }

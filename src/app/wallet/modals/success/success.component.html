@@ -15,7 +15,7 @@
     </div>
 
     <div class="sendto" fxLayout.gt-md="row">
-      <p fxFlex="100" fxLayoutAlign="center">NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl</p>
+      <p fxFlex="100" fxLayoutAlign="center">{{txid}}</p>
     </div>
 
     <div class="modaldetails">
@@ -39,13 +39,12 @@
     </div>
 
     <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
-      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center">Done</button>
+      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('wallet')">Done</button>
     </div>
 
   </div>
 
   <div *ngIf="data.actionType === 'receive'" class="wallet">
-
     <div class="modalcontent">
       <h5>Receive NIX to Wallet</h5>
       <div _ngcontent-c7="" class="divider"></div>
@@ -55,18 +54,17 @@
       </div>
 
       <div fxLayout.gt-md="row">
-        <input class="modalinput disabledinput" matInput fxFlex="100" disabled="disabled" placeholder="Enter value"
-               value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+        <input class="modalinput disabledinput" matInput fxFlex="100" disabled="disabled" placeholder="New address"
+               value="getNewaddress.address" [(ngModel)]="setAccount.address">
       </div>
 
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value"
-               value="Please enter a name for this address">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Please enter a name for this address" [(ngModel)]="setAccount.amount">
       </div>
 
       <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-        <button class="cancelbtn" mat-raised-button fxFlex="45">Back to addresses</button>
-        <button class="sendbtn" mat-raised-button fxFlex="45" (click)="openSuccess('wallet')">Done</button>
+        <button class="cancelbtn" mat-raised-button fxFlex="45" (click)="BackToAddress('wallet')">Back to addresses</button>
+        <button class="sendbtn" mat-raised-button fxFlex="45" (click)="receiveDone()">Done</button>
       </div>
 
     </div>
@@ -92,7 +90,7 @@
 
 
     <div class="sendto" fxLayout.gt-md="row">
-      <p fxFlex="100" fxLayoutAlign="center">NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl</p>
+      <p fxFlex="100" fxLayoutAlign="center">{{txidVault}}</p>
     </div>
 
     <div class="modaldetails">
@@ -116,7 +114,7 @@
     </div>
 
     <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
-      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center">Done</button>
+      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center" (click) = "sendDone('vault')">Done</button>
     </div>
   </div>
 
