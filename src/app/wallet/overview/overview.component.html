@@ -6,7 +6,7 @@
   <mat-drawer-content class="overview">
     <page-header heading="Overview" [navbar]="help"></page-header>
     <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
-    
+
       <mat-card fxFlexOrder.lt-md="1" fxFlex="30" class="item total">
         <div class="balance">
           <p class="description" style="color:white">Wallet</p>
@@ -95,14 +95,21 @@
             No issues
           </div>
         </div>
-        
+
       </mat-card>
+    </div>
+
+    <div class="bottom-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="5%" fxFlexOrder.lt-md="4">
+      <div>
+        Wallet Status : {{walletInfo.encryptionstatus}}
+      </div>
       <div *ngIf="walletInfo.encryptionstatus !== 'Locked'">
-        TOR netwoking : abled
-        </div>
-        <div *ngIf="walletInfo.encryptionstatus === 'Locked'">
-          TOR netwoking : enabled
-        </div>
+        TOR netwoking : enabled
+      </div>
+      <div *ngIf="walletInfo.encryptionstatus === 'Locked'">
+        TOR netwoking : disabled
+      </div>
+      
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
