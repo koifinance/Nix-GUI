@@ -6,7 +6,7 @@
       <p class="htxt">Name</p>
       <div fxLayout.gt-md="row">
         <div class="custom-input-group amount-input">
-          <input class="input-group size" placeholder="please enter a name for this address">
+          <input class="input-group size" placeholder="please enter a name for this address" [(ngModel)]="addAddress.account">
         </div>
       </div>
     </div>
@@ -14,21 +14,15 @@
       <p class="htxt">Address</p>
       <div fxLayout.gt-md="row">
         <div class="custom-input-group amount-input">
-          <input class="input-group " placeholder="Destination address">
+          <input class="input-group " placeholder="Destination address" [(ngModel)]="addAddress.address">
         </div>
         <button class="copybtn" fxFlex="15">Paste</button>
       </div>
     </div>
     
-    <div class="password-toggle">
-      <button mat-button (click)="togglePassword()">
-        <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
-        {{ passwordLabelText() }} password
-      </button>
-    </div>
     <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
       <button class="cancelbtn" mat-raised-button fxFlex="40">Cancel</button>
-      <button class="sendbtn" mat-raised-button fxFlex="40">Save</button>
+      <button class="sendbtn" mat-raised-button fxFlex="40" (click)="save()">Save</button>
     </div>
   </div>
 </div>
