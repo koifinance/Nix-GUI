@@ -49,6 +49,18 @@ export class WalletService {
       balance => balance);
   }
 
+  // get Tor status NIX
+  public getTorstatus(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Torstatus).map(
+      status => status);
+  }
+
+  // get ghost node List Conf for NIX
+  public ghostnodeListConf(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GhostnodeListConf).map(
+      node => node);
+  }
+
   // get all recent transaction of NIX
   public listTransaction(transactions :recentTransactionInfo): Observable<any> {
     return this._rpc.call(ApiEndpoints.ListTransactions,[ transactions.account,transactions.count,

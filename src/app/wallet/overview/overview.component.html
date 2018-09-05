@@ -60,7 +60,7 @@
           <div fxLayout="row" fxLayoutGap="5px">
             <span class="point small" fxFlex="50" fxFlexOrder="1">
               <fa-icon [icon]="faBtc"></fa-icon>
-              {{bitcoinprice.BTC.price | currency:"BTC":true}}
+              {{bitcoinprice.BTC.price }}
             </span>
             <span class="small" fxFlex="50" fxFlexOrder="2" fxLayoutAlign="end" style="color:green">
               +12.53%
@@ -79,14 +79,16 @@
           <p class="description">Recent Transactions</p>
           <transaction-table [display]="{numTransactions: 5, columns: transactionColumns, header: false}"></transaction-table>
           <div>
-            <a class="link text-uppercase" routerLink="/transactions">Show All</a>
+            <a class="link text-uppercase" routerLink="/transactions">
+              No data to display
+            </a>
           </div>
         </div>
       </mat-card>
       <mat-card class="item" fxFlexOrder.lt-md="2" fxFlex="30">
         <div class="node-status">
           <p class="description">Node Status</p>
-          <span class="number big">2</span>
+          <span class="number big">0</span>
           <span class="medium text"> Active Nodes</span>
           <div class="divider"></div>
           <span class="medium light">234 NIX earned so far this month</span>
@@ -103,13 +105,12 @@
       <div>
         Wallet Status : {{walletInfo.encryptionstatus}}
       </div>
-      <div *ngIf="walletInfo.encryptionstatus !== 'Locked'">
-        TOR netwoking : enabled
+      <div *ngIf="status">
+        TOR netwoking : {{status}} 
       </div>
-      <div *ngIf="walletInfo.encryptionstatus === 'Locked'">
-        TOR netwoking : disabled
-      </div>
-      
+      <div *ngIf="!status">
+          TOR netwoking : no data
+        </div>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

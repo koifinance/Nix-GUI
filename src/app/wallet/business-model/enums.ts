@@ -57,5 +57,6 @@ export enum ApiEndpoints {
   Getblockchaininfo = 'getblockchaininfo',
   Getnewaddress ="getnewaddress",
   Setaccount = "setaccount",
-  GhostnodeListConf = "ghostnode list-conf"
+  GhostnodeListConf = "ghostnode list-conf",
+  Torstatus  = "torstatus"
 }

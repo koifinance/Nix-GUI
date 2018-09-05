@@ -36,7 +36,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   trasactionInfo : recentTransactionInfo = new IrecentTransactionInfo();
   private _balance: Amount = new Amount(0);
   private log: any = Log.create(`balance.component `);
-  
+  public status;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   public bitcoinprice;
   get balance() {
@@ -54,10 +54,14 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //call listtransaction using params 'account,count,from'
     this._rpcState.registerStateCall(ApiEndpoints.ListTransaction, 1000, [this.trasactionInfo.account,this.trasactionInfo.count,this.trasactionInfo.from]);
-    this._rpcState.registerStateCall(ApiEndpoints.ListTransaction, 1000, [this.listTransaction]);
+    this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
+    this._rpcState.registerStateCall(ApiEndpoints.GhostnodeListConf, 1000, );
     this.getwalletinformation();
     this.listTransaction();
     this.getBitcoinpriceinfo();
+    this.getTorstatus();
+    this.getnodestatus();
+    this.getnodestatus();
   }
 
    //get wallet informations
@@ -88,6 +92,24 @@ export class OverviewComponent implements OnInit, OnDestroy {
       this.bitcoinprice = bitcoinpriceInfos.data.quotes;
     },
         error => this.log.error(message.bitcoinpriceMessage, error));
+  }
+  
+  // get tor status
+  private getTorstatus() {
+    this._rpcState.observe(ApiEndpoints.Torstatus)
+      .subscribe(res => {
+        this.status = res;
+      },
+        error => this.log.error(message.recentTransactionMessage, error));
+  }
+
+  // get node status
+  private getnodestatus() {
+    this._rpcState.observe(ApiEndpoints.GhostnodeListConf)
+      .subscribe(res => {
+        console.log(res);
+      },
+      error => this.log.error(message.recentTransactionMessage, error));
   }
 
   goToChart() {

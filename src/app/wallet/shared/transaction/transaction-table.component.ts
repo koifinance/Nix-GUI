@@ -62,8 +62,8 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
 
     this.transactionSubscription = this.transactionService.transactionEvent
       .subscribe(value => {
-       this.testDataSource =   this.transactionService.transactions;
-        this.dataSource.data = this.testDataSource;
+      //  this.testDataSource =   this.transactionService.transactions;
+        // this.dataSource.data = this.testDataSource;
       });
 
     this.filterSubscription = this.filterService.filterEvent
@@ -126,7 +126,8 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
  private Transactions() {
   this._rpcState.observe(ApiEndpoints.GetTrasaction)
     .subscribe(res => {
-      console.log(res);
+      this.testDataSource =   res.transactions;
+        this.dataSource.data = res;
     },
       error => this.log.error(message.transactionMessage, error));
 }  
