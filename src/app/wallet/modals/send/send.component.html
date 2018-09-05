@@ -11,7 +11,6 @@
       </div>
       <div fxLayout.gt-md="row">
         <div style="color:#b2b2b2" fxFlex="80">Available: 12,000.01 NIX</div>
-        <div fxFlex="20" fxLayoutAlign="end"><a href="">Add max</a></div>
       </div>
     </div>
 
@@ -31,18 +30,20 @@
     <div>
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Sending</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">1 <span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{sendToNix.amount}}<span> NIX</span></span>
       </div>
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end"><span>{{fee}} NIX</span></span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
-        <span fxFlex="30" fxLayoutAlign="end">1.001<span> NIX</span></span>
+        <span fxFlex="30" fxLayoutAlign="end">
+            {{sendToNix.amount*1 + fee*1}}
+          <span> NIX</span></span>
       </div>
     </div>
   </div>
@@ -67,7 +68,6 @@
       </div>
       <div fxLayout.gt-md="row">
         <div style="color:#b2b2b2" fxFlex="80">Available: 6,000.01 NIX</div>
-        <div fxFlex="20" fxLayoutAlign="end"><a href="">Add max</a></div>
       </div>
     </div>
 
@@ -87,18 +87,19 @@
     <div>
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Sending</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">1 <span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{sendToNix.amount}} <span> NIX</span></span>
       </div>
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fee}}<span> NIX</span></span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
-        <span fxFlex="30" fxLayoutAlign="end">1.001<span> NIX</span></span>
+        <span fxFlex="30" fxLayoutAlign="end">{{sendToNix.amount*1 + fee*1}}
+          <span> NIX</span></span>
       </div>
     </div>
   </div>

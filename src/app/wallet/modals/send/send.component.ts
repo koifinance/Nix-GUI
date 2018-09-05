@@ -23,7 +23,7 @@ export class SendComponent implements OnInit, OnDestroy {
   private destroyed: boolean = false;
   private modalContainer: ViewContainerRef;
   modal: ComponentRef<Component>;
-
+  public fee = 0.001;
   constructor(
     private walletServices: WalletService,
     private _rpcState: RpcStateService, private flashNotification: SnackbarService,
