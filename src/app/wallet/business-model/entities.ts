@@ -3,18 +3,42 @@ import { TxType } from "./enums";
 
 // main wallet infor ui
 export interface IWalletInfo {
-    balance: number;
-    ghost_vault: number;
-    ghost_vault_unconfirmed: number;
-    encryptionstatus: string;
+    "walletname": string, 
+    "walletversion": number, 
+    "balance": number,
+    "ghost_vault": number, 
+    "ghost_vault_unconfirmed": number,
+    "unconfirmed_balance": number, 
+    "immature_balance": number,
+    "txcount": number,
+    "keypoololdest": number,
+    "keypoolsize": number,
+    "keypoolsize_hd_internal": number,
+    "reserve": number,
+    "encryptionstatus": string,
+    "unlocked_until": number, 
+    "paytxfee": number,
+    "hdmasterkeyid": string
 }
 
 export class WalletInfo implements IWalletInfo {
 
-    balance: number;
-    ghost_vault: number;
-    ghost_vault_unconfirmed: number;
-    encryptionstatus: string;
+    "walletname": string;
+    "walletversion": number;
+    "balance": number;
+    "ghost_vault": number;
+    "ghost_vault_unconfirmed": number;
+    "unconfirmed_balance": number;
+    "immature_balance": number;
+    "txcount": number;
+    "keypoololdest": number;
+    "keypoolsize": number;
+    "keypoolsize_hd_internal": number;
+    "reserve": number;
+    "encryptionstatus": string;
+    "unlocked_until": number;
+    "paytxfee": number;
+    "hdmasterkeyid": string
 
     constructor(data?: IWalletInfo) {
         if (data) {
@@ -27,10 +51,22 @@ export class WalletInfo implements IWalletInfo {
 
     init(data?: any) {
         if (data) {
+            this.walletname = data["walletname"];
+            this.walletversion = data["walletversion"];
             this.balance = data["balance"];
             this.ghost_vault = data["ghost_vault"];
             this.ghost_vault_unconfirmed = data["ghost_vault_unconfirmed"];
+            this.unconfirmed_balance = data["unconfirmed_balance"];
+            this.immature_balance = data["immature_balance"];
+            this.txcount = data["txcount"];
+            this.keypoololdest = data["keypoololdest"];
+            this.keypoolsize = data["keypoolsize"];
+            this.keypoolsize_hd_internal = data["keypoolsize_hd_internal"];
+            this.reserve = data["reserve"];
             this.encryptionstatus = data["encryptionstatus"];
+            this.paytxfee = data["paytxfee"];
+            this.hdmasterkeyid = data["hdmasterkeyid"];
+
         }
     }
 
@@ -43,9 +79,20 @@ export class WalletInfo implements IWalletInfo {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["balance"] = this.balance;
+        data["walletname"] = this.walletname;
         data["ghost_vault"] = this.ghost_vault === undefined ? 0.00000000 : this.ghost_vault;
         data["ghost_vault_unconfirmed"] = this.ghost_vault_unconfirmed === undefined ? 0.00000000 : this.ghost_vault_unconfirmed;
         data["encryptionstatus"]= this.encryptionstatus;
+        data["walletversion"] = this.walletversion;
+        data["unconfirmed_balance"] = this.unconfirmed_balance;
+        data["immature_balance"] = this.immature_balance;
+        data["txcount"] = this.txcount;
+        data["keypoololdest"] = this.keypoololdest;
+        data["keypoolsize"] = this.keypoolsize;
+        data["keypoolsize_hd_internal"] = this.keypoolsize_hd_internal;
+        data["reserve"] = this.reserve;
+        data["paytxfee"] = this.paytxfee;
+        data["hdmasterkeyid"] = this.hdmasterkeyid;
         return data;
     }
 }
