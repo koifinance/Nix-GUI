@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { routing } from './app.routing';
 import {HttpModule} from '@angular/http';
 import { AppComponent } from './app.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { AppComponent } from './app.component';
     routing,
     WalletModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    ClipboardModule
+    
   ],
   bootstrap: [AppComponent],
 })

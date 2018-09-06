@@ -14,7 +14,8 @@
       <div fxLayout.gt-md="row" fxLayoutGap="5px">
         <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" [(ngModel)]="receivedNixInfo.addresses[0]">
         <button class="dotbtn" fxFlex="10">...</button>
-        <button class="copybtn" fxFlex="15">Copy</button>
+        <button class="copybtn" fxFlex="15" matTooltip="Copy address" ngxClipboard
+        [cbContent]="receivedNixInfo.addresses[0]" (click)="copyToClipBoard()">Copy</button>
       </div>
 
     </div>
@@ -29,7 +30,8 @@
       <div fxLayout.gt-md="row" fxLayoutGap="5px">
         <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" [(ngModel)]="receivedNixInfo.addresses[1]">
         <button class="dotbtn" fxFlex="10">...</button>
-        <button class="copybtn" fxFlex="15">Copy</button>
+        <button class="copybtn" fxFlex="15" matTooltip="Copy address" ngxClipboard
+        [cbContent]="receivedNixInfo.addresses[1]" (click)="copyToClipBoard()">Copy</button>
       </div>
 
     </div>
@@ -45,7 +47,8 @@
       <div fxLayout.gt-md="row" fxLayoutGap="5px">
         <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" [(ngModel)]="receivedNixInfo.addresses[2]">
         <button class="dotbtn" fxFlex="10">...</button>
-        <button class="copybtn" fxFlex="15">Copy</button>
+        <button class="copybtn" fxFlex="15" matTooltip="Copy address" ngxClipboard
+        [cbContent]="receivedNixInfo.addresses[2]" (click)="copyToClipBoard()">Copy</button>
       </div>
 
     </div>
@@ -69,13 +72,7 @@
     <div class="amountsend">
       <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
-        <mat-form-field fxFlex="100">
-          <mat-select placeholder="Amount">
-            <mat-option *ngFor="let Amount of Amounts" [value]="Amount.value" >
-              {{ Amount.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" type="number" (ngModelChange)="getAmount($event)"  [(ngModel)]="amounts">
       </div>
       <div fxLayout.gt-md="row">
         <div style="color:#b2b2b2" fxFlex="80">Available: 6,000.01 NIX</div>
@@ -88,18 +85,18 @@
     <div>
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Sending</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">1 <span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{amount}} <span> NIX</span></span>
       </div>
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees}}<span> NIX</span></span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
-        <span fxFlex="30" fxLayoutAlign="end">1.001<span> NIX</span></span>
+        <span fxFlex="30" fxLayoutAlign="end">{{total}}<span> NIX</span></span>
       </div>
     </div>
   </div>

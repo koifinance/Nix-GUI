@@ -88,10 +88,10 @@
       <mat-card class="item" fxFlexOrder.lt-md="2" fxFlex="30">
         <div class="node-status">
           <p class="description">Node Status</p>
-          <span class="number big">0</span>
+          <span class="number big">{{node}}</span>
           <span class="medium text"> Active Nodes</span>
           <div class="divider"></div>
-          <span class="medium light">234 NIX earned so far this month</span>
+          <span class="medium light">{{monthEarn}} NIX earned so far this month</span>
           <div class="medium light margin-top-40px">
             <fa-icon [icon]="faCircleSolid" class="confirm-ok"></fa-icon>
             No issues

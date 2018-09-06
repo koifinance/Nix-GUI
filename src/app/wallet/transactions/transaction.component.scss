@@ -32,10 +32,11 @@
     border-radius: 4px;
     font-size: 12px;
     color: $color-white !important;
-    padding-left: 10px;
+    // padding-left: 10px;
+    width: 125px;
     font-weight: 300;
   }
-
+ 
   .nix-field {
     background: $color-white;
     border-radius: 4px;
@@ -44,6 +45,7 @@
     margin-left: 10px;
     padding-left: 10px;
     font-weight: 300;
+    width: 120px;
 
     .nix-label {
       font-size: 10px;

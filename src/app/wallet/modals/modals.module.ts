@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../../material/material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { ClipboardModule } from 'ngx-clipboard';
 import { ModalsComponent } from './modals.component';
 import { ModalsService } from './modals.service';
 import { SendComponent } from './send/send.component';
@@ -44,7 +44,8 @@ import { CreateWalletComponent } from './create-wallet/create-wallet.component';
     CommonModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ClipboardModule
   ],
   exports: [
     ModalsComponent

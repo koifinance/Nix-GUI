@@ -34,14 +34,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
   private destroyed: boolean = false;
   walletInfo: IWalletInfo = new WalletInfo();
   trasactionInfo : recentTransactionInfo = new IrecentTransactionInfo();
-  private _balance: Amount = new Amount(0);
   private log: any = Log.create(`balance.component `);
   public status;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   public bitcoinprice;
-  get balance() {
-    return this._balance;
-  }
+  public monthEarn: number = 0;
+  public node: number = 0;
   constructor(
     private modalsService: ModalsService,
     private router: Router,
@@ -54,7 +52,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //call listtransaction using params 'account,count,from'
     this._rpcState.registerStateCall(ApiEndpoints.ListTransaction, 1000, [this.trasactionInfo.account,this.trasactionInfo.count,this.trasactionInfo.from]);
+    //call torstatus using params 'null'
     this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
+     //call ghost node list conf using params 'null'
     this._rpcState.registerStateCall(ApiEndpoints.GhostnodeListConf, 1000, );
     this.getwalletinformation();
     this.listTransaction();
@@ -85,10 +85,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   // get bitcoin price
   private getBitcoinpriceinfo() {
-    debugger
     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
     .subscribe(bitcoinpriceInfos => {
-      debugger
       this.bitcoinprice = bitcoinpriceInfos.data.quotes;
     },
         error => this.log.error(message.bitcoinpriceMessage, error));
@@ -134,7 +132,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   openReceive(walletType: string) {
-    // this.walletService.getTransactionFee()
     const data: any = {
       forceOpen: true,
       walletType: walletType,
@@ -143,49 +140,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.modalsService.openSmall('receive', data);
   }
 
-  public getConfirmationsStyle(confirmations: number): string {
-    if (confirmations < 0) {
-      return 'confirm-error';
-    } else if (confirmations <= 1) {
-      return 'confirm-none';
-    } else {
-      return 'confirm-ok';
-    }
-  }
-
-  public getConfirmationsText(confirmations: number): string {
-    if (confirmations < 0) {
-      return 'Error';
-    } else if (confirmations <= 1) {
-      return 'Processing';
-    } else {
-      return 'Complete';
-    }
-  }
-
-  public getCategoryText(category: string, currency: string): string {
-    if (categories.Send) {
-      return `Sent ${currency}`;
-    } else if (categories.Receive) {
-      return `Received ${currency}`;
-    } else if (categories.Node) {
-      return `Node Earnings`;
-    }
-    return '';
-  }
-
-  public getCategoryIconStyle(category: string): any {
-    if (categories.Send) {
-      return faArrowUp;
-    } else if (categories.Receive) {
-      return faArrowDown;
-    } else if (categories.Node) {
-      return faDollarSign;
-    }
-    return '';
-  }
-
-  
   ngOnDestroy() {
     this.destroyed = true;
   }
