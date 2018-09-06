@@ -7,7 +7,7 @@
     <div class="amountsend">
       <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="400" [(ngModel)]="sendToNix.amount">
+        <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" value="400" (ngModelChange)="getAmount($event)"  [(ngModel)]="sendToNix.amount">
       </div>
       <div fxLayout.gt-md="row">
         <div style="color:#b2b2b2" fxFlex="80">Available: 12,000.01 NIX</div>
@@ -24,25 +24,26 @@
       </div>
     </div>
 
+
   </div>
 
   <div class="modaldetails">
     <div>
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Sending</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{sendToNix.amount}}<span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{amount}}<span> NIX</span></span>
       </div>
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end"><span>{{fee}} NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end"><span>{{fees}} NIX</span></span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
         <span fxFlex="30" fxLayoutAlign="end">
-            {{sendToNix.amount*1 + fee*1}}
+            {{total}}
           <span> NIX</span></span>
       </div>
     </div>
@@ -64,7 +65,7 @@
     <div class="amountsend">
       <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="1" [(ngModel)]="sendToNix.amount">
+        <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" value="1" (ngModelChange)="getAmount($event)" [(ngModel)]="sendToNix.amount">
       </div>
       <div fxLayout.gt-md="row">
         <div style="color:#b2b2b2" fxFlex="80">Available: 6,000.01 NIX</div>
@@ -87,18 +88,18 @@
     <div>
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Sending</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{sendToNix.amount}} <span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end" >{{amount}} <span> NIX</span></span>
       </div>
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fee}}<span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees}}<span> NIX</span></span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
-        <span fxFlex="30" fxLayoutAlign="end">{{sendToNix.amount*1 + fee*1}}
+        <span fxFlex="30" fxLayoutAlign="end">{{total}}
           <span> NIX</span></span>
       </div>
     </div>
@@ -107,6 +108,7 @@
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
     <button class="cancelbtn" mat-raised-button fxFlex="48" (click)="close()">Cancel</button>
     <button class="sendbtn" mat-raised-button fxFlex="48" (click)="sendGhostVaultData()">Send ghosted NIX</button>
+    <!-- <app-success [sendAmount]="sendToNix.amount" (click)="sendGhostVaultData()"></app-success> -->
   </div>
 
 </div>

@@ -50,7 +50,9 @@
         </div>
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
-          <p>6.63444<span> BTC</span><span> ($63,082)</span></p></div>
+            {{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}})
+          <!-- <p>6.63444<span> BTC</span><span> ($63,082)</span></p>-->
+          </div> 
       </div>
 
       <div fxFlexOrder.lt-md="2" fxFlex="25">
@@ -61,7 +63,9 @@
         </div>
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
-          <p>0<span> BTC</span><span> ($0)</span></p></div>
+            {{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}})
+          <!-- <p>0<span> BTC</span><span> ($0)</span></p> -->
+        </div>
       </div>
 
       <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3"
@@ -69,7 +73,7 @@
 
         <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
           <img class="cursor-pointer" src="./assets/icons/SVG/arrow-down-md.svg"
-               alt="Deposit" fxFlex="100" (click)="open('receive')">
+               alt="Deposit" fxFlex="100" (click)="openDeposit('vault')">
           <div class="icon-text" fxLayoutAlign="left">Deposit From Wallet</div>
         </div>
 
@@ -81,7 +85,7 @@
 
         <div fxFlexOrder="3" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
           <img class="cursor-pointer" src="./assets/icons/SVG/send-md.svg"
-               alt="Send" fxFlex="100" (click)="open('receive')">
+               alt="Send" fxFlex="100" (click)="openSend('vault')">
           <div class="icon-text" fxLayoutAlign="left">Send Anonymously</div>
         </div>
       </div>

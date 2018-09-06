@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, ComponentRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ComponentRef, ViewContainerRef, Input } from '@angular/core';
 import { RpcStateService, SnackbarService } from '../../../core/core.module';
 import { ApiEndpoints, message } from '../../business-model/enums';
 import { Log } from 'ng2-logger';
-import { GetNewAddress, IGetNewAddress, ISetAccount, SetAccount } from '../../business-model/entities';
+import { GetNewAddress, IGetNewAddress, ISetAccount, SetAccount, IWalletSendToNix, WalletSendToNix } from '../../business-model/entities';
 import { WalletService } from '../../wallet.service';
 import { MatDialogRef } from '@angular/material';
 import { ModalsService } from '../modals.service';
@@ -13,6 +13,8 @@ import { ModalsService } from '../modals.service';
   styleUrls: ['./success.component.scss']
 })
 export class SuccessComponent implements OnInit, OnDestroy {
+  @Input('sendAmount') amountno : number;
+  sendToNix: IWalletSendToNix = new WalletSendToNix();
   getNewaddress: IGetNewAddress = new GetNewAddress();
   setAccount: ISetAccount = new SetAccount();
   private log: any = Log.create('success.component');
@@ -31,10 +33,43 @@ export class SuccessComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     debugger
+    this.amountno;
     this._rpcState.registerStateCall(ApiEndpoints.Getnewaddress, 1000);
     this.getNewAddress();
   }
+  openSuccess(walletType: string) {
+    const data: any = {
+      forceOpen: true,
+      walletType: walletType,
+      actionType: 'send'
+    };
+    this.data.modalsService.forceClose();
+    this.data.modalsService.openSmall('success', data);
+    this.sendGhostVaultData();
+  }
 
+    // Send from Ghost Vault
+    sendGhostVaultData() {
+      debugger
+      //validating the inputs
+      if (this.validateInput()) {
+        var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
+          debugger
+          this.openSuccess('vault');
+          this.sendToNix.amount
+          console.log(this.sendToNix.amount)
+        },
+          error => {
+            debugger
+            this.flashNotification.open(message.SendAmountToVaultMessage, 'err');
+            this.log.er(message.SendAmountToVaultMessage, error)
+            this.openSuccess('vault');
+            this.sendToNix.amount
+            console.log(this.sendToNix.amount)
+          });
+      }
+  
+    }
   setData(data: any) {
     this.data = data;
   }

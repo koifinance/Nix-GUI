@@ -1,3 +1,4 @@
+<!-- <button class="sendbtn" mat-raised-button fxFlex="48" >Send ghosted NIX</button> -->
 <div *ngIf="data.walletType === 'wallet'" class="wallet">
 
   <div *ngIf="data.actionType === 'send'" class="wallet">
@@ -97,7 +98,7 @@
       <div>
         <div class="transdetail" fxLayout.gt-md="row">
           <span fxFlex="70">Sending</span>
-          <span fxFlex="30" fxLayoutAlign="end">400 <span>NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{amountno}} <span>NIX</span></span>
         </div>
 
         <div class="transdetail" fxLayout.gt-md="row">

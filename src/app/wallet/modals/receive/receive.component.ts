@@ -16,7 +16,11 @@ import { Log } from 'ng2-logger';
 export class ReceiveComponent implements OnInit, OnDestroy {
   data: any;
   receivedNixInfo: IRecieveNixToWallet = new RecieveNixToWallet();
-
+  public amount;
+  public fees;
+  public fee;
+  public total;
+  public amounts;
   private log: any = Log.create(`receive to nix `);
   private destroyed: boolean = false;
   private modalContainer: ViewContainerRef;
@@ -43,6 +47,9 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     this.data = data;
   }
 
+  copyToClipBoard(): void {
+    this.flashNotification.open('Receive nIX to wallet copied to clipboard.');
+  } 
   // receive nix to wallet
   private getReceivedNixToWallet() {
 
@@ -78,6 +85,22 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     this.modal.destroy();
   }
 
+  public getAmount(event){
+    this.amount = event;
+    this.getFee();
+   }
+ 
+   public getFee(){
+     this.fee=1;
+     this.fees = (this.fee/100)* this.amount;
+     this.getTotalamount();
+   }
+ 
+   public getTotalamount(){
+    this.total = this.amount*1+ this.fees*1;
+   }
+
+   
   ngOnDestroy() {
     this.destroyed = true;
   }

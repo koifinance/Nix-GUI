@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
 import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, recentTransactionInfo, IAddBook, TransactionInfo, IPassword, IBitcoinprice, ISetAccount } from './business-model/entities';
@@ -20,6 +20,8 @@ export class WalletService {
   private addressCount: number = 0;
   unlockTimeout: number = 60;
   private validWords: string[];
+  private _listners = new Subject<any>();
+  
   constructor(private _rpc: RpcService, private rpcState: RpcStateService,private http:Http) {
 
   }
@@ -278,4 +280,5 @@ private send(tx: TransactionBuilder): Observable<any> {
       // this.fixWallet();
     }
   }
+
 }
