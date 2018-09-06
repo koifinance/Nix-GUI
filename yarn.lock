@@ -5551,9 +5551,9 @@ ng2-logger@^1.0.12:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/ng2-logger/-/ng2-logger-1.0.12.tgz#f2f16f231215f6006b1597dbb6f99de2458dd464"
 
-ngx-clipboard@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-clipboard/-/ngx-clipboard-10.0.0.tgz#1facba48db2ffe72f0f7975a50ad6abe1429373a"
+ngx-clipboard@9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-clipboard/-/ngx-clipboard-9.0.1.tgz#3829ef67d00a447303af4faf96c705de435d80f8"
   dependencies:
     ngx-window-token "0.0.4"
 

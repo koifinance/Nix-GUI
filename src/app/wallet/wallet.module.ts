@@ -35,6 +35,7 @@ import { HelpComponent } from './help/help.component';
 import { NixPriceChartComponent } from './overview/nix-price-chart/nix-price-chart.component';
 import { WalletLogService } from './wallet.log.service';
 import { WalletService } from './wallet.service';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { WalletService } from './wallet.service';
     routing,
     SharedModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    ClipboardModule
   ],
   exports: [
     MainComponent,

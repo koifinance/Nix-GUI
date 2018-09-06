@@ -18,7 +18,7 @@
       </div>
 
       <div fxLayout="row" fxLayoutGap="5%">
-        <div fxLayout="column" fxFlex="33" fxFlexOrder="1">
+        <div fxLayout="column" fxFlex="25" fxFlexOrder="1">
           <p class="filter-label-text">Amount</p>
           <div>
             <mat-form-field class="amount-field" fxLayoutFlex="40" fxAlign="start">
@@ -37,10 +37,10 @@
           </div>
         </div>
 
-        <div fxLayout="column" fxFlex="67" fxFlexOrder="2">
+        <div fxLayout="column" fxFlex="75" fxFlexOrder="2">
           <p class="filter-label-text">Period</p>
           <div fxLayout="row" fxFlex="70">
-            <mat-form-field class="period-field" fxFlex="30">
+            <mat-form-field class="period-field" fxFlex="20">
               <mat-select [(value)]="dateFilter">
                 <mat-option>Select Period</mat-option>
                 <mat-option value="all">All</mat-option>
@@ -51,7 +51,7 @@
               </mat-select>
             </mat-form-field>
 
-            <div fxFlex="70" fxLayoutAlign="end">
+            <div fxFlex="80" fxLayoutAlign="end">
               <button class="apply-btn" mat-raised-button (click)="applyFilter()">Apply</button>
               <button class="clear-btn" mat-raised-button>Clear</button>
             </div>

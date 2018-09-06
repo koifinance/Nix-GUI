@@ -17,13 +17,15 @@ import { message } from '../../business-model/enums';
 })
 export class SendComponent implements OnInit, OnDestroy {
   data: any;
+  public amount;
+  public fees;
+  public total;
   sendToNix: IWalletSendToNix = new WalletSendToNix();
-
   private log: any = Log.create(`send to nix `);
   private destroyed: boolean = false;
   private modalContainer: ViewContainerRef;
   modal: ComponentRef<Component>;
-  public fee = 0.001;
+  public fee:number;
   constructor(
     private walletServices: WalletService,
     private _rpcState: RpcStateService, private flashNotification: SnackbarService,
@@ -54,12 +56,16 @@ export class SendComponent implements OnInit, OnDestroy {
 
   // Send from Ghost Vault
   sendGhostVaultData() {
+    debugger
     //validating the inputs
     if (this.validateInput()) {
       var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
         this.openSuccess('vault');
+        this.sendToNix.amount
+        console.log(this.sendToNix.amount)
       },
         error => {
+          debugger
           this.flashNotification.open(message.SendAmountToVaultMessage, 'err');
           this.log.er(message.SendAmountToVaultMessage, error)
         });
@@ -98,7 +104,23 @@ export class SendComponent implements OnInit, OnDestroy {
     this.modal.destroy();
   }
 
+  public getAmount(event){
+   this.amount = event;
+   this.getFee();
+  }
+
+  public getFee(){
+    this.fee=1;
+    this.fees = (this.fee/100)* this.amount;
+    this.getTotalamount();
+  }
+
+  public getTotalamount(){
+   this.total = this.amount*1+ this.fees*1;
+  }
   ngOnDestroy() {
     this.destroyed = true;
   }
+
+
 }
