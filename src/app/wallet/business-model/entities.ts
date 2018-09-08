@@ -822,3 +822,76 @@ export class SetAccount implements ISetAccount {
         return data;
     }
 }
+
+export interface IChangePassword {
+    oldpassphrase: string;
+    newpassphrase: string;
+  }
+
+  export class ChangePassword implements IChangePassword {
+    oldpassphrase: string;
+    newpassphrase: string;
+
+    constructor(data?: IChangePassword) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.oldpassphrase = data["oldpassphrase"];
+            this.newpassphrase = data["newpassphrase"];
+        }
+    }
+
+    static fromJS(data: any): ChangePassword {
+        let result = new ChangePassword();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["oldpassphrase"] = this.oldpassphrase;
+        data["newpassphrase"] = this.newpassphrase;
+        return data;
+    }
+} 
+export interface ISavecurrency {
+    convert: string;
+}
+
+export class Savecurrency implements ISavecurrency {
+    convert: string;
+
+    constructor(data?: ISavecurrency) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.convert = data["convert"];
+        }
+    }
+
+    static fromJS(data: any): Savecurrency {
+        let result = new Savecurrency();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["convert"] = this.convert;
+        return data;
+    }
+}

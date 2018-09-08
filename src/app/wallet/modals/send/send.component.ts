@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ComponentRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ComponentRef, ViewContainerRef, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 
 import { WalletService } from '../../wallet.service';
@@ -17,9 +17,11 @@ import { message } from '../../business-model/enums';
 })
 export class SendComponent implements OnInit, OnDestroy {
   data: any;
-  public amount;
-  public fees;
-  public total;
+  @Output() saveProduct = new EventEmitter();
+  public amount : number = 0;
+  public fees : number = 0;
+  public total: number = 0;
+  public nixamount : number = 10;
   sendToNix: IWalletSendToNix = new WalletSendToNix();
   private log: any = Log.create(`send to nix `);
   private destroyed: boolean = false;
@@ -34,6 +36,7 @@ export class SendComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.fee = 1;
   }
 
   setData(data: any) {
@@ -56,13 +59,11 @@ export class SendComponent implements OnInit, OnDestroy {
 
   // Send from Ghost Vault
   sendGhostVaultData() {
-    debugger
     //validating the inputs
     if (this.validateInput()) {
       var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
         this.openSuccess('vault');
-        this.sendToNix.amount
-        console.log(this.sendToNix.amount)
+        this.nixamount = this.sendToNix.amount;
       },
         error => {
           debugger
@@ -88,13 +89,13 @@ export class SendComponent implements OnInit, OnDestroy {
   }
 
   openSuccess(walletType: string) {
-    const data: any = {
+    const dataTest: any = {
       forceOpen: true,
       walletType: walletType,
       actionType: 'send'
     };
     this.data.modalsService.forceClose();
-    this.data.modalsService.openSmall('success', data);
+    this.data.modalsService.openSmall('success',"[dataTest]='dataTest'");
   }
 
   close(): void {
@@ -110,13 +111,12 @@ export class SendComponent implements OnInit, OnDestroy {
   }
 
   public getFee(){
-    this.fee=1;
     this.fees = (this.fee/100)* this.amount;
-    this.getTotalamount();
+    this.getTotal();
   }
 
-  public getTotalamount(){
-   this.total = this.amount*1+ this.fees*1;
+  public getTotal(){
+   this.total = this.amount + this.fees;
   }
   ngOnDestroy() {
     this.destroyed = true;

@@ -90,13 +90,13 @@
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees}}<span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees | number: '.4'}}<span> NIX</span></span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
-        <span fxFlex="30" fxLayoutAlign="end">{{total}}<span> NIX</span></span>
+        <span fxFlex="30" fxLayoutAlign="end">{{total | number: '.4'}}<span> NIX</span></span>
       </div>
     </div>
   </div>
