@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
-import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, recentTransactionInfo, IAddBook, TransactionInfo, IPassword, IBitcoinprice, ISetAccount } from './business-model/entities';
+import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, recentTransactionInfo, IAddBook, TransactionInfo, IPassword, IBitcoinprice, ISetAccount, IChangePassword, ISavecurrency } from './business-model/entities';
 import { ApiEndpoints, typeOfAddresses } from './business-model/enums';
 import { Http } from '@angular/http';
 @Injectable()
@@ -90,6 +90,16 @@ export class WalletService {
 public receiveNIXToWallet(setaccount : ISetAccount): Observable<any> {
   return this._rpc.call(ApiEndpoints.Setaccount, [setaccount.address,setaccount.account]);
 }
+
+// To save currency
+public saveCurrency(currency : ISavecurrency): Observable<any> {
+  return this._rpc.call(ApiEndpoints.SaveCurrency, [currency.convert]);
+}
+
+  // To save currency
+  public changepassword(pass : IChangePassword): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Walletpassphrasechange, [pass.oldpassphrase, pass.newpassphrase]);
+  }
 
   private rpc_getParams() {
     if (typeOfAddresses.Send) {

@@ -29,12 +29,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
   faArrowDown: any = faArrowDown;
   faBtc: any = faBtc;
   faq: Array<FAQ> = faq;
-  TransactionBuilder: TransactionBuilder;
   transactionColumns: string[] = ['date', 'category', 'confirmations', 'amount'];
   private destroyed: boolean = false;
   walletInfo: IWalletInfo = new WalletInfo();
   trasactionInfo : recentTransactionInfo = new IrecentTransactionInfo();
-  private log: any = Log.create(`balance.component `);
+  private log: any = Log.create(`overview.component `);
   public status;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   public bitcoinprice;
@@ -60,7 +59,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.listTransaction();
     this.getBitcoinpriceinfo();
     this.getTorstatus();
-    this.getnodestatus();
     this.getnodestatus();
   }
 

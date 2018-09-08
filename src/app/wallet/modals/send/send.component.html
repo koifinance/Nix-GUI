@@ -36,14 +36,14 @@
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end"><span>{{fees}} NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end"><span>{{fees | number: '.4'}} NIX</span></span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
         <span fxFlex="30" fxLayoutAlign="end">
-            {{total}}
+            {{total | number: '.4'}}
           <span> NIX</span></span>
       </div>
     </div>
@@ -93,13 +93,13 @@
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees}}<span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees | number: '.4'}}<span> NIX</span></span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
-        <span fxFlex="30" fxLayoutAlign="end">{{total}}
+        <span fxFlex="30" fxLayoutAlign="end">{{total | number: '.4'}}
           <span> NIX</span></span>
       </div>
     </div>
@@ -108,7 +108,7 @@
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
     <button class="cancelbtn" mat-raised-button fxFlex="48" (click)="close()">Cancel</button>
     <button class="sendbtn" mat-raised-button fxFlex="48" (click)="sendGhostVaultData()">Send ghosted NIX</button>
-    <!-- <app-success [sendAmount]="sendToNix.amount" (click)="sendGhostVaultData()"></app-success> -->
+    <!-- <app-success [selectValue]="nixamount" (click)="sendGhostVaultData()"></app-success> -->
   </div>
 
 </div>

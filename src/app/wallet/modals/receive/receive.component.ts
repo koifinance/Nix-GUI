@@ -16,10 +16,10 @@ import { Log } from 'ng2-logger';
 export class ReceiveComponent implements OnInit, OnDestroy {
   data: any;
   receivedNixInfo: IRecieveNixToWallet = new RecieveNixToWallet();
-  public amount;
-  public fees;
-  public fee;
-  public total;
+  public amount : number = 0;
+  public fees : number = 0;;
+  public fee : number = 1;
+  public total : number = 0;;
   public amounts;
   private log: any = Log.create(`receive to nix `);
   private destroyed: boolean = false;
@@ -32,7 +32,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    debugger
     this.receivedNixInfo = new RecieveNixToWallet();
     this.receivedNixInfo.account = 'jhon';
     this.receivedNixInfo.addresses = [];
@@ -91,17 +90,15 @@ export class ReceiveComponent implements OnInit, OnDestroy {
    }
  
    public getFee(){
-     this.fee=1;
      this.fees = (this.fee/100)* this.amount;
-     this.getTotalamount();
+     this.getTotal();
    }
  
-   public getTotalamount(){
-    this.total = this.amount*1+ this.fees*1;
+   public getTotal(){
+    this.total = this.amount + this.fees;
    }
 
-   
-  ngOnDestroy() {
-    this.destroyed = true;
-  }
+    ngOnDestroy() {
+      this.destroyed = true;
+    }
 }
