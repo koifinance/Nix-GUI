@@ -31,6 +31,9 @@ export enum message {
   ReceiveNIXtoWallet = 'Wallet Failed Receive NIX to Wallet!',
   GetAddress = 'Failed to get addresses',
   SendAmountToVaultMessage = 'Ghost vault Failed to get balance!',
+  SaveCurrencyMessage = "Failed to save currency",
+  PasswordValidationMessage = "Re-Entry password must be same to the new password",
+  ChangePasswordMessage = "Failed to change password"
 }
 
 export enum ApiEndpoints {
@@ -58,5 +61,7 @@ export enum ApiEndpoints {
   Getnewaddress ="getnewaddress",
   Setaccount = "setaccount",
   GhostnodeListConf = "ghostnode list-conf",
-  Torstatus  = "torstatus"
+  Torstatus  = "torstatus",
+  SaveCurrency = "https://api.coinmarketcap.com/v2/ticker/2991",
+  GetPriceinfo = "getpriceinfo"
 }
