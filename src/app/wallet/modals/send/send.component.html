@@ -1,6 +1,6 @@
 <div *ngIf="data.walletType === 'wallet'" class="wallet">
 
-  <div class="modalcontent">
+  <!-- <div class="modalcontent">
     <h5 fxFlex="50">Send for wallet</h5>
     <div _ngcontent-c7="" class="divider"></div>
 
@@ -52,20 +52,91 @@
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
     <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()" >Cancel</button>
     <button class="sendbtn" mat-raised-button fxFlex="40" (click)="sendData()">Send NIX</button>
-  </div>
+  </div> -->
 
+  <div class="withdraw-node">
+
+    <div class="modalcontent">
+      <h5 fxFlex="50">Send NIX from Wallet</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+
+      <div class="amountsend">
+        <p>Amount to send </p>
+        <div fxLayout.gt-md="row">
+          <div class="custom-input-group amount-input">
+            <input value="300" type="number" (ngModelChange)="getAmount($event)" [(ngModel)]="sendToNix.amount">
+            <span class="input-text">($10,224)</span>
+            <span class="input-end-text">
+              NIX
+            </span>
+          </div>
+        </div>
+        <div fxLayout.gt-md="row">
+          <div class="available-reward" fxFlex="80">Available: 6,000.01 NIX</div>
+        </div>
+      </div>
+
+      <div class="sendto">
+        <p>To</p>
+        <div fxLayout.gt-md="row">
+          <div class="custom-input-group">
+            <input value="NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl" [(ngModel)]="sendToNix.address">
+            <span class="fa-icon">
+              <fa-icon [icon]="faAddressBook"></fa-icon>
+            </span>
+          </div>
+        </div>
+        <div class="available-reward save-address">
+          <mat-checkbox class="saveaddress">Save to address book for future use</mat-checkbox>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modaldetails">
+      <div>
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span class="modallabel" fxFlex="30">Withdrawing</span>
+          <span class="nixlabel" fxFlex="70" fxLayoutAlign="end">{{amount}}
+            <span>&nbsp; NIX</span>
+          </span>
+        </div>
+
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span class="modallabel" fxFlex="30">Fee</span>
+          <span class="nixlabel" fxFlex="70" fxLayoutAlign="end">{{fees | number: '.4'}}
+            <span>&nbsp; NIX</span>
+          </span>
+
+        </div>
+
+        <div class="transtotal" fxLayout.gt-md="row">
+          <span fxFlex="30">Total</span>
+          <span fxFlex="70" fxLayoutAlign="end">{{total | number: '.4'}}
+            <span>&nbsp; NIX</span>
+          </span>
+        </div>
+      </div>
+    </div>
+   
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+        <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()" >Cancel</button>
+        <button class="sendbtn" mat-raised-button fxFlex="40" (click)="sendData()">Send NIX</button>
+      </div>
+  </div>
 </div>
 
 <div *ngIf="data.walletType === 'vault'" class="vault">
 
-  <div class="modalcontent">
+  <!-- <div class="modalcontent">
     <h5 fxFlex="50">Send from Ghost Vault</h5>
     <div _ngcontent-c7="" class="divider"></div>
 
     <div class="amountsend">
       <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" value="1" (ngModelChange)="getAmount($event)" [(ngModel)]="sendToNix.amount">
+        <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" value="1" (ngModelChange)="getAmount($event)"
+          [(ngModel)]="sendToNix.amount">
       </div>
       <div fxLayout.gt-md="row">
         <div style="color:#b2b2b2" fxFlex="80">Available: 6,000.01 NIX</div>
@@ -88,27 +159,98 @@
     <div>
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Sending</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end" >{{amount}} <span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{amount}}
+          <span> NIX</span>
+        </span>
       </div>
 
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees | number: '.4'}}<span> NIX</span></span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees | number: '.4'}}
+          <span> NIX</span>
+        </span>
 
       </div>
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
         <span fxFlex="30" fxLayoutAlign="end">{{total | number: '.4'}}
-          <span> NIX</span></span>
+          <span> NIX</span>
+        </span>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+  <!-- <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
     <button class="cancelbtn" mat-raised-button fxFlex="48" (click)="close()">Cancel</button>
-    <button class="sendbtn" mat-raised-button fxFlex="48" (click)="sendGhostVaultData()">Send ghosted NIX</button>
+    <button class="sendbtn" mat-raised-button fxFlex="48" (click)="sendGhostVaultData()">Send ghosted NIX</button> -->
     <!-- <app-success [selectValue]="nixamount" (click)="sendGhostVaultData()"></app-success> -->
-  </div>
+  <!-- </div> -->
+  <div class="withdraw-node">
 
+      <div class="modalcontent">
+        <h5 fxFlex="50">Send NIX from Ghost Vault</h5>
+        <div _ngcontent-c7="" class="divider"></div>
+  
+        <div class="amountsend">
+          <p>Amount to send </p>
+          <div fxLayout.gt-md="row">
+            <div class="custom-input-group amount-input">
+              <input value="300" type="number" (ngModelChange)="getAmount($event)" [(ngModel)]="sendToNix.amount">
+              <span class="input-text">($10,224)</span>              
+            </div>
+          </div>
+          <div fxLayout.gt-md="row">
+            <div class="available-reward" fxFlex="80">Available: 6,000.01 Ghosted NIX</div>
+          </div>
+        </div>
+  
+        <div class="sendto">
+          <p>To</p>
+          <div fxLayout.gt-md="row">
+            <div class="custom-input-group">
+              <input value="NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl" [(ngModel)]="sendToNix.address">
+              <span class="fa-icon">
+                <fa-icon [icon]="faAddressBook"></fa-icon>
+              </span>
+            </div>
+          </div>
+          <div class="available-reward save-address">
+            <mat-checkbox class="saveaddress">Save to address book for future use</mat-checkbox>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="modaldetails">
+        <div>
+          <div class="transdetail" fxLayout.gt-md="row">
+            <span class="modallabel" fxFlex="30">Withdrawing</span>
+            <span class="nixlabel" fxFlex="70" fxLayoutAlign="end">{{amount}}
+              <span>&nbsp; Ghosted NIX</span>
+            </span>
+          </div>
+  
+          <div class="transdetail" fxLayout.gt-md="row">
+            <span class="modallabel" fxFlex="30">Fee</span>
+            <span class="nixlabel" fxFlex="70" fxLayoutAlign="end">{{fees | number: '.4'}}
+              <span>&nbsp; Ghosted NIX</span>
+            </span>
+  
+          </div>
+  
+          <div class="transtotal" fxLayout.gt-md="row">
+            <span fxFlex="30">Total</span>
+            <span fxFlex="70" fxLayoutAlign="end">{{total | number: '.4'}}
+              <span>&nbsp; Ghosted NIX</span>
+            </span>
+          </div>
+        </div>
+      </div>
+     
+      <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+          <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()" >Cancel</button>
+          <button class="sendbtn" mat-raised-button fxFlex="40" (click)="sendData()">Send ghosted NIX</button>
+        </div>
+    </div>
 </div>

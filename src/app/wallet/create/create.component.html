@@ -4,7 +4,7 @@
     <div class="content" [fxFlex]="85">
 
       <!-- Step 1 -->
-      <div *ngIf="step === 1">
+      <!-- <div *ngIf="step === 1">
         <div class="text">
           Next you will be guided through the following steps:
         </div>
@@ -19,10 +19,10 @@
           IMPORTANT<br/>
           Make sure that you keep this information safe or you could risk losing access to your coins
         </div>
-      </div>
+      </div> -->
 
       <!-- Brand new wallet Step 2 -->
-      <div *ngIf="step === 2">
+      <div *ngIf="step === 1">
         <div class="text">
           Your password is important.
         </div>
@@ -36,7 +36,7 @@
       </div>
 
       <!-- Step 3 -->
-      <div *ngIf="step === 3">
+      <div *ngIf="step === 2">
         <div class="text">
           Together with your password, you can use your recovery phrase to restore
           you wallet or install it on another computer.
@@ -48,7 +48,7 @@
       </div>
 
       <!-- Step 4 -->
-      <div *ngIf="step === 4">
+      <div *ngIf="step === 3">
         <div class="text">
           Confirm that you backed up your recovery phrase from the previous step by filling in the missing words.
         </div>
@@ -58,7 +58,7 @@
     <div class="actions">
 
       <div *ngIf="step === 1" fxLayout="row">
-        <mat-checkbox [(ngModel)]="termsChecked">I understand and agree to the wallet <u>Terms & Conditions</u>
+        <mat-checkbox [(ngModel)]="termsChecked" class="termsCheck">I understand and agree to the wallet Terms & Conditions
         </mat-checkbox>
       </div>
 
@@ -68,7 +68,7 @@
 
       <div fxLayout="row">
         <button fxFlex="100" class="restore-btn" mat-raised-button (click)="nextStep()">
-          Next
+          Next Step
         </button>
       </div>
     </div>
@@ -78,13 +78,25 @@
 
     <!-- Step 1 -->
     <div *ngIf="step === 1">
-      <div class="back-button">
+      <!-- <div class="back-button">
         <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="goTo('welcome')">
         <div class="caption">Back</div>
-      </div>
-      <div fxLayoutAlign="center center">
+      </div> -->
+      <!-- <div fxLayoutAlign="center center">
         <img src="./assets/icons/SVG/create-wallet.svg" alt="Create wallet">
-      </div>
+      </div> -->
+      <div fxLayout="row">
+          <div class="back-button" fxFlex="15">
+            <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="goTo('welcome')">
+            <div class="caption">Back</div>
+          </div>
+  
+          <div class="text" fxFlex="70">
+            <p class="title">{{ stepTitle() }}</p>
+            <p class="subtitle">Step {{ step }} of 3</p>
+            <mat-progress-bar mode="determinate" class="progress-bar" [value]="stepProgress()"></mat-progress-bar>
+          </div>
+        </div>
     </div>
 
     <!-- Step 2 onwards -->
@@ -98,16 +110,17 @@
 
         <div class="text" fxFlex="70">
           <p class="title">{{ stepTitle() }}</p>
-          <p class="subtitle">Step {{ step - 1 }} of 3</p>
+          <p class="subtitle">Step {{ step }} of 3</p>
           <mat-progress-bar mode="determinate" class="progress-bar" [value]="stepProgress()"></mat-progress-bar>
         </div>
+      </div>
       </div>
 
       <div class="wrapper">
 
         <!-- Step 2 -->
-        <div *ngIf="step === 2" class="text">
-          <p class="body">Create a password to protect your wallet</p>
+        <div *ngIf="step === 1" class="text">
+          <p class="body"><b>Create a password to protect your wallet</b></p>
           <p>
             <mat-form-field class="password">
               <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter password"
@@ -131,9 +144,9 @@
         </div>
 
         <!-- Step 3 & 4 -->
-        <div class="text" *ngIf="step > 2">
-          <p class="body" *ngIf="step === 3">Copy this phrase somewhere safe</p>
-          <p class="body" *ngIf="step === 4">Use your phrase to complete the missing words</p>
+        <div class="text" *ngIf="step > 1">
+          <p class="body" *ngIf="step === 2"><b>Copy this phrase somewhere safe</b></p>
+          <p class="body" *ngIf="step === 3"><b>Use your phrase to complete the missing words</b></p>
           <div fxLayout="row wrap" fxLayoutAlign="start space-evenly" class="body">
             <div class="phrase" fxFlex="16" *ngFor="let phrase of recoveryPhrase; index as i">
               <small>{{ i + 1 }}</small>
@@ -141,7 +154,7 @@
               <mat-divider></mat-divider>
             </div>
           </div>
-          <div class="icons" fxLayout="row" fxLayoutAlign="center" *ngIf="step === 3">
+          <div class="icons" fxLayout="row" fxLayoutAlign="center" *ngIf="step === 2">
             <div fxFlex="15">
               <img [src]="clipboardIcon()" (click)="copyToClipboard()"/>
               <div class="caption">{{ clipboardText() }}</div>
@@ -153,7 +166,7 @@
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
 
   </mat-drawer-content>
 </mat-drawer-container>

@@ -33,7 +33,8 @@ export enum message {
   SendAmountToVaultMessage = 'Ghost vault Failed to get balance!',
   SaveCurrencyMessage = "Failed to save currency",
   PasswordValidationMessage = "Re-Entry password must be same to the new password",
-  ChangePasswordMessage = "Failed to change password"
+  ChangePasswordMessage = "Failed to change password",
+  CopiedAddress = "Address copied to clipboard"
 }
 
 export enum ApiEndpoints {

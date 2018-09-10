@@ -19,8 +19,8 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   public amount : number = 0;
   public fees : number = 0;;
   public fee : number = 1;
-  public total : number = 0;;
-  public amounts;
+  public total : number = 0;
+  public amounts: number = 0;
   private log: any = Log.create(`receive to nix `);
   private destroyed: boolean = false;
   private modalContainer: ViewContainerRef;
@@ -47,7 +47,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   copyToClipBoard(): void {
-    this.flashNotification.open('Receive nIX to wallet copied to clipboard.');
+    this.flashNotification.open(message.CopiedAddress);
   } 
   // receive nix to wallet
   private getReceivedNixToWallet() {
@@ -67,10 +67,25 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       });
   }
 
+  vaildInput(): boolean {
+    if(this.amounts===0) {
+      this.flashNotification.open(message.EnterData, 'err');
+      return false;
+    }
+    return true;
+  }
+  depositSuccess() {
+    if(this.vaildInput()) {
+      this.openSuccess('vault');
+    }
+  }
   openSuccess(walletType: string) {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
+      amount: this.amounts,
+      fee: this.fees,
+      total: this.total,
       actionType: 'receive'
     };
     this.data.modalsService.forceClose();

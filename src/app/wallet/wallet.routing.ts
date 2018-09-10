@@ -21,10 +21,12 @@ import { OutOfDateComponent } from './updates/out-of-date/out-of-date.component'
 import { AboutNixComponent } from './about-nix/about-nix.component';
 import { HelpComponent } from './help/help.component';
 import { NixPriceChartComponent } from './overview/nix-price-chart/nix-price-chart.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent, data: { title: 'Welcome', page: 'welcome' } },
+  { path: 'login', component: LoginComponent, data: { title: 'Login', page: 'login' } },
   { path: 'create', component: CreateComponent, data: { title: 'Create', page: 'create' } },
   { path: 'restore', component: RestoreComponent, data: { title: 'Restore', page: 'restore' } },
   { path: 'reward-history-table', component: RewardHistoryTableComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-table' } },

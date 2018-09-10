@@ -23,8 +23,9 @@ mat-drawer-content {
     }
 
     .text {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 300;
+      line-height: 1.4rem;
     }
 
     p {
@@ -137,13 +138,13 @@ mat-drawer-content {
     }
 
     .body {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 32px;
     }
 
     div {
       &.body {
-        font-size: 14px;
+        font-size: 15px;
         margin-top: 2em;
       }
     }
@@ -241,13 +242,13 @@ mat-drawer-content {
   font-weight: bold;
 }
 .red-text {
-  font-size: 14px;
+  font-size: 15px;
 }
 .password-body-head {
   font-weight: bold;
   font-size: 15px;
 }
 .password-body {  
-  font-size: 14px;
+  font-size: 15px;
   color: #4A4A4A;
 }

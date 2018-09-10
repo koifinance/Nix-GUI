@@ -6,12 +6,11 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { RpcStateService } from '../../core/core.module';
 
 @Component({
-  selector: 'wallet-welcome',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class WelcomeComponent implements OnInit, OnDestroy {
-
+export class LoginComponent implements OnInit, OnDestroy {
   faEyeSlash: any = faEyeSlash;
   faEye: any = faEye;
   walletInitialized: boolean;
@@ -45,14 +44,12 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     this.destroyed = true;
   }
 
-  goTo(route: string) {
-      this.router.navigate([`/${route}`]);
-    }
 
-  goToMain(route: string) {
+  goTo(route: string) {
     if (this.passwordValidation()) {
       this.router.navigate([`/${route}`]);
     }
+
   }
 
   togglePassword() {
@@ -62,4 +59,5 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   passwordLabelText(): string {
     return this.showPassword ? 'Hide' : 'Show';
   }
+
 }

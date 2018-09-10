@@ -8,8 +8,9 @@
       <div _ngcontent-c7="" class="divider"></div>
     </div>
 
-    <div class="successicon" fxLayout.gt-md="row"><img src="assets/icons/SVG/2B.svg" alt="Checkmark" fxFlex="100"
-                                                       fxLayoutAlign="center"></div>
+    <div class="successicon" fxLayout.gt-md="row">
+      <img src="assets/icons/SVG/2B.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+    </div>
 
     <div class="amountsend" fxLayout.gt-md="row">
       <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
@@ -23,19 +24,25 @@
       <div>
         <div class="transdetail" fxLayout.gt-md="row">
           <span fxFlex="70">Sending</span>
-          <span fxFlex="30" fxLayoutAlign="end">{{selectValue}} <span>NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{sendingAmount}}
+            <span>&nbsp;NIX</span>
+          </span>
         </div>
 
         <div class="transdetail" fxLayout.gt-md="row">
           <span fxFlex="70">Fee</span>
-          <span fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
-
+          <span fxFlex="30" fxLayoutAlign="end">{{fee | number: '.4'}}
+            <span>&nbsp; NIX</span>
+          </span>
         </div>
 
         <div class="transtotal" fxLayout.gt-md="row">
           <span fxFlex="70">Total</span>
-          <span fxFlex="30" fxLayoutAlign="end">400.001<span> NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{totalAmount | number: '.4'}}
+            <span>&nbsp;NIX</span>
+          </span>
         </div>
+        
       </div>
     </div>
 
@@ -55,8 +62,8 @@
       </div>
 
       <div fxLayout.gt-md="row">
-        <input class="modalinput disabledinput" matInput fxFlex="100" disabled="disabled" placeholder="New address"
-               value="getNewaddress.address" [(ngModel)]="setAccount.address">
+        <input class="modalinput disabledinput" matInput fxFlex="100" disabled="disabled" placeholder="New address" value="getNewaddress.address"
+          [(ngModel)]="setAccount.address">
       </div>
 
       <div fxLayout.gt-md="row">
@@ -82,8 +89,9 @@
       <div _ngcontent-c7="" class="divider"></div>
     </div>
 
-    <div class="successicon" fxLayout.gt-md="row"><img src="assets/icons/SVG/2B_purple.svg" alt="Checkmark" fxFlex="100"
-                                                       fxLayoutAlign="center"></div>
+    <div class="successicon" fxLayout.gt-md="row">
+      <img src="assets/icons/SVG/2B_purple.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+    </div>
 
     <div class="amountsend" fxLayout.gt-md="row">
       <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
@@ -98,24 +106,30 @@
       <div>
         <div class="transdetail" fxLayout.gt-md="row">
           <span fxFlex="70">Sending</span>
-          <span fxFlex="30" fxLayoutAlign="end">{{selectValue}} <span>NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{sendingAmount}}
+            <span>&nbsp;NIX</span>
+          </span>
         </div>
 
         <div class="transdetail" fxLayout.gt-md="row">
           <span fxFlex="70">Fee</span>
-          <span fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{fee | number: '.4'}}
+            <span>&nbsp; NIX</span>
+          </span>
 
         </div>
 
         <div class="transtotal" fxLayout.gt-md="row">
           <span fxFlex="70">Total</span>
-          <span fxFlex="30" fxLayoutAlign="end">400.001<span> NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{totalAmount | number: '.4'}}
+            <span>&nbsp;NIX</span>
+          </span>
         </div>
       </div>
     </div>
 
     <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
-      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center" (click) = "sendDone('vault')">Done</button>
+      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('vault')">Done</button>
     </div>
   </div>
 
@@ -125,8 +139,9 @@
       <div _ngcontent-c7="" class="divider"></div>
     </div>
 
-    <div class="successicon" fxLayout.gt-md="row"><img src="assets/icons/SVG/2B_purple.svg" alt="Checkmark" fxFlex="100"
-                                                       fxLayoutAlign="center"></div>
+    <div class="successicon" fxLayout.gt-md="row">
+      <img src="assets/icons/SVG/2B_purple.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+    </div>
 
     <div class="amountsend" fxLayout.gt-md="row">
       <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
@@ -141,24 +156,30 @@
       <div>
         <div class="transdetail" fxLayout.gt-md="row">
           <span fxFlex="70">Sending</span>
-          <span fxFlex="30" fxLayoutAlign="end">{{selectValue}} <span>NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{sendingAmount}}
+            <span>&nbsp; NIX</span>
+          </span>
         </div>
 
         <div class="transdetail" fxLayout.gt-md="row">
           <span fxFlex="70">Fee</span>
-          <span fxFlex="30" fxLayoutAlign="end">0.001<span> NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{fee | number: '.4'}}
+            <span>&nbsp;NIX</span>
+          </span>
 
         </div>
 
         <div class="transtotal" fxLayout.gt-md="row">
           <span fxFlex="70">Total</span>
-          <span fxFlex="30" fxLayoutAlign="end">400.001<span> NIX</span></span>
+          <span fxFlex="30" fxLayoutAlign="end">{{totalAmount | number: '.4'}}
+            <span>&nbsp;NIX</span>
+          </span>
         </div>
       </div>
     </div>
 
     <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
-      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center">Done</button>
+      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center" (click)="depositDone()">Done</button>
     </div>
   </div>
 

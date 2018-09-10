@@ -8,6 +8,7 @@ import { WalletSendToNix, IWalletSendToNix } from '../../business-model/entities
 import { wallet } from '../../datamodel/model';
 import { Log } from 'ng2-logger';
 import { message } from '../../business-model/enums';
+import { faBook, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-send',
@@ -28,6 +29,9 @@ export class SendComponent implements OnInit, OnDestroy {
   private modalContainer: ViewContainerRef;
   modal: ComponentRef<Component>;
   public fee:number;
+  faBook: any = faBook;
+  faAddressBook: any = faAddressBook;
+
   constructor(
     private walletServices: WalletService,
     private _rpcState: RpcStateService, private flashNotification: SnackbarService,
@@ -44,7 +48,6 @@ export class SendComponent implements OnInit, OnDestroy {
   }
 
   // send for wallet
-
   sendData() {
     if(this.validateInput()) {
       var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
@@ -54,7 +57,6 @@ export class SendComponent implements OnInit, OnDestroy {
         this.log.er(message.SendAmount, error)
       });
     }
-
   }
 
   // Send from Ghost Vault
@@ -71,7 +73,6 @@ export class SendComponent implements OnInit, OnDestroy {
           this.log.er(message.SendAmountToVaultMessage, error)
         });
     }
-
   }
 // validating input
   validateInput(): boolean {
@@ -89,13 +90,16 @@ export class SendComponent implements OnInit, OnDestroy {
   }
 
   openSuccess(walletType: string) {
-    const dataTest: any = {
+    const data: any = {
       forceOpen: true,
       walletType: walletType,
+      amount: this.amount,
+      fee: this.fees,
+      total: this.total,
       actionType: 'send'
     };
     this.data.modalsService.forceClose();
-    this.data.modalsService.openSmall('success',"[dataTest]='dataTest'");
+    this.data.modalsService.openSmall('success', data);
   }
 
   close(): void {
