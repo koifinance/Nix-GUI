@@ -1,11 +1,10 @@
 <mat-drawer-container fullscreen>
   <mat-drawer position="end" mode="side" opened class="sidebar" fxLayout="column">
 
-    <div class="content" [fxFlex]="walletInitialized ? 30 : 80">
+    <div class="content" [fxFlex]="30">
 
-      <!-- Already has wallet -->
-      <div *ngIf="walletInitialized">
         <div class="heading" fxLayoutAlign="center">Open wallet</div>
+        <div class="empty-space1"></div>
         <mat-form-field class="password">
           <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword">
         </mat-form-field>
@@ -14,32 +13,18 @@
           <button mat-button (click)="togglePassword()">
             <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
             {{ passwordLabelText() }} password
+            
           </button>
         </div>
-      </div>
-
-      <!-- Brand new wallet -->
-      <div *ngIf="!walletInitialized">
-        <div class="heading">Welcome to NIX</div>
-        <p class="text">
-          Summary of NIX lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas lorem congue metus pellentesque, vel
-          cursus nisi luctus. Praesent feugiat fermentum pharetra.
-        </p>
-      </div>
     </div>
 
+    <div class="empty-space1"></div>
     <div class="actions">
-      <div *ngIf="walletInitialized" fxLayout="row">
-        <button fxFlex="100" class="create-new-btn" mat-raised-button (click)="goToMain('main')">
+      <div fxLayout="row">
+        <button fxFlex="100" class="create-new-btn" mat-raised-button (click)="goTo('main')">
           Login
         </button>
-      </div>
-
-      <div *ngIf="!walletInitialized" fxLayout="row">
-        <button fxFlex="100" class="create-new-btn" mat-raised-button (click)="goTo('create')">
-          Create new wallet
-        </button>
-      </div>
+      </div>     
 
       <div fxLayout="row">
         <button fxFlex="100" class="restore-btn" mat-raised-button (click)="goTo('restore')">

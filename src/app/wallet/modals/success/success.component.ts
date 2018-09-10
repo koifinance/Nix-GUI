@@ -15,7 +15,7 @@ import { ModalsService } from '../modals.service';
 export class SuccessComponent implements OnInit, OnDestroy {
   @Input() dataTest: any;
   @Output() valueChange = new EventEmitter();
-    counter = 0;
+  counter = 0;
   sendToNix: IWalletSendToNix = new WalletSendToNix();
   getNewaddress: IGetNewAddress = new GetNewAddress();
   setAccount: ISetAccount = new SetAccount();
@@ -24,6 +24,10 @@ export class SuccessComponent implements OnInit, OnDestroy {
   modal: ComponentRef<Component>;
   data: any;
   private destroyed: boolean = false;
+  public sendingAmount: number;
+  public totalAmount: number;
+  public fee: number;
+  
   public txid = 'NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl-test';
   public txidVault = 'NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl-sample';
 
@@ -35,14 +39,18 @@ export class SuccessComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log(this.dataTest);
-    
+
     this._rpcState.registerStateCall(ApiEndpoints.Getnewaddress, 1000);
     this.getNewAddress();
   }
 
-  
+
   setData(data: any) {
+    debugger
     this.data = data;
+    this.sendingAmount = data.amount;
+    this.fee = data.fee;
+    this.totalAmount = data.total;
   }
   // Get new address for Receive NIX to Wallet
   private getNewAddress() {
@@ -60,8 +68,8 @@ export class SuccessComponent implements OnInit, OnDestroy {
 
   // Receive NIX to Wallet
   receiveDone() {
-    
-    if(this.validateInput()) {
+
+    if (this.validateInput()) {
       var result = this.walletServices.receiveNIXToWallet(this.setAccount).subscribe(res => {
         this.close();
       }, error => {
@@ -96,6 +104,11 @@ export class SuccessComponent implements OnInit, OnDestroy {
     this.modalsService.openSmall('receive', data);
   }
 
+  // done Deposit NIX to Ghost Vault
+  depositDone() {
+    this.close();
+  }
+  
   close(): void {
     this._dialogRef.close();
     // remove and destroy message

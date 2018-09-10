@@ -57,19 +57,28 @@ export class CreateComponent implements OnInit, OnDestroy {
           this.showSidebarError = true;
           return false;
         }
+        if (this.walletNewPassword === null || this.walletNewPassword === undefined
+          || this.walletRepeatPassword === null || this.walletRepeatPassword === undefined) {
+          this.showContentError = true;
+          return false;
+        }
+        if (this.walletRepeatPassword !== this.walletNewPassword) {
+          this.showContentError = true;
+          return false;
+        }
         return true;
       }
     },
-    {
-      valid: (): boolean => {
-        if (this.walletNewPassword && this.walletRepeatPassword &&
-          this.walletRepeatPassword === this.walletNewPassword) {
-          return true;
-        }
-        this.showContentError = true;
-        return false;
-      }
-    },
+    // {
+    //   valid: (): boolean => {
+    //     if (this.walletNewPassword && this.walletRepeatPassword &&
+    //       this.walletRepeatPassword === this.walletNewPassword) {
+    //       return true;
+    //     }
+    //     this.showContentError = true;
+    //     return false;
+    //   }
+    // },
     {
       valid: (): boolean => true
     }
@@ -98,12 +107,12 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   nextStep() {
-    if (this.step === 4) {
-        const data: any = {
-          forceOpen: true,
-          modalsService: this.modalsService
-        };
-        this.modalsService.openSmall('createWallet', data);
+    if (this.step === 3) {
+      const data: any = {
+        forceOpen: true,
+        modalsService: this.modalsService
+      };
+      this.modalsService.openSmall('createWallet', data);
       // this.step++;
       // this.goTo('main');
       // return;
@@ -125,15 +134,15 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   stepProgress(): number {
-    const step = this.step - 1;
+    const step = this.step;
     if (step < 3) {
-      return step * 33;
+      return step+1 * 33;
     }
     return 100;
   }
 
   stepTitle(): string {
-    const step = this.step - 1;
+    const step = this.step;
     if (step === 1) {
       return 'Create a password';
     } else if (step === 2) {

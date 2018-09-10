@@ -1,12 +1,7 @@
 <mat-drawer-container fullscreen>
   <mat-drawer position="end" mode="side" opened class="sidebar" fxLayout="column">
 
-    <div class="content" [fxFlex]="85">
-      <!-- <div *ngIf="step === 1">
-        <div class="text">
-          You would have been provided with this recovery phrase when you first created the wallet that you are attempting to restore.
-        </div>
-      </div> -->
+    <div class="content" [fxFlex]="85">  
       <div *ngIf="step === 1">
         <div class="text">
           You would have been provided with this recovery phrase when you first created the wallet that you are attempting to restore.
@@ -60,7 +55,7 @@
               <mat-checkbox [(ngModel)]="incorrectChecked">Check Incorrect passphrase</mat-checkbox>
           </p>
           <p class="body" *ngIf="step === 1">            
-            Please enter the passphrase for the wallet you want to recover</p>
+            <b>Please enter the passphrase for the wallet you want to recover</b></p>
           <div *ngIf="!incorrectChecked" fxLayout="row wrap" fxLayoutAlign="start space-evenly" class="body">
             <div class="phrase" fxFlex="16" *ngFor="let phrase of recoveryPhrase; index as i">
               <small>{{ i + 1 }}</small>
