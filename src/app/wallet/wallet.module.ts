@@ -36,6 +36,7 @@ import { NixPriceChartComponent } from './overview/nix-price-chart/nix-price-cha
 import { WalletLogService } from './wallet.log.service';
 import { WalletService } from './wallet.service';
 import { ClipboardModule } from 'ngx-clipboard';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ClipboardModule } from 'ngx-clipboard';
     AboutNixComponent,
     HelpComponent,
     NixPriceChartComponent,
+    LoginComponent,
   ],
   imports: [
     ModalsModule,

@@ -23,8 +23,9 @@ mat-drawer-content {
     }
 
     .text {
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 300;
+      line-height: 1.4rem;
     }
 
     p {
@@ -73,35 +74,24 @@ mat-drawer-content {
 
   .actions {
 
-    .create-new-btn {
-      background-image: linear-gradient(45deg, #13006D 0%, #6F00F5 100%);
-      border-radius: 5px;
-      font-size: 20px;
-      color: #FFFFFF;
-      text-align: center;
-      font-weight: 300;
-      margin-bottom: 20px;
-      box-shadow: none;
-      padding: 8px;
-    }
-
     .restore-btn {
       background: #F4F4F5;
       border-radius: 5px;
-      font-size: 20px;
+      font-size: 15px;
       color: #4A4A4A;
       text-align: center;
       font-weight: 300;
       box-shadow: none;
       padding: 8px;
+      margin-bottom: 40px;
     }
 
     mat-checkbox {
-      font-size: 16px;
+      font-size: 15px;
       margin-bottom: 15px;
 
       ::ng-deep .mat-checkbox-layout {
-        white-space: pre-wrap;
+        white-space: pre-line;
       }
     }
 
@@ -142,7 +132,7 @@ mat-drawer-content {
     width: 100%;
 
     .title {
-      font-size: 26px;
+      font-size: 22px;
       margin-top: 2em;
     }
 
@@ -151,13 +141,13 @@ mat-drawer-content {
     }
 
     .body {
-      font-size: 20px;
+      font-size: 16px;
       line-height: 32px;
     }
 
     div {
       &.body {
-        font-size: 18px;
+        font-size: 16px;
         margin-top: 2em;
       }
     }
@@ -231,4 +221,8 @@ mat-drawer-content {
       margin-top: 2px
     }
   }
+}
+.termsCheck {
+  margin-top: 15px;
+  line-height: unset;
 }

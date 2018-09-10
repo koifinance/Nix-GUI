@@ -22,7 +22,7 @@
       <p class="htxt">Enter password to export recovery phrase</p>
       <div fxLayout.gt-md="row">
         <div class="custom-input-group amount-input">
-          <input class="input-group size" placeholder="Enter password">
+          <input class="input-group size" [type]="showPassword ? 'text' : 'password'" placeholder="Enter password">
         </div>
       </div>
     </div>
