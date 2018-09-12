@@ -14,6 +14,7 @@ import {  ApiEndpoints, categories, message } from '../business-model/enums';
 import { RpcStateService } from '../../core/core.module';
 import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
+
 @Component({
   selector: 'wallet-overview',
   templateUrl: './overview.component.html',
@@ -78,7 +79,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         console.log(res)
       },
-        error => this.log.error(message.recentTransactionMessage, error));
+      error => this.log.error(message.recentTransactionMessage, error));
   }
 
   // get bitcoin price

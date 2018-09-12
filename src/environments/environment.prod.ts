@@ -5,7 +5,7 @@ export const environment = {
   version: require('../../package.json').version,
   envName: 'prod',
   nixHost: 'domain.com',
-  releasesUrl: 'https://api.github.com/repos/particl/particl-desktop/releases/latest',
+  releasesUrl: 'https://github.com/NixPlatform/NixCore/releases/tag/v2.0.0',
   nix_MainNet_Port :4201,
   nixPort: 4200,
   rpcUserName :'test',
