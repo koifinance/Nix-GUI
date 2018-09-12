@@ -3,12 +3,12 @@ import { TxType } from "./enums";
 
 // main wallet infor ui
 export interface IWalletInfo {
-    "walletname": string, 
-    "walletversion": number, 
+    "walletname": string,
+    "walletversion": number,
     "balance": number,
-    "ghost_vault": number, 
+    "ghost_vault": number,
     "ghost_vault_unconfirmed": number,
-    "unconfirmed_balance": number, 
+    "unconfirmed_balance": number,
     "immature_balance": number,
     "txcount": number,
     "keypoololdest": number,
@@ -16,7 +16,7 @@ export interface IWalletInfo {
     "keypoolsize_hd_internal": number,
     "reserve": number,
     "encryptionstatus": string,
-    "unlocked_until": number, 
+    "unlocked_until": number,
     "paytxfee": number,
     "hdmasterkeyid": string
 }
@@ -82,7 +82,7 @@ export class WalletInfo implements IWalletInfo {
         data["walletname"] = this.walletname;
         data["ghost_vault"] = this.ghost_vault === undefined ? 0.00000000 : this.ghost_vault;
         data["ghost_vault_unconfirmed"] = this.ghost_vault_unconfirmed === undefined ? 0.00000000 : this.ghost_vault_unconfirmed;
-        data["encryptionstatus"]= this.encryptionstatus;
+        data["encryptionstatus"] = this.encryptionstatus;
         data["walletversion"] = this.walletversion;
         data["unconfirmed_balance"] = this.unconfirmed_balance;
         data["immature_balance"] = this.immature_balance;
@@ -151,7 +151,7 @@ export class WalletSendToNix implements IWalletSendToNix {
 export interface IRecieveNixToWallet {
     account: string;
     addresses: Array<any>;
-    
+
     // mom: string;
     // binance: string;
     // jackieboy: string;
@@ -160,7 +160,7 @@ export interface IRecieveNixToWallet {
 export class RecieveNixToWallet implements IRecieveNixToWallet {
     account: string;
     addresses: Array<any>;
-      
+
     // mom: string;
     // binance: string;
     // jackieboy: string;
@@ -174,7 +174,7 @@ export class RecieveNixToWallet implements IRecieveNixToWallet {
         }
     }
 
-   }
+}
 
 
 //transaction class - have to check these props
@@ -405,15 +405,43 @@ export class AddNode implements IAddNode {
 // main recent transaction infor ui
 export interface recentTransactionInfo {
     account: string;
-    count: number;
-    from: number;
-}
+    // count: number;
+    // from: number;
+    address: string;
+    category: string;
+    amount: number;
+    label: string,
+    vout: number,
+    confirmations: number,
+    blockhash: string,
+    blockindex: number,
+    blocktime: number,
+    txid: string,
+    walletconflicts: Array<any>,
+    time: string,
+    timereceived: string,
+    fee: number,
+  }
 
 export class IrecentTransactionInfo implements recentTransactionInfo {
 
-    account: string = 'tabby';
-    count: number = 10;
-    from: number =0;
+    account: string;
+    // count: number;
+    // from: number;
+    address: string;
+    category: string;
+    amount: number;
+    label: string;
+    vout: number;
+    confirmations: number;
+    blockhash: string;
+    blockindex: number;
+    blocktime: number;
+    txid: string;
+    walletconflicts: Array<any>;
+    time: string;
+    timereceived: string;
+    fee: number;
 
     constructor(data?: recentTransactionInfo) {
         if (data) {
@@ -424,32 +452,36 @@ export class IrecentTransactionInfo implements recentTransactionInfo {
         }
     }
 
-    init(data?: any) {
-        if (data) {
-            this.account = data["account"];
-            this.count = data["count"];
-            this.from = data["from"];
-        }
-    }
+    // init(data?: any) {
+    //     if (data) {
+    //         this.category = data["category"];
+    //         this.amount = data["amount"];
+    //         // this.account = data["account"];
+    //         // this.count = data["count"];
+    //         // this.from = data["from"];
+    //     }
+    // }
 
-    static fromJS(data: any): IrecentTransactionInfo {
-        let result = new IrecentTransactionInfo();
-        result.init(data);
-        return result;
-    }
+    // static fromJS(data: any): IrecentTransactionInfo {
+    //     let result = new IrecentTransactionInfo();
+    //     result.init(data);
+    //     return result;
+    // }
 
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["account"] = this.account;
-        data["count"] = this.count;
-        data["from"] = this.from;
-        return data;
-    }
+    // toJSON(data?: any) {
+    //     data = typeof data === 'object' ? data : {};
+    //     data["category"] = this.category;
+    //     data["amount"] = this.amount;
+    //     // data["account"] = this.account;
+    //     // data["count"] = this.count;
+    //     // data["from"] = this.from;
+    //     return data;
+    // }
 }
 export interface TransactionInfo {
-    txid: string ;
-    input: TxType ;
-    output: TxType ;
+    txid: string;
+    input: TxType;
+    output: TxType;
     toAddress: string;
     toLabel: string;
     address: string;
@@ -461,10 +493,10 @@ export interface TransactionInfo {
     validAddress: boolean;
     validAmount: boolean;
     isMine: boolean;
-    currency: string ;
-    ringsize: number ;
-    subtractFeeFromAmount: boolean ;
-    estimateFeeOnly: boolean ;
+    currency: string;
+    ringsize: number;
+    subtractFeeFromAmount: boolean;
+    estimateFeeOnly: boolean;
 }
 
 export class ITransactionInfo implements TransactionInfo {
@@ -596,9 +628,9 @@ export class AddBook implements IAddBook {
 export interface IPassword {
     password: string;
     stakeOnly: boolean;
-  }
+}
 
-  export class encryptpassword implements IPassword {
+export class encryptpassword implements IPassword {
     password: string;
     stakeOnly: boolean;
 
@@ -630,7 +662,7 @@ export interface IPassword {
         data["stakeOnly"] = this.stakeOnly;
         return data;
     }
-}  
+}
 
 
 // main bitcoin price infor ui
@@ -682,9 +714,9 @@ export interface IGetblockchaininfo {
     "chainwork": string,
     "size_on_disk": number,
     "pruned": boolean
-  }
+}
 
-  export class getblockchaininfo implements IGetblockchaininfo {
+export class getblockchaininfo implements IGetblockchaininfo {
     "chain": string;
     "blocks": number;
     "headers": number;
@@ -741,7 +773,7 @@ export interface IGetblockchaininfo {
         data["mediantime"] = this.mediantime;
         data["verificationprogress"] = this.verificationprogress;
         data["initialblockdownload"] = this.initialblockdownload;
-        data["chainwork"] = this.chainwork ;
+        data["chainwork"] = this.chainwork;
         data["size_on_disk"] = this.size_on_disk;
         data["pruned"] = this.pruned;
         return data;
@@ -826,9 +858,9 @@ export class SetAccount implements ISetAccount {
 export interface IChangePassword {
     oldpassphrase: string;
     newpassphrase: string;
-  }
+}
 
-  export class ChangePassword implements IChangePassword {
+export class ChangePassword implements IChangePassword {
     oldpassphrase: string;
     newpassphrase: string;
 
@@ -860,7 +892,7 @@ export interface IChangePassword {
         data["newpassphrase"] = this.newpassphrase;
         return data;
     }
-} 
+}
 export interface ISavecurrency {
     convert: string;
 }

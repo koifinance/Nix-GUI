@@ -59,7 +59,17 @@
         <div fxLayout="row">
             <div fxFlex="15"></div>
             <div fxFlex="75" class="chart-box">
-                <p>Chart</p>
+                <!-- <p>Chart</p> -->
+                <div style="display: block">
+                        <canvas baseChart
+                                [datasets]="barChartData"
+                                [labels]="barChartLabels"
+                                [options]="barChartOptions"
+                                [legend]="barChartLegend"
+                                [chartType]="barChartType"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                      </div>
             </div>
         </div>
     </mat-drawer-content>

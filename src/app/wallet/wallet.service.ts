@@ -21,23 +21,26 @@ export class WalletService {
   unlockTimeout: number = 60;
   private validWords: string[];
   private _listners = new Subject<any>();
-  
+
   constructor(private _rpc: RpcService, private rpcState: RpcStateService,private http:Http) {
 
   }
 
   // get bit coin
   public getBitcoin (price : IBitcoinprice): Observable<any> {
-    return this.http.get(ApiEndpoints.GetBtc).map(response => response.json());
+    return this.http.get(ApiEndpoints.GetBtc).map(response =>response.json());
+     
   }
-
+  
   // Send for wallet
     public SendToNix(wallet : IWalletSendToNix): Observable<any> {
     return this._rpc.call(ApiEndpoints.SendToAddress, [wallet.amount,wallet.address]);
   }
   
   public receivedNix(receiveNix : IRecieveNixToWallet): Observable<any> {
-    return this._rpc.call(ApiEndpoints.ReceivedNix,[receiveNix.account]);
+    // return this._rpc.call(ApiEndpoints.ReceivedNix,[receiveNix.account]);
+    return this.http.get(ApiEndpoints.ReceivedNix).map(response => response.json());
+
   }
 
   // add a node
@@ -64,10 +67,13 @@ export class WalletService {
   }
 
   // get all recent transaction of NIX
+  // public listTransaction(transactions :recentTransactionInfo): Observable<any> {
+  //   return this._rpc.call(ApiEndpoints.ListTransactions,[ transactions.account,transactions.count,
+  //     transactions.from
+  //   ]);
+  // }
   public listTransaction(transactions :recentTransactionInfo): Observable<any> {
-    return this._rpc.call(ApiEndpoints.ListTransactions,[ transactions.account,transactions.count,
-      transactions.from
-    ]);
+    return this._rpc.call(ApiEndpoints.ListTransactions);
   }
 
   // to manage address book
@@ -93,7 +99,8 @@ public receiveNIXToWallet(setaccount : ISetAccount): Observable<any> {
 
 // To save currency
 public saveCurrency(currency : ISavecurrency): Observable<any> {
-  return this._rpc.call(ApiEndpoints.SaveCurrency, [currency.convert]);
+  // return this._rpc.call(ApiEndpoints.SaveCurrency, [currency.convert]);
+  return this.http.get(ApiEndpoints.SaveCurrency).map(response =>response.json());
 }
 
   // To save currency

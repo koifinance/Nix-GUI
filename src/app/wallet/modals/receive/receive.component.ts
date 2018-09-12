@@ -32,8 +32,9 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    debugger
     this.receivedNixInfo = new RecieveNixToWallet();
-    this.receivedNixInfo.account = 'jhon';
+    this.receivedNixInfo.account = 'tom';
     this.receivedNixInfo.addresses = [];
     //initiate the call
     this._rpcState.registerStateCall(ApiEndpoints.ReceivedNix, 1000, [this.receivedNixInfo.account]);
@@ -51,17 +52,19 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   } 
   // receive nix to wallet
   private getReceivedNixToWallet() {
-
+debugger
     //for testing purpose
-    this.receivedNixInfo.addresses[0] = 'NW7N8YjBruoTzrLy1GVVvH2p4FnL46mhYZ-test';
-    this.receivedNixInfo.addresses[1] = 'NNqe34X87ckw6UNHrhRJdUakPYxRNZQSaw';
-    this.receivedNixInfo.addresses[2] = 'NdqXnS2TLHFLUA3LmQQmMqYQ2biA5jg71z';
+    // this.receivedNixInfo.addresses[0] = 'NW7N8YjBruoTzrLy1GVVvH2p4FnL46mhYZ-test';
+    // this.receivedNixInfo.addresses[1] = 'NNqe34X87ckw6UNHrhRJdUakPYxRNZQSaw';
+    // this.receivedNixInfo.addresses[2] = 'NdqXnS2TLHFLUA3LmQQmMqYQ2biA5jg71z';
 
     this._rpcState.observe(ApiEndpoints.ReceivedNix)
       .takeWhile(() => !this.destroyed)
       .subscribe(receivedInfo => {
-        //this.receivedNixInfo.addresses = receivedInfo;
+        debugger
+        this.receivedNixInfo.addresses = receivedInfo;
       },error => {
+        debugger
         this.flashNotification.open(message.SendAmount, 'err');
         this.log.er(message.SendAmount, error)
       });
