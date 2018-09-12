@@ -52,6 +52,7 @@
           </div>
         </div>
       </mat-card>
+
       <mat-card fxFlexOrder.lt-md="3" fxFlex="30" class="item">
         <div class="price">
           <p class="description">NIX Price</p>
@@ -67,7 +68,13 @@
             </span>
           </div>
           <div class="small-chart" (click)="goToChart()">
-            Chart
+            <div class="row">
+              <div style="display: block;">
+                <canvas baseChart style="width: 287px; height: 107px;" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                  [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
           </div>
         </div>
       </mat-card>
@@ -100,17 +107,16 @@
 
       </mat-card>
     </div>
-
     <div class="bottom-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="5%" fxFlexOrder.lt-md="4">
       <div>
         Wallet Status : {{walletInfo.encryptionstatus}}
       </div>
       <div *ngIf="status">
-        TOR netwoking : {{status}} 
+        TOR netwoking : {{status}}
       </div>
       <div *ngIf="!status">
-          TOR netwoking : no data
-        </div>
+        TOR netwoking : no data
+      </div>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

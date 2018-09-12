@@ -45,7 +45,7 @@ export enum ApiEndpoints {
   GetWalletInfo = 'getwalletinfo',
   ReceivedNix = 'getaddressesbyaccount',
   AddNode = 'addnode',
-  ListTransaction = "listTransaction",
+  // ListTransaction = "listTransaction",
   GetTrasaction = "gettransaction",
   GetBalance = "getbalance",
   AddressBook = "manageaddressbook",
