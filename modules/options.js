@@ -7,7 +7,7 @@ let _options = {};
 **
 ** exemple:
 ** --dev -testnet -reindex -rpcuser=user -rpcpassword=pass
-** strips --dev out of argv (double dash is not a particld argument) and returns
+** strips --dev out of argv (double dash is not a nixd argument) and returns
 ** {
 **   dev: true,
 **   testnet: true,

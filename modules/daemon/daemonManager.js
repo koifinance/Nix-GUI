@@ -30,7 +30,7 @@ class DaemonManager extends EventEmitter {
   }
 
   getPath() {
-    return this._availableClients['particld'].binPath;
+    return this._availableClients['nixd'].binPath;
   }
 
   init(_options) {
@@ -57,7 +57,7 @@ class DaemonManager extends EventEmitter {
   }
 
   _checkForNewConfig() {
-    const nodeType = 'particld';
+    const nodeType = 'nixd';
     let binariesDownloaded = false;
     let nodeInfo;
 
@@ -89,6 +89,8 @@ class DaemonManager extends EventEmitter {
 
       let localConfig;
       let skipedVersion;
+      debugger;
+      console.log("nodeType :" +nodeType)
       const nodeVersion = latestConfig.clients[nodeType].version;
 
       this._emit('loadConfig', 'Fetching local config');
@@ -134,6 +136,8 @@ class DaemonManager extends EventEmitter {
         checksum: hash,
         algorithm
       };
+
+      console.log("node "+ nodeInfo);
 
       // if new config version available then ask user if they wish to update
       if (latestConfig
@@ -214,7 +218,7 @@ class DaemonManager extends EventEmitter {
       this._emit('scanning', 'Scanning for binaries');
 
       return mgr.init({
-        folders: [ path.join(app.getPath('userData'), 'particld', 'unpacked') ]
+        folders: [ path.join(app.getPath('userData'), 'nixd', 'unpacked') ]
       })
       .then(() => {
         const clients = mgr.clients;
@@ -312,7 +316,7 @@ class DaemonManager extends EventEmitter {
 
     log.debug(`Platform: ${platform}`);
 
-    let binPath = path.join(app.getPath('userData'), 'particld', 'unpacked', 'particld');
+    let binPath = path.join(app.getPath('userData'), 'nixd', 'unpacked', 'nixd');
 
     if (platform === 'win') {
       binPath += '.exe';
@@ -320,7 +324,7 @@ class DaemonManager extends EventEmitter {
 
     log.info(`Client binary path: ${binPath}`);
 
-    this._availableClients.particld = {
+    this._availableClients.nixd = {
       binPath
     };
   }

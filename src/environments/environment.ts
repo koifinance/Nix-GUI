@@ -9,7 +9,7 @@ export const environment = {
   envName: 'dev',
   version: require('../../package.json').version,
   nixHost: 'localhost',
-  releasesUrl: 'https://api.github.com/repos/particl/particl-desktop/releases/latest',
+  releasesUrl: 'https://github.com/NixPlatform/NixCore/releases/tag/v2.0.0',
   nix_MainNet_Port :51735,
   nixPort: 51935,
   rpcUserName :'test',
