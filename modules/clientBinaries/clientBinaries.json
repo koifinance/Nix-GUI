@@ -1,149 +1,45 @@
 {
   "clients": {
-    "particld": {
-      "version": "0.15.1.2",
+    "nixd": {
+      "version": "v2.0.0",
       "platforms": {
-        "linux": {
-          "arm": {
-            "download": {
-              "url": "https://github.com/particl/particl-core/releases/download/v0.15.1.2/particl-0.15.1.2-arm-linux-gnueabihf.tar.gz",
-              "type": "tar",
-               "sha256": "3b2709342c42e43c9889897e175a2771ca1f9d3fac97aa4a77c16cfbd9e4feea",
-              "bin": "particl-0.15.1.2/bin/particld"
-            },
-            "bin": "particld",
-            "commands": {
-              "sanity": {
-                "args": [
-                  "-version"
-                ],
-                "output": [
-                  "Particl Core Daemon",
-                  "0.15.1.2"
-                ]
-              }
-            }
-          },
+         "win": {
           "ia32": {
             "download": {
-              "url": "https://github.com/particl/particl-core/releases/download/v0.15.1.2/particl-0.15.1.2-i686-pc-linux-gnu.tar.gz",
-              "type": "tar",
-              "sha256": "42b31b5da23c02841226a189025f646bd315ab5e6686cbb0b35fae1cce8cee18",
-              "bin": "particl-0.15.1.2/bin/particld"
-            },
-            "bin": "particld",
-            "commands": {
-              "sanity": {
-                "args": [
-                  "-version"
-                ],
-                "output": [
-                  "Particl Core Daemon",
-                  "0.15.1.2"
-                ]
-              }
-            }
-          },
-          "x64": {
-            "download": {
-              "url": "https://github.com/particl/particl-core/releases/download/v0.15.1.2/particl-0.15.1.2-x86_64-linux-gnu.tar.gz",
-              "type": "tar",
-              "sha256": "4771991be144657f7aa9922ff321ae267d5cf1aef91e15d19693b8688572a0a9",
-              "bin": "particl-0.15.1.2/bin/particld"
-            },
-            "bin": "particld",
-            "commands": {
-              "sanity": {
-                "args": [
-                  "-version"
-                ],
-                "output": [
-                  "Particl Core Daemon",
-                  "0.15.1.2"
-                ]
-              }
-            }
-          }
-        },
-        "mac": {
-          "ia32": {
-            "download": {
-              "url": "https://github.com/particl/particl-core/releases/download/v0.15.1.2/particl-0.15.1.2-osx-unsigned.dmg",
-              "type": "dmg",
-              "sha256": "6c821679a5cde0097e79a41ad2ea817a66d677f8eb23528fb1c37f3b90e4cb1f",
-              "bin": "particl-0.15.1.2/bin/particld"
-            },
-            "bin": "particld",
-            "commands": {
-              "sanity": {
-                "args": [
-                  "-version"
-                ],
-                "output": [
-                  "Particl Core Daemon",
-                  "0.15.1.2"
-                ]
-              }
-            }
-          },
-          "x64": {
-            "download": {
-              "url": "https://github.com/particl/particl-core/releases/download/v0.15.1.2/particl-0.15.1.2-osx64.tar.gz",
-              "type": "tar",
-              "sha256": "1125053535ca585d0feea4cd104276d3a3bef24d3ad9aa7968bfc5cb5c91226b",
-              "bin": "particl-0.15.1.2/bin/particld"
-            },
-            "bin": "particld",
-            "commands": {
-              "sanity": {
-                "args": [
-                  "-version"
-                ],
-                "output": [
-                  "Particl Core Daemon",
-                  "0.15.1.2"
-                ]
-              }
-            }
-          }
-        },
-        "win": {
-          "ia32": {
-            "download": {
-              "url": "https://github.com/particl/particl-core/releases/download/v0.15.1.2/particl-0.15.1.2-win32.zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.0/nix_core_windows_2_0_0.zip",
               "type": "zip",
               "sha256": "01e827e2da3d6598bbb5234b0d2d8e22e069b97dda8cef0ef03b41ae8a09aad8",
-              "bin": "particl-0.15.1.2/bin/particld.exe"
+              "bin": "nix_core_windows_2_0_0/bin/nixd.exe"
             },
-            "bin": "particld.exe",
+            "bin": "nixd.exe",
             "commands": {
               "sanity": {
                 "args": [
                   "-version"
                 ],
                 "output": [
-                  "Particl Core Daemon",
-                  "0.15.1.2"
+                  "Nix Core Daemon",
+                  "v2.0.0"
                 ]
               }
             }
           },
           "x64": {
             "download": {
-              "url": "https://github.com/particl/particl-core/releases/download/v0.15.1.2/particl-0.15.1.2-win64.zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.0/nix_core_windows_2_0_0.zip",
               "type": "zip",
               "sha256": "f0d23624e7ab74d9b73d4447dfe70b1a0f82a5078527f2c7bee9044680afdde6",
-              "bin": "particl-0.15.1.2/bin/particld.exe"
+              "bin": "nix_core_windows_2_0_0/bin/nixd.exe"
             },
-            "bin": "particld.exe",
+            "bin": "nixd.exe",
             "commands": {
               "sanity": {
                 "args": [
                   "-version"
                 ],
                 "output": [
-                  "Particl Core Daemon",
-                  "0.15.1.2"
+                  "Nix Core Daemon",
+                  "v2.0.0"
                 ]
               }
             }
