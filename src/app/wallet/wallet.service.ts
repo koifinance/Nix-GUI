@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
-import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, recentTransactionInfo, IAddBook, TransactionInfo, IPassword, IBitcoinprice, ISetAccount, IChangePassword, ISavecurrency } from './business-model/entities';
+import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, IAddBook, TransactionInfo, IPassword, IBitcoinprice, ISetAccount, IChangePassword, ISavecurrency, RecentTransactionInfo } from './business-model/entities';
 import { ApiEndpoints, typeOfAddresses } from './business-model/enums';
 import { Http } from '@angular/http';
 @Injectable()
@@ -72,7 +72,7 @@ export class WalletService {
   //     transactions.from
   //   ]);
   // }
-  public listTransaction(transactions :recentTransactionInfo): Observable<any> {
+  public listTransaction(transactions :RecentTransactionInfo): Observable<any> {
     return this._rpc.call(ApiEndpoints.ListTransactions);
   }
 

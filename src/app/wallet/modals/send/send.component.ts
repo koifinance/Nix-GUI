@@ -31,7 +31,9 @@ export class SendComponent implements OnInit, OnDestroy {
   public fee:number;
   faBook: any = faBook;
   faAddressBook: any = faAddressBook;
-
+  balance: number;
+  amountInUSD: number;
+  USDamount:number=0;
   constructor(
     private walletServices: WalletService,
     private _rpcState: RpcStateService, private flashNotification: SnackbarService,
@@ -41,10 +43,13 @@ export class SendComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fee = 1;
+
   }
 
   setData(data: any) {
     this.data = data;
+    this.balance = data.balance;
+    this.amountInUSD = data.amountInUSD;
   }
 
   // send for wallet
@@ -114,6 +119,7 @@ export class SendComponent implements OnInit, OnDestroy {
 
   public getAmount(event){
    this.amount = event;
+   this.USDamount=this.amountInUSD*this.amount;
    this.getFee();
   }
 

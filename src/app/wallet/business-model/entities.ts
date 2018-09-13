@@ -403,7 +403,7 @@ export class AddNode implements IAddNode {
 
 
 // main recent transaction infor ui
-export interface recentTransactionInfo {
+export interface RecentTransactionInfo {
     account: string;
     // count: number;
     // from: number;
@@ -421,9 +421,9 @@ export interface recentTransactionInfo {
     time: string,
     timereceived: string,
     fee: number,
-  }
+}
 
-export class IrecentTransactionInfo implements recentTransactionInfo {
+export class IRecentTransactionInfo implements RecentTransactionInfo {
 
     account: string;
     // count: number;
@@ -443,7 +443,7 @@ export class IrecentTransactionInfo implements recentTransactionInfo {
     timereceived: string;
     fee: number;
 
-    constructor(data?: recentTransactionInfo) {
+    constructor(data?: RecentTransactionInfo) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -452,31 +452,56 @@ export class IrecentTransactionInfo implements recentTransactionInfo {
         }
     }
 
-    // init(data?: any) {
-    //     if (data) {
-    //         this.category = data["category"];
-    //         this.amount = data["amount"];
-    //         // this.account = data["account"];
-    //         // this.count = data["count"];
-    //         // this.from = data["from"];
-    //     }
-    // }
+    init(data?: any) {
+        if (data) {
+            this.account = data["account"];
+            this.address = data["address"];
+            this.category = data["category"];
+            this.amount = data["amount"];
+            this.label = data["label"];
+            this.vout = data["vout"];
+            this.confirmations = data["confirmations"];
+            this.blockhash = data["blockhash"];
+            this.blockindex = data["blockindex"];
+            this.blocktime = data["blocktime"];
+            this.txid = data["txid"];
+            this.time = data["time"];
+            this.timereceived = data["timereceived"];
+            this.fee = data["fee"];
 
-    // static fromJS(data: any): IrecentTransactionInfo {
-    //     let result = new IrecentTransactionInfo();
-    //     result.init(data);
-    //     return result;
-    // }
+            // this.account = data["account"];
+            // this.count = data["count"];
+            // this.from = data["from"];
+        }
+    }
 
-    // toJSON(data?: any) {
-    //     data = typeof data === 'object' ? data : {};
-    //     data["category"] = this.category;
-    //     data["amount"] = this.amount;
-    //     // data["account"] = this.account;
-    //     // data["count"] = this.count;
-    //     // data["from"] = this.from;
-    //     return data;
-    // }
+    static fromJS(data: any): IRecentTransactionInfo {
+        let result = new IRecentTransactionInfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["account"] = this.account;
+        data["address"] = this.address;
+        data["category"] = this.category;
+        data["amount"] = this.amount;
+        data["label"] = this.label;
+        data["vout"] = this.vout;
+        data["confirmations"] = this.confirmations;
+        data["blockhash"] = this.blockhash;
+        data["blockindex"] = this.blockindex;
+        data["blocktime"] = this.blocktime;
+        data["txid"] = this.txid;
+        data["time"] = this.time;
+        data["timereceived"] = this.timereceived;
+        data["fee"] = this.fee;
+        // data["account"] = this.account;
+        // data["count"] = this.count;
+        // data["from"] = this.from;
+        return data;
+    }
 }
 export interface TransactionInfo {
     txid: string;
@@ -924,6 +949,95 @@ export class Savecurrency implements ISavecurrency {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["convert"] = this.convert;
+        return data;
+    }
+}
+// export interface ghost {
+//     alias: string,
+//     address: number,
+//     privateKey: string,
+//     txHash: string,
+//     outputIndex: number,
+//     status: string
+// }
+
+// export interface INodeinfo {
+//     ghostnode: {
+//         [key: string]: ghost
+//     };
+// }
+// export interface INodeinfo {
+//     ghostnode: {
+//         "alias": string,
+//         "address": number,
+//         "privateKey": string,
+//         "txHash": string,
+//         "outputIndex": number,
+//         "status": string
+//     };
+// }
+
+// export interface ghostnode {
+//         "alias": string,
+//         "address": number,
+//         "privateKey": string,
+//         "txHash": string,
+//         "outputIndex": number,
+//         "status": string
+//   }
+
+
+export interface INodeinfo {
+    alias: string,
+    address: number,
+    privateKey: string,
+    txHash: string,
+    outputIndex: number,
+    status: string
+}
+
+export class NodeInfo implements INodeinfo {
+    alias: string;
+    address: number;
+    privateKey: string;
+    txHash: string;
+    outputIndex: number;
+    status: string;
+
+    constructor(data?: INodeinfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.alias = data["alias"];
+            this.address = data["address"];
+            this.privateKey = data["privateKey"];
+            this.txHash = data["txHash"];
+            this.outputIndex = data["outputIndex"];
+            this.status = data["status"];
+        }
+    }
+
+    static fromJS(data: any): NodeInfo {
+        let result = new NodeInfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["alias"] = this.alias;
+        data["address"] = this.address;
+        data["privateKey"] = this.privateKey;
+        data["txHash"] = this.txHash;
+        data["outputIndex"] = this.outputIndex;
+        data["status"] = this.status;
         return data;
     }
 }
