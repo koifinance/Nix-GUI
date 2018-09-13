@@ -1,11 +1,10 @@
 var got = require("got");
 var fs = require('fs');
 
-// var releasesURL = "https://api.github.com/repos/particl/particl-core/releases";
-var releasesURL = "https://github.com/NixPlatform/NixCore/releases/tag/v2.0.0";
+var releasesURL = "https://github.com/NixPlatform/NixCore/releases";
 
-var signaturesURL = "https://api.github.com/repos/particl/gitian.sigs/contents";
-var maintainer = "tecnovert";
+var signaturesURL = "https://api.github.com/repos/nixplatform/gitian.sigs/contents";
+var maintainer = “mattt21”;
 
 /*
  * Filters a hash file to find this asset's hash
