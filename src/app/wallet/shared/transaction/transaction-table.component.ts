@@ -10,7 +10,7 @@ import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { FilterService } from '../../transactions/filter.service';
 import { RpcStateService } from '../../../core/core.module';
 import { ApiEndpoints, categories, message } from '../../business-model/enums';
-import { TransactionInfo, ITransactionInfo } from '../../business-model/entities';
+import { TransactionInfo, ITransactionInfo, IRecentTransactionInfo, RecentTransactionInfo } from '../../business-model/entities';
 
 @Component({
   selector: 'transaction-table',
@@ -21,9 +21,10 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   @Input() display: any;
   @Input() columns: string[];
   @Input() filterFunc: any;
-  dataSource: MatTableDataSource<Transaction>;
-  public testDataSource : any;
+  dataSource: MatTableDataSource<IRecentTransactionInfo>;
+  public testDataSource: any;
   trasactionAllNix: TransactionInfo = new ITransactionInfo();
+  trasactionInfo: RecentTransactionInfo = new IRecentTransactionInfo();
   faCircleSolid: any = faCircleSolid;
   faCircle: any = faCircle;
   private log: any = Log.create('transaction-table.component');
@@ -31,7 +32,8 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   private defaults: any = {
     header: true,
     numTransactions: 10,
-    columns: ['category', 'amount', 'address', 'confirmations', 'date'],
+    // columns: ['category', 'amount', 'address', 'confirmations', 'date'],
+    columns: ['date', 'category', 'status', 'amount'],
     longDate: false,
     styleClass: '',
   };
@@ -46,13 +48,16 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    debugger
+    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000);
     this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.trasactionAllNix.txid]);
     this.Transactions();
+    this.listTransaction();
     this.display = Object.assign({}, this.defaults, this.display);
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
     this.transactionService.postConstructor(this.display.numTransactions);
-    this.dataSource = new MatTableDataSource<Transaction>();
-    this.testDataSource = new MatTableDataSource<Transaction[]>();
+    this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
+    this.testDataSource = new MatTableDataSource<IRecentTransactionInfo[]>();
 
     if (this.filterFunc) {
       this.dataSource.filterPredicate = (transaction, filter) => {
@@ -62,7 +67,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
 
     this.transactionSubscription = this.transactionService.transactionEvent
       .subscribe(value => {
-      //  this.testDataSource =   this.transactionService.transactions;
+        //  this.testDataSource =   this.transactionService.transactions;
         // this.dataSource.data = this.testDataSource;
       });
 
@@ -122,13 +127,25 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
     return '';
   }
 
- // get all transaction
- private Transactions() {
-  this._rpcState.observe(ApiEndpoints.GetTrasaction)
-    .subscribe(res => {
-      this.testDataSource =   res.transactions;
-        this.dataSource.data = res;
-    },
-      error => this.log.error(message.transactionMessage, error));
-}  
+  // get all transaction
+  private Transactions() {
+    this._rpcState.observe(ApiEndpoints.GetTrasaction)
+      .subscribe(res => {
+        // this.testDataSource =   res.transactions;
+        //   this.dataSource.data = res;
+      },
+        error => this.log.error(message.transactionMessage, error));
+  }
+  // get recent transactions
+  private listTransaction() {
+    debugger
+    this._rpcState.observe(ApiEndpoints.ListTransactions)
+      .subscribe(recentTransInfo => {
+        debugger
+        this.trasactionInfo = recentTransInfo;
+        // this.testDataSource = RecentTransInfo.transactions;
+        this.dataSource.data = recentTransInfo;
+      },
+        error => this.log.error(message.recentTransactionMessage, error));
+  }
 }

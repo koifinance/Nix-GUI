@@ -15,9 +15,9 @@
           <div class="divider"></div>
           <span class="number small" style="color:white">{{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}})</span>
           <div class="pending margin-top-20px">
-            <span class="number medium" style="color:white">-100</span>
-            <span class="point small" style="color:white">.</span>
-            <span class="number small" style="color:white">00</span>
+            <span class="number medium" style="color:white">{{ walletInfo.unconfirmed_balance | number: '.4'}}</span>
+            <!-- <span class="point small" style="color:white">.</span>
+            <span class="number small" style="color:white">00</span> -->
             <span class="small" style="color:white"> NIX pending</span>
           </div>
           <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
@@ -64,7 +64,8 @@
               {{bitcoinprice.BTC.price }}
             </span>
             <span class="small" fxFlex="50" fxFlexOrder="2" fxLayoutAlign="end" style="color:green">
-              +12.53%
+              <!-- +12.53% -->
+              {{bitcoinprice.USD.percent_change_24h}}%
             </span>
           </div>
           <div class="small-chart" (click)="goToChart()">
@@ -86,22 +87,23 @@
           <p class="description">Recent Transactions</p>
           <transaction-table [display]="{numTransactions: 5, columns: transactionColumns, header: false}"></transaction-table>
           <div>
-            <a class="link text-uppercase" routerLink="/transactions">
+            <!-- <a class="link text-uppercase" routerLink="/transactions">
               No data to display
-            </a>
+            </a> -->
           </div>
         </div>
       </mat-card>
       <mat-card class="item" fxFlexOrder.lt-md="2" fxFlex="30">
         <div class="node-status">
           <p class="description">Node Status</p>
-          <span class="number big">{{node}}</span>
+          <span class="number big">{{isActiveNodeCount}}</span>
           <span class="medium text"> Active Nodes</span>
           <div class="divider"></div>
           <span class="medium light">{{monthEarn}} NIX earned so far this month</span>
           <div class="medium light margin-top-40px">
             <fa-icon [icon]="faCircleSolid" class="confirm-ok"></fa-icon>
-            No issues
+            <span *ngIf="isActiveNodeCount > 0">No issue</span>
+            <span *ngIf="isActiveNodeCount === 0">issue</span>
           </div>
         </div>
 

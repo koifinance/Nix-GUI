@@ -7,7 +7,7 @@ import { ModalsService } from '../modals/modals.service';
 import { FAQ } from '../shared/faq.model';
 import { faq } from './faq';
 import { Router } from '@angular/router';
-import { IWalletInfo, WalletInfo, IBitcoinprice, bitcoinprice, IrecentTransactionInfo, recentTransactionInfo } from '../business-model/entities';
+import { IWalletInfo, WalletInfo, IBitcoinprice, bitcoinprice, INodeinfo, NodeInfo, IRecentTransactionInfo, RecentTransactionInfo } from '../business-model/entities';
 import { WalletService } from '../wallet.service';
 import { TransactionBuilder } from '../business-model/entities';
 import { ApiEndpoints, categories, message } from '../business-model/enums';
@@ -30,25 +30,27 @@ export class OverviewComponent implements OnInit, OnDestroy {
   faArrowDown: any = faArrowDown;
   faBtc: any = faBtc;
   faq: Array<FAQ> = faq;
-  transactionColumns: string[] = ['date', 'category', 'confirmations', 'amount'];
+  transactionColumns: string[] = ['date', 'category', 'status', 'amount'];
   private destroyed: boolean = false;
   walletInfo: IWalletInfo = new WalletInfo();
-  trasactionInfo: recentTransactionInfo = new IrecentTransactionInfo();
+  trasactionInfo: RecentTransactionInfo = new IRecentTransactionInfo();
   private log: any = Log.create(`overview.component `);
   public status;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
+  getNodeInfo: INodeinfo = new NodeInfo();
+  public ghostnodeArray = [] as Array<INodeinfo>
   public bitcoinprice;
   public monthEarn: number = 0;
   public node: number = 0;
-
+  isActiveNodeCount = 0;
 
   // lineChart
   public lineChartData: Array<any> = [
     // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     // { data: [40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [2,2.5,4,3.6, 5.5, 4.8, 7, 5],label: 'Bitcoin'}
+    { data: [2, 2.5, 4, 3.6, 5.5, 4.8, 7, 5], label: 'Bitcoin' }
   ];
-  public lineChartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Aug'];
+  public lineChartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
   public lineChartOptions: any = {
     responsive: true
   };
@@ -80,6 +82,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     //call ghost node list conf using params 'null'
     this._rpcState.registerStateCall(ApiEndpoints.GhostnodeListConf, 1000, );
     this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
+
     this.getwalletinformation();
     this.listTransaction();
     this.getBitcoinpriceinfo();
@@ -108,11 +111,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   // get recent transactions
   private listTransaction() {
-    debugger
     this._rpcState.observe(ApiEndpoints.ListTransactions)
       .subscribe(RecentTransInfo => {
-        debugger
-        this.trasactionInfo = new IrecentTransactionInfo(RecentTransInfo);
+        this.trasactionInfo = new IRecentTransactionInfo(RecentTransInfo);
         console.log('trans', RecentTransInfo);
       },
       error => this.log.error(message.recentTransactionMessage, error));
@@ -136,16 +137,26 @@ export class OverviewComponent implements OnInit, OnDestroy {
       },
         error => this.log.error(message.recentTransactionMessage, error));
   }
-
   // get node status
   private getnodestatus() {
+    debugger
     this._rpcState.observe(ApiEndpoints.GhostnodeListConf)
-      .subscribe(res => {
-        console.log(res);
+      .subscribe(NodeInformations => {
+        debugger
+        // this.getNodeInfo = new NodeInfo(NodeInformations);
+        this.ghostnodeArray = NodeInformations;
+        console.log(NodeInformations);
+        
+        for (var i = 0; i < this.ghostnodeArray.length; i++) {
+          if (this.ghostnodeArray[i].status=="ACTIVE") {
+            this.isActiveNodeCount += 1;
+          }
+        }
       },
         error => this.log.error(message.recentTransactionMessage, error));
   }
 
+  
   goToChart() {
     this.router.navigate(['./overview/nix-price-chart']);
   }
@@ -162,6 +173,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
+      balance: this.walletInfo.balance,
+      amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
     this.modalsService.openSmall('send', data);

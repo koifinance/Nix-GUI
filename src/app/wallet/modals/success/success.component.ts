@@ -27,7 +27,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
   public sendingAmount: number;
   public totalAmount: number;
   public fee: number;
-  
+
   public txid = 'NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl-test';
   public txidVault = 'NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl-sample';
 
@@ -38,8 +38,6 @@ export class SuccessComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.dataTest);
-
     this._rpcState.registerStateCall(ApiEndpoints.Getnewaddress, 1000);
     this.getNewAddress();
   }
@@ -54,18 +52,21 @@ export class SuccessComponent implements OnInit, OnDestroy {
   }
   // Get new address for Receive NIX to Wallet
   private getNewAddress() {
-    this._rpcState.observe(ApiEndpoints.Getnewaddress)
-      .takeWhile(() => !this.destroyed)
+    debugger
+    this._rpcState.observe(ApiEndpoints.Getnewaddress).takeWhile(() => !this.destroyed)
       .subscribe(Newaddress => {
-        this.getNewaddress.address = Newaddress;
-        this.getNewaddress.address = this.setAccount.address;
+        debugger
+        this.getNewaddress = new GetNewAddress(Newaddress).toJSON();
+        localStorage.setItem('getAddress', JSON.stringify(this.getNewaddress));
+        // this.getNewaddress.address = Newaddress;
+        // this.getNewaddress.address = this.setAccount.address;
       },
         error => {
           this.flashNotification.open(message.GetNewAddress, 'err');
           this.log.er(message.GetNewAddress, error)
         });
   }
-
+  
   // Receive NIX to Wallet
   receiveDone() {
 
@@ -108,7 +109,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
   depositDone() {
     this.close();
   }
-  
+
   close(): void {
     this._dialogRef.close();
     // remove and destroy message

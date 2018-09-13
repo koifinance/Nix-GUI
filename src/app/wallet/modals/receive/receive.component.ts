@@ -32,7 +32,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    debugger
     this.receivedNixInfo = new RecieveNixToWallet();
     this.receivedNixInfo.account = 'tom';
     this.receivedNixInfo.addresses = [];
@@ -52,7 +51,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   } 
   // receive nix to wallet
   private getReceivedNixToWallet() {
-debugger
     //for testing purpose
     // this.receivedNixInfo.addresses[0] = 'NW7N8YjBruoTzrLy1GVVvH2p4FnL46mhYZ-test';
     // this.receivedNixInfo.addresses[1] = 'NNqe34X87ckw6UNHrhRJdUakPYxRNZQSaw';
@@ -61,10 +59,8 @@ debugger
     this._rpcState.observe(ApiEndpoints.ReceivedNix)
       .takeWhile(() => !this.destroyed)
       .subscribe(receivedInfo => {
-        debugger
         this.receivedNixInfo.addresses = receivedInfo;
       },error => {
-        debugger
         this.flashNotification.open(message.SendAmount, 'err');
         this.log.er(message.SendAmount, error)
       });

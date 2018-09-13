@@ -63,28 +63,28 @@
       <div class="amountsend">
         <p>Amount to send </p>
         <div fxLayout.gt-md="row">
-          <!-- <div class="custom-input-group amount-input"> -->
-            <input value="300" type="number" class="modalinput" (ngModelChange)="getAmount($event)" [(ngModel)]="sendToNix.amount">
-            <!-- <span class="input-text">($10,224)</span> -->
-            <!-- <span class="input-end-text">
+          <div class="custom-input-group amount-input">
+            <input value="300" type="number" (ngModelChange)="getAmount($event)" [(ngModel)]="sendToNix.amount">
+            <span class="input-text">({{USDamount | currency:"USD":true}})</span>
+            <span class="input-end-text">
               NIX
-            </span> -->
-          <!-- </div> -->
+            </span>
+          </div>
         </div>
         <div fxLayout.gt-md="row">
-          <div class="available-reward" fxFlex="80">Available: 6,000.01 NIX</div>
+          <div class="available-reward" fxFlex="80">Available: {{balance}} NIX</div>
         </div>
       </div>
 
       <div class="sendto">
         <p>To</p>
         <div fxLayout.gt-md="row">
-          <!-- <div class="custom-input-group"> -->
-            <input value="NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl" class="modalinput" [(ngModel)]="sendToNix.address">
-            <!-- <span class="fa-icon">
+          <div class="custom-input-group">
+            <input value="NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl" [(ngModel)]="sendToNix.address">
+            <span class="fa-icon">
               <fa-icon [icon]="faAddressBook"></fa-icon>
-            </span> -->
-          <!-- </div> -->
+            </span>
+          </div>
         </div>
         <div class="available-reward save-address">
           <mat-checkbox class="saveaddress">Save to address book for future use</mat-checkbox>
@@ -194,26 +194,26 @@
   
         <div class="amountsend">
           <p>Amount to send </p>
-          <div fxLayout="row">
-            <!-- <div class="custom-input-group amount-input"> -->
-              <input value="300" class="modalinput" type="number" (ngModelChange)="getAmount($event)" [(ngModel)]="sendToNix.amount">
-              <!-- <span class="input-text">($10,224)</span>               -->
-            <!-- </div> -->
+          <div fxLayout.gt-md="row">
+            <div class="custom-input-group amount-input">
+              <input value="300" type="number" (ngModelChange)="getAmount($event)" [(ngModel)]="sendToNix.amount">
+              <span class="input-text">({{USDamount | currency:"USD":true}})</span>              
+            </div>
           </div>
           <div fxLayout.gt-md="row">
-            <div class="available-reward" fxFlex="80">Available: 6,000.01 Ghosted NIX</div>
+            <div class="available-reward" fxFlex="80">Available: {{balance}} Ghosted NIX</div>
           </div>
         </div>
   
         <div class="sendto">
           <p>To</p>
           <div fxLayout.gt-md="row">
-            <!-- <div class="custom-input-group"> -->
-              <input class="modalinput" value="NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl" [(ngModel)]="sendToNix.address">
-              <!-- <span class="fa-icon">
+            <div class="custom-input-group">
+              <input value="NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl" [(ngModel)]="sendToNix.address">
+              <span class="fa-icon">
                 <fa-icon [icon]="faAddressBook"></fa-icon>
-              </span> -->
-            <!-- </div> -->
+              </span>
+            </div>
           </div>
           <div class="available-reward save-address">
             <mat-checkbox class="saveaddress">Save to address book for future use</mat-checkbox>
