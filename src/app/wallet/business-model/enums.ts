@@ -34,7 +34,9 @@ export enum message {
   SaveCurrencyMessage = "Failed to save currency",
   PasswordValidationMessage = "Re-Entry password must be same to the new password",
   ChangePasswordMessage = "Failed to change password",
-  CopiedAddress = "Address copied to clipboard"
+  CopiedAddress = "Address copied to clipboard",
+  DepositMessage = "Failed to deposit amount"
+
 }
 
 export enum ApiEndpoints {
@@ -64,5 +66,6 @@ export enum ApiEndpoints {
   GhostnodeListConf = "ghostnode list-conf",
   Torstatus  = "torstatus",
   SaveCurrency = "https://api.coinmarketcap.com/v2/ticker/2991",
-  GetPriceinfo = "getpriceinfo"
+  GetPriceinfo = "getpriceinfo",
+  GhostAmount = "ghostamount"
 }

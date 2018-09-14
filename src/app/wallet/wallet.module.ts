@@ -35,6 +35,7 @@ import { HelpComponent } from './help/help.component';
 import { NixPriceChartComponent } from './overview/nix-price-chart/nix-price-chart.component';
 import { WalletLogService } from './wallet.log.service';
 import { WalletService } from './wallet.service';
+import { CalculationsService } from './calculations.service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { LoginComponent } from './login/login.component';
 import { ChartsModule } from 'ng2-charts';
@@ -80,7 +81,7 @@ import { ChartsModule } from 'ng2-charts';
     MainComponent,
     WelcomeComponent,
   ],
-  providers: [FilterService,WalletService,WalletLogService],
+  providers: [FilterService,WalletService,WalletLogService,CalculationsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 

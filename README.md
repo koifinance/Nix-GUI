@@ -6,8 +6,6 @@
 
 # NIX Desktop GUI
 
-![UI Preview](images/preview.png)
-
 
 ### What is NIX?
 ---

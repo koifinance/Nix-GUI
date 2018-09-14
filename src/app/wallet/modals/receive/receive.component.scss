@@ -135,6 +135,34 @@
 }
 
 .vault {
+  
+  .modalinput {
+    font-size: 15px;
+    padding-left: 12px;
+    height: 40px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+
+  .amountsend {
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+ 
+  .saveaddress {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .modallabel {
+    font-size: 14px;
+  }
+
+  .nixlabel {
+    font-size: 14px;
+  }
+
   .divider[_ngcontent-c7] {
     border-top: 1px solid #EAEAEA;
     margin-bottom: 15px;
@@ -153,7 +181,7 @@
 
   .modaldetails {
     padding: 24px;
-    background-color: #E2E0E7;
+    background-color: #E0E3E7;
   }
 
   .fright {
@@ -167,7 +195,6 @@
 
   .transdetail {
     margin-bottom: 10px;
-
   }
 
   .transtotal {
@@ -177,52 +204,9 @@
     margin-bottom: 10px;
 
   }
-
   .send {
-    padding: 40px 24px 20px 24px;
-
-  }
-
-  .sendbtn {
-    background-image: linear-gradient(-45deg, #13006D 0%, #6F00F5 100%);
-    color: white;
-    width: 100%;
-    border-radius: 5px;
-    font-family: Helvitica, sans-serif;
-    font-weight: 300;
-    height: 40px;
-    font-size: 14px;
-
-  }
-
-  .cancelbtn {
-    border-radius: 5px;
-    background-color: #E0E3E7;
-    box-shadow: none;
-    font-size: 14px;
-    font-family: Helvitica, sans-serif;
-    font-weight: 300;
-    color: #4A4A4A;
-    height: 40px;
-  }
-
-  .modalinput {
-    font-size: 15px;
-    padding-left: 12px;
-    height: 40px;
-    border: 1px solid #CBCBCB;
-    margin-bottom: 0px;
-    border-radius: 5px;
-    width: 300px;
-  }
-
-  .modallabel {
-    font-size: 14px;
-  }
-
-  .nixlabel {
-    font-size: 14px;
-  }
+    padding: 40px 24px;
+  }  
 
   .amountsend {
     margin-bottom: 20px;
@@ -232,24 +216,62 @@
     font-size: 15px;
   }
 
-  .saveaddress {
-    margin-top: 5px;
-  }
+.sendto {
+  font-size: 14px;
+}
+.cancelbtn {
+      border-radius: 5px;
+      background-color: #E0E3E7;
+      box-shadow: none;
+      font-family: Helvitica, sans-serif;
+      font-weight: 300;
+      color: #4A4A4A;
+      width: 165px !important;
+      font-size: 14px;
+      height: 40px !important;
+    }
+// .input-text{
+//   position: relative;
+//     top: 15px;
+//     margin-right: -36px;
+//     left: -135px;
+//     font-size: 12px;
+//     color: #adaaaa;
+// }
 
-  .vaultbtn {
-    background-color: #293246;
-    color: white;
-  }
+.input-end-text{
+  position: relative;
+  top: 12px;
+  margin-right: -36px;
+  left: -50px;
+}
+.fa-icon { 
+  position: relative;
+  top: 14px;
+  margin-right: -36px;
+  left: -37px;
+  font-size: 16px;
+}
+.sendbtn {
+  background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+  font-family: Helvitica, sans-serif;
+  font-weight: 300;
+  height: 40px;
+  font-size: 14px;
 
+}
 }
 .deposit-available {
   margin-top: 15px;
   color:#b2b2b2;
 }
 .input-text{
-  position: relative;
-  top: 12px;
-  left: -100px;
+  position: fixed;
+  margin-left: 338px;
+  margin-top: 12px;
   font-size: 12px;
   color: #adaaaa;
 }
