@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, OnDestroy, ComponentRef } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-edit-node',
   templateUrl: './edit-node.component.html',
   styleUrls: ['./edit-node.component.scss']
 })
-export class EditNodeComponent implements OnInit {
+export class EditNodeComponent implements OnInit, OnDestroy {
   data: any;
-
-  constructor() {
+  private modalContainer: ViewContainerRef;
+  private destroyed: boolean = false;
+  modal: ComponentRef<Component>;
+  
+  constructor(public _dialogRef: MatDialogRef<EditNodeComponent>) {
   }
 
   ngOnInit() {
@@ -16,6 +20,13 @@ export class EditNodeComponent implements OnInit {
 
   setData(data: any) {
     this.data = data;
+  }
+
+  close(): void {
+    this._dialogRef.close();
+    // remove and destroy message
+    this.modalContainer.remove();
+    this.modal.destroy();
   }
 
   // openSuccess(walletType: string) {
@@ -26,5 +37,7 @@ export class EditNodeComponent implements OnInit {
   //   };
   //   this.data.modalsService.forceClose();
   // }
-
+  ngOnDestroy() {
+    this.destroyed = true;
+  }
 }

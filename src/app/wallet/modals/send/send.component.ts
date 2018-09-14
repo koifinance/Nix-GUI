@@ -9,6 +9,7 @@ import { wallet } from '../../datamodel/model';
 import { Log } from 'ng2-logger';
 import { message } from '../../business-model/enums';
 import { faBook, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { CalculationsService } from '../../calculations.service';
 
 @Component({
   selector: 'app-send',
@@ -28,21 +29,21 @@ export class SendComponent implements OnInit, OnDestroy {
   private destroyed: boolean = false;
   private modalContainer: ViewContainerRef;
   modal: ComponentRef<Component>;
-  public fee:number;
+  public fee:number = 1;
   faBook: any = faBook;
   faAddressBook: any = faAddressBook;
   balance: number;
   amountInUSD: number;
-  USDamount:number=0;
+  convertUSD:number=0;
+  todaydate;
   constructor(
-    private walletServices: WalletService,
+    private walletServices: WalletService,private calculationsService: CalculationsService,
     private _rpcState: RpcStateService, private flashNotification: SnackbarService,
     public _dialogRef: MatDialogRef<SendComponent>) {
 
   }
 
   ngOnInit() {
-    this.fee = 1;
 
   }
 
@@ -116,21 +117,24 @@ export class SendComponent implements OnInit, OnDestroy {
     this.modalContainer.remove();
     this.modal.destroy();
   }
-
-  public getAmount(event){
-   this.amount = event;
-   this.USDamount=this.amountInUSD*this.amount;
-   this.getFee();
+  // to get sending amount
+  public getSendingAmount(event) {
+    this.amount = event;
+    this.convertUSD=this.amountInUSD*this.amount
+      this.getFees();
+      this.getTotalAmount();
+  }
+  
+  //to get fee
+  getFees() {
+    this.fees = this.calculationsService.getFee(this.amount,this.fee);
   }
 
-  public getFee(){
-    this.fees = (this.fee/100)* this.amount;
-    this.getTotal();
+  //to get total amount
+  getTotalAmount(){
+    this.total = this.calculationsService.getTotal(this.amount,this.fees);
   }
-
-  public getTotal(){
-   this.total = this.amount + this.fees;
-  }
+  
   ngOnDestroy() {
     this.destroyed = true;
   }

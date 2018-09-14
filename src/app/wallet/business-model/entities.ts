@@ -952,40 +952,6 @@ export class Savecurrency implements ISavecurrency {
         return data;
     }
 }
-// export interface ghost {
-//     alias: string,
-//     address: number,
-//     privateKey: string,
-//     txHash: string,
-//     outputIndex: number,
-//     status: string
-// }
-
-// export interface INodeinfo {
-//     ghostnode: {
-//         [key: string]: ghost
-//     };
-// }
-// export interface INodeinfo {
-//     ghostnode: {
-//         "alias": string,
-//         "address": number,
-//         "privateKey": string,
-//         "txHash": string,
-//         "outputIndex": number,
-//         "status": string
-//     };
-// }
-
-// export interface ghostnode {
-//         "alias": string,
-//         "address": number,
-//         "privateKey": string,
-//         "txHash": string,
-//         "outputIndex": number,
-//         "status": string
-//   }
-
 
 export interface INodeinfo {
     alias: string,
@@ -1039,5 +1005,23 @@ export class NodeInfo implements INodeinfo {
         data["outputIndex"] = this.outputIndex;
         data["status"] = this.status;
         return data;
+    }
+}
+
+// add node
+export interface IDepostAmount {
+    amount: number;
+}
+
+export class DepostAmount implements IDepostAmount {
+    amount: number;
+
+    constructor(data?: IAddBook) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
 }

@@ -9,9 +9,9 @@ export const environment = {
   envName: 'dev',
   version: require('../../package.json').version,
   nixHost: 'localhost',
-  releasesUrl: 'https://api.github.com/repos/NixPlatform/Nix-GUI/releases/latest',
-  nix_MainNet_Port :6214,
-  nixPort: 6215,
+  releasesUrl: 'https://github.com/NixPlatform/NixCore/releases/tag/v2.0.0',
+  nix_MainNet_Port :51735,
+  nixPort: 51935,
   rpcUserName :'test',
   rpcPassword :'test',
 };
