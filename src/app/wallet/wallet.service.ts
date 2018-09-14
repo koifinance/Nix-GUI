@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Log } from 'ng2-logger'
 import { RpcService, RpcStateService } from '../core/core.module';
-import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, IAddBook, TransactionInfo, IPassword, IBitcoinprice, ISetAccount, IChangePassword, ISavecurrency, RecentTransactionInfo } from './business-model/entities';
+import { TransactionBuilder,IWalletSendToNix, IRecieveNixToWallet, IAddNode, IAddBook, TransactionInfo, IPassword, IBitcoinprice, ISetAccount, IChangePassword, ISavecurrency, RecentTransactionInfo, IDepostAmount } from './business-model/entities';
 import { ApiEndpoints, typeOfAddresses } from './business-model/enums';
 import { Http } from '@angular/http';
 @Injectable()
@@ -21,7 +21,6 @@ export class WalletService {
   unlockTimeout: number = 60;
   private validWords: string[];
   private _listners = new Subject<any>();
-
   constructor(private _rpc: RpcService, private rpcState: RpcStateService,private http:Http) {
 
   }
@@ -47,7 +46,7 @@ export class WalletService {
   public addNode(adnode : IAddNode): Observable<any> {
     return this._rpc.call(ApiEndpoints.AddNode,[adnode.node,adnode.action]);
   }
-
+  
   // get balance for NIX
   public getBalanceAmount(): Observable<any> {
     return this._rpc.call(ApiEndpoints.GetBalance).map(
@@ -99,7 +98,6 @@ public receiveNIXToWallet(setaccount : ISetAccount): Observable<any> {
 
 // To save currency
 public saveCurrency(currency : ISavecurrency): Observable<any> {
-  // return this._rpc.call(ApiEndpoints.SaveCurrency, [currency.convert]);
   return this.http.get(ApiEndpoints.SaveCurrency).map(response =>response.json());
 }
 
@@ -297,5 +295,8 @@ private send(tx: TransactionBuilder): Observable<any> {
       // this.fixWallet();
     }
   }
-
+// to deposit amount
+  public amountDeposit(deposit : IDepostAmount): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GhostAmount,[deposit.amount]);
+  }
 }

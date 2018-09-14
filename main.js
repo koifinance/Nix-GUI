@@ -200,11 +200,11 @@ function makeTray() {
       submenu: [
         {
           label: 'About ' + app.getName(),
-          click() { electron.shell.openExternal('https://nixplatform.io/#about'); }
+          click() { electron.shell.openExternal('https://Nix.io/#about'); }
         },
         {
-          label: 'Visit Nixplatform.io',
-          click() { electron.shell.openExternal('https://nixplatform.io'); }
+          label: 'Visit Nix.io',
+          click() { electron.shell.openExternal('https://Nix.io'); }
         },
         {
           label: 'Visit Electron',
