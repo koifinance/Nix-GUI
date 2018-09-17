@@ -15,12 +15,11 @@ let options;
 
 // master
 // const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/master/modules/clientBinaries/clientBinaries.json';
+
 // dev
 // const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/develop/modules/clientBinaries/clientBinaries.json';
 
-//navaseelan
-//testing purpose
-const BINARY_URL = 'http://chat.netbeesconsulting.com/clientBinaries.json';
+const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/develop/modules/clientBinaries/clientBinaries.json';
 
 //const ALLOWED_DOWNLOAD_URLS_REGEX = new RegExp('*', 'i');
 
@@ -31,7 +30,7 @@ class DaemonManager extends EventEmitter {
   }
 
   getPath() {
-    return this._availableClients['nixd'].binPath;
+    return this._availableClients['particld'].binPath;
   }
 
   init(_options) {
@@ -58,7 +57,7 @@ class DaemonManager extends EventEmitter {
   }
 
   _checkForNewConfig() {
-    const nodeType = 'nixd';
+    const nodeType = 'particld';
     let binariesDownloaded = false;
     let nodeInfo;
 
@@ -90,11 +89,8 @@ class DaemonManager extends EventEmitter {
 
       let localConfig;
       let skipedVersion;
-      debugger;
-      console.log("nodeType :" +nodeType)
-      //navaseelan
       const nodeVersion = latestConfig.clients[nodeType].version;
-      //const nodeVersion='2.0.1.0';
+
       this._emit('loadConfig', 'Fetching local config');
 
       // load the local json
@@ -124,7 +120,6 @@ class DaemonManager extends EventEmitter {
       const platform = process.platform
         .replace('darwin', 'mac')
         .replace('win32', 'win')
-        .replace('win64', 'win')
         .replace('freebsd', 'linux')
         .replace('sunos', 'linux');
       const binaryVersion = latestConfig.clients[nodeType].platforms[platform][process.arch];
@@ -139,8 +134,6 @@ class DaemonManager extends EventEmitter {
         checksum: hash,
         algorithm
       };
-
-      console.log("node "+ nodeInfo);
 
       // if new config version available then ask user if they wish to update
       if (latestConfig
@@ -221,7 +214,7 @@ class DaemonManager extends EventEmitter {
       this._emit('scanning', 'Scanning for binaries');
 
       return mgr.init({
-        folders: [ path.join(app.getPath('userData'), 'nixd', 'unpacked') ]
+        folders: [ path.join(app.getPath('userData'), 'particld', 'unpacked') ]
       })
       .then(() => {
         const clients = mgr.clients;
@@ -319,16 +312,15 @@ class DaemonManager extends EventEmitter {
 
     log.debug(`Platform: ${platform}`);
 
-    let binPath = path.join(app.getPath('userData'), 'nixd', 'unpacked', 'nixd');
-    log.info(`bin path 1: ` + binPath);
+    let binPath = path.join(app.getPath('userData'), 'particld', 'unpacked', 'particld');
 
     if (platform === 'win') {
       binPath += '.exe';
     }
-    log.info(`bin path: ` + binPath);
+
     log.info(`Client binary path: ${binPath}`);
 
-    this._availableClients.nixd = {
+    this._availableClients.particld = {
       binPath
     };
   }

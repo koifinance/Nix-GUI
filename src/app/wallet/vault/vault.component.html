@@ -50,7 +50,8 @@
         </div>
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
-            {{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}})
+            <!-- {{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}}) -->
+            {{BTCbalance}} BTC ({{USDbalance | currency:"USD":true}})
           <!-- <p>6.63444<span> BTC</span><span> ($63,082)</span></p>-->
           </div> 
       </div>
@@ -63,7 +64,7 @@
         </div>
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
-            {{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}})
+            {{BTCpending}} BTC ({{USDpending | currency:"USD":true}})
           <!-- <p>0<span> BTC</span><span> ($0)</span></p> -->
         </div>
       </div>
@@ -93,7 +94,7 @@
 
     <h5>Recent ghost vault transactions</h5>
 
-    <!-- <transaction-table [display]="{columns: transactionColumns}"></transaction-table> -->
+    <app-ghost-vault-transaction [display]="{columns: transactionColumns}"></app-ghost-vault-transaction>
   </mat-drawer-content>
 </mat-drawer-container>
 

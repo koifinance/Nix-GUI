@@ -22,7 +22,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   @Input() columns: string[];
   @Input() filterFunc: any;
   dataSource: MatTableDataSource<IRecentTransactionInfo>;
-  public testDataSource: any;
+  // public testDataSource: any;
   trasactionAllNix: TransactionInfo = new ITransactionInfo();
   trasactionInfo: RecentTransactionInfo = new IRecentTransactionInfo();
   faCircleSolid: any = faCircleSolid;
@@ -37,8 +37,8 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
     longDate: false,
     styleClass: '',
   };
-  private transactionSubscription: Subscription;
-  private filterSubscription: Subscription;
+  // private transactionSubscription: Subscription;
+  // private filterSubscription: Subscription;
 
   constructor(
     public transactionService: TransactionService,
@@ -48,7 +48,6 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    debugger
     this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000);
     this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.trasactionAllNix.txid]);
     this.Transactions();
@@ -57,31 +56,32 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
     this.transactionService.postConstructor(this.display.numTransactions);
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
-    this.testDataSource = new MatTableDataSource<IRecentTransactionInfo[]>();
+    this.dataSource.data=null;
+    // this.testDataSource = new MatTableDataSource<IRecentTransactionInfo[]>();
 
-    if (this.filterFunc) {
-      this.dataSource.filterPredicate = (transaction, filter) => {
-        return this.filterFunc(transaction, filter);
-      };
-    }
+    // if (this.filterFunc) {
+    //   this.dataSource.filterPredicate = (transaction, filter) => {
+    //     return this.filterFunc(transaction, filter);
+    //   };
+    // }
 
-    this.transactionSubscription = this.transactionService.transactionEvent
-      .subscribe(value => {
-        //  this.testDataSource =   this.transactionService.transactions;
-        // this.dataSource.data = this.testDataSource;
-      });
+    // this.transactionSubscription = this.transactionService.transactionEvent
+    //   .subscribe(value => {
+    //     //  this.testDataSource =   this.transactionService.transactions;
+    //     // this.dataSource.data = this.testDataSource;
+    //   });
 
-    this.filterSubscription = this.filterService.filterEvent
-      .subscribe(value => {
-        if (value === 'apply') {
-          this.dataSource.filter = 'all';
-        }
-      });
+    // this.filterSubscription = this.filterService.filterEvent
+    //   .subscribe(value => {
+    //     if (value === 'apply') {
+    //       this.dataSource.filter = 'all';
+    //     }
+    //   });
   }
 
   ngOnDestroy(): void {
-    this.transactionSubscription.unsubscribe();
-    this.filterSubscription.unsubscribe();
+    // this.transactionSubscription.unsubscribe();
+    // this.filterSubscription.unsubscribe();
     this.destroyed = true;
   }
 
@@ -138,10 +138,8 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   }
   // get recent transactions
   private listTransaction() {
-    debugger
     this._rpcState.observe(ApiEndpoints.ListTransactions)
       .subscribe(recentTransInfo => {
-        debugger
         this.trasactionInfo = recentTransInfo;
         // this.testDataSource = RecentTransInfo.transactions;
         this.dataSource.data = recentTransInfo;

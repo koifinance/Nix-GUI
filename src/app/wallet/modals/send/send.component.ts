@@ -55,12 +55,10 @@ export class SendComponent implements OnInit, OnDestroy {
 
   // send for wallet
   sendData() {
-    debugger
     if(this.validateInput()) {
       var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
         this.openSuccess('wallet');
       }, error => {
-        debugger
         console.log('send error', error)
         this.flashNotification.open(message.SendAmount, 'err');
         this.log.er(message.SendAmount, error)
@@ -77,7 +75,6 @@ export class SendComponent implements OnInit, OnDestroy {
         this.nixamount = this.sendToNix.amount;
       },
         error => {
-          debugger
           this.flashNotification.open(message.SendAmountToVaultMessage, 'err');
           this.log.er(message.SendAmountToVaultMessage, error)
         });

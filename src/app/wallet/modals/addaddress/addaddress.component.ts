@@ -21,9 +21,7 @@ export class AddaddressComponent implements OnInit {
   }
 
   save() {
-    debugger
     var result = this.walletServices.receiveNIXToWallet(this.addAddress).subscribe(res => {  
-      debugger
    }, error => {
     this.flashNotification.open(message.AddressAddedMessage, 'err')
     this.log.er(message.AddressAddedMessage, error)

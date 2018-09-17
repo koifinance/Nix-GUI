@@ -4,14 +4,14 @@ const path = require('path');
 const log  = require('electron-log');
 
 /*
-** returns nix config folder
+** returns Particl config folder
 */
 function findCookiePath() {
 
   var homeDir = os.homedir ? os.homedir() : process.env['HOME'];
 
   var dir,
-      appName = 'Nix';
+      appName = 'Particl';
   switch (process.platform) {
     case 'linux': {
       dir = prepareDir(homeDir, '.' + appName.toLowerCase()).result;
@@ -24,11 +24,6 @@ function findCookiePath() {
     }
 
     case 'win32': {
-      dir = prepareDir(process.env['APPDATA'], appName)
-           .or(homeDir, 'AppData', 'Roaming', appName).result;
-      break;
-    }
-    case 'win64': {
       dir = prepareDir(process.env['APPDATA'], appName)
            .or(homeDir, 'AppData', 'Roaming', appName).result;
       break;
@@ -93,16 +88,11 @@ function mkDir(dirPath, root) {
 
 /*
 ** returns the current RPC cookie
-** RPC cookie is regenerated at every nixd startup
+** RPC cookie is regenerated at every particld startup
 */
 function getAuth(options) {
-  
+
   if (options.rpcuser && options.rpcpassword) {
-    return options.rpcuser + ':' + options.rpcpassword;
-  }
-  else{
-    options.rpcuser='test';
-    options.rpcpassword='test';
     return options.rpcuser + ':' + options.rpcpassword;
   }
 

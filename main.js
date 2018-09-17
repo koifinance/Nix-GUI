@@ -19,10 +19,10 @@ if (!fs.existsSync(userDataPath)) {
 
 /* initialize logging */
 log.transports.file.level = 'debug';
-log.transports.file.appName = (process.platform == 'linux' ? '.Nix' : 'Nix');
+log.transports.file.appName = (process.platform == 'linux' ? '.particl' : 'Particl');
 log.transports.file.file = log.transports.file
   .findLogPath(log.transports.file.appName)
-  .replace('log.log', 'Nix.log');
+  .replace('log.log', 'particl.log');
 
 log.debug(`console log level: ${log.transports.console.level}`);
 log.debug(`file log level: ${log.transports.file.level}`);
@@ -200,11 +200,11 @@ function makeTray() {
       submenu: [
         {
           label: 'About ' + app.getName(),
-          click() { electron.shell.openExternal('https://nixplatform.io/#about'); }
+          click() { electron.shell.openExternal('https://particl.io/#about'); }
         },
         {
-          label: 'Visit Nixplatform.io',
-          click() { electron.shell.openExternal('https://nixplatform.io'); }
+          label: 'Visit Particl.io',
+          click() { electron.shell.openExternal('https://particl.io'); }
         },
         {
           label: 'Visit Electron',
@@ -223,7 +223,7 @@ function makeTray() {
   // }
 
   // Set the tray icon
-  tray.setToolTip('Nix ' + app.getVersion());
+  tray.setToolTip('Particl ' + app.getVersion());
   tray.setContextMenu(contextMenu)
 
   // Always show window when tray icon clicked
