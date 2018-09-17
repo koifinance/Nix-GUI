@@ -28,6 +28,11 @@ function findCookiePath() {
            .or(homeDir, 'AppData', 'Roaming', appName).result;
       break;
     }
+    case 'win64': {
+      dir = prepareDir(process.env['APPDATA'], appName)
+           .or(homeDir, 'AppData', 'Roaming', appName).result;
+      break;
+    }
   }
 
   if (dir) {
@@ -91,8 +96,13 @@ function mkDir(dirPath, root) {
 ** RPC cookie is regenerated at every nixd startup
 */
 function getAuth(options) {
-
+  
   if (options.rpcuser && options.rpcpassword) {
+    return options.rpcuser + ':' + options.rpcpassword;
+  }
+  else{
+    options.rpcuser='test';
+    options.rpcpassword='test';
     return options.rpcuser + ':' + options.rpcpassword;
   }
 

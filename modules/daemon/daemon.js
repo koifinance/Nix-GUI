@@ -47,7 +47,6 @@ exports.start = function (wallets, callback) {
   return (new Promise((resolve, reject) => {
 
     chosenWallets    = wallets;
-
     rpc.init();
     exports.check().then(() => {
       log.info('daemon already started');

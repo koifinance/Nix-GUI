@@ -15,11 +15,12 @@ let options;
 
 // master
 // const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/master/modules/clientBinaries/clientBinaries.json';
-
 // dev
 // const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/develop/modules/clientBinaries/clientBinaries.json';
 
-const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/develop/modules/clientBinaries/clientBinaries.json';
+//navaseelan
+//testing purpose
+const BINARY_URL = 'http://chat.netbeesconsulting.com/clientBinaries.json';
 
 //const ALLOWED_DOWNLOAD_URLS_REGEX = new RegExp('*', 'i');
 
@@ -91,8 +92,9 @@ class DaemonManager extends EventEmitter {
       let skipedVersion;
       debugger;
       console.log("nodeType :" +nodeType)
+      //navaseelan
       const nodeVersion = latestConfig.clients[nodeType].version;
-
+      //const nodeVersion='2.0.1.0';
       this._emit('loadConfig', 'Fetching local config');
 
       // load the local json
@@ -122,6 +124,7 @@ class DaemonManager extends EventEmitter {
       const platform = process.platform
         .replace('darwin', 'mac')
         .replace('win32', 'win')
+        .replace('win64', 'win')
         .replace('freebsd', 'linux')
         .replace('sunos', 'linux');
       const binaryVersion = latestConfig.clients[nodeType].platforms[platform][process.arch];
@@ -317,11 +320,12 @@ class DaemonManager extends EventEmitter {
     log.debug(`Platform: ${platform}`);
 
     let binPath = path.join(app.getPath('userData'), 'nixd', 'unpacked', 'nixd');
+    log.info(`bin path 1: ` + binPath);
 
     if (platform === 'win') {
       binPath += '.exe';
     }
-
+    log.info(`bin path: ` + binPath);
     log.info(`Client binary path: ${binPath}`);
 
     this._availableClients.nixd = {
