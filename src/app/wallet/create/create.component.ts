@@ -66,6 +66,7 @@ export class CreateComponent implements OnInit, OnDestroy {
           this.showContentError = true;
           return false;
         }
+        this.showContentError = false;
         return true;
       }
     },
@@ -118,7 +119,7 @@ export class CreateComponent implements OnInit, OnDestroy {
       // return;
     }
 
-    if (!this.walletWizard[this.step].valid()) {
+    else if (!this.walletWizard[this.step].valid()) {
       return;
     }
 

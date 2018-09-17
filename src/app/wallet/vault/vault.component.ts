@@ -8,6 +8,7 @@ import { faq } from './faq';
 import { IWalletInfo, WalletInfo, IBitcoinprice, bitcoinprice } from '../business-model/entities';
 import { ApiEndpoints, message } from '../business-model/enums';
 import { WalletService } from '../wallet.service';
+import { CalculationsService } from '../calculations.service';
 
 @Component({
   selector: 'wallet-vault',
@@ -24,9 +25,18 @@ export class VaultComponent implements OnInit, OnDestroy {
   walletInfo: IWalletInfo = new WalletInfo();
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   public bitcoinprice;
+  balanceInBTC: number;
+  pendingInBTC: number;
+  balanceInUSD: number;
+  pendingInUSD: number;
+  BTCbalance: number;
+  USDbalance: number;
+  BTCpending: number;
+  USDpending: number;
+
   constructor(
     private modalsService: ModalsService,
-    private _rpcState: RpcStateService, private walletServices: WalletService
+    private _rpcState: RpcStateService, private walletServices: WalletService, private calculationsService: CalculationsService,
   ) {
   }
 
@@ -34,6 +44,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.initialized();
     this.getwalletinformation();
     this.getBitcoinpriceinfo();
+
   }
 
   private initialized() {
@@ -46,7 +57,7 @@ export class VaultComponent implements OnInit, OnDestroy {
   private getwalletinformation() {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
-      .subscribe(walletInfo => {        
+      .subscribe(walletInfo => {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
       },
         error => this.log.error('Failed to get balance, ', error));
@@ -66,6 +77,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
+      amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
     this.modalsService.openSmall('receive', data);
@@ -76,11 +88,12 @@ export class VaultComponent implements OnInit, OnDestroy {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
+      amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
     this.modalsService.openSmall('send', data);
   }
-  
+
   createVault() {
     // set rpc state variable `ui:vaultInitialized` after success
     this.vaultInitialized = true;
@@ -88,17 +101,42 @@ export class VaultComponent implements OnInit, OnDestroy {
 
   // get bitcoin price
   private getBitcoinpriceinfo() {
-    debugger
     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
-    .subscribe(bitcoinpriceInfos => {
-      debugger
-      this.bitcoinprice = bitcoinpriceInfos.data.quotes;
-    },
+      .subscribe(bitcoinpriceInfos => {
+        this.bitcoinprice = bitcoinpriceInfos.data.quotes;
+        // BTC amount for 1 NIX
+        this.balanceInBTC = this.bitcoinprice.BTC.price;
+        // USD amount for 1 NIX
+        this.balanceInUSD = this.bitcoinprice.USD.price;
+
+        this.getBTCBalance();
+        this.getUSDBalance();
+        this.getBTCPending();
+        this.getUSDPending();
+      },
         error => this.log.error(message.bitcoinpriceMessage, error));
+  }
+
+  // to get the ghost vault balance converted into BTC amount
+  getBTCBalance() {
+    this.BTCbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInBTC);
+  }
+  // to get the ghost vault balance converted into USD amount
+  getUSDBalance() {
+    this.USDbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInUSD);
+  }
+  // to get the Pending balance converted into BTC amount
+  getBTCPending() {
+    this.BTCpending = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInBTC);
+  }
+  // to get the Pending balance converted into USD amount
+  getUSDPending() {
+    this.USDpending = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInUSD);
   }
 
   ngOnDestroy(): void {
     this.destroyed = true;
   }
+
 
 }

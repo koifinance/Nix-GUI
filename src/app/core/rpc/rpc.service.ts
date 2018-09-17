@@ -18,7 +18,7 @@ declare global {
 }
 
 /**
- * The RPC service that maintains a single connection to the nixd daemon.
+ * The RPC service that maintains a single connection to the particld daemon.
  *
  * It has two important functions: call and register.
  */
@@ -56,10 +56,10 @@ export class RpcService implements OnDestroy {
   }
 
   /**
-   * The call method will perform a single call to the nixd daemon and perform a callback to
+   * The call method will perform a single call to the particld daemon and perform a callback to
    * the instance through the function as defined in the params.
    *
-   * @param {string} method  The JSON-RPC method to call, see ```./nixd help```
+   * @param {string} method  The JSON-RPC method to call, see ```./particld help```
    * @param {Array<Any>} params  The parameters to pass along with the JSON-RPC request.
    * The content of the array is of type any (ints, strings, booleans etc)
    *
@@ -90,14 +90,14 @@ export class RpcService implements OnDestroy {
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization', 'Basic ' + btoa(`${this.username}:${this.password}`));
       headers.append('Accept', 'application/json');
-      
+
       return this._http
         .post(`http://${this.hostname}:${this.port}`, postData, { headers: headers })
         .pipe(
           map((response: any) => response.result),
           catchError(error => Observable.throw(typeof error._body === 'object'
             ? error._body
-            : error.message)
+            : JSON.parse(error._body))
           )
         );
     }

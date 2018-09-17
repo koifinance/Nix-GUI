@@ -5,9 +5,9 @@ export const environment = {
   version: require('../../package.json').version,
   envName: 'prod',
   nixHost: 'domain.com',
-  releasesUrl: 'https://api.github.com/repos/NixPlatform/Nix-GUI/releases/latest',
-  nix_MainNet_Port :6214,
-  nixPort: 6215,
+  releasesUrl: 'https://api.github.com/repos/particl/particl-desktop/releases/latest',
+  nix_MainNet_Port :4201,
+  nixPort: 4200,
   rpcUserName :'test',
-  rpcPassword :'test',
+  rpcPassword :'12345678',
 };

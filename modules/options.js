@@ -7,7 +7,7 @@ let _options = {};
 **
 ** exemple:
 ** --dev -testnet -reindex -rpcuser=user -rpcpassword=pass
-** strips --dev out of argv (double dash is not a nixd argument) and returns
+** strips --dev out of argv (double dash is not a particld argument) and returns
 ** {
 **   dev: true,
 **   testnet: true,
@@ -43,8 +43,8 @@ exports.parse = function() {
   options.port = options.rpcport
     ? options.rpcport // custom rpc port
     : options.testnet
-      ? 6214  // default testnet port  //51935
-      : 6215; // default mainnet port //51735
+      ? 51935  // default testnet port
+      : 51735; // default mainnet port
 
   _options = options;
   return options;

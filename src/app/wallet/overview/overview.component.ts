@@ -14,7 +14,7 @@ import { ApiEndpoints, categories, message } from '../business-model/enums';
 import { RpcStateService } from '../../core/core.module';
 import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
-
+import { CalculationsService } from '../calculations.service';
 @Component({
   selector: 'wallet-overview',
   templateUrl: './overview.component.html',
@@ -22,6 +22,14 @@ import { Log } from 'ng2-logger';
 })
 export class OverviewComponent implements OnInit, OnDestroy {
 
+  USDvaultbalance: number;
+  BTCvaultbalance: number;
+  USDwalletbalance: number;
+  BTCwalletbalance: number;
+  NIXpercentage: any;
+  balanceInUSD: any;
+  balanceInBTC: any;
+  
   faCircle: any = faCircle;
   faQuestion: any = faQuestion;
   faSync: any = faSync;
@@ -43,7 +51,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public monthEarn: number = 0;
   public node: number = 0;
   isActiveNodeCount = 0;
-
+ 
   // lineChart
   public lineChartData: Array<any> = [
     // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
@@ -70,7 +78,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private modalsService: ModalsService, private router: Router,
+    private modalsService: ModalsService, private router: Router, private calculationsService: CalculationsService,
     private walletServices: WalletService, private _rpcState: RpcStateService
   ) { }
 
@@ -116,7 +124,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.trasactionInfo = new IRecentTransactionInfo(RecentTransInfo);
         console.log('trans', RecentTransInfo);
       },
-      error => this.log.error(message.recentTransactionMessage, error));
+        error => this.log.error(message.recentTransactionMessage, error));
   }
 
 
@@ -125,8 +133,31 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
       .subscribe(bitcoinpriceInfos => {
         this.bitcoinprice = bitcoinpriceInfos.data.quotes;
+        this.balanceInBTC = this.bitcoinprice.BTC.price;
+        this.balanceInUSD = this.bitcoinprice.USD.price;
+        this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
+       
+        this.getBTCBalance();
+        this.getUSDBalance();
+        this.getBTCPending();
+        this.getUSDPending();
       },
         error => this.log.error(message.bitcoinpriceMessage, error));
+  }
+
+  getBTCBalance() {
+    this.BTCwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault,this.balanceInBTC);
+  }
+  getUSDBalance() {
+    this.USDwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInUSD);
+  }
+
+  getBTCPending() {
+    this.BTCvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInBTC);
+  }
+
+  getUSDPending() {    
+    this.USDvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInUSD);
   }
 
   // get tor status
@@ -139,10 +170,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
   // get node status
   private getnodestatus() {
-    debugger
     this._rpcState.observe(ApiEndpoints.GhostnodeListConf)
       .subscribe(NodeInformations => {
-        debugger
         // this.getNodeInfo = new NodeInfo(NodeInformations);
         this.ghostnodeArray = NodeInformations;
         console.log(NodeInformations);
