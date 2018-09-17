@@ -1,11 +1,15 @@
 var got = require("got");
 var fs = require('fs');
 
-// var releasesURL = "https://api.github.com/repos/particl/particl-core/releases";
-var releasesURL = "https://github.com/NixPlatform/NixCore/releases/tag/v2.0.0";
+// // var releasesURL = "https://api.github.com/repos/particl/particl-core/releases";
+// var releasesURL = "https://github.com/NixPlatform/NixCore/releases";
+// var signaturesURL = "https://api.github.com/repos/particl/gitian.sigs/contents";
+// var maintainer = "mattt21";
 
-var signaturesURL = "https://api.github.com/repos/particl/gitian.sigs/contents";
-var maintainer = "tecnovert";
+var releasesURL = "https://github.com/NixPlatform/NixCore/releases";
+var signaturesURL = "https://api.github.com/repos/nixplatform/gitian.sigs/contents";
+var maintainer = 'mattt21';
+
 
 /*
  * Filters a hash file to find this asset's hash
@@ -18,7 +22,8 @@ var getHash = function (platform, name, hashes) {
   } else {
     sha256 = undefined;
   }
-  return (sha256);
+  return undefined;
+  //return (sha256);
 }
 
 /*
@@ -90,7 +95,7 @@ var getAssetDetails = function (asset, hashes, version) {
         url: asset.browser_download_url,
         type: data.type,
         sha256: data.sha256,
-        bin: `nix-${version}/bin/${bin}`
+        bin: `nix-${version}/${bin}`
       },
       bin: bin,
       commands: {
@@ -154,7 +159,9 @@ got(`${releasesURL}`).then(response => {
         var platformIndex = version.name.indexOf("-");
         var platform = version.name.substring(platformIndex + 1);
         // wait for hashes to be added to our hashes array
-        promises.push(getHashesForPlatform(platform, version.name, hashes));
+        //navaseelan
+        // promises.push(getHashesForPlatform(platform, version.name, hashes));
+        promises.push(undefined);
       }
     })
 

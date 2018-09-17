@@ -587,9 +587,7 @@ class Manager {
     })
     .then((output) => {
       const haystack = output.stdout + output.stderr;
-
       this._logger.debug(`Sanity check output: ${haystack}`);
-
       const needles = sanityCheck.output || [];
 
       for (let needle of needles) {

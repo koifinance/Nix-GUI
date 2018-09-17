@@ -90,14 +90,14 @@ export class RpcService implements OnDestroy {
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization', 'Basic ' + btoa(`${this.username}:${this.password}`));
       headers.append('Accept', 'application/json');
-
+      
       return this._http
         .post(`http://${this.hostname}:${this.port}`, postData, { headers: headers })
         .pipe(
           map((response: any) => response.result),
           catchError(error => Observable.throw(typeof error._body === 'object'
             ? error._body
-            : JSON.parse(error._body))
+            : error.message)
           )
         );
     }
