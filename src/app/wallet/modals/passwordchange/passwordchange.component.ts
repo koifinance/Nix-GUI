@@ -48,14 +48,12 @@ export class PasswordchangeComponent implements OnInit {
 
   }
   save() {
-    debugger
     this.changePassword.newpassphrase = this.reEntryPassword;
     if (this.validatePassword()) {
       var result = this.walletServices.changepassword(this.changePassword).subscribe(res => {
         console.log('success');
         this.close();
       }, error => {
-        debugger
         this.flashNotification.open(message.ChangePasswordMessage, 'err')
         this.log.er(message.ChangePasswordMessage, error)
       });

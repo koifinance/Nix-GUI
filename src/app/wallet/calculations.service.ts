@@ -14,4 +14,10 @@ export class CalculationsService {
         let total = amount + fees;
         return total;
     }
+
+    // to convert amount 
+    public getCovertedamount(amount, byconvertAmount) {
+        let Convertedamount = amount*byconvertAmount;
+        return Convertedamount;
+    }
 }

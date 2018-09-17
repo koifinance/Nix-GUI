@@ -697,7 +697,7 @@ export interface IBitcoinprice {
 
 export class bitcoinprice implements IBitcoinprice {
 
-    convert: string = 'BTC';
+    convert: string='BTC';
 
     constructor(data?: IBitcoinprice) {
         if (data) {
@@ -726,6 +726,7 @@ export class bitcoinprice implements IBitcoinprice {
         return data;
     }
 }
+
 export interface IGetblockchaininfo {
     "chain": string,
     "blocks": number,

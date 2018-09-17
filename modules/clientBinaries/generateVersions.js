@@ -1,15 +1,9 @@
 var got = require("got");
 var fs = require('fs');
 
-// // var releasesURL = "https://api.github.com/repos/particl/particl-core/releases";
-// var releasesURL = "https://github.com/NixPlatform/NixCore/releases";
-// var signaturesURL = "https://api.github.com/repos/particl/gitian.sigs/contents";
-// var maintainer = "mattt21";
-
-var releasesURL = "https://github.com/NixPlatform/NixCore/releases";
-var signaturesURL = "https://api.github.com/repos/nixplatform/gitian.sigs/contents";
-var maintainer = 'mattt21';
-
+var releasesURL = "https://api.github.com/repos/particl/particl-core/releases";
+var signaturesURL = "https://api.github.com/repos/particl/gitian.sigs/contents";
+var maintainer = "tecnovert";
 
 /*
  * Filters a hash file to find this asset's hash
@@ -22,8 +16,7 @@ var getHash = function (platform, name, hashes) {
   } else {
     sha256 = undefined;
   }
-  return undefined;
-  //return (sha256);
+  return (sha256);
 }
 
 /*
@@ -84,7 +77,7 @@ var getAssetDetails = function (asset, hashes, version) {
   }
 
   // add .exe extension for windows binaries
-  var bin = `nixd${data.platform === 'win' ? '.exe' : ''}`
+  var bin = `particld${data.platform === 'win' ? '.exe' : ''}`
   // return asset only if it is fully compliant
   return (data.platform && data.arch && data.type ? {
     platform: data.platform,
@@ -95,13 +88,13 @@ var getAssetDetails = function (asset, hashes, version) {
         url: asset.browser_download_url,
         type: data.type,
         sha256: data.sha256,
-        bin: `nix-${version}/${bin}`
+        bin: `particl-${version}/bin/${bin}`
       },
       bin: bin,
       commands: {
         sanity: {
           args: ["-version"],
-          output: ["Nix Core Daemon", version]
+          output: ["Particl Core Daemon", version]
         }
       }
     }
@@ -137,7 +130,7 @@ var getHashesForPlatform = function (platform, path, hashes, promises) {
 
 /*
  * Entry point
- * get nix latest release files
+ * get Particl latest release files
  */
 got(`${releasesURL}`).then(response => {
 
@@ -159,9 +152,7 @@ got(`${releasesURL}`).then(response => {
         var platformIndex = version.name.indexOf("-");
         var platform = version.name.substring(platformIndex + 1);
         // wait for hashes to be added to our hashes array
-        //navaseelan
-        // promises.push(getHashesForPlatform(platform, version.name, hashes));
-        promises.push(undefined);
+        promises.push(getHashesForPlatform(platform, version.name, hashes));
       }
     })
 
@@ -170,7 +161,7 @@ got(`${releasesURL}`).then(response => {
       // prepare JSON object for the output file
       var json = {
         clients: {
-          nixd: {
+          particld: {
             version: tag,
             platforms: {}
           }
@@ -184,7 +175,7 @@ got(`${releasesURL}`).then(response => {
         }
       })
       // include entries in JSON object
-      var platforms = json.clients.nixd.platforms;
+      var platforms = json.clients.particld.platforms;
       binaries.forEach(binary => {
         // define an empty object for current platform if not already defined
         if (!platforms[binary.platform]) {

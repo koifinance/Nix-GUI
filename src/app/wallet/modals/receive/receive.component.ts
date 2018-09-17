@@ -51,7 +51,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   setData(data: any) {
-    debugger
     this.data = data;
     this.balance = data.balance;
     this.convertUSD = data.amountInUSD;
@@ -115,7 +114,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
 
   // to get sending amount
   public getSendingAmount(event) {
-    debugger
     this.amount = event;
     this.convertUSD = this.convertUSD * this.amount
     this.getFees();

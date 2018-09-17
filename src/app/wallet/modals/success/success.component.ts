@@ -44,7 +44,6 @@ export class SuccessComponent implements OnInit, OnDestroy {
 
 
   setData(data: any) {
-    debugger
     this.data = data;
     this.sendingAmount = data.amount;
     this.fee = data.fee;
@@ -52,10 +51,8 @@ export class SuccessComponent implements OnInit, OnDestroy {
   }
   // Get new address for Receive NIX to Wallet
   private getNewAddress() {
-    debugger
     this._rpcState.observe(ApiEndpoints.Getnewaddress).takeWhile(() => !this.destroyed)
       .subscribe(Newaddress => {
-        debugger
         this.getNewaddress = new GetNewAddress(Newaddress).toJSON();
         localStorage.setItem('getAddress', JSON.stringify(this.getNewaddress));
         // this.getNewaddress.address = Newaddress;
