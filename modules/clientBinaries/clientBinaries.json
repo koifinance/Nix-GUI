@@ -9,7 +9,7 @@
               "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.2/nix_core_x86_64_linux_gnu_2_0_2.zip",
               "type": "zip",
               "sha256": "",
-              "bin": "nix_core_2_0_2/nixd"
+              "bin": "nix_core_x86_64_linux_gnu_2_0_2/nixd"
             },
             "bin": "nixd",
             "commands": {
@@ -31,7 +31,7 @@
               "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.2/nix_core_macos_2_0_2.zip",
               "type": "zip",
               "sha256": "",
-              "bin": "nix_core_2_0_2/nixd"
+              "bin": "nix_core_macos_2_0_2/nixd"
             },
             "bin": "nixd",
             "commands": {
@@ -53,7 +53,7 @@
               "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.2/nix_core_windows_2_0_2.zip",
               "type": "zip",
               "sha256": "",
-              "bin": "nix_core_windows32_2_0_2/nixd.exe"
+              "bin": "nix_core_windows_2_0_2/nixd.exe"
             },
             "bin": "nixd.exe",
             "commands": {
@@ -73,7 +73,7 @@
               "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.2/nix_core_windows_2_0_2.zip",
               "type": "zip",
               "sha256": "",
-              "bin": "nix_core_windows64_2_0_2/nixd.exe"
+              "bin": "nix_core_windows_2_0_2/nixd.exe"
             },
             "bin": "nixd.exe",
             "commands": {
