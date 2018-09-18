@@ -11,7 +11,7 @@ function findCookiePath() {
   var homeDir = os.homedir ? os.homedir() : process.env['HOME'];
 
   var dir,
-      appName = 'Particl';
+      appName = 'nix';
   switch (process.platform) {
     case 'linux': {
       dir = prepareDir(homeDir, '.' + appName.toLowerCase()).result;
