@@ -13,7 +13,7 @@ const rpc = require('../rpc/rpc');
 
 let options;
 
-const BINARY_URL = 'https://raw.githubusercontent.com/NixPlatform/Nix-GUI/wallet-ui-pavlo/modules/clientBinaries/clientBinaries.json?token=ATRw3zf2oD5HeKVcCDOmZym0c3bSpVlGks5bqox3wA%3D%3D';
+const BINARY_URL = 'https://raw.githubusercontent.com/NixPlatform/Nix-GUI/wallet-ui-pavlo/modules/clientBinaries/clientBinaries.json?token=ATRw35nFrqCAayDwdfZrNFGoV4sLJISfks5bqo1NwA%3D%3D';
 
 //const ALLOWED_DOWNLOAD_URLS_REGEX = new RegExp('*', 'i');
 
