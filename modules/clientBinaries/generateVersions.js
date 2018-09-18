@@ -1,9 +1,10 @@
 var got = require("got");
 var fs = require('fs');
 
-var releasesURL = "https://api.github.com/repos/particl/particl-core/releases";
-var signaturesURL = "https://api.github.com/repos/particl/gitian.sigs/contents";
-var maintainer = "tecnovert";
+var releasesURL = "https://github.com/NixPlatform/NixCore/releases";
+
+var signaturesURL = "https://api.github.com/repos/nixplatform/gitian.sigs/contents";
+var maintainer = “mattt21”;
 
 /*
  * Filters a hash file to find this asset's hash
@@ -77,7 +78,7 @@ var getAssetDetails = function (asset, hashes, version) {
   }
 
   // add .exe extension for windows binaries
-  var bin = `particld${data.platform === 'win' ? '.exe' : ''}`
+  var bin = `nixd${data.platform === 'win' ? '.exe' : ''}`
   // return asset only if it is fully compliant
   return (data.platform && data.arch && data.type ? {
     platform: data.platform,
@@ -88,13 +89,13 @@ var getAssetDetails = function (asset, hashes, version) {
         url: asset.browser_download_url,
         type: data.type,
         sha256: data.sha256,
-        bin: `particl-${version}/bin/${bin}`
+        bin: `nix-${version}/bin/${bin}`
       },
       bin: bin,
       commands: {
         sanity: {
           args: ["-version"],
-          output: ["Particl Core Daemon", version]
+          output: ["Nix Core Daemon", version]
         }
       }
     }
@@ -130,7 +131,7 @@ var getHashesForPlatform = function (platform, path, hashes, promises) {
 
 /*
  * Entry point
- * get Particl latest release files
+ * get nix latest release files
  */
 got(`${releasesURL}`).then(response => {
 
@@ -161,7 +162,7 @@ got(`${releasesURL}`).then(response => {
       // prepare JSON object for the output file
       var json = {
         clients: {
-          particld: {
+          nixd: {
             version: tag,
             platforms: {}
           }
@@ -175,7 +176,7 @@ got(`${releasesURL}`).then(response => {
         }
       })
       // include entries in JSON object
-      var platforms = json.clients.particld.platforms;
+      var platforms = json.clients.nixd.platforms;
       binaries.forEach(binary => {
         // define an empty object for current platform if not already defined
         if (!platforms[binary.platform]) {
