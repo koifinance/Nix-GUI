@@ -19,10 +19,10 @@ if (!fs.existsSync(userDataPath)) {
 
 /* initialize logging */
 log.transports.file.level = 'debug';
-log.transports.file.appName = (process.platform == 'linux' ? '.Nix' : 'Nix');
+log.transports.file.appName = (process.platform == 'linux' ? '.nix' : 'nix');
 log.transports.file.file = log.transports.file
   .findLogPath(log.transports.file.appName)
-  .replace('log.log', 'Nix.log');
+  .replace('log.log', 'nix.log');
 
 log.debug(`console log level: ${log.transports.console.level}`);
 log.debug(`file log level: ${log.transports.file.level}`);
@@ -233,4 +233,3 @@ function makeTray() {
 
   return trayImage;
 }
-
