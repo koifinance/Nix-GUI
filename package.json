@@ -1,6 +1,6 @@
 {
   "name": "nix-wallet",
-  "version": "1.1.0",
+  "version": "2.2.0",
   "license": "GPL-2.0",
   "description": "NIX Platform - cross chain asset transfer with full anonymity",
   "homepage": "https://nixplatform.io",
@@ -122,10 +122,10 @@
       ],
       "desktop": {
         "Comment": "NIX Platform, P2P Privacy ecosystem",
-        "Exec": "/opt/particl/particl %U",
-        "Icon": "particl",
-        "Name": "Particl",
-        "Path": "/opt/particl/",
+        "Exec": "/opt/nix/nix %U",
+        "Icon": "nix",
+        "Name": "Nix",
+        "Path": "/opt/nix/",
         "StartupNotify": "true",
         "Terminal": "false",
         "Type": "Application",
