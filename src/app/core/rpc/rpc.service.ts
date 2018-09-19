@@ -10,6 +10,8 @@ import { environment } from 'environments/environment';
 const MAINNET_PORT = environment.nix_MainNet_Port;
 const TESTNET_PORT = environment.nixPort;
 const HOSTNAME = environment.nixHost;
+const RPCUSER = environment.rpcUserName;
+const RPCPASSWORD = environment.rpcPassword;
 
 declare global {
   interface Window {
@@ -37,10 +39,10 @@ export class RpcService implements OnDestroy {
   /**
    * Port number of of daemon (default = 51935)
    */
-  private port: number = TESTNET_PORT; // TODO: Mainnet / testnet flag...
+  private port: number = MAINNET_PORT; // TODO: Mainnet / testnet flag...
 
-  private username: string = 'test';
-  private password: string = 'test';
+  private username: string = RPCUSER;
+  private password: string = RPCPASSWORD;
 
   public isElectron: boolean = false;
 

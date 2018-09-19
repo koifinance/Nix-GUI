@@ -20,7 +20,7 @@ export class RpcStateService extends StateService implements OnDestroy {
   constructor(private _rpc: RpcService) {
     super();
 
-    // this.registerStateCall('getwalletinfo', 1000);
+    this.registerStateCall('getwalletinfo', 1000);
     // this.registerStateCall('getaddressesbyaccount', 1000);
     this.registerStateCall('getblockchaininfo', 5000);
     //this.registerStateCall('getnetworkinfo', 10000);
@@ -135,6 +135,7 @@ export class RpcStateService extends StateService implements OnDestroy {
   // TODO: get rid of this after improve-router
   private initWalletState() {
     this.observe('getwalletinfo').subscribe(response => {
+      this.log.d(response)
       // check if account is active
       if (!!response.hdmasterkeyid) {
         this.set('ui:walletInitialized', true);

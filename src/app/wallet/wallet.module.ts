@@ -79,7 +79,7 @@ import { ChartsModule } from 'ng2-charts';
   ],
   exports: [
     MainComponent,
-    WelcomeComponent,
+    // WelcomeComponent,
   ],
   providers: [FilterService,WalletService,WalletLogService,CalculationsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
