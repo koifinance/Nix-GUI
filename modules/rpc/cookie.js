@@ -4,14 +4,14 @@ const path = require('path');
 const log  = require('electron-log');
 
 /*
-** returns Particl config folder
+** returns nix config folder
 */
 function findCookiePath() {
 
   var homeDir = os.homedir ? os.homedir() : process.env['HOME'];
 
   var dir,
-      appName = 'nix';
+      appName = 'Nix';
   switch (process.platform) {
     case 'linux': {
       dir = prepareDir(homeDir, '.' + appName.toLowerCase()).result;
@@ -28,6 +28,13 @@ function findCookiePath() {
            .or(homeDir, 'AppData', 'Roaming', appName).result;
       break;
     }
+
+    case 'win64': {
+      dir = prepareDir(process.env['APPDATA'], appName)
+           .or(homeDir, 'AppData', 'Roaming', appName).result;
+      break;
+    }
+
   }
 
   if (dir) {

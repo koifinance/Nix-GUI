@@ -56,7 +56,6 @@ git clone https://github.com/nixcore/nix-gui
 cd nix-gui
 yarn install
 ```
-
 ### Development with Electron
 
 1. Run `ng serve` to start the dev server.

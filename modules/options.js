@@ -23,7 +23,7 @@ exports.parse = function() {
     // striping 'electron .' from argv
     process.argv = process.argv.splice(2);
   } else {
-    // striping /path/to/particl from argv
+    // striping /path/to/nix from argv
     process.argv = process.argv.splice(1);
   }
 
@@ -43,7 +43,7 @@ exports.parse = function() {
   options.port = options.rpcport
     ? options.rpcport // custom rpc port
     : options.testnet
-      ? 16214  // default testnet port
+      ? 6215  // default testnet port
       : 6214; // default mainnet port
 
   _options = options;

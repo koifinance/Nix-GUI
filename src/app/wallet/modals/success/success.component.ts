@@ -6,6 +6,7 @@ import { GetNewAddress, IGetNewAddress, ISetAccount, SetAccount, IWalletSendToNi
 import { WalletService } from '../../wallet.service';
 import { MatDialogRef } from '@angular/material';
 import { ModalsService } from '../modals.service';
+import { WalletHelperService } from '../../wallethelper.service';
 
 @Component({
   selector: 'app-success',
@@ -33,12 +34,13 @@ export class SuccessComponent implements OnInit, OnDestroy {
 
   constructor(
     private _rpcState: RpcStateService, private flashNotification: SnackbarService, private modalsService: ModalsService,
-    private walletServices: WalletService, public _dialogRef: MatDialogRef<SuccessComponent>) {
+    private walletServices: WalletService, public _dialogRef: MatDialogRef<SuccessComponent>,
+    private wallethelperService: WalletHelperService) {
 
   }
 
   ngOnInit() {
-    this._rpcState.registerStateCall(ApiEndpoints.Getnewaddress, 1000);
+    this.wallethelperService.getnewaddressInit();
     this.getNewAddress();
   }
 
@@ -49,14 +51,13 @@ export class SuccessComponent implements OnInit, OnDestroy {
     this.fee = data.fee;
     this.totalAmount = data.total;
   }
+
   // Get new address for Receive NIX to Wallet
   private getNewAddress() {
-    this._rpcState.observe(ApiEndpoints.Getnewaddress).takeWhile(() => !this.destroyed)
+    this.wallethelperService.getnewaddressData()
       .subscribe(Newaddress => {
-        this.getNewaddress = new GetNewAddress(Newaddress).toJSON();
-        localStorage.setItem('getAddress', JSON.stringify(this.getNewaddress));
-        // this.getNewaddress.address = Newaddress;
-        // this.getNewaddress.address = this.setAccount.address;
+        this.getNewaddress.address = Newaddress;
+        this.setAccount.address = this.getNewaddress.address;
       },
         error => {
           this.flashNotification.open(message.GetNewAddress, 'err');

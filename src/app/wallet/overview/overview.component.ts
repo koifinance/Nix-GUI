@@ -15,6 +15,7 @@ import { RpcStateService } from '../../core/core.module';
 import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
 import { CalculationsService } from '../calculations.service';
+import { WalletHelperService } from '../wallethelper.service';
 @Component({
   selector: 'wallet-overview',
   templateUrl: './overview.component.html',
@@ -29,7 +30,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   NIXpercentage: any;
   balanceInUSD: any;
   balanceInBTC: any;
-  
+
   faCircle: any = faCircle;
   faQuestion: any = faQuestion;
   faSync: any = faSync;
@@ -51,11 +52,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public monthEarn: number = 0;
   public node: number = 0;
   isActiveNodeCount = 0;
- 
+
   // lineChart
   public lineChartData: Array<any> = [
-    // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    // { data: [40, 19, 86, 27, 90], label: 'Series B' },
     { data: [2, 2.5, 4, 3.6, 5.5, 4.8, 7, 5], label: 'Bitcoin' }
   ];
   public lineChartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
@@ -79,18 +78,17 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   constructor(
     private modalsService: ModalsService, private router: Router, private calculationsService: CalculationsService,
-    private walletServices: WalletService, private _rpcState: RpcStateService
+    private walletServices: WalletService, private _rpcState: RpcStateService, private wallethelperService: WalletHelperService
   ) { }
 
   ngOnInit() {
-    //call listtransaction using params 'account,count,from'
-    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000);
-    //call torstatus using params 'null'
-    this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
-    //call ghost node list conf using params 'null'
-    this._rpcState.registerStateCall(ApiEndpoints.GhostnodeListConf, 1000, );
-    this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
+// Initialize the request
+    this.wallethelperService.walletInit();
+    this.wallethelperService.recentTransInit();
+    this.wallethelperService.ghostnodelistconfInit();
+    this.wallethelperService.torstatusInit();
 
+// get the response 
     this.getwalletinformation();
     this.listTransaction();
     this.getBitcoinpriceinfo();
@@ -98,7 +96,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.getnodestatus();
   }
 
-  // events
+  // events for line chart
   public chartClicked(e: any): void {
     console.log(e);
   }
@@ -109,22 +107,21 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   //get wallet informations
   private getwalletinformation() {
-    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
-      .takeWhile(() => !this.destroyed)
-      .subscribe(walletInfo => {
-        this.walletInfo = new WalletInfo(walletInfo).toJSON();
-      },
-        error => this.log.error(message.walletMessage, error));
+    this.wallethelperService.getwalletData()
+    .subscribe(walletInfo => {
+      this.walletInfo = new WalletInfo(walletInfo).toJSON();
+    },
+      error => this.log.error(message.walletMessage, error));
   }
 
   // get recent transactions
   private listTransaction() {
-    this._rpcState.observe(ApiEndpoints.ListTransactions)
-      .subscribe(RecentTransInfo => {
-        this.trasactionInfo = new IRecentTransactionInfo(RecentTransInfo);
-        console.log('trans', RecentTransInfo);
-      },
-        error => this.log.error(message.recentTransactionMessage, error));
+    this.wallethelperService.getrecenttransData()
+    .subscribe(RecentTransInfo => {
+      this.trasactionInfo = new IRecentTransactionInfo(RecentTransInfo);
+      console.log('trans', RecentTransInfo);
+    },
+      error => this.log.error(message.recentTransactionMessage, error));
   }
 
 
@@ -136,7 +133,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.balanceInBTC = this.bitcoinprice.BTC.price;
         this.balanceInUSD = this.bitcoinprice.USD.price;
         this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
-       
+
         this.getBTCBalance();
         this.getUSDBalance();
         this.getBTCPending();
@@ -145,47 +142,52 @@ export class OverviewComponent implements OnInit, OnDestroy {
         error => this.log.error(message.bitcoinpriceMessage, error));
   }
 
+  // to get the BTC balance for wallet balance
   getBTCBalance() {
-    this.BTCwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault,this.balanceInBTC);
+    this.BTCwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInBTC);
   }
+
+  // to get the USD balance for wallet balance
   getUSDBalance() {
     this.USDwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInUSD);
   }
 
+   // to get the BTC pending amount
   getBTCPending() {
     this.BTCvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInBTC);
   }
 
-  getUSDPending() {    
+  // to get the USD pending amount
+  getUSDPending() {
     this.USDvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInUSD);
   }
 
   // get tor status
   private getTorstatus() {
-    this._rpcState.observe(ApiEndpoints.Torstatus)
-      .subscribe(res => {
-        this.status = res;
-      },
-        error => this.log.error(message.recentTransactionMessage, error));
-  }
-  // get node status
-  private getnodestatus() {
-    this._rpcState.observe(ApiEndpoints.GhostnodeListConf)
-      .subscribe(NodeInformations => {
-        // this.getNodeInfo = new NodeInfo(NodeInformations);
-        this.ghostnodeArray = NodeInformations;
-        console.log(NodeInformations);
-        
-        for (var i = 0; i < this.ghostnodeArray.length; i++) {
-          if (this.ghostnodeArray[i].status=="ACTIVE") {
-            this.isActiveNodeCount += 1;
-          }
-        }
-      },
-        error => this.log.error(message.recentTransactionMessage, error));
+    this.wallethelperService.gettorstatus()
+    .subscribe(res => {
+      this.status = res;
+    },
+      error => this.log.error(message.recentTransactionMessage, error));
   }
 
-  
+  // get node status
+  private getnodestatus() {
+    this.wallethelperService.getghostnodelistData()
+    .subscribe(NodeInformations => {
+      this.ghostnodeArray = NodeInformations;
+      console.log(NodeInformations);
+
+      for (var i = 0; i < this.ghostnodeArray.length; i++) {
+        if (this.ghostnodeArray[i].status == "ACTIVE") {
+          this.isActiveNodeCount += 1;
+        }
+      }
+    },
+      error => this.log.error(message.recentTransactionMessage, error));
+  }
+
+
   goToChart() {
     this.router.navigate(['./overview/nix-price-chart']);
   }
@@ -199,6 +201,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   openSend(walletType: string) {
+    debugger
     const data: any = {
       forceOpen: true,
       walletType: walletType,

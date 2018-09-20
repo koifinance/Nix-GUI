@@ -1,4 +1,3 @@
-<!-- <button class="sendbtn" mat-raised-button fxFlex="48" (click)="openSuccess('vault')">Send ghosted NIX</button> -->
 <div *ngIf="data.walletType === 'wallet'" class="wallet">
 
   <div *ngIf="data.actionType === 'send'" class="wallet">
@@ -63,7 +62,7 @@
 
       <div fxLayout.gt-md="row">
         <input class="modalinput disabledinput" matInput fxFlex="100" disabled="disabled" placeholder="New address" value="getNewaddress.address"
-          [(ngModel)]="getNewaddress.address">
+          [(ngModel)]="setAccount.address">
       </div>
 
       <div fxLayout.gt-md="row">

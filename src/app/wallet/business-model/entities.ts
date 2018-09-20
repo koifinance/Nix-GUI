@@ -696,8 +696,7 @@ export interface IBitcoinprice {
 }
 
 export class bitcoinprice implements IBitcoinprice {
-
-    convert: string='BTC';
+    convert: string = 'BTC';
 
     constructor(data?: IBitcoinprice) {
         if (data) {

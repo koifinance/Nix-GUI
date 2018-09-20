@@ -67,7 +67,7 @@ exports.call = function(method, params, callback) {
   if (auth && rpcOptions.auth !== auth) {
     rpcOptions.auth = auth
   }
-
+  console.log('auth :' +  auth)
   rpcOptions.headers['Content-Length'] = postData.length;
 
   const request = http.request(rpcOptions, response => {
@@ -110,6 +110,7 @@ exports.call = function(method, params, callback) {
   });
 
   request.on('error', error => {
+    console.log('error at :' +  error)
     switch (error.code) {
       case 'ECONNRESET':
         callback({

@@ -39,6 +39,7 @@ import { CalculationsService } from './calculations.service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { LoginComponent } from './login/login.component';
 import { ChartsModule } from 'ng2-charts';
+import { WalletHelperService } from './wallethelper.service';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,7 @@ import { ChartsModule } from 'ng2-charts';
     MainComponent,
     WelcomeComponent,
   ],
-  providers: [FilterService,WalletService,WalletLogService,CalculationsService],
+  providers: [FilterService,WalletService,WalletLogService,CalculationsService,WalletHelperService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 

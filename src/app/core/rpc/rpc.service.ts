@@ -74,8 +74,8 @@ export class RpcService implements OnDestroy {
     if (this.isElectron) {
       return this._ipc.runCommand('rpc-channel', null, method, params).pipe(
         map(response => response && (response.result !== undefined)
-                      ? response.result
-                      : response
+          ? response.result
+          : response
         )
       );
     } else {
@@ -85,21 +85,40 @@ export class RpcService implements OnDestroy {
         params: params,
         id: 1
       });
-
+      console.log('postData :' + postData);
+      console.log('port :' + this.port);
+      console.log('auth basic :' + btoa(`${this.username}:${this.password}`));
+    
       const headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization', 'Basic ' + btoa(`${this.username}:${this.password}`));
       headers.append('Accept', 'application/json');
-
+     
+      // headers.set("Access-Control-Allow-Origin", '*');
+      // headers.set("Access-Control-Allow-Credentials", "true");
+      // headers.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+      // headers.set("Access-Control-Max-Age", "3600");
+    
+      console.log(`http://${this.hostname}:${this.port}`);
       return this._http
         .post(`http://${this.hostname}:${this.port}`, postData, { headers: headers })
         .pipe(
           map((response: any) => response.result),
           catchError(error => Observable.throw(typeof error._body === 'object'
             ? error._body
-            : JSON.parse(error._body))
+            : (error))
           )
         );
+
+      // return this._http
+      // .post(`http://chat.netbeesconsulting.com/clientBinaries.json`, postData, { headers: headers })
+      // .pipe(
+      //   map((response: any) => response.result),
+      //   catchError(error => Observable.throw(typeof error._body === 'object'
+      //     ? error._body
+      //     : JSON.parse(error))
+      //   )
+      // );
     }
   }
 
