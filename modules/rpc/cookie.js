@@ -4,7 +4,7 @@ const path = require('path');
 const log  = require('electron-log');
 
 /*
-** returns Particl config folder
+** returns nix config folder
 */
 function findCookiePath() {
 
@@ -89,7 +89,7 @@ function mkDir(dirPath, root) {
 
 /*
 ** returns the current RPC cookie
-** RPC cookie is regenerated at every particld startup
+** RPC cookie is regenerated at every nixd startup
 */
 function getAuth(options) {
 

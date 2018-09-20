@@ -20,7 +20,7 @@ declare global {
 }
 
 /**
- * The RPC service that maintains a single connection to the particld daemon.
+ * The RPC service that maintains a single connection to the nixd daemon.
  *
  * It has two important functions: call and register.
  */
