@@ -46,7 +46,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public status;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   getNodeInfo: INodeinfo = new NodeInfo();
-  public ghostnodeArray = [] as Array<INodeinfo>
+  public ghostNodes = {}
   public bitcoinprice;
   public monthEarn: number = 0;
   public node: number = 0;
@@ -170,14 +170,16 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
   // get node status
   private getnodestatus() {
-    this._rpcState.observe(ApiEndpoints.GhostnodeListConf)
+    this.log.d('get node status')
+    this._rpcState.observe(ApiEndpoints.GhostnodeList)
       .subscribe(NodeInformations => {
         // this.getNodeInfo = new NodeInfo(NodeInformations);
-        this.ghostnodeArray = NodeInformations;
-        console.log(NodeInformations);
+        this.ghostNodes = NodeInformations;
+        this.isActiveNodeCount = 0;
+        this.log.d(NodeInformations);
         
-        for (var i = 0; i < this.ghostnodeArray.length; i++) {
-          if (this.ghostnodeArray[i].status=="ACTIVE") {
+        for (let key in this.ghostNodes) {
+          if (this.ghostNodes[key] === "ENABLED") {
             this.isActiveNodeCount += 1;
           }
         }
