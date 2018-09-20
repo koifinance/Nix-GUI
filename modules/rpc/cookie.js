@@ -100,7 +100,7 @@ function getAuth(options) {
   let auth;
   var dataDir = options.datadir ? options.datadir : findCookiePath();
   const COOKIE_FILE = dataDir
-                    + (options.testnet ? '/testnet' : '')
+                    + (options.testnet ? '/testnet3' : '')
                     + '/.cookie';
 
   if (fs.existsSync(COOKIE_FILE)) {

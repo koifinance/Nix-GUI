@@ -11,7 +11,7 @@ export const environment = {
   nixHost: '127.0.0.1',
   releasesUrl: 'https://api.github.com/repos/NixPlatform/Nix-GUI/releases/latest',
   nix_MainNet_Port :6214,
-  nixPort: 16214,
+  nixPort: 6215,
   rpcUserName :'test',
   rpcPassword :'12345678',
 };
