@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material'; // TODO: move to material module?
+import { Router } from '@angular/router';
 import { Log } from 'ng2-logger';
 
 import { RpcStateService } from './core/core.module';
@@ -14,13 +15,14 @@ import { IWalletInfo, WalletInfo} from './wallet/business-model/entities';
 })
 export class AppComponent implements OnInit {
 
-  log: any = Log.create('app.component');
-  destroyed: boolean = false;
-  walletInfo: IWalletInfo = new WalletInfo();
+  private log: any = Log.create('app.component');
+  private destroyed: boolean = false;
+  private walletInfo: IWalletInfo = new WalletInfo();
 
   // multiwallet: any = [];
 
   constructor(
+    private router: Router,
     private _iconRegistry: MatIconRegistry,
     private _rpcState: RpcStateService
   ) {
@@ -30,16 +32,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getwalletinformation();
-  }
-
-  //get wallet informations
-  private getwalletinformation() {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .subscribe(walletInfo => {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
-      },
-        error => this.log.er(message.walletMessage, error));
+        if (this.walletInfo.encryptionstatus === 'Unencrypted') {
+          this.router.navigate([`/create`]);
+        }
+      }, error => this.log.er(message.walletMessage, error));    
   }
-
 }

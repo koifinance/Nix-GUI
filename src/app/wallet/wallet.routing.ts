@@ -28,7 +28,7 @@ const routes: Routes = [
   // { path: 'welcome', component: WelcomeComponent, data: { title: 'Welcome', page: 'welcome' } },
   { path: 'login', component: LoginComponent, data: { title: 'Login', page: 'login' } },
   { path: 'create', component: CreateComponent, data: { title: 'Create', page: 'create' } },
-  { path: 'restore', component: RestoreComponent, data: { title: 'Restore', page: 'restore' } },
+  // { path: 'restore', component: RestoreComponent, data: { title: 'Restore', page: 'restore' } },
   { path: 'reward-history-table', component: RewardHistoryTableComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-table' } },
   { path: 'reward-history-chart', component: RewardHistoryChartComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-chart' } },
   { path: 'overview/nix-price-chart', component: NixPriceChartComponent, data: { title: 'NIX price chart', page: 'nix-price-chart' } },

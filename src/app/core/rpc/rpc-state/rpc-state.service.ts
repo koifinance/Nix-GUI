@@ -91,6 +91,11 @@ export class RpcStateService extends StateService implements OnDestroy {
     }
   }
 
+  setState(state: string, param: any) {
+    this.set(state, param)
+    return true
+  }
+
   /** Updates the state whenever a state call succeeds */
   private stateCallSuccess(method: string, response: any) {
     // no error

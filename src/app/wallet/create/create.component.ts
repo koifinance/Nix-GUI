@@ -19,34 +19,6 @@ export class CreateComponent implements OnInit, OnDestroy {
   termsChecked: boolean = false;
   showSidebarError: boolean = false;
   showContentError: boolean = false;
-  phraseCopied: boolean = false;
-  step: number = 1;
-  recoveryPhrase: Array<string> = [
-    'lorem',
-    'dolor',
-    'sit',
-    'amet',
-    'lorem',
-    'dolor',
-    'lorem',
-    'dolor',
-    'sit',
-    'amet',
-    'lorem',
-    'dolor',
-    'lorem',
-    'dolor',
-    'sit',
-    'amet',
-    'lorem',
-    'dolor',
-    'lorem',
-    'dolor',
-    'sit',
-    'amet',
-    'lorem',
-    'dolor',
-  ];
   walletWizard: any = [
     {
       valid: (): boolean => true
@@ -107,70 +79,13 @@ export class CreateComponent implements OnInit, OnDestroy {
     return this.showPassword ? 'Hide' : 'Show';
   }
 
-  nextStep() {
-    if (this.step === 3) {
-      const data: any = {
-        forceOpen: true,
-        modalsService: this.modalsService
-      };
-      this.modalsService.openSmall('createWallet', data);
-      // this.step++;
-      // this.goTo('main');
-      // return;
-    }
-
-    else if (!this.walletWizard[this.step].valid()) {
+  encryptWallet() {
+    if (!this.walletWizard[1].valid()) {
       return;
     }
 
-    this.step++;
     this.showContentError = false;
     this.showSidebarError = false;
-  }
-
-  prevStep() {
-    this.showSidebarError = false;
-    this.showContentError = false;
-    this.step--;
-  }
-
-  stepProgress(): number {
-    const step = this.step;
-    if (step < 3) {
-      return step+1 * 33;
-    }
-    return 100;
-  }
-
-  stepTitle(): string {
-    const step = this.step;
-    if (step === 1) {
-      return 'Create a password';
-    } else if (step === 2) {
-      return 'Save your recovery phrase';
-    }
-    return 'Confirm your recovery phrase';
-  }
-
-  clipboardIcon(): string {
-    let path = './assets/icons/SVG/';
-    if (this.phraseCopied) {
-      path += 'copy-md-active.svg';
-      return path;
-    }
-    path += 'copy-md.svg';
-    return path;
-  }
-
-  clipboardText(): string {
-    if (this.phraseCopied) {
-      return 'Copied';
-    }
-    return 'Copy to clipboard';
-  }
-
-  copyToClipboard() {
-    this.phraseCopied = true;
   }
 
   goTo(route: string) {
