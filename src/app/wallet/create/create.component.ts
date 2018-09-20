@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
+import { RpcStateService } from '../../core/core.module';
 import { ModalsService } from '../modals/modals.service';
 
 @Component({
@@ -22,8 +24,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   walletWizard: any = [
     {
       valid: (): boolean => true
-    },
-    {
+    }, {
       valid: (): boolean => {
         if (!this.termsChecked) {
           this.showSidebarError = true;
@@ -41,18 +42,7 @@ export class CreateComponent implements OnInit, OnDestroy {
         this.showContentError = false;
         return true;
       }
-    },
-    // {
-    //   valid: (): boolean => {
-    //     if (this.walletNewPassword && this.walletRepeatPassword &&
-    //       this.walletRepeatPassword === this.walletNewPassword) {
-    //       return true;
-    //     }
-    //     this.showContentError = true;
-    //     return false;
-    //   }
-    // },
-    {
+    }, {
       valid: (): boolean => true
     }
   ];
@@ -60,7 +50,9 @@ export class CreateComponent implements OnInit, OnDestroy {
   private destroyed: boolean = false;
 
   constructor(
-    private router: Router, private modalsService: ModalsService
+    private router: Router,
+    private _rpcState: RpcStateService,
+    private modalsService: ModalsService
   ) {
   }
 
@@ -80,8 +72,10 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   encryptWallet() {
-    if (!this.walletWizard[1].valid()) {
-      return;
+    if (this.walletWizard[1].valid()) {
+      this.log.d('encrypt wallet')
+      this._rpcState.registerStateCall('encryptwallet', 1000, [this.walletNewPassword]);
+      this.goTo('main');
     }
 
     this.showContentError = false;
