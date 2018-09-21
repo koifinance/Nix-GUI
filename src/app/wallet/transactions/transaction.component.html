@@ -71,7 +71,7 @@
         <mat-tab label="NODE REWARDS"></mat-tab>
       </mat-tab-group>
 
-      <transaction-table [filterFunc]="filterData" [display]="{longDate: true}"></transaction-table>
+      <transaction-table [filter]="{category: categoryFilterValue}" [display]="{longDate: true}"></transaction-table>
     </div>
 
   </mat-drawer-content>
