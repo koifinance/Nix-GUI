@@ -38,10 +38,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
   faArrowDown: any = faArrowDown;
   faBtc: any = faBtc;
   faq: Array<FAQ> = faq;
-  transactionColumns: string[] = ['date', 'category', 'status', 'amount'];
+  transactionColumns: string[] = ['date', 'status', 'confirmations', 'amount'];
   private destroyed: boolean = false;
   walletInfo: IWalletInfo = new WalletInfo();
-  trasactionInfo: RecentTransactionInfo = new IRecentTransactionInfo();
   private log: any = Log.create(`overview.component `);
   public status;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
@@ -83,16 +82,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    //call listtransaction using params 'account,count,from'
-    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000);
     //call torstatus using params 'null'
     this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
     //call ghost node list conf using params 'null'
-    this._rpcState.registerStateCall(ApiEndpoints.GhostnodeListConf, 1000, );
     this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
 
     this.getwalletinformation();
-    this.listTransaction();
     this.getBitcoinpriceinfo();
     this.getTorstatus();
     this.getnodestatus();
@@ -116,17 +111,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
       },
         error => this.log.error(message.walletMessage, error));
   }
-
-  // get recent transactions
-  private listTransaction() {
-    this._rpcState.observe(ApiEndpoints.ListTransactions)
-      .subscribe(RecentTransInfo => {
-        this.trasactionInfo = new IRecentTransactionInfo(RecentTransInfo);
-        console.log('trans', RecentTransInfo);
-      },
-        error => this.log.error(message.recentTransactionMessage, error));
-  }
-
 
   // get bitcoin price
   private getBitcoinpriceinfo() {
@@ -226,4 +210,3 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.destroyed = true;
   }
 }
-

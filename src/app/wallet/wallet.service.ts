@@ -32,8 +32,8 @@ export class WalletService {
   }
   
   // Send for wallet
-    public SendToNix(wallet : IWalletSendToNix): Observable<any> {
-    return this._rpc.call(ApiEndpoints.SendToAddress, [wallet.amount,wallet.address]);
+  public SendToNix(wallet : IWalletSendToNix): Observable<any> {
+    return this._rpc.call(ApiEndpoints.SendToAddress, [wallet.address, wallet.amount]);
   }
   
   public receivedNix(receiveNix : IRecieveNixToWallet): Observable<any> {

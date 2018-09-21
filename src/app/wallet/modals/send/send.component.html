@@ -28,7 +28,7 @@
         </span>
       </div>
       <div class="saveaddress">
-        <mat-checkbox>Save to address book for future use</mat-checkbox>
+        <mat-checkbox [(ngModel)]="sendToNix.saveForFuture">Save to address book for future use</mat-checkbox>
       </div>
     </div>
 
@@ -63,8 +63,8 @@
   </div>
 
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-    <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()">Cancel</button>
-    <button class="sendbtn" mat-raised-button fxFlex="40" (click)="sendData()">Send NIX</button>
+    <button class="cancelbtn" fxFlex="40" (click)="close()">Cancel</button>
+    <button class="sendbtn" fxFlex="40" (click)="sendData()">Send NIX</button>
   </div>
 
 </div>
