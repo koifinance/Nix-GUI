@@ -126,17 +126,17 @@ export class TransactionService implements OnDestroy {
     };
     Object.keys(this.filters).map(filter => options[filter] = this.filters[filter]);
 
-    this.log.d(`loadTransactions, call filtertransactions: ${JSON.stringify(options)}`);
+    this.log.d(`listtransactions, call filtertransactions: ${JSON.stringify(options)}`);
     this.rpc.call('listtransactions', [options])
       .subscribe(
         (txResponse: Array<Object>) => {
 
           // The callback will send over an array of JSON transaction objects.
-          this.log.d(`loadTransactions, supposedly tx per page: ${this.MAX_TXS_PER_PAGE}`);
-          this.log.d(`loadTransactions, real tx per page: ${txResponse.length}`);
+          this.log.d(`listtransactions, supposedly tx per page: ${this.MAX_TXS_PER_PAGE}`);
+          this.log.d(`listtransactions, real tx per page: ${txResponse.length}`);
 
           if (txResponse.length !== 0 && txResponse.length !== this.MAX_TXS_PER_PAGE) {
-            this.log.er(`loadTransactions, TRANSACTION COUNTS DO NOT MATCH (maybe last page?)`);
+            this.log.er(`listtransactions, TRANSACTION COUNTS DO NOT MATCH (maybe last page?)`);
           }
 
           if (txResponse.length === 0) {
@@ -152,10 +152,10 @@ export class TransactionService implements OnDestroy {
           this.loadedData();
           this.loading = false;
           this.alreadyRetryingLoadTx = false;
-          this.log.d(`loadTransactions, txs array: ${this.transactions.length}`);
+          this.log.d(`listtransactions, txs array: ${this.transactions.length}`);
         },
         (error) => {
-          this.log.d(`loadTransactions, failed with error `, error);
+          this.log.d(`listtransactions, failed with error `, error);
           this.log.d(`... retrying every second ... `);
           this.retryLoadTransaction();
         }
