@@ -2,21 +2,17 @@ import { Amount, DateFormatter } from '../utils';
 
 export class Transaction {
 
-  type: string;
-  txid: string;
+  account: string;
   address: string;
-  stealthAddress: string;
-  label: string;
-  category: string;
   amount: number;
-  reward: number;
-  fee: number;
+  bip125_replaceable: string;
+  category: string;
+  is_unghosted: boolean;
+  label: string;
   time: number;
-  comment: string;
-  n0: string;
-  n1: string;
-  currency: string;
-  outputs: any[];
+  timereceived: number;
+  txid: string;
+  vout: number;
 
   /* conflicting txs */
   walletconflicts: any[];
@@ -29,21 +25,17 @@ export class Transaction {
 
   constructor(json: any) {
     /* transactions */
-    this.txid = json.txid;
+    this.account = json.account;
     this.address = json.address;
-    this.stealthAddress = json.stealth_address;
-    this.label = json.label;
-    this.category = json.category;
     this.amount = json.amount;
-    this.reward = json.reward;
-    this.fee = json.fee;
+    this.bip125_replaceable = json['bip125-replaceable'];
+    this.category = json.category;
+    this.is_unghosted = json.is_unghosted;
+    this.label = json.label;
     this.time = json.time;
-    this.comment = json.comment;
-    this.n0 = json.n0;
-    this.n1 = json.n1;
-    this.currency = json.currency || 'NIX';
-
-    this.outputs = json.outputs;
+    this.timereceived = json.timereceived;
+    this.txid = json.txid;
+    this.vout = json.vout;
 
     /* conflicting txs */
     this.walletconflicts = json.walletconflicts;
@@ -56,10 +48,10 @@ export class Transaction {
   }
 
   public getAddress(): string {
-    if (this.stealthAddress === undefined) {
+    if (this.address === undefined) {
       return this.address;
     }
-    return this.stealthAddress;
+    return this.address;
   }
 
   public getExpandedTransactionID(): string {
@@ -79,10 +71,6 @@ export class Transaction {
       // add all elements in output array ( but exclude vout === 65535)
       // todo: check assumption that we own all outputs?
       // only use fake output to determine internal transfer
-      const fakeOutput = function (a: any, b: any) {
-        return a - (b.vout === 65535 ? b.amount : 0);
-      };
-      return this.outputs.reduce(fakeOutput, 0);
     } else {
       return +this.amount;
     }
@@ -97,17 +85,17 @@ export class Transaction {
    * Calculates the actual amount that was transfered, including the fee
    * todo: fee is not defined in normal receive tx, wut?
    */
-  public getNetAmount(): number {
+  public getNetAmount() {
     const amount: number = +this.getAmountObject().getAmount();
 
     /* If fee undefined then just return amount */
-    if (this.fee === undefined) {
-      return amount;
-    } else if (amount < 0) {
-      return new Amount(+amount + (+this.fee)).getAmount();
-    } else {
-      return new Amount(+amount - (+this.fee)).getAmount();
-    }
+    // if (this.fee === undefined) {
+    //   return amount;
+    // } else if (amount < 0) {
+    //   return new Amount(+amount + (+this.fee)).getAmount();
+    // } else {
+    //   return new Amount(+amount - (+this.fee)).getAmount();
+    // }
   }
 
   public getAmountString(): string {
@@ -138,11 +126,11 @@ export class Transaction {
 
   /* Narration */
   public getNarration() {
-    for (const key in this.outputs) {
-      if (this.outputs[key] && this.outputs[key].narration) {
-        return this.outputs[key].narration;
-      }
-    }
-    return false;
+    // for (const key in this.outputs) {
+    //   if (this.outputs[key] && this.outputs[key].narration) {
+    //     return this.outputs[key].narration;
+    //   }
+    // }
+    // return false;
   }
 }

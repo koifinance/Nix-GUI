@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { Subscription } from 'rxjs/Subscription';
 import { MatTableDataSource } from '@angular/material';
@@ -17,10 +17,10 @@ import { TransactionInfo, ITransactionInfo, IRecentTransactionInfo, RecentTransa
   templateUrl: './transaction-table.component.html',
   styleUrls: ['./transaction-table.component.scss'],
 })
-export class TransactionTableComponent implements OnInit, OnDestroy {
+export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() display: any;
   @Input() columns: string[];
-  @Input() filterFunc: any;
+  @Input() filter: any;
   @Input() numTransactions: number;
 
   dataSource: MatTableDataSource<IRecentTransactionInfo>;
@@ -34,7 +34,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   private defaults: any = {
     header: true,
     numTransactions: 10,
-    columns: ['date', 'status', 'confirmations', 'amount'],
+    columns: ['date', 'category', 'confirmations', 'amount'],
     longDate: false,
     styleClass: '',
   };
@@ -58,6 +58,10 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
     this.dataSource.data = null;
     this.Transactions();
     this.listTransaction();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
   }
 
   ngOnDestroy(): void {
@@ -119,8 +123,13 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   // get recent transactions
   private listTransaction() {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
-      .subscribe(recentTransInfo => {
-        this.log.d(recentTransInfo.slice(0, this.display.numTransactions));
+      .subscribe(recentTransInfo => {        
+        if (this.filter && this.filter.category !== 'all') {
+          recentTransInfo = recentTransInfo.filter(item => item.category === this.filter.category );
+        }
+        this.log.d('============');
+        this.log.d(recentTransInfo);
+        this.log.d(this.filter);
         this.transactionInfo = recentTransInfo.slice(0, this.display.numTransactions);
         this.dataSource.data = recentTransInfo.slice(0, this.display.numTransactions);
       },
