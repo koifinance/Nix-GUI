@@ -24,73 +24,74 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   categoryFilterValue: string = 'all';
   faq: Array<FAQ> = faq;
   
-  filterData = (transaction: Transaction, filter: any): boolean => {
-    let result = true;
+  filterData = (): any => {
+    // let result = true;
 
-    if (!transaction) {
-      return result;
-    }
+    // if (this.amountFilterValue && this.amountFilter) {
+    //   switch (this.amountFilter) {
+    //     case 'gt': {
+    //       result = Math.abs(transaction.getAmount()) > this.amountFilterValue;
+    //       break;
+    //     }
+    //     case 'lt': {
+    //       result = Math.abs(transaction.getAmount()) < this.amountFilterValue;
+    //       break;
+    //     }
+    //     case 'eq': {
+    //       result = Math.abs(transaction.getAmount()) === this.amountFilterValue;
+    //       break;
+    //     }
+    //     default: {
+    //       result = true;
+    //       break;
+    //     }
+    //   }
+    // }
 
-    if (this.amountFilterValue && this.amountFilter) {
-      switch (this.amountFilter) {
-        case 'gt': {
-          result = Math.abs(transaction.getAmount()) > this.amountFilterValue;
-          break;
-        }
-        case 'lt': {
-          result = Math.abs(transaction.getAmount()) < this.amountFilterValue;
-          break;
-        }
-        case 'eq': {
-          result = Math.abs(transaction.getAmount()) === this.amountFilterValue;
-          break;
-        }
-        default: {
-          result = true;
-          break;
-        }
-      }
-    }
+    // if (this.categoryFilterValue && result) {
+    //   if (this.categoryFilterValue === 'all') {
+    //     result = true;
+    //   } else {
+    //     result = transaction.category === this.categoryFilterValue;
+    //   }
+    // }
 
-    if (this.categoryFilterValue && result) {
-      if (this.categoryFilterValue === 'all') {
-        result = true;
-      } else {
-        result = transaction.category === this.categoryFilterValue;
-      }
-    }
+    // if (this.dateFilter && result) {
+    //   const today = new Date();
+    //   switch (this.dateFilter) {
+    //     case 'week': {
+    //       today.setDate(today.getDate() - 7);
+    //       result = transaction.getDate() >= today;
+    //       break;
+    //     }
+    //     case 'month': {
+    //       today.setMonth(today.getMonth() - 1);
+    //       result = transaction.getDate() >= today;
+    //       break;
+    //     }
+    //     case 'threemo': {
+    //       today.setMonth(today.getMonth() - 3);
+    //       result = transaction.getDate() >= today;
+    //       break;
+    //     }
+    //     case 'sixmo': {
+    //       today.setMonth(today.getMonth() - 6);
+    //       result = transaction.getDate() >= today;
+    //       break;
+    //     }
+    //     default: {
+    //       result = true;
+    //       break;
+    //     }
+    //   }
+    // }
 
-    if (this.dateFilter && result) {
-      const today = new Date();
-      switch (this.dateFilter) {
-        case 'week': {
-          today.setDate(today.getDate() - 7);
-          result = transaction.getDate() >= today;
-          break;
-        }
-        case 'month': {
-          today.setMonth(today.getMonth() - 1);
-          result = transaction.getDate() >= today;
-          break;
-        }
-        case 'threemo': {
-          today.setMonth(today.getMonth() - 3);
-          result = transaction.getDate() >= today;
-          break;
-        }
-        case 'sixmo': {
-          today.setMonth(today.getMonth() - 6);
-          result = transaction.getDate() >= today;
-          break;
-        }
-        default: {
-          result = true;
-          break;
-        }
-      }
-    }
-
-    return result;
+    return { 
+      amountFilter: this.amountFilter,
+      amountFilterValue: this.amountFilterValue,
+      category: this.categoryFilterValue,
+      dateFilter: this.dateFilter
+    };
   };
 
   private log: any = Log.create('main.component');
@@ -122,6 +123,13 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   applyFilter() {
     this.filterService.apply();
+    this.showFilter = false;
+  }
+
+  clearFilter() {
+    this.dateFilter = '';
+    this.amountFilter = '';
+    this.amountFilterValue = null;
   }
 
   setCategory(event: MatTabChangeEvent) {
@@ -147,6 +155,6 @@ export class TransactionsComponent implements OnInit, OnDestroy {
         break;
       }
     }
-    this.applyFilter();
+    // this.applyFilter();
   }
 }
