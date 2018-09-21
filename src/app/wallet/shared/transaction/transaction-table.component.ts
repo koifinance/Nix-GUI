@@ -21,10 +21,12 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   @Input() display: any;
   @Input() columns: string[];
   @Input() filterFunc: any;
+  @Input() numTransactions: number;
+
   dataSource: MatTableDataSource<IRecentTransactionInfo>;
   // public testDataSource: any;
-  trasactionAllNix: TransactionInfo = new ITransactionInfo();
-  trasactionInfo: RecentTransactionInfo = new IRecentTransactionInfo();
+  transactionAllNix: TransactionInfo = new ITransactionInfo();
+  transactionInfo: RecentTransactionInfo = new IRecentTransactionInfo();
   faCircleSolid: any = faCircleSolid;
   faCircle: any = faCircle;
   private log: any = Log.create('transaction-table.component');
@@ -32,8 +34,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
   private defaults: any = {
     header: true,
     numTransactions: 10,
-    // columns: ['category', 'amount', 'address', 'confirmations', 'date'],
-    columns: ['date', 'category', 'status', 'amount'],
+    columns: ['date', 'status', 'confirmations', 'amount'],
     longDate: false,
     styleClass: '',
   };
@@ -49,39 +50,17 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000);
-    this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.trasactionAllNix.txid]);
-    this.Transactions();
-    this.listTransaction();
+    this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.transactionAllNix.txid]);
     this.display = Object.assign({}, this.defaults, this.display);
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
     this.transactionService.postConstructor(this.display.numTransactions);
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
-    this.dataSource.data=null;
-    // this.testDataSource = new MatTableDataSource<IRecentTransactionInfo[]>();
-
-    // if (this.filterFunc) {
-    //   this.dataSource.filterPredicate = (transaction, filter) => {
-    //     return this.filterFunc(transaction, filter);
-    //   };
-    // }
-
-    // this.transactionSubscription = this.transactionService.transactionEvent
-    //   .subscribe(value => {
-    //     //  this.testDataSource =   this.transactionService.transactions;
-    //     // this.dataSource.data = this.testDataSource;
-    //   });
-
-    // this.filterSubscription = this.filterService.filterEvent
-    //   .subscribe(value => {
-    //     if (value === 'apply') {
-    //       this.dataSource.filter = 'all';
-    //     }
-    //   });
+    this.dataSource.data = null;
+    this.Transactions();
+    this.listTransaction();
   }
 
   ngOnDestroy(): void {
-    // this.transactionSubscription.unsubscribe();
-    // this.filterSubscription.unsubscribe();
     this.destroyed = true;
   }
 
@@ -136,13 +115,14 @@ export class TransactionTableComponent implements OnInit, OnDestroy {
       },
         error => this.log.error(message.transactionMessage, error));
   }
+
   // get recent transactions
   private listTransaction() {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
       .subscribe(recentTransInfo => {
-        this.trasactionInfo = recentTransInfo;
-        // this.testDataSource = RecentTransInfo.transactions;
-        this.dataSource.data = recentTransInfo;
+        this.log.d(recentTransInfo.slice(0, this.display.numTransactions));
+        this.transactionInfo = recentTransInfo.slice(0, this.display.numTransactions);
+        this.dataSource.data = recentTransInfo.slice(0, this.display.numTransactions);
       },
         error => this.log.error(message.recentTransactionMessage, error));
   }

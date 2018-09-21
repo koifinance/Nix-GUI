@@ -83,17 +83,19 @@
 .sendto {
   font-size: 14px;
 }
+
 .cancelbtn {
-      border-radius: 5px;
-      background-color: #E0E3E7;
-      box-shadow: none;
-      font-family: Helvitica, sans-serif;
-      font-weight: 300;
-      color: #4A4A4A;
-      width: 165px !important;
-      font-size: 14px;
-      height: 40px !important;
-    }
+    border-radius: 5px;
+    background-color: #E0E3E7;
+    box-shadow: none;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    color: #4A4A4A;
+    width: 165px !important;
+    font-size: 14px;
+    height: 40px !important;
+    border: none;
+  }
 .input-text{
   // position: relative;
   //   top: 15px;
@@ -130,5 +132,5 @@
   font-weight: 300;
   height: 40px;
   font-size: 14px;
-
+  border: none;
 }

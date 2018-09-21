@@ -37,10 +37,11 @@ export class SendComponent implements OnInit, OnDestroy {
   convertUSD:number=0;
   todaydate;
   constructor(
-    private walletServices: WalletService,private calculationsService: CalculationsService,
-    private _rpcState: RpcStateService, private flashNotification: SnackbarService,
+    private walletServices: WalletService,
+    private calculationsService: CalculationsService,
+    private _rpcState: RpcStateService,
+    private flashNotification: SnackbarService,
     public _dialogRef: MatDialogRef<SendComponent>) {
-
   }
 
   ngOnInit() {
@@ -56,7 +57,7 @@ export class SendComponent implements OnInit, OnDestroy {
   // send for wallet
   sendData() {
     if(this.validateInput()) {
-      var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
+      this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
         this.openSuccess('wallet');
       }, error => {
         console.log('send error', error)
@@ -80,6 +81,7 @@ export class SendComponent implements OnInit, OnDestroy {
         });
     }
   }
+
 // validating input
   validateInput(): boolean {
     if (this.sendToNix.amount === 0 || this.sendToNix.amount === undefined) {
