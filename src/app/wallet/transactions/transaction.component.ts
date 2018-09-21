@@ -92,6 +92,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
     return result;
   };
+
   private log: any = Log.create('main.component');
   private filterSubscription: Subscription;
   private destroyed: boolean;
