@@ -52,8 +52,8 @@
             </mat-form-field>
 
             <div fxFlex="80" fxLayoutAlign="end">
-              <button class="apply-btn" mat-raised-button (click)="applyFilter()">Apply</button>
-              <button class="clear-btn" mat-raised-button>Clear</button>
+              <!-- <button class="apply-btn" mat-raised-button (click)="applyFilter()">Apply</button> -->
+              <button class="clear-btn" mat-raised-button (click)="clearFilter()">Clear</button>
             </div>
           </div>
         </div>
@@ -67,11 +67,11 @@
         <mat-tab label="ALL"></mat-tab>
         <mat-tab label="SENT"></mat-tab>
         <mat-tab label="RECEIVED"></mat-tab>
-        <mat-tab label="TRANSFERS"></mat-tab>
-        <mat-tab label="NODE REWARDS"></mat-tab>
+        <!-- <mat-tab label="TRANSFERS"></mat-tab>
+        <mat-tab label="NODE REWARDS"></mat-tab> -->
       </mat-tab-group>
 
-      <transaction-table [filter]="{category: categoryFilterValue}" [display]="{longDate: true}"></transaction-table>
+      <transaction-table [filter]="filterData()" [display]="{longDate: true}"></transaction-table>
     </div>
 
   </mat-drawer-content>

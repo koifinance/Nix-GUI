@@ -124,9 +124,46 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   private listTransaction() {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
       .subscribe(recentTransInfo => {        
-        if (this.filter && this.filter.category !== 'all') {
-          recentTransInfo = recentTransInfo.filter(item => item.category === this.filter.category );
+        if (this.filter) {
+          recentTransInfo = recentTransInfo.filter(item => {
+            if (item.category !== this.filter.category && this.filter.category !== 'all') return false;
+            if (this.filter.amountFilter === 'gt' && Math.abs(item.amount) <= this.filter.amountFilterValue) return false;
+            if (this.filter.amountFilter === 'lt' && Math.abs(item.amount) >= this.filter.amountFilterValue) return false;
+            if (this.filter.amountFilter === 'eq' && Math.abs(item.amount) !== this.filter.amountFilterValue) return false;
+
+            const today = new Date();
+            const txDate = new Date(item.time * 1000);
+            let result = true;
+            switch (this.filter.dateFilter) {
+              case 'week': {
+                today.setDate(today.getDate() - 7);
+                result = txDate >= today;
+                break;
+              }
+              case 'month': {
+                today.setMonth(today.getMonth() - 1);
+                result = txDate >= today;
+                break;
+              }
+              case 'threemo': {
+                today.setMonth(today.getMonth() - 3);
+                result = txDate >= today;
+                break;
+              }
+              case 'sixmo': {
+                today.setMonth(today.getMonth() - 6);
+                result = txDate >= today;
+                break;
+              }
+              default: {
+                result = true;
+                break;
+              }
+            }
+            return result;
+          });
         }
+
         this.log.d('============');
         this.log.d(recentTransInfo);
         this.log.d(this.filter);
