@@ -148,8 +148,8 @@ public saveCurrency(currency : ISavecurrency): Observable<any> {
   public walletpassphrase(encrypt : IPassword): Observable<any>{
     return this._rpc.call(ApiEndpoints.Walletpassphrase, [
       encrypt.password,
-      +(encrypt.password ? 0 : this.unlockTimeout),
-      encrypt.password
+      this.unlockTimeout,
+      encrypt.stakeOnly
     ])
   } 
 

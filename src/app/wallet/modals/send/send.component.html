@@ -22,17 +22,30 @@
     <div class="sendto">
       <p>To</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="NXefjjohhdofhgij" [(ngModel)]="sendToNix.address">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" value="NXefjjohhdofhgij" [(ngModel)]="sendToNix.address">
         <span class="fa-icon">
           <fa-icon [icon]="faAddressBook"></fa-icon>
         </span>
       </div>
-      <div class="saveaddress">
-        <mat-checkbox [(ngModel)]="sendToNix.saveForFuture">Save to address book for future use</mat-checkbox>
-      </div>
     </div>
 
+    <div class="sendto">
+      <p>Type the password to confirm the transaction</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" matInput fxFlex="100" [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword" required>
+      </div>
 
+      <div class="password-toggle">
+        <button mat-button (click)="togglePassword()">
+          <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+          {{ passwordLabelText() }} password
+        </button>
+      </div>
+
+      <div class="saveaddress">
+        <mat-checkbox>Save to address book for future use</mat-checkbox>
+      </div>
+    </div>
   </div>
 
   <div class="modaldetails">
@@ -93,11 +106,26 @@
     <div class="sendto">
       <p>To</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter value" value="NXefjjohhdofhgij" [(ngModel)]="sendToNix.address">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" value="NXefjjohhdofhgij" [(ngModel)]="sendToNix.address">
         <span class="fa-icon">
           <fa-icon [icon]="faAddressBook"></fa-icon>
         </span>
       </div>
+    </div>
+
+    <div class="sendto">
+      <p>Type the password to confirm the transaction</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" matInput fxFlex="100" [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword" required>
+      </div>
+
+      <div class="password-toggle">
+        <button mat-button (click)="togglePassword()">
+          <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+          {{ passwordLabelText() }} password
+        </button>
+      </div>
+
       <div class="saveaddress">
         <mat-checkbox>Save to address book for future use</mat-checkbox>
       </div>
