@@ -35,8 +35,8 @@ export enum message {
   PasswordValidationMessage = "Re-Entry password must be same to the new password",
   ChangePasswordMessage = "Failed to change password",
   CopiedAddress = "Address copied to clipboard",
-  DepositMessage = "Failed to deposit amount"
-
+  DepositMessage = "Failed to deposit amount",
+  PassphraseNotMatch = "Password does not match. Please check if the password is correct!"
 }
 
 export enum ApiEndpoints {
