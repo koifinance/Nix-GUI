@@ -4,12 +4,13 @@ import { MatDialogRef } from '@angular/material';
 import { WalletService } from '../../wallet.service';
 import { RpcStateService, SnackbarService } from '../../../core/core.module';
 
-import { WalletSendToNix, IWalletSendToNix } from '../../business-model/entities';
+import { WalletSendToNix, IWalletSendToNix, IPassword, encryptpassword } from '../../business-model/entities';
 import { wallet } from '../../datamodel/model';
 import { Log } from 'ng2-logger';
 import { message } from '../../business-model/enums';
 import { faBook, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import { CalculationsService } from '../../calculations.service';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-send',
@@ -20,14 +21,16 @@ import { CalculationsService } from '../../calculations.service';
 export class SendComponent implements OnInit, OnDestroy {
   data: any;
   @Output() saveProduct = new EventEmitter();
+
+  private log: any = Log.create(`send to nix `);
+  private destroyed: boolean = false;
+  private modalContainer: ViewContainerRef;
+
   public amount : number = 0;
   public fees : number = 0;
   public total: number = 0;
   public nixamount : number = 10;
   sendToNix: IWalletSendToNix = new WalletSendToNix();
-  private log: any = Log.create(`send to nix `);
-  private destroyed: boolean = false;
-  private modalContainer: ViewContainerRef;
   modal: ComponentRef<Component>;
   public fee:number = 1;
   faBook: any = faBook;
@@ -36,6 +39,11 @@ export class SendComponent implements OnInit, OnDestroy {
   amountInUSD: number;
   convertUSD:number=0;
   todaydate;
+  walletPassword: string;
+  showPassword: boolean = false;
+  faEyeSlash: any = faEyeSlash;
+  faEye: any = faEye;
+
   constructor(
     private walletServices: WalletService,
     private calculationsService: CalculationsService,
@@ -57,12 +65,21 @@ export class SendComponent implements OnInit, OnDestroy {
   // send for wallet
   sendData() {
     if(this.validateInput()) {
-      this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
-        this.openSuccess('wallet');
-      }, error => {
-        console.log('send error', error)
-        this.flashNotification.open(message.SendAmount, 'err');
-        this.log.er(message.SendAmount, error)
+      let walletPasspharse: IPassword = new encryptpassword();
+      walletPasspharse.password = this.walletPassword;
+      walletPasspharse.stakeOnly = false;
+      this.walletServices.walletpassphrase(walletPasspharse).subscribe(response => {
+        this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
+          this.openSuccess('wallet');
+        }, error => {
+          console.log('send error', error)
+          this.flashNotification.open(message.SendAmount, 'err');
+          this.log.er(message.SendAmount, error)
+        });
+      }, err => {
+        console.log('send error', err)
+        this.flashNotification.open(message.PassphraseNotMatch, 'err');
+        this.log.er(message.PassphraseNotMatch, err)
       });
     }
   }
@@ -94,7 +111,18 @@ export class SendComponent implements OnInit, OnDestroy {
       this.log.er(message.EnterData, 'error')
       return false;
     }
+    if (this.walletPassword === undefined) {
+      return false;
+    }
     return true;
+  }
+
+  passwordLabelText(): string {
+    return this.showPassword ? 'Hide' : 'Show';
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   openSuccess(walletType: string) {
@@ -137,6 +165,5 @@ export class SendComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroyed = true;
   }
-
 
 }
