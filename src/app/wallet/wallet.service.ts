@@ -92,18 +92,23 @@ export class WalletService {
   }
 
   // To add address
-public receiveNIXToWallet(setaccount : ISetAccount): Observable<any> {
-  return this._rpc.call(ApiEndpoints.Setaccount, [setaccount.address,setaccount.account]);
-}
+  public receiveNIXToWallet(setaccount : ISetAccount): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Setaccount, [setaccount.address,setaccount.account]);
+  }
 
-// To save currency
-public saveCurrency(currency : ISavecurrency): Observable<any> {
-  return this.http.get(ApiEndpoints.SaveCurrency).map(response =>response.json());
-}
+  // To save currency
+  public saveCurrency(currency : ISavecurrency): Observable<any> {
+    return this.http.get(ApiEndpoints.SaveCurrency).map(response =>response.json());
+  }
 
   // To save currency
   public changepassword(pass : IChangePassword): Observable<any> {
     return this._rpc.call(ApiEndpoints.Walletpassphrasechange, [pass.oldpassphrase, pass.newpassphrase]);
+  }
+
+  // To get list address by account
+  public listReceivedByAccount(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.ListReceivedbyAddress);
   }
 
   private rpc_getParams() {
@@ -209,6 +214,7 @@ generateDefaultAddresses() {
     (response: any) => this.log.i('generateDefaultAddresses(): generated initial address'),
     error => this.log.er('generateDefaultAddresses: getnewaddress failed'));
 }
+
 /* Sends a transaction */
 public sendTransaction(tx: TransactionBuilder) {
   tx.estimateFeeOnly = false;

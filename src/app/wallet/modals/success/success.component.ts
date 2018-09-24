@@ -15,15 +15,17 @@ import { ModalsService } from '../modals.service';
 export class SuccessComponent implements OnInit, OnDestroy {
   @Input() dataTest: any;
   @Output() valueChange = new EventEmitter();
-  counter = 0;
-  sendToNix: IWalletSendToNix = new WalletSendToNix();
-  getNewaddress: IGetNewAddress = new GetNewAddress();
-  setAccount: ISetAccount = new SetAccount();
+
   private log: any = Log.create('success.component');
   private modalContainer: ViewContainerRef;
-  modal: ComponentRef<Component>;
-  data: any;
   private destroyed: boolean = false;
+
+  counter = 0;
+  sendToNix: IWalletSendToNix = new WalletSendToNix();
+  newAddress: string;
+  setAccount: ISetAccount = new SetAccount();
+  modal: ComponentRef<Component>;
+  data: any;  
   public sendingAmount: number;
   public totalAmount: number;
   public fee: number;
@@ -53,10 +55,8 @@ export class SuccessComponent implements OnInit, OnDestroy {
   private getNewAddress() {
     this._rpcState.observe(ApiEndpoints.Getnewaddress).takeWhile(() => !this.destroyed)
       .subscribe(Newaddress => {
-        this.getNewaddress = new GetNewAddress(Newaddress).toJSON();
-        localStorage.setItem('getAddress', JSON.stringify(this.getNewaddress));
-        // this.getNewaddress.address = Newaddress;
-        // this.getNewaddress.address = this.setAccount.address;
+        this.newAddress = Newaddress;
+        localStorage.setItem('getAddress', JSON.stringify(this.newAddress));
       },
         error => {
           this.flashNotification.open(message.GetNewAddress, 'err');
