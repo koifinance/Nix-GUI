@@ -3,7 +3,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
     <mat-cell class="date" *matCellDef="let element">
       <div fxLayout="row" fxLayoutGap="20px">
-        {{element.time | date}}
+        {{element.time * 1000 | date}}
       </div>
     </mat-cell>
   </ng-container>

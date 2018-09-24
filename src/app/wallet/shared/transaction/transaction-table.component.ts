@@ -164,9 +164,6 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
           });
         }
 
-        this.log.d('============');
-        this.log.d(recentTransInfo);
-        this.log.d(this.filter);
         this.transactionInfo = recentTransInfo.slice(0, this.display.numTransactions);
         this.dataSource.data = recentTransInfo.slice(0, this.display.numTransactions);
       },
