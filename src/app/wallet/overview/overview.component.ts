@@ -82,10 +82,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    //call torstatus using params 'null'
     this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
-    //call ghost node list conf using params 'null'
     this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
+    this._rpcState.registerStateCall(ApiEndpoints.GhostnodeCount, 1000, ['count']);
 
     this.getwalletinformation();
     this.getBitcoinpriceinfo();
@@ -154,19 +153,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
   // get node status
   private getnodestatus() {
-    this.log.d('get node status')
-    this._rpcState.observe(ApiEndpoints.GhostnodeList)
+    this._rpcState.observe(ApiEndpoints.GhostnodeCount)
       .subscribe(NodeInformations => {
-        // this.getNodeInfo = new NodeInfo(NodeInformations);
-        this.ghostNodes = NodeInformations;
-        this.isActiveNodeCount = 0;
-        this.log.d(NodeInformations);
-        
-        for (let key in this.ghostNodes) {
-          if (this.ghostNodes[key] === "ENABLED") {
-            this.isActiveNodeCount += 1;
-          }
-        }
+        this.log.d('get node status')
+        this.isActiveNodeCount = NodeInformations;
       },
         error => this.log.error(message.recentTransactionMessage, error));
   }

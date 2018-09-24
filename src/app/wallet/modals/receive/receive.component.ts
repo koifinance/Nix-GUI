@@ -17,7 +17,7 @@ import { WalletService } from '../../wallet.service';
 
 export class ReceiveComponent implements OnInit, OnDestroy {
   data: any;
-  receivedNixInfo: IRecieveNixToWallet = new RecieveNixToWallet();
+  receivedNixInfo: any;
   depositToVault: IDepostAmount = new DepostAmount();
 
   public amount: number = 0;
@@ -36,18 +36,17 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.receivedNixInfo = new RecieveNixToWallet();
-    this.receivedNixInfo.account = 'jhon';
-    this.receivedNixInfo.addresses = [];
-    //for testing purpose
-    this.receivedNixInfo.addresses[0] = 'NW7N8YjBruoTzrLy1GVVvH2p4FnL46mhYZ-test';
-    this.receivedNixInfo.addresses[1] = 'NNqe34X87ckw6UNHrhRJdUakPYxRNZQSaw';
-    this.receivedNixInfo.addresses[2] = 'NdqXnS2TLHFLUA3LmQQmMqYQ2biA5jg71z';
-    //initiate the call
-    this._rpcState.registerStateCall(ApiEndpoints.ReceivedNix, 1000, [this.receivedNixInfo.account]);
-    //receive the data
+    // this.receivedNixInfo = new RecieveNixToWallet();
+    // this.receivedNixInfo.account = 'jhon';
+    // this.receivedNixInfo.addresses = [];
+    // //for testing purpose
+    // this.receivedNixInfo.addresses[0] = 'NW7N8YjBruoTzrLy1GVVvH2p4FnL46mhYZ-test';
+    // this.receivedNixInfo.addresses[1] = 'NNqe34X87ckw6UNHrhRJdUakPYxRNZQSaw';
+    // this.receivedNixInfo.addresses[2] = 'NdqXnS2TLHFLUA3LmQQmMqYQ2biA5jg71z';
+    // //initiate the call
+    // this._rpcState.registerStateCall(ApiEndpoints.ReceivedNix, 1000);
+    // //receive the data
     this.getReceivedNixToWallet();
-
   }
 
   setData(data: any) {
@@ -59,17 +58,18 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   copyToClipBoard(): void {
     this.flashNotification.open(message.CopiedAddress);
   }
+
   // receive nix to wallet
   private getReceivedNixToWallet() {
-    this._rpcState.observe(ApiEndpoints.ReceivedNix)
-      .takeWhile(() => !this.destroyed)
-      .subscribe(receivedInfo => {
-        this.receivedNixInfo.addresses = receivedInfo;
-      }, error => {
-        this.flashNotification.open(message.SendAmount, 'err');
-        this.log.er(message.SendAmount, error)
-      });
+    this.walletServices.listReceivedByAccount().subscribe(receivedInfo => {
+      this.log.d(receivedInfo);
+      this.receivedNixInfo = receivedInfo;
+    }, error => {
+      this.flashNotification.open(message.SendAmount, 'err');
+      this.log.er(message.SendAmount, error)
+    });
   }
+
   // Deposit NIX to Ghost Vault
   depositSuccess() {
     if (this.validateDepositeInput()) {
