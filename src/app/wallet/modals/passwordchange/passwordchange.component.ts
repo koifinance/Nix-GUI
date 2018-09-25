@@ -28,37 +28,39 @@ export class PasswordchangeComponent implements OnInit {
 
   ngOnInit() {
   }
+
   validatePassword(): boolean {
     if (this.changePassword.newpassphrase === null || this.changePassword.newpassphrase === undefined) {
       this.flashNotification.open(message.EnterData, 'err')
-      return;
+      return false;
     }
     if (this.reEntryPassword === null || this.reEntryPassword === undefined) {
       this.flashNotification.open(message.EnterData, 'err')
-      return;
+      return false;
     }
     if (this.changePassword.oldpassphrase === null || this.changePassword.oldpassphrase === undefined) {
       this.flashNotification.open(message.EnterData, 'err')
-      return;
+      return false;
     }
     if (this.changePassword.newpassphrase !== this.reEntryPassword) {
       this.flashNotification.open(message.PasswordValidationMessage, 'err')
-      return;
+      return false;
     }
 
+    return true;
   }
+
   save() {
-    this.changePassword.newpassphrase = this.reEntryPassword;
+    this.log.d(this.changePassword, this.reEntryPassword, this.validatePassword());
     if (this.validatePassword()) {
       var result = this.walletServices.changepassword(this.changePassword).subscribe(res => {
-        console.log('success');
+        this.flashNotification.open(message.PassphraseChanged, 'info')
         this.close();
       }, error => {
         this.flashNotification.open(message.ChangePasswordMessage, 'err')
         this.log.er(message.ChangePasswordMessage, error)
       });
     }
-
   }
 
   close(): void {
