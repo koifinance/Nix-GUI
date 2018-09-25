@@ -132,7 +132,8 @@ export class SendComponent implements OnInit, OnDestroy {
       amount: this.amount,
       fee: this.fees,
       total: this.total,
-      actionType: 'send'
+      actionType: 'send',
+      address: this.sendToNix.address
     };
     this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
