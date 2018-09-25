@@ -128,7 +128,6 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
 
         if (this.filter) {
           recentTransInfo = recentTransInfo.filter(item => {
-            this.log.d(this.filter.amountFilter, this.filter.amountFilterValue, Math.abs(item.amount));
             if (item.category !== this.filter.category && this.filter.category !== 'all') return false;
             if (this.filter.amountFilter === 'gt' && Math.abs(item.amount) <= Number(this.filter.amountFilterValue)) return false;
             if (this.filter.amountFilter === 'lt' && Math.abs(item.amount) >= Number(this.filter.amountFilterValue)) return false;
