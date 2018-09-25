@@ -51,6 +51,11 @@
 
   }
 
+  .accountlist {
+    max-height: 500px;
+    overflow: scroll;
+  }
+
   .sendbtn {
     background-color: #108EFF;
     color: white;

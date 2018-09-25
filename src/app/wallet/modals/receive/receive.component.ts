@@ -17,7 +17,7 @@ import { WalletService } from '../../wallet.service';
 
 export class ReceiveComponent implements OnInit, OnDestroy {
   data: any;
-  receivedNixInfo: any;
+  receivedNixInfo: Array<any> = [];
   depositToVault: IDepostAmount = new DepostAmount();
 
   public amount: number = 0;
@@ -61,12 +61,19 @@ export class ReceiveComponent implements OnInit, OnDestroy {
 
   // receive nix to wallet
   private getReceivedNixToWallet() {
-    this.walletServices.listReceivedByAccount().subscribe(receivedInfo => {
-      this.log.d(receivedInfo);
-      this.receivedNixInfo = receivedInfo;
+    this.walletServices.listAccounts().subscribe(receivedInfo => {
+      for (let key in receivedInfo) {
+        this.walletServices.getAddressesByAccount(key).subscribe(res => {
+          this.receivedNixInfo.push({account: key, address: res[res.length - 1]});
+          this.log.d('*', this.receivedNixInfo, res);
+        }, err => {
+          this.flashNotification.open(message.ReceiveNIXtoWallet, 'err');
+          this.log.er(message.ReceiveNIXtoWallet, err)
+        })
+      }
     }, error => {
-      this.flashNotification.open(message.SendAmount, 'err');
-      this.log.er(message.SendAmount, error)
+      this.flashNotification.open(message.ReceiveNIXtoWallet, 'err');
+      this.log.er(message.ReceiveNIXtoWallet, error)
     });
   }
 
