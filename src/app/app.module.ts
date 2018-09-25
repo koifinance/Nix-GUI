@@ -23,7 +23,6 @@ import { ClipboardModule } from 'ngx-clipboard';
     HttpClientModule,
     HttpModule,
     ClipboardModule
-    
   ],
   bootstrap: [AppComponent],
 })
