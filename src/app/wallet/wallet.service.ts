@@ -65,6 +65,12 @@ export class WalletService {
       node => node);
   }
 
+  // get the new address
+  public getNewAddress(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Getnewaddress).map(
+      address => address);
+  }
+
   // get all recent transaction of NIX
   // public listTransaction(transactions :recentTransactionInfo): Observable<any> {
   //   return this._rpc.call(ApiEndpoints.ListTransactions,[ transactions.account,transactions.count,
@@ -136,7 +142,21 @@ export class WalletService {
         return;
       });
   }
-  
+
+  // get account address
+  public getAccountAddress(account: string): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GetAccountAddress, [account]);
+  }
+
+  // list accounts
+  public listAccounts(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.ListAccounts);
+  }
+
+  // get addresses from account
+  public getAddressesByAccount(account: string): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GetAddressesbyAccount, [account]);
+  }
 
   // get all transaction
   public getallTransaction(transactions :TransactionInfo): Observable<any> {

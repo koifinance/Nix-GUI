@@ -69,5 +69,8 @@ export enum ApiEndpoints {
   SaveCurrency = "https://api.coinmarketcap.com/v2/ticker/2991",
   GetPriceinfo = "getpriceinfo",
   GhostAmount = "ghostamount",
-  ListReceivedbyAddress = "listreceivedbyaddress"
+  ListReceivedbyAddress = "listreceivedbyaddress",
+  GetAccountAddress = "getaccountaddress",
+  ListAccounts = "listaccounts",
+  GetAddressesbyAccount = "getaddressesbyaccount"
 }
