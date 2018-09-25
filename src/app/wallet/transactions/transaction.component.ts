@@ -147,7 +147,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
         break;
       }
       case 3: {
-        this.categoryFilterValue = 'transfer';
+        this.categoryFilterValue = 'move';
         break;
       }
       case 4: {

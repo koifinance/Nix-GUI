@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QRCodeModule } from 'angular2-qrcode';
+
 import { MaterialModule } from '../../material/material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -45,7 +47,8 @@ import { CreateWalletComponent } from './create-wallet/create-wallet.component';
     BrowserAnimationsModule,
     MaterialModule,
     FontAwesomeModule,
-    ClipboardModule
+    ClipboardModule,
+    QRCodeModule
   ],
   exports: [
     ModalsComponent

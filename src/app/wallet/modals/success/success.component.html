@@ -17,7 +17,7 @@
     </div>
 
     <div class="sendto" fxLayout.gt-md="row">
-      <p fxFlex="100" fxLayoutAlign="center">{{txid}}</p>
+      <p fxFlex="100" fxLayoutAlign="center">{{data.address}}</p>
     </div>
 
     <div class="modaldetails">
@@ -57,8 +57,8 @@
       <h5>Receive NIX to Wallet</h5>
       <div _ngcontent-c7="" class="divider"></div>
 
-      <div class="qrimage" fxLayout.gt-md="row">
-        <img src="assets/icons/SVG/qrcode.svg" alt="QRcode" fxFlex="100" fxLayoutAlign="center">
+      <div class="qrimage text-center">
+        <qr-code [value]="setAccount.address" [size]="256"></qr-code>
       </div>
 
       <div fxLayout.gt-md="row">
@@ -100,7 +100,6 @@
     <div class="amountsend" fxLayout.gt-md="row">
       <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
     </div>
-
 
     <div class="sendto" fxLayout.gt-md="row">
       <p fxFlex="100" fxLayoutAlign="center">{{txidVault}}</p>
