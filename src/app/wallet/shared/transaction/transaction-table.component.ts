@@ -33,7 +33,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   private destroyed: boolean;
   private defaults: any = {
     header: true,
-    numTransactions: 10,
+    numTransactions: 40,
     columns: ['date', 'category', 'confirmations', 'amount'],
     longDate: false,
     styleClass: '',
@@ -123,7 +123,9 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   // get recent transactions
   private listTransaction() {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
-      .subscribe(recentTransInfo => {        
+      .subscribe(recentTransInfo => {    
+        recentTransInfo = recentTransInfo.reverse();
+
         if (this.filter) {
           recentTransInfo = recentTransInfo.filter(item => {
             if (item.category !== this.filter.category && this.filter.category !== 'all') return false;
@@ -162,6 +164,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
             }
             return result;
           });
+          recentTransInfo = recentTransInfo.reverse();
         }
 
         this.transactionInfo = recentTransInfo.slice(0, this.display.numTransactions);
