@@ -61,6 +61,7 @@ export enum ApiEndpoints {
   Mnemonic = "mnemonic",
   Extkeygenesisimport = "extkeygenesisimport",
   GetBtc = 'https://api.coinmarketcap.com/v2/ticker/2991/?convert=BTC',
+  GetEur = 'https://api.coinmarketcap.com/v2/ticker/2991/?convert=EUR',
   Getblockchaininfo = 'getblockchaininfo',
   Getnewaddress ="getnewaddress",
   Setaccount = "setaccount",
