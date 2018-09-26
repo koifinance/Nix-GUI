@@ -198,7 +198,7 @@ class DaemonManager extends EventEmitter {
         const localConfigPath = path.join(app.getPath('userData'), 'clientBinaries.json');
         localConfig = (fs.existsSync(localConfigPath))
           ? require(localConfigPath)
-          : require('../clientBinaries/clientBinaries.json');
+          : require('./clientBinaries.json');
       }
 
       // scan for node
