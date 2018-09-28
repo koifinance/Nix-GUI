@@ -27,8 +27,12 @@ export class WalletService {
 
   // get bit coin
   public getBitcoin (price : IBitcoinprice): Observable<any> {
-    return this.http.get(ApiEndpoints.GetBtc).map(response =>response.json());
-     
+    return this.http.get(ApiEndpoints.GetBtc).map(response => response.json());  
+  }
+
+   // get in EUR
+   public getInEUR (price : IBitcoinprice): Observable<any> {
+    return this.http.get(ApiEndpoints.GetEur).map(response => response.json());  
   }
   
   // Send for wallet
@@ -103,8 +107,14 @@ export class WalletService {
   }
 
   // To save currency
-  public saveCurrency(currency : ISavecurrency): Observable<any> {
-    return this.http.get(ApiEndpoints.SaveCurrency).map(response =>response.json());
+  public saveCurrency(currency : ISavecurrency) {
+    localStorage.setItem('currency', currency.convert);
+    return true;    
+  }
+
+  public getCurrency() {
+    this.log.d(localStorage.getItem('currency'))
+    return localStorage.getItem('currency');
   }
 
   // To save currency
