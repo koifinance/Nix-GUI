@@ -31,14 +31,14 @@
 
         <div class="transdetail" fxLayout.gt-md="row">
           <span fxFlex="70">Fee</span>
-          <span fxFlex="30" fxLayoutAlign="end">{{fee | number: '.4'}}
+          <span fxFlex="30" fxLayoutAlign="end">{{fee | number: '.8'}}
             <span>&nbsp; NIX</span>
           </span>
         </div>
 
         <div class="transtotal" fxLayout.gt-md="row">
           <span fxFlex="70">Total</span>
-          <span fxFlex="30" fxLayoutAlign="end">{{totalAmount | number: '.4'}}
+          <span fxFlex="30" fxLayoutAlign="end">{{totalAmount | number: '.8'}}
             <span>&nbsp;NIX</span>
           </span>
         </div>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
-      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('wallet')">Done</button>
+      <button class="walletbtn" color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('wallet')">Done</button>
     </div>
 
   </div>
