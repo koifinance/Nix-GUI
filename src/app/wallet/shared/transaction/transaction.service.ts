@@ -56,7 +56,7 @@ export class TransactionService implements OnDestroy {
     this.log.d(`postconstructor called txs array: ${this.transactions.length}`);
 
     // load the first transactions
-    this.loadTransactions();
+    // this.loadTransactions();
 
     // register the updates, every block / tx!
     this.registerUpdates();
@@ -73,24 +73,24 @@ export class TransactionService implements OnDestroy {
 
     // It doesn't get called sometimes ?
     // this.rpc.state.observe('blocks').throttle(val => Observable.interval(30000/*ms*/)).subscribe(block =>  {
-    this.rpcState.observe('getblockchaininfo', 'blocks')
-      .takeWhile(() => !this.destroyed)
-      .distinctUntilChanged() // only update when blocks changes
-      .skip(1) // skip the first one (shareReplay)
-      .throttle(val => Observable.interval(30000/*ms*/))
-      .subscribe(block => {
-        this.log.d(`--- update by blockcount: ${block} ---`);
-        this.loadTransactions();
-      });
+    // this.rpcState.observe('getblockchaininfo', 'blocks')
+    //   .takeWhile(() => !this.destroyed)
+    //   .distinctUntilChanged() // only update when blocks changes
+    //   .skip(1) // skip the first one (shareReplay)
+    //   .throttle(val => Observable.interval(30000/*ms*/))
+    //   .subscribe(block => {
+    //     this.log.d(`--- update by blockcount: ${block} ---`);
+    //     this.loadTransactions();
+    //   });
 
-    this.rpcState.observe('getwalletinfo', 'txcount')
-      .takeWhile(() => !this.destroyed)
-      .distinctUntilChanged() // only update when txcount changes
-      .skip(1) // skip the first one (shareReplay)
-      .subscribe(txcount => {
-        this.log.d(`--- update by txcount${txcount} ---`);
-        this.loadTransactions();
-      });
+    // this.rpcState.observe('getwalletinfo', 'txcount')
+    //   .takeWhile(() => !this.destroyed)
+    //   .distinctUntilChanged() // only update when txcount changes
+    //   .skip(1) // skip the first one (shareReplay)
+    //   .subscribe(txcount => {
+    //     this.log.d(`--- update by txcount${txcount} ---`);
+    //     this.loadTransactions();
+    //   });
 
 
     /* check if testnet -> block explorer url */
@@ -102,7 +102,7 @@ export class TransactionService implements OnDestroy {
     this.loading = true;
     this.filters = filters;
     this.log.d('--- update by filter ---');
-    this.loadTransactions();
+    // this.loadTransactions();
   }
 
   changePage(page: number): void {
@@ -111,7 +111,7 @@ export class TransactionService implements OnDestroy {
     }
     this.loading = true;
     this.currentPage = page;
-    this.loadTransactions();
+    // this.loadTransactions();
   }
 
   /** Load transactions over RPC, then parse JSON and call addTransaction to add them to txs array. */

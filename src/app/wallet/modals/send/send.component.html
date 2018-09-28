@@ -45,6 +45,10 @@
       <div class="saveaddress">
         <mat-checkbox>Save to address book for future use</mat-checkbox>
       </div>
+
+      <div class="saveaddress">
+        <mat-checkbox [(ngModel)]="sendToNix.subtractFeeFromAmount" (ngModelChange)="getSendingAmount()">Subtract fee from amount</mat-checkbox>
+      </div>
     </div>
   </div>
 
@@ -60,7 +64,7 @@
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Fee</span>
         <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">
-          <span>{{fees | number: '.4'}} NIX</span>
+          <span>{{fees | number: '.8'}} NIX</span>
         </span>
 
       </div>
@@ -68,7 +72,7 @@
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
         <span fxFlex="30" fxLayoutAlign="end">
-          {{total | number: '.4'}}
+          {{total | number: '.8'}}
           <span>&nbsp;NIX</span>
         </span>
       </div>
