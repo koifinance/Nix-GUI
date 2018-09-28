@@ -23,12 +23,15 @@ import { CalculationsService } from '../calculations.service';
 export class OverviewComponent implements OnInit, OnDestroy {
 
   USDvaultbalance: number;
+  EURvaultbalance: number;
   BTCvaultbalance: number;
   USDwalletbalance: number;
   BTCwalletbalance: number;
+  EURwalletbalance: number;
   NIXpercentage: any;
   balanceInUSD: any;
   balanceInBTC: any;
+  balanceInEUR: any;
   
   faCircle: any = faCircle;
   faQuestion: any = faQuestion;
@@ -43,6 +46,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   walletInfo: IWalletInfo = new WalletInfo();
   private log: any = Log.create(`overview.component `);
   public status;
+  public currentCurrency: string;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   getNodeInfo: INodeinfo = new NodeInfo();
   public ghostNodes = {}
@@ -82,12 +86,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.currentCurrency = this.walletServices.getCurrency();
     this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
     this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
     this._rpcState.registerStateCall(ApiEndpoints.GhostnodeCount, 1000, ['count']);
 
-    this.getwalletinformation();
-    this.getBitcoinpriceinfo();
+    this.init();
     this.getTorstatus();
     this.getnodestatus();
   }
@@ -102,37 +106,48 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   //get wallet informations
-  private getwalletinformation() {
+  private init() {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
+        this.walletServices.getBitcoin(this.bitcoinpriceInfo)
+          .subscribe(bitcoinpriceInfos => {
+            this.bitcoinprice = bitcoinpriceInfos.data.quotes;
+            this.balanceInBTC = this.bitcoinprice.BTC.price;
+            this.balanceInUSD = this.bitcoinprice.USD.price;
+            this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
+          
+            this.getBTCBalance();
+            this.getUSDBalance();
+            this.getBTCPending();
+            this.getUSDPending();
+          }, error => this.log.error(message.bitcoinpriceMessage, error));
+
+        this.walletServices.getInEUR(this.bitcoinpriceInfo)
+          .subscribe(res => {
+
+            let tmp = res.data.quotes;
+            this.balanceInEUR = tmp.EUR.price;
+          
+            this.getEURBalance();
+            this.getEURPending();
+          }, error => this.log.error(message.bitcoinpriceMessage, error));
       },
         error => this.log.error(message.walletMessage, error));
   }
 
-  // get bitcoin price
-  private getBitcoinpriceinfo() {
-    this.walletServices.getBitcoin(this.bitcoinpriceInfo)
-      .subscribe(bitcoinpriceInfos => {
-        this.bitcoinprice = bitcoinpriceInfos.data.quotes;
-        this.balanceInBTC = this.bitcoinprice.BTC.price;
-        this.balanceInUSD = this.bitcoinprice.USD.price;
-        this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
-       
-        this.getBTCBalance();
-        this.getUSDBalance();
-        this.getBTCPending();
-        this.getUSDPending();
-      },
-        error => this.log.error(message.bitcoinpriceMessage, error));
+  getBTCBalance() {
+    this.BTCwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.balance,this.balanceInBTC);
   }
 
-  getBTCBalance() {
-    this.BTCwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault,this.balanceInBTC);
-  }
   getUSDBalance() {
-    this.USDwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInUSD);
+    this.USDwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.balance, this.balanceInUSD);
+  }
+
+  getEURBalance() {
+    this.log.d('eur', this.walletInfo.balance, this.balanceInEUR);
+    this.EURwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.balance, this.balanceInEUR);
   }
 
   getBTCPending() {
@@ -141,6 +156,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   getUSDPending() {    
     this.USDvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInUSD);
+  }
+
+  getEURPending() {
+    this.EURvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInEUR);
   }
 
   // get tor status

@@ -17,31 +17,24 @@ export class PreferencesComponent implements OnInit {
   private destroyed: boolean = false;
   Currency = new FormControl('EUR');
   public currencies = [
-    'United States Dollar (USD)',
-    'EURO (EUR)'
+    {currency: 'USD', label: 'United States Dollar (USD)'},
+    {currency: 'EUR', label: 'EURO (EUR)'}
   ];
   constructor(private _rpcState: RpcStateService, private flashNotification: SnackbarService,
     private walletServices: WalletService) { }
 
   ngOnInit() {
-    this._rpcState.registerStateCall(ApiEndpoints.GetPriceinfo, 1000);
+    let currency = this.walletServices.getCurrency();
+
+    if (currency) {
+      this.savecurrency.convert = currency;
+    } else {
+      this.savecurrency.convert = this.currencies[0].currency;
+    }
   }
 
-  // to get currency
-  public getPriceInfo() {
-    this._rpcState.observe(ApiEndpoints.GetPriceinfo).takeWhile(() => !this.destroyed)
-    .subscribe(getCurrency => {
-      this.currencies = getCurrency;
-    })
+  // to save currency
+  public save() {
+    this.walletServices.saveCurrency(this.savecurrency);
   }
-   // to save currency
-   public save() {
-    var result = this.walletServices.saveCurrency(this.savecurrency).subscribe(res => {
-    },
-    error => {
-     this.flashNotification.open(message.SaveCurrencyMessage, 'err')
-     this.log.er(message.SaveCurrencyMessage, error)
-   });
-  
- }
 }
