@@ -3,7 +3,7 @@
   <p>
     <mat-form-field class="selector">
       <mat-select [(ngModel)]="savecurrency.convert">
-        <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
+        <mat-option *ngFor="let currency of currencies" [value]="currency.currency">{{currency.label}}</mat-option>
       </mat-select>
       <!-- <mat-select [formControl]="Currency" [(ngModel)]="getpriceinfo.convert"> -->
       <!-- <mat-option value="USD">United States Dollar (USD)</mat-option> -->
