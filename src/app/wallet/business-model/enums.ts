@@ -37,7 +37,8 @@ export enum message {
   CopiedAddress = "Address copied to clipboard",
   DepositMessage = "Failed to deposit amount",
   PassphraseNotMatch = "Password does not match. Please check if the password is correct!",
-  PassphraseChanged = "Passphrase was successfully changed!"
+  PassphraseChanged = "Passphrase was successfully changed!",
+  GetFeeForAmount = "Failed to get fee for the amount!"
 }
 
 export enum ApiEndpoints {
@@ -74,5 +75,6 @@ export enum ApiEndpoints {
   ListReceivedbyAddress = "listreceivedbyaddress",
   GetAccountAddress = "getaccountaddress",
   ListAccounts = "listaccounts",
-  GetAddressesbyAccount = "getaddressesbyaccount"
+  GetAddressesbyAccount = "getaddressesbyaccount",
+  GetFeeForAmount = "getfeeforamount"
 }

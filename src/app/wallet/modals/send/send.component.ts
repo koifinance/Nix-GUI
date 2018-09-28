@@ -9,7 +9,6 @@ import { wallet } from '../../datamodel/model';
 import { Log } from 'ng2-logger';
 import { message } from '../../business-model/enums';
 import { faBook, faAddressBook } from '@fortawesome/free-solid-svg-icons';
-import { CalculationsService } from '../../calculations.service';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,7 +28,6 @@ export class SendComponent implements OnInit, OnDestroy {
   public amount : number = 0;
   public fees : number = 0;
   public total: number = 0;
-  public nixamount : number = 10;
   sendToNix: IWalletSendToNix = new WalletSendToNix();
   modal: ComponentRef<Component>;
   public fee:number = 1;
@@ -46,7 +44,6 @@ export class SendComponent implements OnInit, OnDestroy {
 
   constructor(
     private walletServices: WalletService,
-    private calculationsService: CalculationsService,
     private _rpcState: RpcStateService,
     private flashNotification: SnackbarService,
     public _dialogRef: MatDialogRef<SendComponent>) {
@@ -90,7 +87,6 @@ export class SendComponent implements OnInit, OnDestroy {
     if (this.validateInput()) {
       var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
         this.openSuccess('vault');
-        this.nixamount = this.sendToNix.amount;
       },
         error => {
           this.flashNotification.open(message.SendAmountToVaultMessage, 'err');
@@ -145,22 +141,32 @@ export class SendComponent implements OnInit, OnDestroy {
     this.modalContainer.remove();
     this.modal.destroy();
   }
+
   // to get sending amount
   public getSendingAmount(event) {
-    this.amount = event;
-    this.convertUSD=this.amountInUSD*this.amount
+    if (event)  this.amount = event;
+    this.convertUSD = this.amountInUSD*this.amount
       this.getFees();
       this.getTotalAmount();
   }
   
   //to get fee
   getFees() {
-    this.fees = this.calculationsService.getFee(this.amount,this.fee);
+    this.walletServices.getFeeForAmout(this.amount).subscribe(res => {
+      this.fees = parseInt(res, 10) * 0.00000001;
+    }, err => {
+      this.flashNotification.open(message.GetFeeForAmount, 'err');
+      this.log.er(message.GetFeeForAmount, err)
+    })
   }
 
   //to get total amount
   getTotalAmount(){
-    this.total = this.calculationsService.getTotal(this.amount,this.fees);
+    if (this.sendToNix.subtractFeeFromAmount) {
+      this.total = this.amount - this.fees;
+    } else {
+      this.total = this.amount + this.fees;
+    }
   }
   
   ngOnDestroy() {
