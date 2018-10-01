@@ -885,3 +885,8 @@ font-size: 30px;
 .backbtn-name{
   margin-top: 10px;
 }
+.progress-inner {
+  background: -moz-linear-gradient(left, #342fc8 0%, #10bffd 100%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #342fc8 0%,#10bffd 100%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #342fc8 0%,#10bffd 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}

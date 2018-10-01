@@ -77,5 +77,6 @@ export enum ApiEndpoints {
   GetAccountAddress = "getaccountaddress",
   ListAccounts = "listaccounts",
   GetAddressesbyAccount = "getaddressesbyaccount",
-  GetFeeForAmount = "getfeeforamount"
+  GetFeeForAmount = "getfeeforamount",
+  GetNetworkInfo = "getnetworkinfo"
 }
