@@ -1,7 +1,4 @@
-.mat-table .mat-header-row {
-    background: #f1f1f1;
-}
-
+@import './src/assets/config';
 // .ng-star-inserted{
 //     margin-right: 100px;
 // }
@@ -22,6 +19,17 @@
     margin-top: 35px;
 }
 
+.editbtn {
+  min-width: 10px;
+}
+.deletebtn {
+  min-width: 10px;
+  color: red;
+}
+
+.text-content {
+  overflow: auto;
+}
 
 mat-table {
   background: transparent;
@@ -29,6 +37,7 @@ mat-table {
   mat-header-row {
     border: none;
     min-height: 40px;
+    background: $color-dark-white !important;
   }
 
   mat-row {
@@ -38,26 +47,22 @@ mat-table {
 
   mat-cell {
     font-size: 14px;
-    overflow: inherit;
   }
 
- 
-
-  .multi-line {
-    margin-top: 5px;
+  .matHeader {
+    width: 90%;
   }
 
-  .month {
-    text-transform: uppercase;
+  .mat-column-Name {
+    flex: 0 0 30%;
   }
-
-  .day {
-    letter-spacing: 2.3px;
+  .mat-column-Type {
+    flex: 0 0 10%;
   }
-}
-.matHeader{
-  margin-right: 150px;
-}
-.matCell{
-  padding-right: 115px;
+  .mat-column-Address {
+    flex: 0 0 45%;
+  }
+  .mat-column-Action {
+    flex: 0 0 15%;
+  }
 }
