@@ -192,6 +192,20 @@ export class WalletService {
     return this._rpc.call(ApiEndpoints.GetTrasaction,[transactions.txid]);
   }
 
+  // get all addresses in address book
+  public getAllAddresses(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GetAllAddresses);
+  }
+
+  // add/edit/del/info address in address book
+  public manageAddressbook(action: string, address: string, label: string = '', purpose: string = ''): Observable<any> {
+    return this._rpc.call(ApiEndpoints.ManageAddressbook, [
+      action,
+      address,
+      label,
+      purpose
+    ]);
+  }
 
   //to encrpty Password
   public encrptyPassword(encrypt : IPassword): Observable<any>{
