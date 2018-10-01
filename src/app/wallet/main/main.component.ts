@@ -11,14 +11,14 @@ export class MainComponent implements OnInit, OnDestroy {
 
 
   private log: any = Log.create('main.component');
+  routerLink: string;
  
   destroyed: boolean = false;
   constructor(private _rpcState: RpcStateService) {
   }
 
   ngOnInit() {
-
-   
+    this.routerLink = '';   
   }
 
 

@@ -59,7 +59,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public lineChartData: Array<any> = [
     // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     // { data: [40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [2, 2.5, 4, 3.6, 5.5, 4.8, 7, 5], label: 'Bitcoin' }
+    { data: [2, 2.5, 4, 3.6, 5.5, 4.8, 7, 5], label: 'NIX' }
   ];
   public lineChartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
   public lineChartOptions: any = {
@@ -103,6 +103,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   public chartHovered(e: any): void {
     console.log(e);
+  }
+
+  //refresh the overview screen(price)
+  public refresh() {
+    this.init();
   }
 
   //get wallet informations
