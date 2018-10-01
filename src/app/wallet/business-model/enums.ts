@@ -80,10 +80,7 @@ export enum ApiEndpoints {
   GetAccountAddress = "getaccountaddress",
   ListAccounts = "listaccounts",
   GetAddressesbyAccount = "getaddressesbyaccount",
-<<<<<<< HEAD
   GetAllAddresses = "getalladdresses",
-  ManageAddressbook = "manageaddressbook"
-=======
+  ManageAddressbook = "manageaddressbook",
   GetFeeForAmount = "getfeeforamount"
->>>>>>> mauro
 }
