@@ -103,6 +103,7 @@ export interface IWalletSendToNix {
     amount: number;
     address: string;
     saveForFuture: boolean;
+    subtractFeeFromAmount: boolean;
 }
 
 export class WalletSendToNix implements IWalletSendToNix {
@@ -111,6 +112,7 @@ export class WalletSendToNix implements IWalletSendToNix {
     amount: number;
     address: string;
     saveForFuture: boolean;
+    subtractFeeFromAmount: boolean;
 
     constructor(data?: IWalletSendToNix) {
         if (data) {
@@ -127,6 +129,7 @@ export class WalletSendToNix implements IWalletSendToNix {
             this.amount = data["amount"];
             this.address = data["address"];
             this.saveForFuture = data["saveForFuture"];
+            this.subtractFeeFromAmount = data["subtractFeeFromAmount"];
         }
     }
 
@@ -142,6 +145,7 @@ export class WalletSendToNix implements IWalletSendToNix {
         data["amount"] = this.amount;
         data["address"] = this.address;
         data["saveForFuture"] = this.saveForFuture;
+        data["subtractFeeFromAmount"] = this.subtractFeeFromAmount;
         return data;
     }
 }
