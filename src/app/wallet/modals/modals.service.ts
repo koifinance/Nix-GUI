@@ -76,7 +76,8 @@ export class ModalsService implements OnDestroy {
       disableClose: true,
       width: '100%',
       height: '100%',
-      panelClass: panelClass
+      panelClass: panelClass,
+      data: data
     });
     this.dialogRef = dialogRef;
 
