@@ -146,7 +146,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   getEURBalance() {
-    this.log.d('eur', this.walletInfo.balance, this.balanceInEUR);
     this.EURwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.balance, this.balanceInEUR);
   }
 
