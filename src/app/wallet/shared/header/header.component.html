@@ -25,7 +25,7 @@
       <fa-icon size="1x" transform="right-6" [icon]="faQuestion"></fa-icon>
     </fa-layers>-->
 
-    <img class="cursor-pointer" src="./assets/icons/SVG/sync.svg" alt="Sync">
+    <img class="cursor-pointer" src="./assets/icons/SVG/sync.svg" alt="Sync" (click)="overview.refresh()">
     <img class="cursor-pointer" src="./assets/icons/SVG/help.svg" alt="Help" (click)="navbar.toggle()">
   </div>
 </div>

@@ -21,9 +21,13 @@
   }
 }
 
+.mat-drawer-container {
+  height: 100%;
+}
+
 .vault {
   color: white;
-  background-image: linear-gradient(65deg, #13006D 6%, #6F00F5 100%);
+  background-image: linear-gradient(65deg, #242424 6%, #484848 100%);
   padding: 0 35px;
 
   ::ng-deep.header {
