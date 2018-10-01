@@ -6,6 +6,7 @@ import { WalletService } from '../../wallet.service';
 import { IBitcoinprice, bitcoinprice } from '../../business-model/entities';
 import { message } from '../../business-model/enums';
 import { Log } from 'ng2-logger';
+import { JSSoup } from 'jssoup';
 
 
 @Component({
@@ -51,7 +52,8 @@ export class NixPriceChartComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getBitcoinpriceinfo();   
+    this.getBitcoinpriceinfo();
+    this.getHistoricalData();
   }
 
   // events
@@ -68,12 +70,31 @@ export class NixPriceChartComponent implements OnInit {
       this.router.navigate(['./main/overview']);
   }
 
-   // fetch bitcoin price
-   private getBitcoinpriceinfo() {
+  // fetch bitcoin price
+  private getBitcoinpriceinfo() {
     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
     .subscribe(bitcoinpriceInfos => {
       this.bitcoinprice = bitcoinpriceInfos.data.quotes;
     },
         error => this.log.error(message.bitcoinpriceMessage, error));
+  }
+
+  // fetch NIX historical data
+  private getHistoricalData() {
+    this.walletServices.getHistoricalData(this.getTodayDate()).subscribe(res => {
+      this.log.d(res._body.toString());
+      let soup = new JSSoup(res._body.toString());
+      let table = soup.find('table', {'class': 'table'});
+      this.log.d(table);
+    }, err => this.log.error(message.bitcoinpriceMessage, err))    
+  }
+
+  private getTodayDate() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let yyyy = today.getFullYear();
+
+    return yyyy.toString() + (mm < 10 ? '0' + mm.toString() : mm.toString()) + (dd < 10 ? '0' + dd.toString() : dd.toString());
   }
 }

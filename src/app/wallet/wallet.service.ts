@@ -34,13 +34,14 @@ export class WalletService {
   unlockTimeout: number = 60;
   private validWords: string[];
   private _listners = new Subject<any>();
+
   constructor(private _rpc: RpcService, private rpcState: RpcStateService,private http:Http) {
 
   }
 
   // get fee for amount
-  public getFeeForAmout (amount: number): Observable<any> {
-    return this._rpc.call(ApiEndpoints.GetFeeForAmount, [amount]);
+  public getFeeForAmout (amount: number, address: string): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GetFeeForAmount, [amount, address]);
   }
 
   // get bit coin
@@ -349,8 +350,14 @@ private send(tx: TransactionBuilder): Observable<any> {
       // this.fixWallet();
     }
   }
+
 // to deposit amount
   public amountDeposit(deposit : IDepostAmount): Observable<any> {
     return this._rpc.call(ApiEndpoints.GhostAmount,[deposit.amount]);
+  }
+
+  //get historical data
+  public getHistoricalData(date: string): Observable<any> {
+    return this.http.get(ApiEndpoints.NIXHitoryUrl + date);
   }
 }

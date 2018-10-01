@@ -1,6 +1,6 @@
 <mat-drawer-container fullscreen>
 
-  <mat-drawer #sidenav mode="side" opened="true" disableClose="true" class="sidebar">
+  <mat-drawer #sidenav mode="side" opened="true" disableClose="true" [ngClass]="routerLink === 'ghost vault' ? 'sidebar-ghost-vault' : 'sidebar'">
 
     <div class="logo-area">
       <div class="logo">
@@ -9,22 +9,22 @@
     </div>
 
     <mat-list class="sidebar-item-group">
-      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./overview">
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./overview" (click)="routerLink='overview'">
         <mat-list-item class="sidebar-item">
           <span class="text">Overview</span>
         </mat-list-item>
       </a>
-      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./vault">
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./vault" (click)="routerLink='ghost vault'">
         <mat-list-item class="sidebar-item">
           <span class="text">Ghost Vault</span>
         </mat-list-item>
       </a>
-      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./transactions">
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./transactions" (click)="routerLink='transactions'">
         <mat-list-item class="sidebar-item">
           <span class="text">Transactions</span>
         </mat-list-item>
       </a>
-      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./nodes">
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./nodes" (click)="routerLink='ghost node'">
         <mat-list-item class="sidebar-item">
           <span class="text">Ghost Node</span>
         </mat-list-item>
