@@ -40,7 +40,8 @@ export enum message {
   DepositMessage = "Failed to deposit amount",
   PassphraseNotMatch = "Password does not match. Please check if the password is correct!",
   PassphraseChanged = "Passphrase was successfully changed!",
-  GetAllAddresses = "Failed to get address book addresses"
+  GetAllAddresses = "Failed to get address book addresses",
+  GetFeeForAmount = "Failed to get fee for the amount!"
 }
 
 export enum ApiEndpoints {
@@ -78,6 +79,10 @@ export enum ApiEndpoints {
   GetAccountAddress = "getaccountaddress",
   ListAccounts = "listaccounts",
   GetAddressesbyAccount = "getaddressesbyaccount",
+<<<<<<< HEAD
   GetAllAddresses = "getalladdresses",
   ManageAddressbook = "manageaddressbook"
+=======
+  GetFeeForAmount = "getfeeforamount"
+>>>>>>> mauro
 }
