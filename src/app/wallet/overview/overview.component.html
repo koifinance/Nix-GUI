@@ -3,8 +3,8 @@
     <help-bar [navbar]="help" [faq]="faq"></help-bar>
   </mat-drawer>
 
-  <mat-drawer-content class="overview">
-    <page-header heading="Overview" [navbar]="help"></page-header>
+  <mat-drawer-content class="overview" #overview>
+    <page-header heading="Overview" [navbar]="help" [overview]="overview"></page-header>
     <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
 
       <mat-card fxFlexOrder.lt-md="1" fxFlex="30" class="item total">
@@ -13,8 +13,8 @@
           <span class="number big" style="color:white">{{walletInfo.balance | number: '.4'}}</span>
           <span class="medium" style="color:white"> NIX</span>
           <div class="divider"></div>
-          <span class="number small" style="color:white" *ngIf="currentCurrency == 'USD'">{{BTCwalletbalance}} BTC ({{USDwalletbalance | currency : 'USD' : 'symbol'}})</span>
-          <span class="number small" style="color:white" *ngIf="currentCurrency == 'EUR'">{{BTCwalletbalance}} BTC ({{EURwalletbalance | currency : 'EUR' : 'symbol'}})</span>
+          <span class="number small" style="color:white" *ngIf="currentCurrency == 'USD'">{{BTCwalletbalance | number: '.4'}} BTC ({{USDwalletbalance | currency : 'USD' : 'symbol'}})</span>
+          <span class="number small" style="color:white" *ngIf="currentCurrency == 'EUR'">{{BTCwalletbalance | number: '.4'}} BTC ({{EURwalletbalance | currency : 'EUR' : 'symbol'}})</span>
           <div class="pending margin-top-20px">
             <span class="number medium" style="color:white">{{ walletInfo.unconfirmed_balance | number: '.4'}}</span>
             <!-- <span class="point small" style="color:white">.</span>
@@ -39,8 +39,8 @@
           <span class="number big">{{ walletInfo.ghost_vault | number: '.4'}}</span>
           <span class="number medium"> Ghosted NIX</span>
           <div class="divider"></div>
-          <span class="number small" *ngIf="currentCurrnecy == 'USD'">{{BTCvaultbalance}} BTC ({{USDvaultbalance | currency : 'USD' : 'symbol'}})</span>
-          <span class="number small" *ngIf="currentCurrnecy == 'EUR'">{{BTCvaultbalance}} BTC ({{EURvaultbalance | currency : 'EUR' : 'symbol'}})</span>
+          <span class="number small" *ngIf="currentCurrnecy == 'USD'">{{BTCvaultbalance | number: '.4'}} BTC ({{USDvaultbalance | currency : 'USD' : 'symbol'}})</span>
+          <span class="number small" *ngIf="currentCurrnecy == 'EUR'">{{BTCvaultbalance | number: '.4'}} BTC ({{EURvaultbalance | currency : 'EUR' : 'symbol'}})</span>
 
           <div class="pending margin-top-20px"></div>
           <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
@@ -88,7 +88,7 @@
       <mat-card class="item" fxFlex="63" fxFlexOrder.lt-md="1">
         <div class="recent-transactions">
           <p class="description">Recent Transactions</p>
-          <transaction-table [display]="{numTransactions: 5, columns: transactionColumns, header: true}"></transaction-table>
+          <transaction-table [display]="{numTransactions: 3, columns: transactionColumns, header: true}"></transaction-table>
           <div>
             <!-- <a class="link text-uppercase" routerLink="/transactions">
               No data to display

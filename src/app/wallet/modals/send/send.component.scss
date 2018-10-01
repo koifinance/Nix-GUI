@@ -134,3 +134,11 @@
   font-size: 14px;
   border: none;
 }
+.mat-select {
+  width: 0;
+  outline: 0;
+  position: absolute;
+  margin-top: 10px;
+  right: 64px;
+  opacity: 0;
+}
