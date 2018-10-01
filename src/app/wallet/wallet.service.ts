@@ -62,7 +62,6 @@ export class WalletService {
   public receivedNix(receiveNix : IRecieveNixToWallet): Observable<any> {
     // return this._rpc.call(ApiEndpoints.ReceivedNix,[receiveNix.account]);
     return this.http.get(ApiEndpoints.ReceivedNix).map(response => response.json());
-
   }
 
   // add a node
