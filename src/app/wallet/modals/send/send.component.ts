@@ -152,7 +152,7 @@ export class SendComponent implements OnInit, OnDestroy {
   
   //to get fee
   getFees() {
-    this.walletServices.getFeeForAmout(this.amount).subscribe(res => {
+    this.walletServices.getFeeForAmout(this.amount, this.sendToNix.address).subscribe(res => {
       this.fees = parseInt(res, 10) * 0.00000001;
     }, err => {
       this.flashNotification.open(message.GetFeeForAmount, 'err');
