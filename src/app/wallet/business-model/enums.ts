@@ -25,6 +25,8 @@ export enum message {
   transactionMessage = 'Failed to get transaction', 
   bitcoinpriceMessage  = 'Failed to get bit coin price',
   AddressAddedMessage = 'Failed to add address!',
+  AddressEditedMessage = 'Failed to edit address!',
+  AddressDeletedMessage = 'Failed to delete address!',
   EnterData= 'Please enter the data!',
   SendAmount = 'Wallet Failed to get balance!',
   GetNewAddress = 'Failed to get new address',
@@ -37,7 +39,8 @@ export enum message {
   CopiedAddress = "Address copied to clipboard",
   DepositMessage = "Failed to deposit amount",
   PassphraseNotMatch = "Password does not match. Please check if the password is correct!",
-  PassphraseChanged = "Passphrase was successfully changed!"
+  PassphraseChanged = "Passphrase was successfully changed!",
+  GetAllAddresses = "Failed to get address book addresses"
 }
 
 export enum ApiEndpoints {
@@ -74,5 +77,7 @@ export enum ApiEndpoints {
   ListReceivedbyAddress = "listreceivedbyaddress",
   GetAccountAddress = "getaccountaddress",
   ListAccounts = "listaccounts",
-  GetAddressesbyAccount = "getaddressesbyaccount"
+  GetAddressesbyAccount = "getaddressesbyaccount",
+  GetAllAddresses = "getalladdresses",
+  ManageAddressbook = "manageaddressbook"
 }
