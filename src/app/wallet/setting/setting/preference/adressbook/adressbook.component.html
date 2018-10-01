@@ -2,31 +2,36 @@
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="Name">
-            <div *matHeaderCellDef class="matHeader">Name</div>
-            <div  *matCellDef="let element" class="matCell">{{element.name}}</div>
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell  *matCellDef="let element" class="name">{{element.name}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Type">
-            <div *matHeaderCellDef class="matHeader">Type</div>
-            <div *matCellDef="let element" class="matCell">{{element.type}}</div>
+            <mat-header-cell *matHeaderCellDef >Type</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="type">{{element.type}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Address">
-            <div *matHeaderCellDef class="matHeader">Address</div>
-            <div  *matCellDef="let element" class="matCell">
+            <mat-header-cell *matHeaderCellDef class="matHeader">Address</mat-header-cell>
+            <mat-cell  *matCellDef="let element" class="address">
                 {{element.address}}
-            </div>
+            </mat-cell>
             
         </ng-container>
         <ng-container matColumnDef="Action">
-                <div *matHeaderCellDef class="matHeader"></div>
-                <div  *matCellDef="let element" class="matCell">
-                <fa-icon [icon]="faEdit" class="confirm-ok"></fa-icon>
-                  {{element.action}}
-                   
-                </div>
+            <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+            <mat-cell  *matCellDef="let element" class="action">
+                <button mat-button class="editbtn" (click)="edit(element)">
+                    <fa-icon [icon]="faEdit" class="editicon"></fa-icon>
+                    
+                </button>
+                <button mat-button class="deletebtn" (click)="delete(element)">
+                    <fa-icon [icon]="faTrashAlt" class="deleteicon"></fa-icon>
+                    
+                </button>
+            </mat-cell>
                 
-            </ng-container>
+        </ng-container>
        
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
