@@ -66,6 +66,7 @@ export enum ApiEndpoints {
   Extkeygenesisimport = "extkeygenesisimport",
   GetBtc = 'https://api.coinmarketcap.com/v2/ticker/2991/?convert=BTC',
   GetEur = 'https://api.coinmarketcap.com/v2/ticker/2991/?convert=EUR',
+  NIXHitoryUrl = "https://coinmarketcap.com/currencies/nix/historical-data/?start=20130428&end=",
   Getblockchaininfo = 'getblockchaininfo',
   Getnewaddress ="getnewaddress",
   Setaccount = "setaccount",

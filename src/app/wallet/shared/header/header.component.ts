@@ -9,6 +9,7 @@ import { FilterService } from '../../transactions/filter.service';
 export class HeaderComponent implements OnInit {
 
   @Input() navbar: any;
+  @Input() overview: any;
   @Input() heading: string;
   @Input() showFilters: boolean;
 

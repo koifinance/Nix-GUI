@@ -8,38 +8,6 @@
   margin-top: 80px;
   // font-size: 12px !important;
 }
-.sidebar-item1 {
-  @extend %tfx;
-  padding: 0 30px;
-
-  .icon {
-    @extend %tfx;
-    color: darken($bg-black, 15%);
-    height: auto;
-    margin: 0 16px 0 0;
-    width: auto;
-  }
-
-  .text {
-    color: $text-muted;
-    font-family: $font;
-    font-size: 14px;
-  }
-
-  &:hover {
-    background: $bg-hover;
-
-    .icon {
-      color: darken($bg-black, 30%);
-    }
-
-    .text {
-      color: $text;
-      font-size: 15px;
-      font-weight: 600;
-    }
-  }
-}
 .sidebar-section {
   .sidebar-item-group {
     padding-top: 0;
@@ -207,6 +175,100 @@ a {
       }
     }
   }
+}
+
+.sidebar-ghost-vault {
+  overflow: hidden;
+  @extend %disable-select;
+  background-color: #3f3f3f;
+  color: $text;
+  width: 250px;
+
+  .logo {
+    display: block;
+    //height: 60px;
+    margin: 40px auto;
+    width: 100px;
+  }
+
+  .logo-area {
+    img {
+      max-width: 100px;
+    }
+  }
+
+  // widgets stuck to the bottom (sidebar's footer)
+  .pin-to-bottom {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+
+    // Versions
+    .client-version {
+      @extend %enable-select;
+      color: $text-muted;
+      display: block;
+      font-size: 11px;
+      line-height: 1.6;
+      padding: 0 24px;
+
+      .version {
+        color: lighten($text-muted, 15%);
+        margin-left: 2px;
+      }
+    }
+  }
+
+  .sidebar-item {
+    @extend %tfx;
+    padding: 0 30px;
+  
+    .icon {
+      @extend %tfx;
+      color: darken($bg-black, 15%);
+      height: auto;
+      margin: 0 16px 0 0;
+      width: auto;
+    }
+  
+    .text {
+      color: $text-muted;
+      font-family: $font;
+      font-size: 14px;
+    }
+  
+    &:hover {
+      background: #404040;
+  
+      .icon {
+        color: darken($bg-black, 30%);
+      }
+  
+      .text {
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  a {
+    &.sidebar-item-link {
+      outline: none;
+      text-decoration: none;
+  
+      &.active {  
+        .text {
+          color: white;
+          font-size: 15px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+
 }
 
 .sync-bar {
