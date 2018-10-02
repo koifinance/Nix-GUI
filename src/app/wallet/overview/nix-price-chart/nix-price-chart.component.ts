@@ -6,7 +6,7 @@ import { WalletService } from '../../wallet.service';
 import { IBitcoinprice, bitcoinprice } from '../../business-model/entities';
 import { message } from '../../business-model/enums';
 import { Log } from 'ng2-logger';
-import { JSSoup } from 'jssoup';
+// import { JSSoup } from 'jssoup';
 
 
 @Component({
@@ -82,10 +82,10 @@ export class NixPriceChartComponent implements OnInit {
   // fetch NIX historical data
   private getHistoricalData() {
     this.walletServices.getHistoricalData(this.getTodayDate()).subscribe(res => {
-      this.log.d(res._body.toString());
-      let soup = new JSSoup(res._body.toString());
-      let table = soup.find('table', {'class': 'table'});
-      this.log.d(table);
+      // this.log.d(res._body.toString());
+      // let soup = new JSSoup(res._body.toString());
+      // let table = soup.find('table', {'class': 'table'});
+      // this.log.d(table);
     }, err => this.log.error(message.bitcoinpriceMessage, err))    
   }
 
