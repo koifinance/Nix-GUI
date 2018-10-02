@@ -33,16 +33,16 @@
     </mat-list>
 
     <mat-list class="sidebar-bottom-items">
-        <a class="sidebar-item-link" routerLinkActive="active" routerLink="./help">
-          <mat-list-item class="sidebar-item">
-            <span class="text">Help</span>
-          </mat-list-item>
-        </a>     
-        <a class="sidebar-item-link" routerLinkActive="active" routerLink="./settings">
-          <mat-list-item class="sidebar-item">
-            <span class="text">Settings</span>
-          </mat-list-item>
-        </a> 
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./help">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Help</span>
+        </mat-list-item>
+      </a>     
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./settings">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Settings</span>
+        </mat-list-item>
+      </a> 
       <a class="sidebar-item-link" routerLinkActive="active" routerLink="./updates">
         <mat-list-item class="sidebar-item">
           <span class="text">Updates</span>
@@ -53,6 +53,14 @@
           <span class="text">About NIX</span>
         </mat-list-item>
       </a>      
+    </mat-list>
+
+    <mat-list style="width: 82%; margin: auto;">
+      <div class="progress-bar-memo">
+        <div>Version: {{walletVersion}}</div>
+        <div *ngIf="syncProgress !== 100">Syncing ....</div>
+      </div>
+      <progress-bar class="progress-bar" [progress]="syncProgress"></progress-bar>
     </mat-list>
   </mat-drawer>
 

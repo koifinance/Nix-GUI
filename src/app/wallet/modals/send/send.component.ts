@@ -41,6 +41,7 @@ export class SendComponent implements OnInit, OnDestroy {
   showPassword: boolean = false;
   faEyeSlash: any = faEyeSlash;
   faEye: any = faEye;
+  accountData: Array<any> = [];
 
   constructor(
     private walletServices: WalletService,
@@ -50,7 +51,16 @@ export class SendComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    this.walletServices.getAllAddresses().subscribe(res => {
+      for (let key in res.send) {
+        this.accountData.push({address: key, name: res.send[key]});
+      }
+      this.accountData.length -= 1;
+      this.log.d(this.accountData);
+    }, error => {
+      this.flashNotification.open(message.GetAllAddresses, 'err');
+      this.log.err(message.GetAllAddresses, error);
+    })
   }
 
   setData(data: any) {
