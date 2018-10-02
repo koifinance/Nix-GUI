@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { Ng2CsvModule } from 'ng2csv';
 
 import { WalletModule } from './wallet/wallet.module';
 import { CoreModule } from './core/core.module';
@@ -22,7 +23,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     WalletModule,
     HttpClientModule,
     HttpModule,
-    ClipboardModule
+    ClipboardModule,
+    Ng2CsvModule
   ],
   bootstrap: [AppComponent],
 })
