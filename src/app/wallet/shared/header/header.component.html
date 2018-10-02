@@ -11,7 +11,7 @@
       Filter
     </button>
 
-    <button *ngIf="showFilters" class="download-btn" mat-raised-button>
+    <button *ngIf="showFilters" class="download-btn" mat-raised-button (click)="downloadHistory()">
       <img src="assets/icons/SVG/download-icon.svg" alt="up-arrow">
       Download history
     </button>
