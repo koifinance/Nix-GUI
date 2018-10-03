@@ -17,8 +17,6 @@
           <span class="number small" style="color:white" *ngIf="currentCurrency == 'EUR'">{{BTCwalletbalance | number: '.4'}} BTC ({{EURwalletbalance | currency : 'EUR' : 'symbol'}})</span>
           <div class="pending margin-top-20px">
             <span class="number medium" style="color:white">{{ walletInfo.unconfirmed_balance | number: '.4'}}</span>
-            <!-- <span class="point small" style="color:white">.</span>
-            <span class="number small" style="color:white">00</span> -->
             <span class="small" style="color:white"> NIX pending</span>
           </div>
           <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
@@ -39,10 +37,13 @@
           <span class="number big">{{ walletInfo.ghost_vault | number: '.4'}}</span>
           <span class="number medium"> Ghosted NIX</span>
           <div class="divider"></div>
-          <span class="number small" *ngIf="currentCurrnecy == 'USD'">{{BTCvaultbalance | number: '.4'}} BTC ({{USDvaultbalance | currency : 'USD' : 'symbol'}})</span>
-          <span class="number small" *ngIf="currentCurrnecy == 'EUR'">{{BTCvaultbalance | number: '.4'}} BTC ({{EURvaultbalance | currency : 'EUR' : 'symbol'}})</span>
+          <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCvaultbalance | number: '.4'}} BTC ({{USDvaultbalance | currency : 'USD' : 'symbol'}})</span>
+          <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCvaultbalance | number: '.4'}} BTC ({{EURvaultbalance | currency : 'EUR' : 'symbol'}})</span>
 
-          <div class="pending margin-top-20px"></div>
+          <div class="pending margin-top-20px">
+            <span class="number medium">{{ walletInfo.ghost_vault_unconfirmed | number: '.4'}}</span>
+            <span class="small"> Ghosted NIX pending</span>
+          </div>
           <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
             <button class="send-btn" mat-raised-button (click)="openSend('vault')">
               <img src="./assets/icons/SVG/arrow-up-white.svg" alt="Sent"> Send

@@ -5,7 +5,14 @@ import { ModalsService } from '../modals/modals.service';
 import { RpcStateService } from '../../core/core.module';
 import { FAQ } from '../shared/faq.model';
 import { faq } from './faq';
-import { IWalletInfo, WalletInfo, IBitcoinprice, bitcoinprice } from '../business-model/entities';
+import { 
+  IWalletInfo,
+  WalletInfo,
+  IBitcoinprice,
+  bitcoinprice,
+  IUnGhostAmount,
+  UnGhostAmount
+} from '../business-model/entities';
 import { ApiEndpoints, message } from '../business-model/enums';
 import { WalletService } from '../wallet.service';
 import { CalculationsService } from '../calculations.service';
@@ -23,6 +30,7 @@ export class VaultComponent implements OnInit, OnDestroy {
   private log: any = Log.create('vault.component');
   private destroyed: boolean = false;
   walletInfo: IWalletInfo = new WalletInfo();
+  unghostInfo: IUnGhostAmount = new UnGhostAmount();
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   public bitcoinprice;
   balanceInBTC: number;
@@ -59,6 +67,11 @@ export class VaultComponent implements OnInit, OnDestroy {
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
+        
+        this.getBTCBalance();
+        this.getUSDBalance();
+        this.getBTCPending();
+        this.getUSDPending();
       },
         error => this.log.error('Failed to get balance, ', error));
   }
@@ -77,6 +90,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
+      balance: this.walletInfo.balance,
       amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
@@ -88,7 +102,19 @@ export class VaultComponent implements OnInit, OnDestroy {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
+      balance: this.walletInfo.ghost_vault,
       amountInUSD: this.bitcoinprice.USD.price,
+      modalsService: this.modalsService
+    };
+    this.modalsService.openSmall('send', data);
+  }
+
+  // to open the withdraw NIX to wallet
+  openWithdraw(walletType: string) {
+    const data: any = {
+      forceOpen: true,
+      balance: this.walletInfo.ghost_vault,
+      walletType: walletType,
       modalsService: this.modalsService
     };
     this.modalsService.openSmall('send', data);

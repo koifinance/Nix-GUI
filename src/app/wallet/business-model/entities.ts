@@ -1021,12 +1021,53 @@ export interface IDepostAmount {
 export class DepostAmount implements IDepostAmount {
     amount: number;
 
-    constructor(data?: IAddBook) {
+    constructor(data?: IDepostAmount) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
         }
+    }
+}
+
+// unghost
+export interface IUnGhostAmount {
+    amount: number;
+    address: string;
+}
+
+export class UnGhostAmount implements IUnGhostAmount {
+    amount: number;
+    address: string;
+
+    constructor(data?: IUnGhostAmount) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.amount = data['amount'];
+            this.address = data['address'];
+        }
+    }
+
+    static fromJS(data: any): UnGhostAmount {
+        let result = new UnGhostAmount();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data['amount'] = this.amount;
+        data['address'] = this.address;
+        
+        return data;
     }
 }
