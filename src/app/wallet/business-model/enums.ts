@@ -42,7 +42,8 @@ export enum message {
   PassphraseChanged = 'Passphrase was successfully changed!',
   GetAllAddresses = 'Failed to get address book addresses',
   GetFeeForAmount = 'Failed to get fee for the amount!',
-  ListTransactions = 'Failed to get the transactions!'
+  ListTransactions = 'Failed to get the transactions!',
+  WalletPassphrase = 'Passphrase is incorrect. Please enter passphrase correctly!'
 }
 
 export enum ApiEndpoints {
@@ -83,5 +84,6 @@ export enum ApiEndpoints {
   GetFeeForAmount = 'getfeeforamount',
   GetNetworkInfo = 'getnetworkinfo',
   GetAllAddresses = 'getalladdresses',
-  ManageAddressbook = 'manageaddressbook'
+  ManageAddressbook = 'manageaddressbook',
+  UnGhostAmount = 'unghostamount',
 }

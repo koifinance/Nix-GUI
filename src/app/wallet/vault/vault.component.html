@@ -51,7 +51,7 @@
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
             <!-- {{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}}) -->
-            {{BTCbalance}} BTC ({{USDbalance | currency:"USD":true}})
+            {{BTCbalance | number: '.4'}} BTC ({{USDbalance | currency:"USD":true}})
           <!-- <p>6.63444<span> BTC</span><span> ($63,082)</span></p>-->
           </div> 
       </div>

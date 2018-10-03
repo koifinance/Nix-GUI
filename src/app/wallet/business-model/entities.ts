@@ -1021,7 +1021,7 @@ export interface IDepostAmount {
 export class DepostAmount implements IDepostAmount {
     amount: number;
 
-    constructor(data?: IAddBook) {
+    constructor(data?: IDepostAmount) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
