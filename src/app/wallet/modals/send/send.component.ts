@@ -37,6 +37,8 @@ export class SendComponent implements OnInit, OnDestroy {
   amountInUSD: number;
   convertUSD:number=0;
   todaydate;
+  addressLabel: string;
+  isAddressSelected: boolean = false;
   walletPassword: string;
   showPassword: boolean = false;
   faEyeSlash: any = faEyeSlash;
@@ -77,6 +79,7 @@ export class SendComponent implements OnInit, OnDestroy {
       walletPasspharse.stakeOnly = false;
       this.walletServices.walletpassphrase(walletPasspharse).subscribe(response => {
         this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
+          this.saveAddress();
           this.openSuccess('wallet');
         }, error => {
           console.log('send error', error)
@@ -105,6 +108,15 @@ export class SendComponent implements OnInit, OnDestroy {
     }
   }
 
+  addressSelected() {
+    this.isAddressSelected = true;
+    this.addressLabel = '';
+  }
+
+  addressEdited() {
+    this.isAddressSelected = null;
+  }
+
 // validating input
   validateInput(): boolean {
     if (this.sendToNix.amount === 0 || this.sendToNix.amount === undefined) {
@@ -129,6 +141,16 @@ export class SendComponent implements OnInit, OnDestroy {
 
   togglePassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  saveAddress() {
+    if (!this.isAddressSelected) {
+      this.walletServices.manageAddressbook('add', this.sendToNix.address, this.addressLabel).subscribe(res => {
+      }, error => {
+        this.flashNotification.open(error.message, 'err')
+        this.log.er(message.AddressAddedMessage, error)
+      });
+    }
   }
 
   openSuccess(walletType: string) {
