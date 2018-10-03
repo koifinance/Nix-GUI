@@ -132,7 +132,26 @@
     </div>
 
     <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
-      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('vault')">Done</button>
+      <button class="walletbtn" color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('vault')">Done</button>
+    </div>
+  </div>
+
+  <div *ngIf="data.actionType === 'withdraw'" class="vault">
+    <div class="modalcontent">
+      <h5 fxFlex="50">Withdraw NIX to your wallet</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+    </div>
+
+    <div class="successicon" fxLayout.gt-md="row">
+      <img src="assets/icons/SVG/success.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+    </div>
+
+    <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully withdrawn to your wallet</p>
+    </div>
+
+    <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
+      <button class="walletbtn" color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('vault')">Done</button>
     </div>
   </div>
 
@@ -146,14 +165,13 @@
       <img src="assets/icons/SVG/success.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
     </div>
 
-    <div class="amountsend" fxLayout.gt-md="row">
-      <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
-    </div>
-
-
     <div class="sendto" fxLayout.gt-md="row">
-      <p fxFlex="100" fxLayoutAlign="center">NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl</p>
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully ghosted.</p>
     </div>
+
+    <!-- <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl</p>
+    </div> -->
 
     <div class="modaldetails">
       <div>
@@ -182,7 +200,7 @@
     </div>
 
     <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
-      <button class="walletbtn" mat-raised-button color="primary" fxFlex="33" fxLayoutAlign="center" (click)="depositDone()">Done</button>
+      <button class="walletbtn" color="primary" fxFlex="33" fxLayoutAlign="center" (click)="depositDone()">Done</button>
     </div>
   </div>
 
