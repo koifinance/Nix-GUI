@@ -47,6 +47,18 @@
       <div fxLayout.gt-md="row" class="deposit-available">
         <div style="color:#b2b2b2" fxFlex="80">Available: Ghosted {{balance}} NIX</div>
       </div>
+
+      <p>Type the password to confirm the transaction</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" matInput fxFlex="100" [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword" required>
+      </div>
+
+      <div class="password-toggle">
+        <button mat-button (click)="togglePassword()">
+          <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+          {{ passwordLabelText() }} password
+        </button>
+      </div>
     </div>    
 
   </div>
@@ -78,8 +90,8 @@
   </div>
 
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-    <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()">Cancel</button>
-    <button class="sendbtn" mat-raised-button fxFlex="40" (click)="depositSuccess()">Deposit to Vault</button>
+    <button class="cancelbtn" fxFlex="40" (click)="close()">Cancel</button>
+    <button class="sendbtn" fxFlex="40" (click)="depositSuccess()">Deposit to Vault</button>
   </div>
 </div>
 
