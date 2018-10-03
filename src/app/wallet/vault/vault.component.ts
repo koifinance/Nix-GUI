@@ -77,6 +77,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
+      balance: this.walletInfo.balance,
       amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
@@ -88,6 +89,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
+      balance: this.walletInfo.balance,
       amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
