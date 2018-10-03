@@ -16,7 +16,9 @@ import {
   IChangePassword,
   ISavecurrency,
   RecentTransactionInfo,
-  IDepostAmount } from './business-model/entities';
+  IDepostAmount,
+  IUnGhostAmount
+} from './business-model/entities';
 import { ApiEndpoints, typeOfAddresses } from './business-model/enums';
 import { Http } from '@angular/http';
 @Injectable()
@@ -226,6 +228,13 @@ export class WalletService {
       encrypt.password])
   }
   
+  // unghost amount address
+  public unghostAmount(info : IUnGhostAmount): Observable<any> {
+    if (info.address) {
+      return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount, info.address]);
+    }
+    return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount])
+  }
   /*
    * This is the logic for creating a new recovery phrase
   */
