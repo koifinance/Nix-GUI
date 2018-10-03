@@ -5,7 +5,7 @@ export class CalculationsService {
 
     //To calculate the fee
     public getFee(fee, amount) {
-        let fees = (fee / 100) * amount;
+        let fees = (fee / 400) * amount;
         return fees;
     }
 

@@ -4,10 +4,18 @@ import { MatDialogRef } from '@angular/material';
 import { RpcStateService, SnackbarService } from '../../../core/core.module';
 
 import { payType, ApiEndpoints, message } from '../../business-model/enums';
-import { IRecieveNixToWallet, RecieveNixToWallet, DepostAmount, IDepostAmount } from '../../business-model/entities';
+import { 
+  IRecieveNixToWallet,
+  RecieveNixToWallet,
+  DepostAmount,
+  IDepostAmount,
+  IPassword,
+  encryptpassword
+} from '../../business-model/entities';
 import { Log } from 'ng2-logger';
 import { CalculationsService } from '../../calculations.service';
 import { WalletService } from '../../wallet.service';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-receive',
@@ -30,9 +38,17 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   modal: ComponentRef<Component>;
   balance: number = 0;
   convertUSD: number = 0;
-  constructor(public _dialogRef: MatDialogRef<ReceiveComponent>, private calculationsService: CalculationsService,
-    private _rpcState: RpcStateService, private flashNotification: SnackbarService, private walletServices: WalletService) {
+  walletPassword: string;
+  showPassword: boolean = false;
+  faEyeSlash: any = faEyeSlash;
+  faEye: any = faEye;
 
+  constructor(
+    public _dialogRef: MatDialogRef<ReceiveComponent>,
+    private calculationsService: CalculationsService,
+    private _rpcState: RpcStateService,
+    private flashNotification: SnackbarService,
+    private walletServices: WalletService) {
   }
 
   ngOnInit() {
@@ -80,12 +96,21 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   // Deposit NIX to Ghost Vault
   depositSuccess() {
     if (this.validateDepositeInput()) {
-      var result = this.walletServices.amountDeposit(this.depositToVault).subscribe(res => {
-        this.openSuccess('vault');
-      }, error => {
-        this.flashNotification.open(message.DepositMessage, 'err');
-        this.log.er(message.DepositMessage, error)
-      });
+      let walletPasspharse: IPassword = new encryptpassword();
+      walletPasspharse.password = this.walletPassword;
+      walletPasspharse.stakeOnly = false;
+
+      this.walletServices.walletpassphrase(walletPasspharse).subscribe(res => {
+        this.walletServices.amountDeposit(this.depositToVault).subscribe(res => {
+          this.openSuccess('vault');
+        }, error => {
+          this.flashNotification.open(message.DepositMessage, 'err');
+          this.log.er(message.DepositMessage, error)
+        });
+      }, err => {
+        this.flashNotification.open(message.PassphraseNotMatch);
+        this.log.er(message.PassphraseNotMatch, err);
+      });      
     }
   }
   
@@ -135,6 +160,14 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   //to get total amount
   getTotalAmount() {
     this.total = this.calculationsService.getTotal(this.amount, this.fees);
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  passwordLabelText(): string {
+    return this.showPassword ? 'Hide' : 'Show';
   }
 
   ngOnDestroy() {

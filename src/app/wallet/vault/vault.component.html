@@ -51,7 +51,7 @@
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
             <!-- {{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}}) -->
-            {{BTCbalance}} BTC ({{USDbalance | currency:"USD":true}})
+            {{BTCbalance | number: '.4'}} BTC ({{USDbalance | currency:"USD":true}})
           <!-- <p>6.63444<span> BTC</span><span> ($63,082)</span></p>-->
           </div> 
       </div>
@@ -64,7 +64,7 @@
         </div>
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
-            {{BTCpending}} BTC ({{USDpending | currency:"USD":true}})
+            {{BTCpending | number: '.4'}} BTC ({{USDpending | currency:"USD":true}})
           <!-- <p>0<span> BTC</span><span> ($0)</span></p> -->
         </div>
       </div>
@@ -80,7 +80,7 @@
 
         <div fxFlexOrder="2" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
           <img class="cursor-pointer" src="./assets/icons/SVG/arrow-up-md.svg"
-               alt="Withdraw" fxFlex="100">
+               alt="Withdraw" fxFlex="100" (click)="openWithdraw('withdraw')">
           <div class="icon-text" fxLayoutAlign="left">Withdraw To Wallet</div>
         </div>
 

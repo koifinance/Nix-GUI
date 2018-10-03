@@ -125,8 +125,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
           
             this.getBTCBalance();
             this.getUSDBalance();
-            this.getBTCPending();
-            this.getUSDPending();
+            this.getBTCVaultBalance();
+            this.getUSDVaultBalance();
           }, error => this.log.error(message.bitcoinpriceMessage, error));
 
         this.walletServices.getInEUR(this.bitcoinpriceInfo)
@@ -136,7 +136,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
             this.balanceInEUR = tmp.EUR.price;
           
             this.getEURBalance();
-            this.getEURPending();
+            this.getEURVaultBalance();
           }, error => this.log.error(message.bitcoinpriceMessage, error));
       },
         error => this.log.error(message.walletMessage, error));
@@ -154,16 +154,16 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.EURwalletbalance = this.calculationsService.getCovertedamount(this.walletInfo.balance, this.balanceInEUR);
   }
 
-  getBTCPending() {
-    this.BTCvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInBTC);
+  getBTCVaultBalance() {
+    this.BTCvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInBTC);
   }
 
-  getUSDPending() {    
-    this.USDvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInUSD);
+  getUSDVaultBalance() {    
+    this.USDvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInUSD);
   }
 
-  getEURPending() {
-    this.EURvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInEUR);
+  getEURVaultBalance() {
+    this.EURvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInEUR);
   }
 
   // get tor status
@@ -205,6 +205,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
       amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
+
+    if (walletType == 'vault') data.balance = this.walletInfo.ghost_vault;
+    
     this.modalsService.openSmall('send', data);
   }
 
