@@ -205,6 +205,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
       amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
+
+    if (walletType == 'vault') data.balance = this.walletInfo.ghost_vault;
+    
     this.modalsService.openSmall('send', data);
   }
 
