@@ -4,7 +4,14 @@ import { MatDialogRef } from '@angular/material';
 import { WalletService } from '../../wallet.service';
 import { RpcStateService, SnackbarService } from '../../../core/core.module';
 
-import { WalletSendToNix, IWalletSendToNix, IPassword, encryptpassword } from '../../business-model/entities';
+import {
+  WalletSendToNix,
+  IWalletSendToNix,
+  IPassword,
+  encryptpassword,
+  IUnGhostAmount,
+  UnGhostAmount
+} from '../../business-model/entities';
 import { wallet } from '../../datamodel/model';
 import { Log } from 'ng2-logger';
 import { message } from '../../business-model/enums';
@@ -56,7 +63,6 @@ export class SendComponent implements OnInit, OnDestroy {
         this.accountData.push({address: key, name: res.send[key]});
       }
       this.accountData.length -= 1;
-      this.log.d(this.accountData);
     }, error => {
       this.flashNotification.open(message.GetAllAddresses, 'err');
       this.log.err(message.GetAllAddresses, error);
@@ -95,18 +101,35 @@ export class SendComponent implements OnInit, OnDestroy {
   sendGhostVaultData() {
     //validating the inputs
     if (this.validateInput()) {
-      var result = this.walletServices.SendToNix(this.sendToNix).subscribe(res => {
-        this.openSuccess('vault');
-      },
-        error => {
-          this.flashNotification.open(message.SendAmountToVaultMessage, 'err');
-          this.log.er(message.SendAmountToVaultMessage, error)
+      let walletPasspharse: IPassword = new encryptpassword();
+      walletPasspharse.password = this.walletPassword;
+      walletPasspharse.stakeOnly = false;
+      this.walletServices.walletpassphrase(walletPasspharse).subscribe(response => {
+        let unghostInfo: IUnGhostAmount = new UnGhostAmount();
+        unghostInfo.address = this.sendToNix.address;
+        unghostInfo.amount = this.data.balance;
+        if (this.data.walletType === 'withdraw') unghostInfo.address = null;
+
+        this.walletServices.unghostAmount(unghostInfo).subscribe(res => {
+          this.log.d('=======', res);
+          this.openSuccess('vault', 'withdraw');
+        },
+          error => {
+            this.flashNotification.open(message.SendAmountToVaultMessage, 'err');
+            this.log.er(message.SendAmountToVaultMessage, error)
         });
+      }, err => {
+        this.flashNotification.open(message.PassphraseNotMatch, 'err');
+        this.log.er(message.PassphraseNotMatch, err);
+      });
     }
   }
 
 // validating input
   validateInput(): boolean {
+    if (this.data.walletType === 'withdraw' && this.walletPassword) {
+      return true;
+    }
     if (this.sendToNix.amount === 0 || this.sendToNix.amount === undefined) {
       this.flashNotification.open(message.EnterData, 'err');
       this.log.er(message.EnterData, 'error')
@@ -131,14 +154,14 @@ export class SendComponent implements OnInit, OnDestroy {
     this.showPassword = !this.showPassword;
   }
 
-  openSuccess(walletType: string) {
+  openSuccess(walletType: string, actionType = 'send') {
     const data: any = {
       forceOpen: true,
       walletType: walletType,
       amount: this.amount,
       fee: this.fees,
       total: this.total,
-      actionType: 'send',
+      actionType: actionType,
       address: this.sendToNix.address
     };
     this.data.modalsService.forceClose();

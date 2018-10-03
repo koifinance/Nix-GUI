@@ -43,7 +43,7 @@ export enum message {
   GetAllAddresses = 'Failed to get address book addresses',
   GetFeeForAmount = 'Failed to get fee for the amount!',
   ListTransactions = 'Failed to get the transactions!',
-  WalletPassphrase = 'Passphrase is incorrect. Please enter passphrase correctly!'
+  UnGhostAmount = 'Failed to unghost the amount!'
 }
 
 export enum ApiEndpoints {

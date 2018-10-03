@@ -118,6 +118,10 @@
         <span class="fa-icon">
           <fa-icon [icon]="faAddressBook"></fa-icon>
         </span>
+
+        <mat-select [(ngModel)]="sendToNix.address">
+          <mat-option *ngFor="let acc of accountData" value={{acc.address}}> {{acc.name}} </mat-option>
+        </mat-select>
       </div>
     </div>
 
@@ -133,12 +137,7 @@
           {{ passwordLabelText() }} password
         </button>
       </div>
-
-      <div class="saveaddress">
-        <mat-checkbox>Save to address book for future use</mat-checkbox>
-      </div>
     </div>
-
   </div>
 
   <div class="modaldetails">
@@ -168,8 +167,62 @@
   </div>
 
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-    <button class="cancelbtn" mat-raised-button fxFlex="40" (click)="close()">Cancel</button>
-    <button class="sendbtn" mat-raised-button fxFlex="40" (click)="sendGhostVaultData()">Send ghosted NIX</button>
+    <button class="cancelbtn" fxFlex="40" (click)="close()">Cancel</button>
+    <button class="sendbtn" fxFlex="40" (click)="sendGhostVaultData()">Send ghosted NIX</button>
+  </div>
+
+</div>
+
+<div *ngIf="data.walletType === 'withdraw'" class="vault">
+
+  <div class="modalcontent">
+    <h5 fxFlex="50">Withdraw NIX</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="sendto">
+      <p>Type the password to withdraw NIX to your wallet</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" matInput fxFlex="100" [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword" required>
+      </div>
+
+      <div class="password-toggle">
+        <button mat-button (click)="togglePassword()">
+          <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+          {{ passwordLabelText() }} password
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="modaldetails">
+    <div>
+      <div class="transdetail" fxLayout.gt-md="row">
+        <span class="modallabel" fxFlex="70">Sending</span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{amount}}
+          <span>&nbsp;NIX</span>
+        </span>
+      </div>
+
+      <div class="transdetail" fxLayout.gt-md="row">
+        <span class="modallabel" fxFlex="70">Fee</span>
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{fees | number: '.4'}}
+          <span>&nbsp;NIX</span>
+        </span>
+
+      </div>
+
+      <div class="transtotal" fxLayout.gt-md="row">
+        <span fxFlex="70">Total</span>
+        <span fxFlex="30" fxLayoutAlign="end">{{total | number: '.4'}}
+          <span>&nbsp;NIX</span>
+        </span>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+    <button class="cancelbtn" fxFlex="40" (click)="close()">Cancel</button>
+    <button class="sendbtn" fxFlex="40" (click)="sendGhostVaultData()">Withdraw NIX</button>
   </div>
 
 </div>

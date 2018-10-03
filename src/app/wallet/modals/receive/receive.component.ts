@@ -108,8 +108,8 @@ export class ReceiveComponent implements OnInit, OnDestroy {
           this.log.er(message.DepositMessage, error)
         });
       }, err => {
-        this.flashNotification.open(message.WalletPassphrase);
-        this.log.er(message.WalletPassphrase, err);
+        this.flashNotification.open(message.PassphraseNotMatch);
+        this.log.er(message.PassphraseNotMatch, err);
       });      
     }
   }
