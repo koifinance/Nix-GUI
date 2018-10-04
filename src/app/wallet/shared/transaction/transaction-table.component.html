@@ -11,7 +11,7 @@
   <ng-container matColumnDef="category">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
     <mat-cell class="category" *matCellDef="let element">
-      {{element.category}}
+      {{element.is_ghosted ? 'Ghost ' : ''}}{{element.category}}
     </mat-cell>
   </ng-container>
   
