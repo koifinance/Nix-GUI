@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="319px" height="310px" viewBox="0 0 319 310" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#108EFF" stop-opacity="0.000622735507" offset="0%"></stop>
+            <stop stop-color="#108EFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="NIX-UI---Screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.3-Show-Wallet-sync-status" transform="translate(-572.000000, -316.000000)">
+            <g id="Sync-popup">
+                <g id="Group-3" transform="translate(516.000000, 255.000000)">
+                    <g id="Group-10" transform="translate(209.500000, 211.500000) rotate(-120.000000) translate(-209.500000, -211.500000) translate(53.000000, 60.000000)">
+                        <circle id="Oval-Copy" fill-opacity="0.3" fill="#D8D8D8" cx="151.5" cy="151.5" r="151.5"></circle>
+                        <circle id="Oval" fill-opacity="0.5" fill="#D8D8D8" cx="151.193939" cy="151.193939" r="123.648485"></circle>
+                        <g id="Group-6" transform="translate(151.000000, 0.000000)">
+                            <path d="M152,151.5 C152,67.8288604 84.1711396,0 0.5,0" id="Oval-Copy-2" stroke="url(#linearGradient-1)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <circle id="Oval-2" fill="#108EFF" cx="151.5" cy="157.5" r="10.5"></circle>
+                        </g>
+                    </g>
+                    <g id="Group-6" transform="translate(230.206715, 318.634918) rotate(-240.000000) translate(-230.206715, -318.634918) translate(149.206715, 234.634918)">
+                        <path d="M152,151.5 C152,67.8288604 84.1711396,0 0.5,0" id="Oval-Copy-2" stroke="url(#linearGradient-1)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle id="Oval-2" fill="#108EFF" cx="151.5" cy="157.5" r="10.5"></circle>
+                    </g>
+                    <g id="Group-6-Copy" transform="translate(286.097265, 141.095807) rotate(-6.000000) translate(-286.097265, -141.095807) translate(205.097265, 57.095807)">
+                        <path d="M152,151.5 C152,67.8288604 84.1711396,0 0.5,0" id="Oval-Copy-2" stroke="url(#linearGradient-1)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle id="Oval-2" fill="#108EFF" cx="151.5" cy="157.5" r="10.5"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
