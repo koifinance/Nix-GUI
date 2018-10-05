@@ -25,7 +25,8 @@
           </div>
           <div class="divider1"></div>
           <div fxLayout="row" class="btc">
-            12.3456 BTC ($123,456)
+            <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCwalletbalance | number: '.4'}} BTC ({{USDwalletbalance | currency : 'USD' : 'symbol'}})</span>
+            <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCwalletbalance | number: '.4'}} BTC ({{EURwalletbalance | currency : 'EUR' : 'symbol'}})</span>
           </div>
         </div>
         <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="30px" fxLayoutAlign="space-around center">
@@ -70,7 +71,7 @@
     </div>
     <h5 class="tableHead">My Ghost Nodes</h5>
     <div class="tableHead">
-      <app-ghost-node></app-ghost-node>
+      <app-ghost-node [ghostNodes]="ghostNodes"></app-ghost-node>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
