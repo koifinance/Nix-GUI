@@ -142,10 +142,10 @@ export class BlockStatusService {
           hours = Math.floor((secs / 3600) % 3600);
 
     if (hours > 0) {
-      returnString += `${hours} ${hours > 1 ? 'hours' : 'hour'} `
+      returnString += `${hours} ${hours > 1 ? 'hours' : 'hour'} `;
     }
     if (minutes > 0) {
-      returnString += `${minutes} ${minutes > 1 ? 'minutes' : 'minute'} `
+      returnString += `${minutes} ${minutes > 1 ? 'minutes' : 'minute'} `;
     } else if (hours === 0 && seconds > 0) {
       returnString += `Any minute now!`;
     }
@@ -172,7 +172,7 @@ export class BlockStatusService {
     }
 
     // smooth factor k = 2 / (N -1) where N > 1
-    const k = 2 / (length - ( length > 1 ? 1 : 0))
+    const k = 2 / (length - (length > 1 ? 1 : 0));
 
     let EMA = 0;
     // EMA = array[i] * K + EMA(previous) * (1 - K)

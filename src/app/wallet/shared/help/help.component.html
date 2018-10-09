@@ -1,0 +1,17 @@
+<div class="help-header">
+  <div fxLayout="row">
+    <h5 fxFlex="50">Help</h5>
+    <fa-icon class="cursor-pointer" fxFlex="50" size="2x"
+             [icon]="faTimes" (click)="navbar.toggle()" fxLayoutAlign="end">
+    </fa-icon>
+  </div>
+  <span class="label" fxLayout="row" fxLayoutAlign="end">Hide</span>
+</div>
+
+<div class="help-items" *ngFor="let item of faq; index as i">
+  <div class="item">
+    <div class="cursor-pointer" (click)="toggleAnswer(i)">{{ item.question }}</div>
+    <p *ngIf="i === toggledAnswerIndex">{{ item.answer }}</p>
+  </div>
+  <div class="divider"></div>
+</div>

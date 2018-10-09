@@ -1,0 +1,30 @@
+<mat-drawer-container>
+
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content class="updates">    
+      <div class="header" fxLayout="row">
+          <div fxFlex="50" fxFlexOrder="1">
+            <h5></h5>
+          </div>
+        </div>
+    <div class="updates-content" fxLayout="row" fxLayoutGap="2%">
+      <img class="updates-img" src="../../../assets/icons/SVG/verified.svg">
+      <p class="updates-description">You have the latest version of the wallet installed</p>
+    </div>
+    <div class="updates-content">     
+      <div class="updates-version" fxLayout="row">
+        <div fxFlex="120px">
+          <p><b>Wallet version: </b></p>
+        </div>
+        <div fxFlex="70px">
+          <p>v 1.0.0.1</p>
+        </div>
+        <div class="version-link" fxFlex="200px">(view on Github)</div>
+      </div>
+    </div>
+
+   </mat-drawer-content>
+</mat-drawer-container>

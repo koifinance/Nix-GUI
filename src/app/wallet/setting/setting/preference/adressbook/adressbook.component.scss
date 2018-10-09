@@ -1,0 +1,68 @@
+@import './src/assets/config';
+// .ng-star-inserted{
+//     margin-right: 100px;
+// }
+
+.sendbtn {
+    background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    font-family: Helvitica, sans-serif;
+    font-weight: 300;
+    height: 39px;
+    font-size: 22px;
+    margin-top: 15px;
+  }
+  .text-content{
+    margin-left: 5px;
+    margin-top: 35px;
+}
+
+.editbtn {
+  min-width: 10px;
+}
+.deletebtn {
+  min-width: 10px;
+  color: red;
+}
+
+.text-content {
+  overflow: auto;
+}
+
+mat-table {
+  background: transparent;
+
+  mat-header-row {
+    border: none;
+    min-height: 40px;
+    background: $color-dark-white !important;
+  }
+
+  mat-row {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  mat-cell {
+    font-size: 14px;
+  }
+
+  .matHeader {
+    width: 90%;
+  }
+
+  .mat-column-Name {
+    flex: 0 0 30%;
+  }
+  .mat-column-Type {
+    flex: 0 0 10%;
+  }
+  .mat-column-Address {
+    flex: 0 0 45%;
+  }
+  .mat-column-Action {
+    flex: 0 0 15%;
+  }
+}

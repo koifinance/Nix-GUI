@@ -1,0 +1,106 @@
+<mat-drawer-container>
+
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content class="help">
+    <div class="header" fxLayout="row">
+        <div fxFlex="50" fxFlexOrder="1">
+            <h5>Help</h5>
+        </div>
+    </div>
+    <div class="help-card" fxLayout="column" fxLayoutGap="2%">
+      <div class="help-card-title">GUIDES</div>
+      <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="2%" fxFlexOrder.lt-md="3">
+
+        <mat-card fxFlexOrder.lt-md="3" fxFlex="25" class="item">
+          <div class="price">
+            <p class="description">Troubleshooting</p>
+
+            <div fxLayout="row" fxLayoutGap="5px">
+
+            </div>
+          </div>
+        </mat-card>
+        <mat-card fxFlexOrder.lt-md="3" fxFlex="25" class="item">
+          <div class="price">
+            <p class="description">Creating or restoring 
+                a desktop wallet</p>
+
+            <div fxLayout="row" fxLayoutGap="5px">
+
+            </div>
+          </div>
+        </mat-card>
+        <mat-card fxFlexOrder.lt-md="3" fxFlex="25" class="item">
+          <div class="price">
+            <p class="description">Where to get NIX</p>
+
+            <div fxLayout="row" fxLayoutGap="5px">
+
+            </div>
+          </div>
+        </mat-card>
+        <mat-card fxFlexOrder.lt-md="3" fxFlex="25" class="item">
+          <div class="price">
+            <p class="description">Sending NIX</p>
+
+            <div fxLayout="row" fxLayoutGap="5px">
+
+            </div>
+          </div>
+        </mat-card>
+      </div>
+
+      <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="2%" fxFlexOrder.lt-md="3">
+
+        <mat-card fxFlexOrder.lt-md="3" fxFlex="25" class="item">
+          <div class="price">
+            <p class="description">Ghost Vault</p>
+
+            <div fxLayout="row" fxLayoutGap="5px">
+
+            </div>
+          </div>
+        </mat-card>
+        <mat-card fxFlexOrder.lt-md="3" fxFlex="25" class="item">
+          <div class="price">
+            <p class="description">Ghost Nodes</p>
+
+            <div fxLayout="row" fxLayoutGap="5px">
+
+            </div>
+          </div>
+        </mat-card>
+        <mat-card fxFlexOrder.lt-md="3" fxFlex="25" class="item">
+          <div class="price">
+            <p class="description">Privacy: Ghost Protocol</p>
+
+            <div fxLayout="row" fxLayoutGap="5px">
+
+            </div>
+          </div>
+        </mat-card>
+        <mat-card fxFlexOrder.lt-md="3" fxFlex="25" class="item">
+          <div class="price">
+            <p class="description">Mining NIX</p>
+
+            <div fxLayout="row" fxLayoutGap="5px">
+
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="help-card-title">NONE OF THE ABOVE?</div>
+    <div class="bottom-link-group" fxLayout="row" fxLayoutGap="7px">
+      <span class="bottom-link">View all topic</span>
+      <mat-divider class="vertical-divider"></mat-divider>
+      <span class="bottom-link">Technical Support on Discord</span>
+      <mat-divider class="vertical-divider"></mat-divider>
+      <span class="bottom-link"> Raise a support issue</span>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

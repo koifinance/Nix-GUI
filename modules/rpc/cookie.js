@@ -4,14 +4,15 @@ const path = require('path');
 const log  = require('electron-log');
 
 /*
-** returns Particl config folder
+** returns nix config folder
 */
 function findCookiePath() {
 
   var homeDir = os.homedir ? os.homedir() : process.env['HOME'];
 
   var dir,
-      appName = 'Particl';
+      appName = 'nix';
+
   switch (process.platform) {
     case 'linux': {
       dir = prepareDir(homeDir, '.' + appName.toLowerCase()).result;
@@ -88,7 +89,7 @@ function mkDir(dirPath, root) {
 
 /*
 ** returns the current RPC cookie
-** RPC cookie is regenerated at every particld startup
+** RPC cookie is regenerated at every nixd startup
 */
 function getAuth(options) {
 
@@ -99,7 +100,7 @@ function getAuth(options) {
   let auth;
   var dataDir = options.datadir ? options.datadir : findCookiePath();
   const COOKIE_FILE = dataDir
-                    + (options.testnet ? '/testnet' : '')
+                    + (options.testnet ? '/testnet3' : '')
                     + '/.cookie';
 
   if (fs.existsSync(COOKIE_FILE)) {

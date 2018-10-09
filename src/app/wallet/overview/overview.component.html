@@ -1,42 +1,128 @@
-<mat-card class="balance-overview" fxLayoutWrap fxLayoutGap="3%">
-  <div class="balance-item" fxFlex="20">
-    <app-balance type="total_balance"></app-balance>
-  </div>
-  <div class="balance-item" fxFlex="17">
-    <app-balance type="balance"></app-balance>
-  </div>
-  <div class="balance-item" fxFlex="17">
-    <app-balance type="blind_balance"></app-balance>
-  </div>
-  <!--div class="balance-item" fxFlex="17">
-    <app-balance type="anon_balance"></app-balance>
-  </div-->
-  <div class="balance-item" fxFlex="17">
-    <app-balance type="staked_balance"></app-balance>
-  </div>
-</mat-card>
+<mat-drawer-container>
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
 
+  <mat-drawer-content class="overview" #overview>
+    <page-header heading="Overview" [navbar]="help" [overview]="overview"></page-header>
+    <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
 
-<div class="overview-content" fxLayout.gt-lg="row" fxLayout.lt-md="column"  fxLayoutGap="40px">
+      <mat-card fxFlexOrder.lt-md="1" fxFlex="30" class="item total">
+        <div class="balance">
+          <p class="description" style="color:white">Wallet</p>
+          <span class="number big" style="color:white">{{walletInfo.balance | number: '.4'}}</span>
+          <span class="medium" style="color:white"> NIX</span>
+          <div class="divider"></div>
+          <span class="number small" style="color:white" *ngIf="currentCurrency == 'USD'">{{BTCwalletbalance | number: '.4'}} BTC ({{USDwalletbalance | currency : 'USD' : 'symbol'}})</span>
+          <span class="number small" style="color:white" *ngIf="currentCurrency == 'EUR'">{{BTCwalletbalance | number: '.4'}} BTC ({{EURwalletbalance | currency : 'EUR' : 'symbol'}})</span>
+          <div class="pending margin-top-20px">
+            <span class="number medium" style="color:white">{{ walletInfo.unconfirmed_balance | number: '.4'}}</span>
+            <span class="small" style="color:white"> NIX pending</span>
+          </div>
+          <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
+            <button class="send-btn" mat-raised-button (click)="openSend('wallet')">
+              <img src="./assets/icons/SVG/arrow-up-nix.svg" alt="sent"> Send
+            </button>
+            <button class="receive-btn" mat-raised-button (click)="openReceive('wallet')">
+              <img src="./assets/icons/SVG/arrow-down-nix.svg" alt="Received"> Receive
+            </button>
+            <button mat-raised-button class="dots-btn small" (click)="openSyncingWallet()">...</button>
+          </div>
+        </div>
+      </mat-card>
 
-  <div class="recent-transactions" fxFlex="67" fxFlexOrder.lt-md="2">
-    <app-header>
-      <ul class="header-nav">
-        <li>Recent Transactions</li>
-      </ul>
-    </app-header>
-    <transaction-table
-      [display]="{'txDisplayAmount': 5, 'header': false, 'internalHeader': true, 'category': true, 'confirmations': true}">
-    </transaction-table>
-  </div><!-- .recent-transactions -->
+      <mat-card fxFlexOrder.lt-md="2" fxFlex="30" class="item anon">
+        <div class="balance">
+          <p class="description">Ghost Vault</p>
+          <span class="number big">{{ walletInfo.ghost_vault | number: '.4'}}</span>
+          <span class="number medium"> Ghosted NIX</span>
+          <div class="divider"></div>
+          <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCvaultbalance | number: '.4'}} BTC ({{USDvaultbalance | currency : 'USD' : 'symbol'}})</span>
+          <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCvaultbalance | number: '.4'}} BTC ({{EURvaultbalance | currency : 'EUR' : 'symbol'}})</span>
 
+          <div class="pending margin-top-20px">
+            <span class="number medium">{{ walletInfo.ghost_vault_unconfirmed | number: '.4'}}</span>
+            <span class="small"> Ghosted NIX pending</span>
+          </div>
+          <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
+            <button class="send-btn" mat-raised-button (click)="openSend('vault')">
+              <img src="./assets/icons/SVG/arrow-up-white.svg" alt="Sent"> Send
+            </button>
+            <button class="receive-btn" mat-raised-button (click)="openReceive('vault')">
+              <img src="./assets/icons/SVG/arrow-down-black.svg" alt="Received"> Deposit
+            </button>
+            <button mat-raised-button class="dots-btn small">...</button>
+          </div>
+        </div>
+      </mat-card>
 
-  <div class="overview-sidebar" fxFlex="33" fxLayoutWrap fxLayoutAlign="center start" fxFlexOrder.lt-md="1" >
+      <mat-card fxFlexOrder.lt-md="3" fxFlex="30" class="item">
+        <div class="price">
+          <p class="description">NIX Price</p>
+          <span class="number big" *ngIf="currentCurrency == 'USD'">{{balanceInUSD | currency:"USD":'symbol'}}</span>
+          <span class="number big" *ngIf="currentCurrency == 'EUR'">{{balanceInEUR | currency:"EUR":'symbol'}}</span>
+          <div class="divider"></div>
+          <div fxLayout="row" fxLayoutGap="5px">
+            <span class="point small" fxFlex="50" fxFlexOrder="1">
+              <fa-icon [icon]="faBtc"></fa-icon>
+              {{balanceInBTC }}
+            </span>
+            <span class="small" fxFlex="50" fxFlexOrder="2" fxLayoutAlign="end" style="color:green">
+              <!-- +12.53% -->
+              {{NIXpercentage}}%
+            </span>
+          </div>
+          <div class="small-chart" (click)="goToChart()">
+            <div class="row">
+              <div style="display: block;">
+                <canvas baseChart style="width: 287px; height: 107px;" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                  [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
 
-    <app-stakinginfo fxFlex.gt-sm="100" fxFlex.lt-md="calc(50% - 25px)"></app-stakinginfo>
-    <app-coldstake fxFlex.gt-sm="100" fxFlex.lt-md="calc(50% - 25px)"></app-coldstake>
-    
-  </div><!-- .overview-sidebar -->
+    <div class="content-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="4">
+      <mat-card class="item" fxFlex="63" fxFlexOrder.lt-md="1">
+        <div class="recent-transactions">
+          <p class="description">Recent Transactions</p>
+          <transaction-table [display]="{numTransactions: 3, columns: transactionColumns, header: false}"></transaction-table>
+          <div>
+            <!-- <a class="link text-uppercase" routerLink="/transactions">
+              No data to display
+            </a> -->
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="item" fxFlexOrder.lt-md="2" fxFlex="30">
+        <div class="node-status">
+          <p class="description">Node Status</p>
+          <span class="number big">{{isActiveNodeCount}}</span>
+          <span class="medium text"> Active Nodes</span>
+          <div class="divider"></div>
+          <span class="medium light">{{monthEarn}} NIX earned so far this month</span>
+          <div class="medium light margin-top-40px">
+            <fa-icon [icon]="faCircleSolid" class="confirm-ok"></fa-icon>
+            <span *ngIf="isActiveNodeCount > 0">No issue</span>
+            <span *ngIf="isActiveNodeCount === 0">issue</span>
+          </div>
+        </div>
 
-
-</div><!-- .overview-content -->
+      </mat-card>
+    </div>
+    <div class="bottom-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="5%" fxFlexOrder.lt-md="4">
+      <div>
+        Wallet Status : {{walletInfo.encryptionstatus}}
+      </div>
+      <div *ngIf="status">
+        TOR netwoking : {{status}}
+      </div>
+      <div *ngIf="!status">
+        TOR netwoking : no data
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

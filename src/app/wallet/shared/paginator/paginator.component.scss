@@ -1,0 +1,72 @@
+@import './src/assets/config'; // import shared colors etc.
+
+.mat-paginator-page-size {
+  align-items: center;
+  display: flex;
+}
+
+.mat-paginator-page-size-label {
+  margin: 0 4px;
+}
+
+.mat-paginator-page-size-select {
+  margin: 0 0 -1.25em 8px;
+  width: 56px;
+}
+
+.mat-paginator-range-label {
+  margin: 0 32px;
+}
+
+.mat-paginator-increment-button {
+  & + .mat-paginator-increment-button {
+    margin: 0 0 0 8px;
+  }
+}
+
+[dir=rtl] {
+  &.mat-paginator-increment-button {
+    & + .mat-paginator-increment-button {
+      margin: 0 8px 0 0;
+    }
+  }
+
+  &.mat-paginator-decrement {
+    margin-right: 12px;
+  }
+
+  &.mat-paginator-increment {
+    margin-right: 16px;
+  }
+}
+
+.mat-paginator-decrement, .mat-paginator-increment {
+  height: 8px;
+  width: 8px;
+}
+
+.mat-paginator-decrement, [dir=rtl] {
+  &.mat-paginator-increment {
+    transform: rotate(45deg);
+  }
+}
+
+.mat-paginator-increment, [dir=rtl] {
+  &.mat-paginator-decrement {
+    transform: rotate(225deg);
+  }
+}
+
+.mat-paginator-decrement {
+  margin-left: 12px;
+}
+
+.mat-paginator-increment {
+  margin-left: 16px;
+}
+
+button {
+  .mat-icon {
+    margin: 0;
+  }
+}
