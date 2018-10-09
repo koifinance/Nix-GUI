@@ -59,7 +59,7 @@ export class NewTxNotifierService implements OnDestroy {
             }
 
             this.notifyNewTransaction(tx);
-          })
+          });
 
           // update tip
           this.lastTxId = txs[0].txid;

@@ -21,6 +21,7 @@ export class RpcStateService extends StateService implements OnDestroy {
     super();
 
     this.registerStateCall('getwalletinfo', 1000);
+    // this.registerStateCall('getaddressesbyaccount', 1000);
     this.registerStateCall('getblockchaininfo', 5000);
     this.registerStateCall('getnetworkinfo', 10000);
     this.registerStateCall('getstakinginfo', 10000);
@@ -58,7 +59,6 @@ export class RpcStateService extends StateService implements OnDestroy {
   registerStateCall(method: string, timeout: number, params?: Array<any> | null): void {
     if (timeout) {
       let firstError = true;
-
       // loop procedure
       const _call = () => {
         if (this.destroyed) {
@@ -89,6 +89,11 @@ export class RpcStateService extends StateService implements OnDestroy {
       // initiate loop
       _call();
     }
+  }
+
+  setState(state: string, param: any) {
+    this.set(state, param)
+    return true
   }
 
   /** Updates the state whenever a state call succeeds */
@@ -135,6 +140,7 @@ export class RpcStateService extends StateService implements OnDestroy {
   // TODO: get rid of this after improve-router
   private initWalletState() {
     this.observe('getwalletinfo').subscribe(response => {
+      this.log.d(response)
       // check if account is active
       if (!!response.hdmasterkeyid) {
         this.set('ui:walletInitialized', true);

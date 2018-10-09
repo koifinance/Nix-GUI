@@ -1,0 +1,80 @@
+<mat-drawer-container fullscreen>
+  <mat-drawer position="end" mode="side" opened class="sidebar" fxLayout="column">
+
+    <div class="content" [fxFlex]="85">
+      <div>
+        <div class="text">
+          Your password is important.
+        </div>
+        <div class="text">
+          You will need it in order to access your wallet and perform transactions.
+          It will also encrypt the contents of your wallet.
+        </div>
+        <div class="text">
+          Make sure it is something that you can remember and make a copy somewhere safe.
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+
+      <div fxLayout="row">
+        <mat-checkbox [(ngModel)]="termsChecked" class="termsCheck"></mat-checkbox>I understand and agree to the wallet Terms & Conditions
+      </div>
+
+      <div *ngIf="showSidebarError" class="error">
+        Field is required
+      </div>
+
+      <div fxLayout="row">
+        <button fxFlex="100" class="restore-btn" mat-raised-button (click)="encryptWallet()">
+          Encrypt Wallet
+        </button>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content class="content">
+
+    <div>
+      <div fxLayout="row">
+        <div class="back-button" fxFlex="15">
+          <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="goTo('welcome')">
+          <div class="caption">Back</div>
+        </div>
+
+        <div class="text" fxFlex="70">
+          <p class="title">Create a password</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="text">
+        <p class="body"><b>Create a password to protect your wallet</b></p>
+        <p>
+          <mat-form-field class="password">
+            <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter password"
+                    [(ngModel)]="walletNewPassword" required>
+          </mat-form-field>
+          <mat-error *ngIf="showContentError">Field is required</mat-error>
+        </p>
+        <p>
+          <mat-form-field class="password">
+            <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Please re-enter password"
+                    [(ngModel)]="walletRepeatPassword" required>
+          </mat-form-field>
+          <mat-error *ngIf="showContentError">Field is required</mat-error>
+        </p>
+        <div class="password-toggle">
+          <button mat-button (click)="togglePassword()">
+            <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+            {{ passwordLabelText() }} password
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+
+  </mat-drawer-content>
+</mat-drawer-container>

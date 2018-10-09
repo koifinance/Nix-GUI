@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Rx';
-import { Observer } from 'rxjs/Rx';
+import { Observable, Observer } from 'rxjs/Rx';
 
 
 export interface InternalStateType {
   [key: string]: any;
-};
+}
 
 interface InternalStateCache {
   [key: string]: {
     observer: Observer<InternalStateType>,
     observable: Observable<any>
-  }
+  };
 }
 
 @Injectable()

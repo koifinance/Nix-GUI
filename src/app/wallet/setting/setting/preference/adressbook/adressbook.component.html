@@ -1,0 +1,46 @@
+<div class="text-content">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell  *matCellDef="let element" class="name">{{element.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Type">
+            <mat-header-cell *matHeaderCellDef >Type</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="type">{{element.type}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Address">
+            <mat-header-cell *matHeaderCellDef class="matHeader">Address</mat-header-cell>
+            <mat-cell  *matCellDef="let element" class="address">
+                {{element.address}}
+            </mat-cell>
+            
+        </ng-container>
+        <ng-container matColumnDef="Action">
+            <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+            <mat-cell  *matCellDef="let element" class="action">
+                <button mat-button class="editbtn" (click)="edit(element)">
+                    <fa-icon [icon]="faEdit" class="editicon"></fa-icon>
+                    
+                </button>
+                <button mat-button class="deletebtn" (click)="delete(element)">
+                    <fa-icon [icon]="faTrashAlt" class="deleteicon"></fa-icon>
+                    
+                </button>
+            </mat-cell>
+                
+        </ng-container>
+       
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+
+
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+        <button class="sendbtn" mat-raised-button fxFlex="15" (click)="openAddress()">Add new</button>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,500');
+
+/* ------------------------------- *\
+    Variables
+\* ------------------------------- */
+
+$font: 'Lato', sans-serif;
+$font-heading: 'Montserrat', sans-serif;
+
+// main colors
+$color: #107cd8;
+$color-heading: #4298dc;
+$color-secondary: #00d4d1;
+$color-white: #fff;
+$color-dark-white: #eaeaea;
+$color-black: #060c24;
+//$color-grey: #b4b4b6;
+$color-grey: #9b9b9b;
+$color-silver: #c0c0c0;
+$color-dark-grey: #4a4a4a;
+$color-light-grey: #fafafc;
+$color-success: #82d52f;
+$color-alert: #dd2828;
+$color-warning: #f9943d;
+$color-progress: #f9dc1f;
+$color-info: $color;
+$color-shadow: #333;
+
+// text colors
+$text: $color-black; // default text color
+$text-dark: lighten($color-dark-grey, 5%); // dark grey
+$text-muted: $color-grey; // grey
+$text-white: $color-white;
+
+// bg/element colors
+$bg: $color-light-grey; // light grey bg color
+$bg-hover: darken($bg, 2%);
+$bg-black: $color-black; // sidebar
+$bg-shadow: #dcdcdc; // lines, box shadows etc.
+$bg-white: $color-white;
+
+// UI
+$radius: 4px; // default border-radius
+$card-radius: 10px; // default border-radius for cards
+
+/* ------------------------------- *\
+    Mixins
+\* ------------------------------- */
+
+@mixin gradient($place, $first-color, $second-color) {
+  background: linear-gradient($place, $first-color, $second-color);
+}
+
+@mixin primary-gradient() {
+  @include gradient(60deg, #2b1fd3 0%, #00c1ff 100%);
+}
+
+@mixin secondary-gradient() {
+  @include gradient(60deg, #060d1e 0%, #202d49 100%);
+}
+
+/* ------------------------------- *\
+    Placeholder selectors
+    http://thesassway.com/intermediate/understanding-placeholder-selectors
+\* ------------------------------- */
+
+%subtitle { // section titles / H2's
+  @extend %disable-select;
+  border-bottom: 1px solid $bg-shadow;
+  color: $text-muted;
+  font-family: $font;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 30px 0 25px;
+  padding: 0 0 8px;
+  text-transform: uppercase;
+}
+
+// enable/disable text selection
+%disable-select, .disable-select {
+  cursor: default;
+  user-select: none;
+}
+
+%enable-select, .enable-select {
+  cursor: text;
+  user-select: auto;
+}
+
+// Transition effects
+%tfx {
+  transition: all .17s;
+}

@@ -7,5 +7,11 @@ declare const require: any;
 export const environment = {
   production: false,
   envName: 'dev',
-  version: require('../../package.json').version
+  version: require('../../package.json').version,
+  nixHost: '127.0.0.1',
+  releasesUrl: 'https://api.github.com/repos/NixPlatform/Nix-GUI/releases/latest',
+  nix_MainNet_Port :6214,
+  nixPort: 6215,
+  rpcUserName :'test',
+  rpcPassword :'12345678',
 };

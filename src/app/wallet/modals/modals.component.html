@@ -1,0 +1,9 @@
+<button class="close-button" (click)="close()" *ngIf="enableClose">
+  <img src="assets/icons/SVG/cross.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+</button>
+
+<div mat-dialog-content class="mat-wallet-content">
+  <mat-spinner mode="indeterminate" *ngIf="loadSpinner"></mat-spinner>
+
+  <ng-template #modalContainer></ng-template>
+</div>

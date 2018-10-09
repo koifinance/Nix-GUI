@@ -1,0 +1,111 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+// #2B1FD3 #00D4D1
+
+$app-primary-color: (
+  50: #fafafc,
+  100: #a6d1fc,
+  200: #86d0fc,
+  300: #5ab4fc,
+  400: #4298dc,
+  500: #107cd8,
+  600: #116ad7,
+  700: #1157d6,
+  800: #224cd5,
+  900: #2b1fd3,
+  A100: #5ab4fc,
+  A200: #657dfc,
+  A400: #107cd8,
+  A700: #0a60d6,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$app-secondary-color: (
+  50: #fafafc,
+  100: #a6d1fc,
+  200: #86d0fc,
+  300: #5ab4fc,
+  400: #4298dc,
+  500: #107cd8,
+  600: #116ad7,
+  700: #1157d6,
+  800: #224cd5,
+  900: #2b1fd3,
+  A100: #116ad7, // or use 400
+  A200: #107cd8, // or use 300
+  A400: #0a60d6, // or use 500
+  A700: #1157d6, // or use #0a60d6
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$app-red: (
+  50: #ffebee,
+  100: #ffcdd2,
+  200: #ef9a9a,
+  300: #e57373,
+  400: #ef5350,
+  500: #f44336,
+  600: #e53935,
+  700: #d32f2f,
+  800: #c62828,
+  900: #b71c1c,
+  A100: #ff8a80,
+  A200: #ff5252,
+  A400: #ff1744,
+  A700: #d50000,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: #fff,
+    A400: #fff,
+    A700: #fff,
+  )
+);
+
+$partgui-app-primary: mat-palette($app-primary-color);
+$partgui-app-accent: mat-palette($app-secondary-color, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$partgui-app-warn: mat-palette($app-red);
+
+$partgui-app-theme: mat-light-theme($partgui-app-primary, $partgui-app-accent, $partgui-app-warn);
+@include angular-material-theme($partgui-app-theme);
