@@ -1,0 +1,80 @@
+<mat-drawer-container>
+
+  <mat-drawer #help position="end" mode="over" disableClose="true" class="sidebar">
+    <help-bar [navbar]="help" [faq]="faq"></help-bar>
+  </mat-drawer>
+
+  <mat-drawer-content class="updates">
+    <div class="header" fxLayout="row">
+      <div fxFlex="50" fxFlexOrder="1">
+        <h5>About NIX</h5>
+      </div>
+    </div>
+
+    <div class="updates-content" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="2%">
+      <p class="updates-description" fxFlex="75">NIX is both a digital currency and a platform that offers mechanisms to privatize coins that do not otherwise possess
+        their own native, privacy-based protocols. The NIX Platform combines Atomic Swaps and privacy using our unique, innovative
+        Ghost Protocol to provide the world with a truly anonymous and decentralized transfer of assets for the cross-chain
+        era.</p>
+    </div>
+    <div class="updates-content" fxLayout="column" fxLayoutGap="0%">
+      <div>
+        <p>
+          <b>Website</b>
+        </p>
+        <a class="version-link" href="https://nixplatform.io" target="_blank">https://nixplatform.io/</a>
+      </div>
+      <div>
+        <p>
+          <b>White paper</b>
+        </p>
+        <a class="version-link" href="https://nixplatform.io/docs/NIX-Platform-Whitepaper.pdf" target="_blank">https://nixplatform.io/docs/NIX-Platform-Whitepaper.pdf</a>
+      </div>
+      <div>
+        <p>
+          <b>NIX general FAQs</b>
+        </p>
+        <a class="version-link" href="https://nixplatform.zendesk.com" target="_blank">https://nixplatform.zendesk.com</a>
+      </div>
+      <div>
+        <p>
+          <b>NIX team</b>
+        </p>
+        <a class="version-link" href="https://nixplatform.io/information/team/" target="_blank">https://nixplatform.io/information/team/</a>
+      </div>
+      <div>
+        <p>
+          <b>Github</b>
+        </p>
+        <a class="version-link" href="https://github.com/nixplatform" target="_blank">https://github.com/nixplatform</a>
+      </div>
+    </div>
+    <div class="updates-content">
+      <p><b>Social channels</b></p>
+    </div>
+    <div  fxLayout="row" fxLayoutGap="1.5%">
+      <a href="https://twitter.com/nixplatform" target="_blank">
+        <img class="svg-img" src="./assets/icons/SVG/twitter-logo-silhouette.svg">
+      </a>
+
+      <a href="https://facebook.com/nixplatform" target="_blank">
+        <img class="svg-img" src="./assets/icons/SVG/social-facebook.svg">
+      </a>
+
+      <a href="https://discord.gg/agAsvQY" target="_blank">
+        <img class="svg-img" src="./assets/icons/SVG/social-discord.svg">
+      </a>
+
+      <a href="https://t.me/nixplatform" target="_blank">
+        <img class="svg-img" src="./assets/icons/SVG/telegram-logo.svg">
+      </a>
+
+      <a href="https://bitcointalk.org/index.php?topic=3454993.0" target="_blank">
+        <img class="svg-img" src="./assets/icons/SVG/bitcoin-logo.svg">
+      </a>
+
+        <!-- <img class="svg-img" src="./assets/icons/SVG/reddit.svg"> -->
+    </div>
+      
+  </mat-drawer-content>
+</mat-drawer-container>

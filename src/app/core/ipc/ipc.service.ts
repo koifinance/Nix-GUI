@@ -1,11 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Log } from 'ng2-logger'
+import { Log } from 'ng2-logger';
 
-import { IpcListener, ObservableFactoryFunction, Receiver, ListenerEvent } from './ipc.types';
+import { ListenerEvent, ObservableFactoryFunction, Receiver } from './ipc.types';
 
 // RxIPC related stuffs
-
 
 @Injectable()
 export class IpcService {

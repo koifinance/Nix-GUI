@@ -1,0 +1,30 @@
+@import '../shared';
+
+.header {
+  padding: 0 35px;
+}
+
+.sidebar {
+  width: 400px;
+  padding: 24px;
+  font-weight: 300;
+}
+
+.actions {
+  img {
+    margin-right: 15px;
+  }
+
+  .filter-btn, .download-btn {
+    font-size: 10px;
+    color: $color-dark-grey;
+    font-weight: 300;
+    background: $color-dark-white;
+    border-radius: 5px;
+    margin-right: 15px;
+
+    img {
+      //margin-right: 5px;
+    }
+  }
+}

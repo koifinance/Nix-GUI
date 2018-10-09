@@ -1,0 +1,71 @@
+<mat-drawer-container fullscreen>
+
+  <mat-drawer #sidenav mode="side" opened="true" disableClose="true" [ngClass]="routerLink === 'ghost vault' ? 'sidebar-ghost-vault' : 'sidebar'">
+
+    <div class="logo-area">
+      <div class="logo">
+        <img src="./assets/nix-logo.png" alt="NIX">
+      </div>
+    </div>
+
+    <mat-list class="sidebar-item-group">
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./overview" (click)="routerLink='overview'">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Overview</span>
+        </mat-list-item>
+      </a>
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./vault" (click)="routerLink='ghost vault'">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Ghost Vault</span>
+        </mat-list-item>
+      </a>
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./transactions" (click)="routerLink='transactions'">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Transactions</span>
+        </mat-list-item>
+      </a>
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./multi/nodes" (click)="routerLink='ghost node'">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Ghost Node</span>
+        </mat-list-item>
+      </a>
+      
+    </mat-list>
+
+    <mat-list class="sidebar-bottom-items">
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./help" (click)="routerLink='help'">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Help</span>
+        </mat-list-item>
+      </a>     
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./settings" (click)="routerLink='settings'">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Settings</span>
+        </mat-list-item>
+      </a> 
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./updates" (click)="routerLink='updates'">
+        <mat-list-item class="sidebar-item">
+          <span class="text">Updates</span>
+        </mat-list-item>
+      </a>
+      <a class="sidebar-item-link" routerLinkActive="active" routerLink="./about-NIX" (click)="routerLink='about nix'">
+        <mat-list-item class="sidebar-item">
+          <span class="text">About NIX</span>
+        </mat-list-item>
+      </a>      
+    </mat-list>
+
+    <mat-list style="width: 82%; margin: auto;">
+      <div class="progress-bar-memo">
+        <div>Version: {{walletVersion}}</div>
+        <div *ngIf="syncProgress !== 100">Syncing ....</div>
+      </div>
+      <progress-bar class="progress-bar" [progress]="syncProgress"></progress-bar>
+    </mat-list>
+  </mat-drawer>
+
+  <mat-drawer-content class="page">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container>

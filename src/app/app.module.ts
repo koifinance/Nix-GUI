@@ -1,36 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { Ng2CsvModule } from 'ng2csv';
 
+import { WalletModule } from './wallet/wallet.module';
 import { CoreModule } from './core/core.module';
-import { CoreUiModule } from './core-ui/core-ui.module';
-import { ModalsModule } from './modals/modals.module';
-import { DirectiveModule } from './core-ui/directive/directive.module';
-
-import { MultiwalletModule, TestComponent } from './multiwallet/multiwallet.module';
-// import { WalletViewsModule } from './wallet/wallet.module';
-
-import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http'; 
 import { routing } from './app.routing';
+import {HttpModule} from '@angular/http';
+import { AppComponent } from './app.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    routing,
-    /* own */
-    DirectiveModule,
     CoreModule.forRoot(),
-    CoreUiModule.forRoot(),
-    ModalsModule.forRoot(),
-    // WalletViewsModule, // shouldn't be needed?
-    MultiwalletModule,
+    routing,
+    WalletModule,
+    HttpClientModule,
+    HttpModule,
+    ClipboardModule,
+    Ng2CsvModule
   ],
-  bootstrap: [ AppComponent ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule {

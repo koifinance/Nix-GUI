@@ -4,12 +4,14 @@ import { Log } from 'ng2-logger';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
-
 import { IpcService } from '../ipc/ipc.service';
+import { environment } from 'environments/environment';
 
-const MAINNET_PORT = 51735;
-const TESTNET_PORT = 51935;
-const HOSTNAME = 'localhost';
+const MAINNET_PORT = environment.nix_MainNet_Port;
+const TESTNET_PORT = environment.nixPort;
+const HOSTNAME = environment.nixHost;
+const RPCUSER = environment.rpcUserName;
+const RPCPASSWORD = environment.rpcPassword;
 
 declare global {
   interface Window {
@@ -18,7 +20,7 @@ declare global {
 }
 
 /**
- * The RPC service that maintains a single connection to the particld daemon.
+ * The RPC service that maintains a single connection to the nixd daemon.
  *
  * It has two important functions: call and register.
  */
@@ -37,10 +39,10 @@ export class RpcService implements OnDestroy {
   /**
    * Port number of of daemon (default = 51935)
    */
-  private port: number = TESTNET_PORT; // TODO: Mainnet / testnet flag...
+  private port: number = MAINNET_PORT; // TODO: Mainnet / testnet flag...
 
-  private username: string = 'test';
-  private password: string = 'test';
+  private username: string = RPCUSER;
+  private password: string = RPCPASSWORD;
 
   public isElectron: boolean = false;
 

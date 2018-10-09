@@ -1,0 +1,207 @@
+<!-- <button class="sendbtn" mat-raised-button fxFlex="48" (click)="openSuccess('vault')">Send ghosted NIX</button> -->
+<div *ngIf="data.walletType === 'wallet'" class="wallet">
+
+  <div *ngIf="data.actionType === 'send'" class="wallet">
+
+    <div class="modalcontent">
+      <h5 fxFlex="50">Send NIX from wallet</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+    </div>
+
+    <div class="successicon" fxLayout.gt-md="row">
+      <img src="assets/icons/SVG/success.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+    </div>
+
+    <div class="amountsend" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
+    </div>
+
+    <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">{{data.address}}</p>
+    </div>
+
+    <div class="modaldetails">
+      <div>
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Sending</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{sendingAmount}}
+            <span>&nbsp;NIX</span>
+          </span>
+        </div>
+
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Fee</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{fee | number: '.8'}}
+            <span>&nbsp; NIX</span>
+          </span>
+        </div>
+
+        <div class="transtotal" fxLayout.gt-md="row">
+          <span fxFlex="70">Total</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{totalAmount | number: '.8'}}
+            <span>&nbsp;NIX</span>
+          </span>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
+      <button class="walletbtn" color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('wallet')">Done</button>
+    </div>
+
+  </div>
+
+  <div *ngIf="data.actionType === 'receive'" class="wallet">
+    <div class="modalcontent">
+      <h5>Receive NIX to Wallet</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+
+      <div class="qrimage text-center">
+        <qr-code [value]="setAccount.address" [size]="256"></qr-code>
+      </div>
+
+      <div fxLayout.gt-md="row">
+        <input class="modalinput disabledinput" matInput fxFlex="100" disabled="disabled" placeholder="New address" [(ngModel)]="setAccount.address">
+      </div>
+
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Please enter a name for this address" [(ngModel)]="setAccount.account">
+      </div>
+
+      <p *ngIf="showPass">Please type the passphrase to get new address</p>
+      <div fxLayout.gt-md="row" *ngIf="showPass">
+        <input class="modalinput" matInput fxFlex="100" type="password" placeholder="Please passphrase to get new address" [(ngModel)]="walletPass.password">
+      </div>
+
+      <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+        <button class="cancelbtn" fxFlex="45" (click)="BackToAddress('wallet')">Back to addresses</button>
+        <button class="sendbtn" fxFlex="45" (click)="receiveDone()">{{showPass ? 'Get new address' : 'Done'}}</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div *ngIf="data.walletType === 'vault'" class="vault">
+
+  <div *ngIf="data.actionType === 'send'" class="vault">
+    <div class="modalcontent">
+      <h5 fxFlex="50">Send NIX from Ghost Vault</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+    </div>
+
+    <div class="successicon" fxLayout.gt-md="row">
+      <img src="assets/icons/SVG/success.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+    </div>
+
+    <div class="amountsend" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully sent to:</p>
+    </div>
+
+    <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">{{txidVault}}</p>
+    </div>
+
+    <div class="modaldetails">
+      <div>
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Sending</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{sendingAmount}}
+            <span>&nbsp;NIX</span>
+          </span>
+        </div>
+
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Fee</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{fee | number: '.4'}}
+            <span>&nbsp; NIX</span>
+          </span>
+
+        </div>
+
+        <div class="transtotal" fxLayout.gt-md="row">
+          <span fxFlex="70">Total</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{totalAmount | number: '.4'}}
+            <span>&nbsp;NIX</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
+      <button class="walletbtn" color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('vault')">Done</button>
+    </div>
+  </div>
+
+  <div *ngIf="data.actionType === 'withdraw'" class="vault">
+    <div class="modalcontent">
+      <h5 fxFlex="50">Withdraw NIX to your wallet</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+    </div>
+
+    <div class="successicon" fxLayout.gt-md="row">
+      <img src="assets/icons/SVG/success.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+    </div>
+
+    <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully withdrawn to your wallet</p>
+    </div>
+
+    <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
+      <button class="walletbtn" color="primary" fxFlex="33" fxLayoutAlign="center" (click)="sendDone('vault')">Done</button>
+    </div>
+  </div>
+
+  <div *ngIf="data.actionType === 'receive'" class="vault">
+    <div class="modalcontent">
+      <h5 fxFlex="50">Deposit NIX to Ghost Vault</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+    </div>
+
+    <div class="successicon" fxLayout.gt-md="row">
+      <img src="assets/icons/SVG/success.svg" alt="Checkmark" fxFlex="100" fxLayoutAlign="center">
+    </div>
+
+    <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">Payment successfully ghosted.</p>
+    </div>
+
+    <!-- <div class="sendto" fxLayout.gt-md="row">
+      <p fxFlex="100" fxLayoutAlign="center">NXeztH1P1ZndvzJMgdw1uIDtc6p4uNXXkl</p>
+    </div> -->
+
+    <div class="modaldetails">
+      <div>
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Sending</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{sendingAmount}}
+            <span>&nbsp; NIX</span>
+          </span>
+        </div>
+
+        <div class="transdetail" fxLayout.gt-md="row">
+          <span fxFlex="70">Fee</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{fee | number: '.4'}}
+            <span>&nbsp;NIX</span>
+          </span>
+
+        </div>
+
+        <div class="transtotal" fxLayout.gt-md="row">
+          <span fxFlex="70">Total</span>
+          <span fxFlex="30" fxLayoutAlign="end">{{totalAmount | number: '.4'}}
+            <span>&nbsp;NIX</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="donebtn" fxLayout.gt-md="row" fxLayoutAlign="center">
+      <button class="walletbtn" color="primary" fxFlex="33" fxLayoutAlign="center" (click)="depositDone()">Done</button>
+    </div>
+  </div>
+
+</div>

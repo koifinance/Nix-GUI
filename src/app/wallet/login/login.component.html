@@ -1,0 +1,41 @@
+<mat-drawer-container fullscreen>
+  <mat-drawer position="end" mode="side" opened class="sidebar" fxLayout="column">
+
+    <div class="content" [fxFlex]="30">
+
+        <div class="heading" fxLayoutAlign="center">Open wallet</div>
+        <div class="empty-space1"></div>
+        <mat-form-field class="password">
+          <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword">
+        </mat-form-field>
+        <mat-error *ngIf="showSidebarError">Field is required</mat-error>
+        <div class="password-toggle">
+          <button mat-button (click)="togglePassword()">
+            <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+            {{ passwordLabelText() }} password
+            
+          </button>
+        </div>
+    </div>
+
+    <div class="empty-space1"></div>
+    <div class="actions">
+      <div fxLayout="row">
+        <button fxFlex="100" class="create-new-btn" mat-raised-button (click)="goTo('main')">
+          Login
+        </button>
+      </div>     
+
+      <div fxLayout="row">
+        <button fxFlex="100" class="restore-btn" mat-raised-button (click)="goTo('restore')">
+          Restore from Backup
+        </button>
+      </div>
+    </div>
+
+  </mat-drawer>
+
+  <mat-drawer-content class="content" fxLayoutAlign="center center">
+    <img src="./assets/nix-logo.png" alt="NIX">
+  </mat-drawer-content>
+</mat-drawer-container>

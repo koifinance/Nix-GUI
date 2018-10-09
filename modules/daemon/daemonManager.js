@@ -13,13 +13,7 @@ const rpc = require('../rpc/rpc');
 
 let options;
 
-// master
-// const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/master/modules/clientBinaries/clientBinaries.json';
-
-// dev
-// const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/develop/modules/clientBinaries/clientBinaries.json';
-
-const BINARY_URL = 'https://raw.githubusercontent.com/particl/particl-desktop/develop/modules/clientBinaries/clientBinaries.json';
+const BINARY_URL = 'https://raw.githubusercontent.com/NixPlatform/Nix-GUI/wallet-ui-pavlo/modules/clientBinaries/clientBinaries.json?token=ATRw35nFrqCAayDwdfZrNFGoV4sLJISfks5bqo1NwA%3D%3D';
 
 //const ALLOWED_DOWNLOAD_URLS_REGEX = new RegExp('*', 'i');
 
@@ -30,7 +24,7 @@ class DaemonManager extends EventEmitter {
   }
 
   getPath() {
-    return this._availableClients['particld'].binPath;
+    return this._availableClients['nixd'].binPath;
   }
 
   init(_options) {
@@ -57,7 +51,7 @@ class DaemonManager extends EventEmitter {
   }
 
   _checkForNewConfig() {
-    const nodeType = 'particld';
+    const nodeType = 'nixd';
     let binariesDownloaded = false;
     let nodeInfo;
 
@@ -214,7 +208,7 @@ class DaemonManager extends EventEmitter {
       this._emit('scanning', 'Scanning for binaries');
 
       return mgr.init({
-        folders: [ path.join(app.getPath('userData'), 'particld', 'unpacked') ]
+        folders: [ path.join(app.getPath('userData'), 'nixd', 'unpacked') ]
       })
       .then(() => {
         const clients = mgr.clients;
@@ -312,7 +306,7 @@ class DaemonManager extends EventEmitter {
 
     log.debug(`Platform: ${platform}`);
 
-    let binPath = path.join(app.getPath('userData'), 'particld', 'unpacked', 'particld');
+    let binPath = path.join(app.getPath('userData'), 'nixd', 'unpacked', 'nixd');
 
     if (platform === 'win') {
       binPath += '.exe';
@@ -320,7 +314,7 @@ class DaemonManager extends EventEmitter {
 
     log.info(`Client binary path: ${binPath}`);
 
-    this._availableClients.particld = {
+    this._availableClients.nixd = {
       binPath
     };
   }

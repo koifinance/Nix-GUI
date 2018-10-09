@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
@@ -33,6 +33,6 @@ export class RpcModule {
 export { RpcService } from './rpc.service';
 export { RpcStateService } from './rpc-state/rpc-state.service';
 
-export { BlockStatusService } from './blockstatus/blockstatus.service'
+export { BlockStatusService } from './blockstatus/blockstatus.service';
 export { PeerService } from './peer/peer.service';
 export { NewTxNotifierService } from './new-tx-notifier/new-tx-notifier.service';

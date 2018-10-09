@@ -1,0 +1,53 @@
+.updates {
+    padding: 0 35px;    
+    color: black;
+
+    .updates-content {
+        margin-top: 30px;
+        font-family: "Lato", sans-serif !important;
+    }
+    .updates-img {
+        width: 70px;
+        height: 70px;
+    }
+    .updates-description {
+        font-size: 16px;
+        font-family: "Lato", sans-serif !important;
+    }
+    .updates-version {
+        font-size: 14px;
+    }
+    .version-link {
+        color: #30c2ff;
+        margin-top: -10px;
+        cursor: pointer;
+    }
+}
+
+.red-color {
+    color: red;
+}
+.update-btn {
+    padding: 45px 0;
+  }
+
+.update-wallet-btn {
+  color: white;
+  border-radius: 5px;
+  font-family: Helvitica, sans-serif;
+  font-weight: 300;
+  width: 200px !important;
+  height: 40px !important;
+  font-size: 16px;
+  background-image: linear-gradient(21deg, #4b3680 0%, #30c2fff7 100%);
+
+  }
+  
+    .svg-img{
+        height: 30px;
+        cursor: pointer;
+    }
+    .png-img{
+        height: 30px;
+        cursor: pointer;
+    }
