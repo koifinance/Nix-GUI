@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { faCircle as faCircleSolid,faCopy,faTimes,faFileAlt} from '@fortawesome/free-solid-svg-icons';
 import { faCircle,faEdit } from '@fortawesome/free-regular-svg-icons';
 import { ModalsService } from '../../../modals/modals.service';
@@ -24,6 +24,8 @@ const ELEMENT_DATA: GhostElement[] = [
   styleUrls: ['./ghost-node.component.scss']
 })
 export class GhostNodeComponent implements OnInit {
+  @Input() ghostNodes: Array<any>;
+
   faCircle: any = faCircle;
   faFileAlt: any = faFileAlt;
   faTimes: any = faTimes;
@@ -35,6 +37,7 @@ export class GhostNodeComponent implements OnInit {
   constructor(private modalsService: ModalsService) { }
 
   ngOnInit() {
+    this.dataSource = this.ghostNodes || this.dataSource;
   }
 
   openViewNode() {
