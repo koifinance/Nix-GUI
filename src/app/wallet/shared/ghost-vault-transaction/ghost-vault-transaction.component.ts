@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { IRecentTransactionInfo, RecentTransactionInfo } from '../../business-model/entities';
 import { RpcStateService } from '../../../core/core.module';
@@ -12,13 +12,17 @@ import { Log } from 'ng2-logger';
   styleUrls: ['./ghost-vault-transaction.component.scss']
 })
 export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
+  @Input() display: any;
+  @Input() columns: string[];
+  @Input() numTransactions: number;
+
   dataSource: MatTableDataSource<IRecentTransactionInfo>;
   trasactionInfo: RecentTransactionInfo = new IRecentTransactionInfo();
   private destroyed: boolean;
   private defaults: any = {
     header: true,
     numTransactions: 10,
-    columns: ['date', 'category', 'status', 'amount'],
+    columns: ['date', 'category', 'confirmations', 'amount'],
     longDate: false,
     styleClass: '',
   };
@@ -29,10 +33,11 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
   constructor(private _rpcState: RpcStateService,) { }
 
   ngOnInit() {
+    this.log.d('ghost vault transaction');
     this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000);
-    this.listTransaction();
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
-    this.dataSource.data=null;
+    this.dataSource.data = null;
+    this.listTransaction();
   }
 
   public getConfirmationsStyle(confirmations: number): string {
@@ -80,9 +85,12 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
   // get recent transactions
   private listTransaction() {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
+      .takeWhile(() => !this.destroyed)
       .subscribe(recentTransInfo => {
+        recentTransInfo = recentTransInfo.filter(item => {
+          if (item.is_ghosted) return true;
+        });
         this.trasactionInfo = recentTransInfo;
-        // this.testDataSource = RecentTransInfo.transactions;
         this.dataSource.data = recentTransInfo;
       },
         error => this.log.error(message.recentTransactionMessage, error));

@@ -3,7 +3,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
     <mat-cell class="category" *matCellDef="let element">
       <div fxLayout="row" fxLayoutGap="20px">
-        {{element.date}}
+        {{element.time * 1000 | date}}
       </div>
     </mat-cell>
   </ng-container>
@@ -13,17 +13,17 @@
       {{element.category}}
     </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="status">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-    <mat-cell class="address" *matCellDef="let element">
-      {{element.status}}
+  <ng-container matColumnDef="confirmations">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Confirmation</mat-header-cell>
+    <mat-cell class="confirmations" *matCellDef="let element">
+      {{element.confirmations}}
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="amount">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <div class="confirmations" fxLayout="row" fxLayoutGap="10px">
-        {{ element.amount}}
+      <div class="address" fxLayout="row" fxLayoutGap="10px">
+        {{ element.amount}} NIX
       </div>
     </mat-cell>
   </ng-container>

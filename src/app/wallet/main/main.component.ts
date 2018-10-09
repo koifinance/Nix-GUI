@@ -33,7 +33,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this._rpcState.observe(ApiEndpoints.GetNetworkInfo).takeWhile(() => !this.destroyed)
       .subscribe(networkInfo => {
         let w_version = networkInfo.version.toString();
-        this.walletVersion = w_version.slice(0, 1) + '.' + w_version.slice(1, 3) + '.' + w_version.slice(3, 5);
+        this.walletVersion = w_version.slice(0, 1) + '.' + parseInt(w_version.slice(1, 3), 10) + '.' + parseInt(w_version.slice(3, 5), 10);
       }, error => {
         this.log.d(error, 'err');
       }

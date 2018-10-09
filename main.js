@@ -94,7 +94,7 @@ function initMainWindow() {
     // minWidth/minHeight: both need to be specified or none will work
     width:     1270,
     minWidth:  1270,
-    height:    675,
+    height:    860,
     minHeight: 675,
     icon:      path.join(__dirname, 'resources/icon.png'),
 
