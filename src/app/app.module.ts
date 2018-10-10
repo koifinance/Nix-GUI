@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SimpleNotificationsModule} from 'angular2-notifications';
 import { NgModule } from '@angular/core';
 import { Ng2CsvModule } from 'ng2csv';
 
@@ -24,7 +25,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     HttpClientModule,
     HttpModule,
     ClipboardModule,
-    Ng2CsvModule
+    Ng2CsvModule,
+    SimpleNotificationsModule.forRoot()
   ],
   bootstrap: [AppComponent],
 })
