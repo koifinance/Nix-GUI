@@ -43,6 +43,23 @@
     margin: 0 auto;
   }
 
+  .container {
+    position: relative;
+    text-align: center;
+  }
+  
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .block-number {
+      font-size: 30px;
+      line-height: 2.5;
+    }
+  }
+
   // .syncing-img {
   //   position: absolute;
   //   top: 50%;
