@@ -114,14 +114,9 @@
       </mat-card>
     </div>
     <div class="bottom-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="5%" fxFlexOrder.lt-md="4">
-      <div>
+      <mat-slide-toggle class="toggle" (change)="torToggled($event)" >Enable TOR</mat-slide-toggle>
+      <div class="wallet-status">
         Wallet Status : {{walletInfo.encryptionstatus}}
-      </div>
-      <div *ngIf="status">
-        TOR netwoking : {{status}}
-      </div>
-      <div *ngIf="!status">
-        TOR netwoking : no data
       </div>
     </div>
   </mat-drawer-content>
