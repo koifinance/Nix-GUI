@@ -48,6 +48,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   walletInfo: IWalletInfo = new WalletInfo();
   private log: any = Log.create(`overview.component `);
   public status;
+  public torEnabled: boolean;
   public currentCurrency: string;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   getNodeInfo: INodeinfo = new NodeInfo();
@@ -94,8 +95,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this._rpcState.registerStateCall(ApiEndpoints.GhostnodeCount, 1000, ['count']);
 
     this.init();
-    this.getTorstatus();
     this.getnodestatus();
+  }
+
+  ngAfterViewInit() {
+    this.getTorstatus();
   }
 
   // events
@@ -170,11 +174,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   // get tor status
   private getTorstatus() {
-    this._rpcState.observe(ApiEndpoints.Torstatus)
+    this.walletServices.getTorstatus()
       .subscribe(res => {
-        this.status = res;
-      },
-        error => this.log.error(message.recentTransactionMessage, error));
+        this.torEnabled = (res.indexOf("Enabled") > -1);
+      }, error => { 
+        this.flashNotification.open(error.message, 'err')
+        this.log.error(error.message, error); 
+    })
   }
   // Enable/disable tor status
   private torToggled(event: MatSlideToggleChange) {
