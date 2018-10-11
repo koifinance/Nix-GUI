@@ -33,12 +33,12 @@
         <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="30px" fxLayoutAlign="space-around center">
 
           <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
-            <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" >
-            <div class="icon-text" fxLayoutAlign="center">SET-UP NEW NODE</div>
+            <!-- <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" >
+            <div class="icon-text" fxLayoutAlign="center">SET-UP NEW NODE</div> -->
           </div>
           <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
-            <img class="cursor-pointer" src="./assets/icons/SVG/cancel.svg" alt="Deposit" fxFlex="100" >
-            <div class="icon-text" fxLayoutAlign="center">CANCEL A NODE</div>
+            <!-- <img class="cursor-pointer" src="./assets/icons/SVG/cancel.svg" alt="Deposit" fxFlex="100" >
+            <div class="icon-text" fxLayoutAlign="center">CANCEL A NODE</div> -->
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
 
     <div class="card zdepth1 card2">
       <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
-        <div fxFlexOrder.lt-md="1" fxFlex="100">
+        <!-- <div fxFlexOrder.lt-md="1" fxFlex="100">
           <div fxLayout="row" class="label">Available node rewards</div>
           <div fxLayout="row" class="nix-row">
             <p class="nix1">+ {{walletInfo.balance}}
@@ -57,17 +57,28 @@
           <div fxLayout="row" class="btc">
             <a href="reward-history-table">View reward history</a>
           </div>
+        </div> -->
+
+        <div fxFlexOrder.lt-md="1" fxFlex="100">
+          <div fxLayout="row" class="label">Total ghostnodes</div>
+          <div fxLayout="row" class="nix-row">
+            <p class="nix1"> {{ghostNodeCount}} ACTIVE NODES</p>
+          </div>
+          <div class="divider1" fxFlex="80"></div>
+          <!-- <div fxLayout="row" class="btc">
+            <a href="reward-history-table">View reward history</a>
+          </div> -->
         </div>
 
 
-        <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="150px" fxLayoutAlign="space-around center">
+        <!-- <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="150px" fxLayoutAlign="space-around center">
 
           <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
             <img class="cursor-pointer1" src="./assets/icons/SVG/arrow-up-nix.svg" alt="Deposit" fxFlex="100" (click)="openWithDraw()">
             <div class="icon-text" fxLayoutAlign="center">WITHDRAW REWARDS</div>
           </div>
 
-        </div>
+        </div> -->
       </div>
     </div>
     <h5 class="tableHead">My Ghost Nodes</h5>
