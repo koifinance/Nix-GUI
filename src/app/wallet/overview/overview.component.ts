@@ -17,6 +17,7 @@ import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
 import { CalculationsService } from '../calculations.service';
 import { SnackbarService } from '../../core/core.module';
+
 @Component({
   selector: 'wallet-overview',
   templateUrl: './overview.component.html',

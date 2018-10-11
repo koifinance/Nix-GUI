@@ -33,8 +33,8 @@
     <p class="desc">
       Moving or sending NIX to this address will ‘ghost’ it - making it completely private to
       everyone except you.
-      NIX sent from your ghost vault is untraceable (provided that you are sending to another ghost address). Learn
-      more
+      NIX sent from your ghost vault is untraceable (provided that you are sending to another ghost address). 
+      <a href="https://nixplatform.io/nix-ghost-vault/" target="_blank">Learn more</a>
     </p>
 
     <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start"
@@ -50,9 +50,8 @@
         </div>
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
-            <!-- {{bitcoinprice.BTC.price}} BTC ({{bitcoinprice.USD.price | currency:"USD":true}}) -->
-            {{BTCbalance | number: '.4'}} BTC ({{USDbalance | currency:"USD":true}})
-          <!-- <p>6.63444<span> BTC</span><span> ($63,082)</span></p>-->
+          <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCbalance | number: '.4'}} BTC ({{USDbalance | currency : 'USD' : 'symbol'}})</span>
+          <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCbalance | number: '.4'}} BTC ({{EURbalance | currency : 'EUR' : 'symbol'}})</span>
           </div> 
       </div>
 
@@ -64,8 +63,8 @@
         </div>
         <div class="divider" fxFlex="80"></div>
         <div fxLayout="row" class="btc">
-            {{BTCpending | number: '.4'}} BTC ({{USDpending | currency:"USD":true}})
-          <!-- <p>0<span> BTC</span><span> ($0)</span></p> -->
+          <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCpending | number: '.4'}} BTC ({{USDpending | currency : 'USD' : 'symbol'}})</span>
+          <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCpending | number: '.4'}} BTC ({{EURpending | currency : 'EUR' : 'symbol'}})</span>
         </div>
       </div>
 
