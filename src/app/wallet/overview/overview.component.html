@@ -67,7 +67,7 @@
               <fa-icon [icon]="faBtc"></fa-icon>
               {{balanceInBTC }}
             </span>
-            <span class="small" fxFlex="50" fxFlexOrder="2" fxLayoutAlign="end" style="color:green">
+            <span class="small" [ngClass]="{'plus-percent': NIXpercentage >= 0, 'minus-percent': NIXpercentage < 0}" fxFlex="50" fxFlexOrder="2" fxLayoutAlign="end" >
               <!-- +12.53% -->
               {{NIXpercentage}}%
             </span>
@@ -114,7 +114,7 @@
       </mat-card>
     </div>
     <div class="bottom-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="5%" fxFlexOrder.lt-md="4">
-      <mat-slide-toggle class="toggle" (change)="torToggled($event)" [checked]="torEnabled">Enable TOR</mat-slide-toggle>
+      <mat-slide-toggle class="toggle" (change)="torToggled($event)" [checked]="torEnabled">Enable Tor</mat-slide-toggle>
       <div class="wallet-status">
         Wallet Status : {{walletInfo.encryptionstatus}}
       </div>
