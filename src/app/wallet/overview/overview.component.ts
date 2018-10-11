@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
 import { faBtc } from '@fortawesome/free-brands-svg-icons';
+import { MatSlideToggleChange } from '@angular/material';
 
 import { ModalsService } from '../modals/modals.service';
 import { FAQ } from '../shared/faq.model';
@@ -15,6 +16,7 @@ import { RpcStateService } from '../../core/core.module';
 import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
 import { CalculationsService } from '../calculations.service';
+import { SnackbarService } from '../../core/core.module';
 
 @Component({
   selector: 'wallet-overview',
@@ -47,6 +49,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   walletInfo: IWalletInfo = new WalletInfo();
   private log: any = Log.create(`overview.component `);
   public status;
+  public torEnabled: boolean;
   public currentCurrency: string;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   getNodeInfo: INodeinfo = new NodeInfo();
@@ -82,11 +85,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private modalsService: ModalsService,
-    private router: Router,
-    private calculationsService: CalculationsService,
-    private walletServices: WalletService,
-    private _rpcState: RpcStateService
+    private modalsService: ModalsService, private router: Router, private calculationsService: CalculationsService,
+    private walletServices: WalletService, private flashNotification: SnackbarService, private _rpcState: RpcStateService
   ) { }
 
   ngOnInit() {
@@ -96,8 +96,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this._rpcState.registerStateCall(ApiEndpoints.GhostnodeCount, 1000, ['count']);
 
     this.init();
-    this.getTorstatus();
     this.getnodestatus();
+  }
+
+  ngAfterViewInit() {
+    this.getTorstatus();
   }
 
   // events
@@ -172,11 +175,24 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   // get tor status
   private getTorstatus() {
-    this._rpcState.observe(ApiEndpoints.Torstatus)
+    this.walletServices.getTorstatus()
       .subscribe(res => {
-        this.status = res;
-      },
-        error => this.log.error(message.recentTransactionMessage, error));
+        this.torEnabled = (res.indexOf("Enabled") > -1);
+      }, error => { 
+        this.flashNotification.open(error.message, 'err')
+        this.log.error(error.message, error); 
+    })
+  }
+  // Enable/disable tor status
+  private torToggled(event: MatSlideToggleChange) {
+    this.walletServices.enableTor(event.checked ? 'true' : 'false')
+      .subscribe(res => {
+        this.flashNotification.open(res, 'err')
+      }, error => { 
+        this.flashNotification.open(error.message, 'err')
+        this.log.error(error.message, error); 
+    })
+    
   }
   // get node status
   private getnodestatus() {
