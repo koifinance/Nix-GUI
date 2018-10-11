@@ -85,15 +85,19 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private modalsService: ModalsService, private router: Router, private calculationsService: CalculationsService,
-    private walletServices: WalletService, private flashNotification: SnackbarService, private _rpcState: RpcStateService
+    private modalsService: ModalsService,
+    private router: Router,
+    private calculationsService: CalculationsService,
+    private walletServices: WalletService,
+    private flashNotification: SnackbarService,
+    private _rpcState: RpcStateService
   ) { }
 
   ngOnInit() {
     this.currentCurrency = this.walletServices.getCurrency();
     this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
     this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
-    this._rpcState.registerStateCall(ApiEndpoints.GhostnodeCount, 1000, ['count']);
+    this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 1000, ['count']);
 
     this.init();
     this.getnodestatus();
@@ -176,6 +180,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   // get tor status
   private getTorstatus() {
     this.walletServices.getTorstatus()
+      .takeWhile(() => !this.destroyed)
       .subscribe(res => {
         this.torEnabled = (res.indexOf("Enabled") > -1);
       }, error => { 
@@ -186,6 +191,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   // Enable/disable tor status
   private torToggled(event: MatSlideToggleChange) {
     this.walletServices.enableTor(event.checked ? 'true' : 'false')
+      .takeWhile(() => !this.destroyed)
       .subscribe(res => {
         this.flashNotification.open(res, 'err')
       }, error => { 
@@ -196,7 +202,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
   // get node status
   private getnodestatus() {
-    this._rpcState.observe(ApiEndpoints.GhostnodeCount)
+    this._rpcState.observe(ApiEndpoints.Ghostnode)
+      .takeWhile(() => !this.destroyed)
       .subscribe(NodeInformations => {
         this.log.d('get node status')
         this.isActiveNodeCount = NodeInformations;
