@@ -3,12 +3,20 @@
     <h5 fxFlex="50">Syncing wallet with network</h5>
     <div _ngcontent-c7="" class="divider"></div>    
 
-    <img src="assets/icons/SVG/syncing.svg" class="syncing-img" fxLayoutAlign="center">
+    <div class="container">
+      <img src="assets/icons/SVG/syncing.svg" class="syncing-img" fxLayoutAlign="center">
+      <div class="centered"><span class="block-number">{{ blockchaininfo.headers - blockchaininfo.blocks }} </span><br/> BLOCKS STILL <br/> TO SYNC</div>
+    </div>
+  
+    <!-- <div class="syncing-img">
+      <p>{{blockchaininfo.headers - blockchaininfo.blocks }} </p>
+      <p>BLOCKS STILL TO SYNC</p>
+    </div> -->
 
-    <!-- <div class="estimated-time" fxLayout="column" fxLayoutAlign="center">
+    <div class="estimated-time" fxLayout="column" fxLayoutAlign="center">
       <div>Estimated time</div>
       <div>{{blockchaininfo.headers - blockchaininfo.blocks  | number: '.4'}}</div>
       <div>{{blockchaininfo.verificationprogress}}</div>
-    </div> -->
+    </div>
   </div>
 </div>
