@@ -44,7 +44,7 @@ exports.parse = function() {
     ? options.rpcport // custom rpc port
     : options.testnet
       ? 16214  // default testnet port
-      : 6214; // default mainnet port
+      : 6215; // default mainnet port
 
   _options = options;
   return options;
