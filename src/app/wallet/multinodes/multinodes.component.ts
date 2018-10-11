@@ -33,6 +33,7 @@ export class MultinodesComponent implements OnInit {
   balanceInBTC: any;
   balanceInEUR: any;
   currentCurrency: string;
+  ghostNodeCount: number;
 
   constructor(
     private calculationService: CalculationsService,
@@ -41,10 +42,13 @@ export class MultinodesComponent implements OnInit {
     private _rpcState: RpcStateService) { }
 
   ngOnInit() {
+    this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 1000, ['count']);
+
     this.currentCurrency = this.walletServices.getCurrency();
     this.getBalance();
     this.getwalletinformation();
     this.getGhostNodeList();
+    this.getGhostNodeCount();
   }
 
  //get wallet informations
@@ -102,6 +106,16 @@ export class MultinodesComponent implements OnInit {
       .subscribe(res => {
         this.ghostNodes = res;
       }, error => this.log.er(message.GhostnodeListConf, error))
+  }
+
+  // get ghost node count
+  private getGhostNodeCount() {
+    this._rpcState.observe(ApiEndpoints.Ghostnode)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(res => {
+        this.ghostNodeCount = res;
+      },
+        error => this.log.error(message.recentTransactionMessage, error));
   }
 
   openWithDraw() {
