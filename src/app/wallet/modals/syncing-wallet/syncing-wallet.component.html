@@ -3,8 +3,8 @@
     <h5 fxFlex="50">Syncing wallet with network</h5>
     <div _ngcontent-c7="" class="divider"></div>    
 
-    <div class="container" *ngIf="blockchaininfo.headers - blockchaininfo.blocks != 0">
-      <img src="assets/icons/SVG/syncing-anim.svg" class="syncing-img" fxLayoutAlign="center">
+    <div class="container">
+      <img src="assets/icons/SVG/syncing.svg" class="syncing-img" fxLayoutAlign="center">
       <div class="centered"><span class="block-number">{{ blockchaininfo.headers - blockchaininfo.blocks }} </span><br/> BLOCKS STILL <br/> TO SYNC</div>
     </div>
 

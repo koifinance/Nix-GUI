@@ -83,6 +83,11 @@ export class WalletService {
       status => status);
   }
 
+  // Enable/disable Tor status NIX
+  public enableTor(enable: string): Observable<any> {
+    return this._rpc.call(ApiEndpoints.EnableTor, [enable]);
+  }
+
   // get ghost node List Conf for NIX
   public ghostnodeListConf(): Observable<any> {
     return this._rpc.call(ApiEndpoints.GhostnodeListConf).map(
