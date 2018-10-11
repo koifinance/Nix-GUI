@@ -73,7 +73,7 @@ export enum ApiEndpoints {
   Getnewaddress = 'getnewaddress',
   Setaccount = 'setaccount',
   GhostnodeListConf = 'ghostnode list-conf',
-  GhostnodeCount = 'ghostnode',
+  Ghostnode = 'ghostnode',
   Torstatus  = 'torstatus',
   EnableTor  = 'enabletor',
   SaveCurrency = 'https://api.coinmarketcap.com/v2/ticker/2991',
