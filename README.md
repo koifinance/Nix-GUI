@@ -84,3 +84,7 @@ You can directly interact with the daemon ran by the Electron version.
 * `yarn run package:win` – Windows
 * `yarn run package:mac` – OSX
 * `yarn run package:linux` – Linux
+
+Copyright (c) 2017-2018 The NIX Core Developers 
+Copyright (c) 2017-2018 The Particl Developers
+
