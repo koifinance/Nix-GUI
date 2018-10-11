@@ -15,6 +15,7 @@ import { RpcStateService } from '../../core/core.module';
 import { Amount } from '../shared/util/utils';
 import { Log } from 'ng2-logger';
 import { CalculationsService } from '../calculations.service';
+
 @Component({
   selector: 'wallet-overview',
   templateUrl: './overview.component.html',
@@ -81,8 +82,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private modalsService: ModalsService, private router: Router, private calculationsService: CalculationsService,
-    private walletServices: WalletService, private _rpcState: RpcStateService
+    private modalsService: ModalsService,
+    private router: Router,
+    private calculationsService: CalculationsService,
+    private walletServices: WalletService,
+    private _rpcState: RpcStateService
   ) { }
 
   ngOnInit() {

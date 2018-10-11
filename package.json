@@ -157,6 +157,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.1.0-8",
     "@fortawesome/free-solid-svg-icons": "^5.1.0-8",
     "angular-progress-bar": "^1.0.8",
+    "angular2-notifications": "^1.0.4",
     "angular2-qrcode": "^2.0.1",
     "bluebird": "^3.4.7",
     "buffered-spawn": "^3.3.2",

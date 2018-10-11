@@ -35,20 +35,27 @@ export class VaultComponent implements OnInit, OnDestroy {
   public bitcoinprice;
   balanceInBTC: number;
   pendingInBTC: number;
+  balanceInEUR: number;
   balanceInUSD: number;
   pendingInUSD: number;
   BTCbalance: number;
   USDbalance: number;
+  EURbalance: number;
   BTCpending: number;
   USDpending: number;
+  EURpending: number;
+  currentCurrency: string;
 
   constructor(
     private modalsService: ModalsService,
-    private _rpcState: RpcStateService, private walletServices: WalletService, private calculationsService: CalculationsService,
+    private _rpcState: RpcStateService,
+    private walletServices: WalletService,
+    private calculationsService: CalculationsService,
   ) {
   }
 
   ngOnInit() {
+    this.currentCurrency =  this.walletServices.getCurrency();
     this.initialized();
     this.getwalletinformation();
     this.getBitcoinpriceinfo();
@@ -74,6 +81,16 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.getUSDPending();
       },
         error => this.log.error('Failed to get balance, ', error));
+    
+    this.walletServices.getInEUR(this.bitcoinpriceInfo)
+      .subscribe(res => {
+
+        let tmp = res.data.quotes;
+        this.balanceInEUR = tmp.EUR.price;
+      
+        this.getEURBalance();
+        this.getEURPending();
+      }, error => this.log.error(message.bitcoinpriceMessage, error));
   }
 
   // open(modal: string) {
@@ -151,6 +168,10 @@ export class VaultComponent implements OnInit, OnDestroy {
   getUSDBalance() {
     this.USDbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInUSD);
   }
+  // to get the ghost vault balance converted into EUR amount
+  getEURBalance() {
+    this.EURbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInEUR);
+  }
   // to get the Pending balance converted into BTC amount
   getBTCPending() {
     this.BTCpending = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInBTC);
@@ -158,6 +179,10 @@ export class VaultComponent implements OnInit, OnDestroy {
   // to get the Pending balance converted into USD amount
   getUSDPending() {
     this.USDpending = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInUSD);
+  }
+  // to get the Pending balance converted into EUR amount
+  getEURPending() {
+    this.EURpending = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault_unconfirmed, this.balanceInEUR);
   }
 
   ngOnDestroy(): void {
