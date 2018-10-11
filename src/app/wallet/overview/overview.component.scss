@@ -23,6 +23,11 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
     margin-top: 3em;
     margin-bottom: 1em;
     margin-right: 20px;
+
+    .wallet-status {
+      display: flex;
+      align-items: center;
+    }
   }
   .balance-row {
 
