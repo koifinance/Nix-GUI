@@ -484,6 +484,10 @@ angular-progress-bar@^1.0.8:
   dependencies:
     tslib "^1.9.0"
 
+angular2-notifications@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/angular2-notifications/-/angular2-notifications-1.0.4.tgz#7b3c449dbad45503965f8cd8ac00e998a4463544"
+
 angular2-qrcode@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/angular2-qrcode/-/angular2-qrcode-2.0.1.tgz#1b4e65c302694b5078ca06f71138f7e4367754dc"

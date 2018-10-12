@@ -149,7 +149,6 @@ mat-drawer-content {
   }
 .fa-caretup-icon {
   // color: #dadae254;
-  color: green;
   cursor: pointer;
   padding-left: 18px;
   font-size: 16px;
@@ -175,4 +174,12 @@ mat-drawer-content {
 }
 .up-value{
   margin-top: -4px;
+}
+
+.plus-percent {
+  color: green;
+}
+
+.minus-percent {
+  color: red;
 }
