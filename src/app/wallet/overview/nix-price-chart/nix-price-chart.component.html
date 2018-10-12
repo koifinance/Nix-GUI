@@ -44,10 +44,11 @@
           </div>
           <div fxFlex="15">
             <div fxLayout="column" class="up-value">
-              <span class="fa-caretup-icon">
-                <fa-icon [icon]="faCaretUp"></fa-icon>
+              <span class="fa-caretup-icon" [ngClass]="{'plus-percent': isPlusPercent, 'minus-percent': !isPlusPercent}">
+                <fa-icon [icon]="faCaretDown" *ngIf="!isPlusPercent"></fa-icon>
+                <fa-icon [icon]="faCaretUp" *ngIf="isPlusPercent"></fa-icon>
               </span>
-              <span class="feilds-value1">{{bitcoinprice.USD.percent_change_24h}}%</span>
+              <span class="feilds-value1" [ngClass]="{'plus-percent': isPlusPercent, 'minus-percent': !isPlusPercent}">{{bitcoinprice.USD.percent_change_24h}}%</span>
             </div>
           </div>
           <div fxFlex="15">
