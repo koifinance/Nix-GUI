@@ -96,7 +96,7 @@
     <div _ngcontent-c7="" class="divider"></div>
 
     <div class="amountsend">
-      <p>Amount to Send</p>
+      <!-- <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
         <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" value="1" (ngModelChange)="getSendingAmount($event)"
           [(ngModel)]="sendToNix.amount">
@@ -104,9 +104,9 @@
         <span class="input-end-text">
           NIX
         </span>
-      </div>
+      </div> -->
       <div fxLayout.gt-md="row">
-        <div style="color:#b2b2b2" fxFlex="80">Available: {{balance}} NIX</div>
+        <div style="color:#b2b2b2" fxFlex="80">Sending Amount: {{data.balance}} NIX</div>
       </div>
     </div>
 
@@ -143,7 +143,7 @@
     <div>
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Sending</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{amount}}
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{data.balance}}
           <span>&nbsp;NIX</span>
         </span>
       </div>
@@ -158,7 +158,7 @@
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
-        <span fxFlex="30" fxLayoutAlign="end">{{total | number: '.4'}}
+        <span fxFlex="30" fxLayoutAlign="end">{{data.balance | number: '.4'}}
           <span>&nbsp;NIX</span>
         </span>
       </div>
