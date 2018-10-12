@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { faArrowUp, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { WalletService } from '../../wallet.service';
 import { IBitcoinprice, bitcoinprice } from '../../business-model/entities';
@@ -17,7 +17,9 @@ import { Log } from 'ng2-logger';
 export class NixPriceChartComponent implements OnInit {
   panelColor = new FormControl('usd');
   faCaretUp: any = faCaretUp;
+  faCaretDown: any = faCaretDown;
   public bitcoinprice:any;
+  isPlusPercent: boolean;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   private log: any = Log.create(`NixPriceChart.component `);
 
@@ -75,6 +77,7 @@ export class NixPriceChartComponent implements OnInit {
     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
     .subscribe(bitcoinpriceInfos => {
       this.bitcoinprice = bitcoinpriceInfos.data.quotes;
+      this.isPlusPercent = (bitcoinprice.USD.percent_change_24h >= 0);
     },
         error => this.log.error(message.bitcoinpriceMessage, error));
   }

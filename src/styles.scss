@@ -873,6 +873,10 @@ a {
 .mat-table .mat-header-row {
   background: #3d3e52;
 }
+mat-drawer-content::-webkit-scrollbar {
+  width: 0px;
+}
+
 .chart-box{
 height: 450px;
 text-align: center;
