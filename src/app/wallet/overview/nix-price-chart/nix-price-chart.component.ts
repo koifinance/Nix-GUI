@@ -77,7 +77,7 @@ export class NixPriceChartComponent implements OnInit {
     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
     .subscribe(bitcoinpriceInfos => {
       this.bitcoinprice = bitcoinpriceInfos.data.quotes;
-      this.isPlusPercent = (bitcoinprice.USD.percent_change_24h >= 0);
+      this.isPlusPercent = (this.bitcoinprice.USD.percent_change_24h >= 0);
     },
         error => this.log.error(message.bitcoinpriceMessage, error));
   }
