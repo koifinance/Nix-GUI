@@ -893,3 +893,10 @@ font-size: 30px;
 .simple-notification-wrapper {
   z-index: 2000 !important;
 }
+.simple-notification {
+
+  .sn-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

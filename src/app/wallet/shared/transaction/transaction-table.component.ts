@@ -124,7 +124,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   private listTransaction() {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
       .subscribe(recentTransInfo => {    
-        recentTransInfo = recentTransInfo.reverse();
+        recentTransInfo = recentTransInfo.sort((a, b) => { return b.blocktime - a.blocktime});
 
         if (this.filter) {
           recentTransInfo = recentTransInfo.filter(item => {
@@ -164,7 +164,6 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
             }
             return result;
           });
-          recentTransInfo = recentTransInfo.reverse();
         }
 
         this.transactionInfo = recentTransInfo.slice(0, this.display.numTransactions);
