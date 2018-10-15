@@ -30,9 +30,9 @@ export class NixPriceChartComponent implements OnInit {
   public lineChartData: Array<any> = [
     // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     // {data: [40, 19, 86, 27, 90], label: 'Series B'},
-    { data: [2,2.5,4,3.6, 5.5, 4.8, 7, 5],label: 'Bitcoin'}
+    { data: [0,0.2,0.25,0.6, 0.3, 0.34, 0.29, 0.26],label: 'Bitcoin'}
   ];
-  public lineChartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Aug'];
+  public lineChartLabels: Array<any> = ['Mar', 'Apr', 'May','Jun','Jul','Aug','Sep','Oct'];
   public lineChartOptions: any = {
     responsive: true
   };
