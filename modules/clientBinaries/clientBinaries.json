@@ -1,15 +1,15 @@
 {
   "clients": {
     "nixd": {
-      "version": "2.0.3.0",
+      "version": "2.1.0.0",
       "platforms": {
         "linux": {
           "x64": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.3/nix_core_x86_64_linux_gnu_2_0_3.zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.1.0/nix_core_x86_64_linux_gnu_2_0_3.zip",
               "type": "zip",
               "sha256": "",
-              "bin": "nix_core_x86_64_linux_gnu_2_0_3/nixd"
+              "bin": "nix-2.1.0/bin/nixd"
             },
             "bin": "nixd",
             "commands": {
@@ -19,7 +19,7 @@
                 ],
                 "output": [
                   "NIX Core Daemon",
-                  "2.0.3.0"
+                  "2.1.0.0"
                 ]
               }
             }
@@ -28,10 +28,10 @@
         "mac": {
           "x64": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.3/nix_core_macos_2_0_3.zip",
-              "type": "zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.1.0/nix-2.1.0-osx64.tar.gz",
+              "type": "tar",
               "sha256": "",
-              "bin": "nix_core_macos_2_0_3/nixd"
+              "bin": "nix-2.1.0/bin/nixd"
             },
             "bin": "nixd",
             "commands": {
@@ -41,7 +41,7 @@
                 ],
                 "output": [
                   "NIX Core Daemon",
-                  "2.0.3.0"
+                  "2.1.0.0"
                 ]
               }
             }
@@ -50,10 +50,10 @@
         "win": {
           "ia32": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.3/nix_core_windows_2_0_3.zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.1.0/nix-2.1.0-win32.zip",
               "type": "zip",
               "sha256": "",
-              "bin": "nix_core_windows_2_0_3/nixd.exe"
+              "bin": "nix-2.1.0/bin/nixd.exe"
             },
             "bin": "nixd.exe",
             "commands": {
@@ -63,17 +63,17 @@
                 ],
                 "output": [
                   "NIX Core Daemon",
-                  "2.0.3.0"
+                  "2.1.0.0"
                 ]
               }
             }
           },
           "x64": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.0.3/nix_core_windows_2_0_3.zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.1.0/nix-2.1.0-win64.zip",
               "type": "zip",
               "sha256": "",
-              "bin": "nix_core_windows_2_0_3/nixd.exe"
+              "bin": "nix-2.1.0/bin/nixd.exe"
             },
             "bin": "nixd.exe",
             "commands": {
@@ -83,7 +83,7 @@
                 ],
                 "output": [
                   "NIX Core Daemon",
-                  "2.0.3.0"
+                  "2.1.0.0"
                 ]
               }
             }
