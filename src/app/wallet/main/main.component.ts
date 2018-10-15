@@ -16,7 +16,7 @@ export class MainComponent implements OnInit, OnDestroy {
   routerLink: string;
  
   destroyed: boolean = false;
-  syncProgress: number = 0;
+  syncProgress: number;
   walletVersion: string;
   constructor(private _rpcState: RpcStateService, private _rpc: RpcService) {
   }
