@@ -17,7 +17,10 @@
           <span class="number small" style="color:white" *ngIf="currentCurrency == 'EUR'">{{BTCwalletbalance | number: '.4'}} BTC ({{EURwalletbalance | currency : 'EUR' : 'symbol'}})</span>
           <div class="pending margin-top-20px">
             <span class="number medium" style="color:white">{{ walletInfo.unconfirmed_balance | number: '.4'}}</span>
-            <span class="small" style="color:white"> NIX pending</span>
+            <span class="small" style="color:white;"> NIX pending</span><br/>
+
+            <span class="number medium" style="color:white">{{ walletInfo.immature_balance | number: '.4'}}</span>
+            <span class="small" style="color:white"> NIX immature</span>
           </div>
           <div class="margin-top-30px buttons" fxLayout="row" fxLayoutAlign="space-between">
             <button class="send-btn" mat-raised-button (click)="openSend('wallet')">
