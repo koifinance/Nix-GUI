@@ -386,7 +386,7 @@ private send(tx: TransactionBuilder): Observable<any> {
 
 // to deposit amount
   public amountDeposit(deposit : IDepostAmount): Observable<any> {
-    return this._rpc.call(ApiEndpoints.GhostAmount,[deposit.amount]);
+    return this._rpc.call(ApiEndpoints.GhostAmount, [deposit.amount]);
   }
 
   //get historical data
