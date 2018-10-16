@@ -38,14 +38,15 @@
     <div _ngcontent-c7="" class="divider"></div>
 
     <div class="amountsend">
-      <p>Amount to Send</p>
+      <p>Amount to Ghost</p>
       <div fxLayout.gt-md="row">
         <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" (ngModelChange)="getSendingAmount($event)"
-          [(ngModel)]="depositToVault.amount">
-          <span class="input-text">({{convertUSD | currency:"USD":true}})</span>        
+          [(ngModel)]="depositToVault.amount" onkeypress="return (event.chaCode == 8 || event.charCode == 0 || event.charCode ==13) ? null : event.charCode >= 48 && event.charCode <= 57">
+        <span class="input-text" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
+        <span class="input-text" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
       </div>
       <div fxLayout.gt-md="row" class="deposit-available">
-        <div style="color:#b2b2b2" fxFlex="80">Available: Ghosted {{balance}} NIX</div>
+        <div style="color:#b2b2b2" fxFlex="80">Available: {{balance}} NIX</div>
       </div>
 
       <p>Type the password to confirm the transaction</p>

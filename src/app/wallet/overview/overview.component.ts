@@ -3,6 +3,7 @@ import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
 import { faBtc } from '@fortawesome/free-brands-svg-icons';
 import { MatSlideToggleChange } from '@angular/material';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { ModalsService } from '../modals/modals.service';
 import { FAQ } from '../shared/faq.model';
@@ -82,18 +83,18 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
 
-
-
   constructor(
     private modalsService: ModalsService,
     private router: Router,
     private calculationsService: CalculationsService,
     private walletServices: WalletService,
     private flashNotification: SnackbarService,
+    private spinner: NgxSpinnerService,
     private _rpcState: RpcStateService
   ) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.currentCurrency = this.walletServices.getCurrency();
     this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
     this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
@@ -126,6 +127,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
+        this.spinner.hide();
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
         this.walletServices.getBitcoin(this.bitcoinpriceInfo)
           .subscribe(bitcoinpriceInfos => {
@@ -188,6 +190,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.log.error(error.message, error); 
     })
   }
+  
   // Enable/disable tor status
   private torToggled(event: MatSlideToggleChange) {
     this.walletServices.enableTor(event.checked ? 'true' : 'false')
@@ -230,6 +233,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
       walletType: walletType,
       balance: this.walletInfo.balance,
       amountInUSD: this.bitcoinprice.USD.price,
+      amountInEUR: this.balanceInEUR,
+      currency: this.currentCurrency,
       modalsService: this.modalsService
     };
 
@@ -243,7 +248,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
       forceOpen: true,
       walletType: walletType,
       balance: this.walletInfo.balance,
-      amountInUSD: this.bitcoinprice.USD.price,
+      currency: this.currentCurrency,
+      amountInUSD: this.balanceInUSD,
+      amountInEUR: this.balanceInEUR,
       modalsService: this.modalsService
     };
     this.modalsService.openSmall('receive', data);

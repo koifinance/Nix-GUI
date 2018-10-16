@@ -1,2 +1,9 @@
 <router-outlet></router-outlet>
-<simple-notifications [options]="{timeOut: 5000, showProgressBar: false, position: ['bottom', 'right']}"></simple-notifications>
+<simple-notifications [options]="{timeOut: 5000, showProgressBar: true, position: ['bottom', 'right'], maxLength: '10'}"></simple-notifications>
+<ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="large"
+    color="#fff"
+    type="square-jelly-box"
+    loadingText="Connecting to daemon...">
+</ngx-spinner>

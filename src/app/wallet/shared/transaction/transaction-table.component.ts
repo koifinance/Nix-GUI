@@ -9,8 +9,14 @@ import { Transaction } from './transaction.model';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { FilterService } from '../../transactions/filter.service';
 import { RpcStateService } from '../../../core/core.module';
+import { ModalsService } from '../../modals/modals.service';
 import { ApiEndpoints, categories, message } from '../../business-model/enums';
-import { TransactionInfo, ITransactionInfo, IRecentTransactionInfo, RecentTransactionInfo } from '../../business-model/entities';
+import {
+  TransactionInfo,
+  ITransactionInfo,
+  IRecentTransactionInfo,
+  RecentTransactionInfo
+} from '../../business-model/entities';
 
 @Component({
   selector: 'transaction-table',
@@ -44,13 +50,15 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     public transactionService: TransactionService,
     private filterService: FilterService,
+    private modalService: ModalsService,
     private _rpcState: RpcStateService,
   ) {
   }
 
   ngOnInit() {
+    this.destroyed = false;
     this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000, ['*', 100]);
-    this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.transactionAllNix.txid]);
+    // this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.transactionAllNix.txid]);
     this.display = Object.assign({}, this.defaults, this.display);
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
     this.transactionService.postConstructor(this.display.numTransactions);
@@ -110,6 +118,11 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
     return '';
   }
 
+  public showTransactionInModal(row: any) {
+    row.forceOpen = true;
+    this.modalService.openSmall('transactionDetail', row);
+  }
+
   // get all transaction
   private Transactions() {
     this._rpcState.observe(ApiEndpoints.GetTrasaction)
@@ -123,8 +136,8 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   // get recent transactions
   private listTransaction() {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
+      .takeWhile(() => !this.destroyed)
       .subscribe(recentTransInfo => {    
-        // recentTransInfo = recentTransInfo.reverse();
 
         if (this.filter) {
           recentTransInfo = recentTransInfo.filter(item => {
@@ -164,7 +177,6 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
             }
             return result;
           });
-          // recentTransInfo = recentTransInfo.reverse();
         }
 
         const sortedTransInfo = recentTransInfo.sort((t1, t2) => t2.time - t1.time);
