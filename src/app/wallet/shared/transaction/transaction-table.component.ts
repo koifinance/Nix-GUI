@@ -56,8 +56,9 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
-    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000);
-    this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.transactionAllNix.txid]);
+    this.destroyed = false;
+    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000, ['*', 100]);
+    // this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.transactionAllNix.txid]);
     this.display = Object.assign({}, this.defaults, this.display);
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
     this.transactionService.postConstructor(this.display.numTransactions);
@@ -135,8 +136,8 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   // get recent transactions
   private listTransaction() {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
+      .takeWhile(() => !this.destroyed)
       .subscribe(recentTransInfo => {    
-        recentTransInfo = recentTransInfo.sort((a, b) => { return b.blocktime - a.blocktime});
 
         if (this.filter) {
           recentTransInfo = recentTransInfo.filter(item => {
