@@ -108,7 +108,9 @@ export class VaultComponent implements OnInit, OnDestroy {
       forceOpen: true,
       walletType: walletType,
       balance: this.walletInfo.balance,
-      amountInUSD: this.bitcoinprice.USD.price,
+      amountInUSD: this.balanceInUSD,
+      amountInEUR: this.balanceInEUR,
+      currency: this.currentCurrency,
       modalsService: this.modalsService
     };
     this.modalsService.openSmall('receive', data);
