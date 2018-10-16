@@ -248,7 +248,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
       forceOpen: true,
       walletType: walletType,
       balance: this.walletInfo.balance,
-      amountInUSD: this.bitcoinprice.USD.price,
+      currency: this.currentCurrency,
+      amountInUSD: this.balanceInUSD,
+      amountInEUR: this.balanceInEUR,
       modalsService: this.modalsService
     };
     this.modalsService.openSmall('receive', data);
