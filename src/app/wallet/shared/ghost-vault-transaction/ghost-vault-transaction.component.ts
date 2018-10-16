@@ -17,7 +17,6 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
   @Input() numTransactions: number;
 
   dataSource: MatTableDataSource<IRecentTransactionInfo>;
-  trasactionInfo: RecentTransactionInfo = new IRecentTransactionInfo();
   private destroyed: boolean;
   private defaults: any = {
     header: true,
@@ -33,8 +32,9 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
   constructor(private _rpcState: RpcStateService,) { }
 
   ngOnInit() {
+    this.destroyed = false;
     this.log.d('ghost vault transaction');
-    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000);
+    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000,['*', 100]);
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
     this.listTransaction();
@@ -87,11 +87,12 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
     this._rpcState.observe(ApiEndpoints.ListTransactions)
       .takeWhile(() => !this.destroyed)
       .subscribe(recentTransInfo => {
-        recentTransInfo = recentTransInfo.filter(item => {
+        let res = recentTransInfo.filter(item => {
           if (item.is_ghosted) return true;
         });
-        this.trasactionInfo = recentTransInfo;
-        this.dataSource.data = recentTransInfo;
+        
+        res = res.sort((a, b) => {return b.time - a.time});
+        this.dataSource.data = res;
       },
         error => this.log.error(message.recentTransactionMessage, error));
   }
