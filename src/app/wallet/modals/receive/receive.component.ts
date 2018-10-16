@@ -38,6 +38,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   modal: ComponentRef<Component>;
   balance: number = 0;
   convertUSD: number = 0;
+  convertEUR: number = 0;
   walletPassword: string;
   showPassword: boolean = false;
   faEyeSlash: any = faEyeSlash;
@@ -81,7 +82,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       for (let key in receivedInfo) {
         this.walletServices.getAddressesByAccount(key).subscribe(res => {
           this.receivedNixInfo.push({account: key, address: res[res.length - 1]});
-          this.log.d('*', this.receivedNixInfo, res);
         }, err => {
           this.flashNotification.open(message.ReceiveNIXtoWallet, 'err');
           this.log.er(message.ReceiveNIXtoWallet, err)
@@ -146,8 +146,9 @@ export class ReceiveComponent implements OnInit, OnDestroy {
 
   // to get sending amount
   public getSendingAmount(event) {
-    this.amount = event;
-    this.convertUSD = this.convertUSD * this.amount
+    this.amount = parseInt(event, 10);
+    this.convertUSD = this.data.amountInUSD * this.amount;
+    this.convertEUR = this.data.amountInEUR * this.amount;
     this.getFees();
     this.getTotalAmount();
   }

@@ -97,17 +97,15 @@
     <div _ngcontent-c7="" class="divider"></div>
 
     <div class="amountsend">
-      <!-- <p>Amount to Send</p>
+      <p>Amount to Send</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" value="1" (ngModelChange)="getSendingAmount($event)"
-          [(ngModel)]="sendToNix.amount">
-        <span class="input-text">({{convertUSD | currency:"USD":true}})</span>
+        <input class="modalinput" type="number" step="1" matInput fxFlex="100" placeholder="Enter value" value="data.balance" (ngModelChange)="getSendingAmount($event)"
+          [(ngModel)]="sendToNix.amount" onkeypress="return (event.chaCode == 8 || event.charCode == 0 || event.charCode ==13) ? null : event.charCode >= 48 && event.charCode <= 57">
+        <span class="input-text" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
+        <span class="input-text" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
         <span class="input-end-text">
           NIX
         </span>
-      </div> -->
-      <div fxLayout.gt-md="row">
-        <div style="color:#b2b2b2" fxFlex="80">Sending Amount: {{data.balance}} NIX</div>
       </div>
     </div>
 
@@ -144,7 +142,7 @@
     <div>
       <div class="transdetail" fxLayout.gt-md="row">
         <span class="modallabel" fxFlex="70">Sending</span>
-        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{data.balance}}
+        <span class="nixlabel" fxFlex="30" fxLayoutAlign="end">{{amount}}
           <span>&nbsp;NIX</span>
         </span>
       </div>
@@ -159,7 +157,7 @@
 
       <div class="transtotal" fxLayout.gt-md="row">
         <span fxFlex="70">Total</span>
-        <span fxFlex="30" fxLayoutAlign="end">{{data.balance | number: '.4'}}
+        <span fxFlex="30" fxLayoutAlign="end">{{total | number: '.4'}}
           <span>&nbsp;NIX</span>
         </span>
       </div>
@@ -178,6 +176,19 @@
   <div class="modalcontent">
     <h5 fxFlex="50">Withdraw NIX</h5>
     <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="amountsend">
+      <p>Amount to Withdraw</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" type="number" step="1" matInput fxFlex="100" placeholder="Enter value" value="data.balance" (ngModelChange)="getSendingAmount($event)"
+          [(ngModel)]="sendToNix.amount" onkeypress="return (event.chaCode == 8 || event.charCode == 0 || event.charCode ==13) ? null : event.charCode >= 48 && event.charCode <= 57">
+        <span class="input-text" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
+        <span class="input-text" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
+        <span class="input-end-text">
+          NIX
+        </span>
+      </div>
+    </div>
 
     <div class="sendto">
       <p>Type the password to withdraw NIX to your wallet</p>
