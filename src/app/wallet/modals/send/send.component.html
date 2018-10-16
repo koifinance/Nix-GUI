@@ -9,7 +9,8 @@
       <div fxLayout.gt-md="row">
         <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" value="400" (ngModelChange)="getSendingAmount($event)"
           [(ngModel)]="sendToNix.amount">
-        <span class="input-text" dir="rtl">({{convertUSD | currency:"USD":true}})</span>
+        <span class="input-text" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
+        <span class="input-text" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
         <span class="input-end-text">
           NIX
         </span>
