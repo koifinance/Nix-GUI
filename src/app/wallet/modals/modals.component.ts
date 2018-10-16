@@ -16,6 +16,7 @@ import { AddaddressComponent } from './addaddress/addaddress.component';
 import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
 import { RestoreWalletComponent } from './restore-wallet/restore-wallet.component';
 import { CreateWalletComponent } from './create-wallet/create-wallet.component';
+import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
 
 @Component({
   selector: 'app-modals',
@@ -35,7 +36,8 @@ import { CreateWalletComponent } from './create-wallet/create-wallet.component';
     AddaddressComponent,
     SyncingWalletComponent,
     RestoreWalletComponent,
-    CreateWalletComponent
+    CreateWalletComponent,
+    TransactionDetailComponent
   ]
 })
 export class ModalsComponent implements DoCheck, OnInit, OnDestroy {

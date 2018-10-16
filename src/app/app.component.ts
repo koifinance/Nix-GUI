@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private _iconRegistry: MatIconRegistry,
-    private _rpcState: RpcStateService
+    private _rpcState: RpcStateService,
   ) {
     _iconRegistry
       .registerFontClassAlias('partIcon', 'part-icon')

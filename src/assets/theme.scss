@@ -328,7 +328,7 @@ input {
 
 // scroll on by default, so the content doesn't jump on larger pages
 .mat-drawer-content {
-  overflow-y: scroll !important;
+  // overflow-y: scroll !important;
 }
 
 /* ------------------------------- *\
@@ -356,7 +356,7 @@ input {
   .small-dialog {
     .mat-dialog-container {
       height: auto;
-      width: 532px;
+      width: 580px;
       border-radius: 5px;
     }
   }
