@@ -24,7 +24,7 @@
 
   <ng-container matColumnDef="amount">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
-    <mat-cell *matCellDef="let element">
+    <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
       <div class="amount" fxLayout="row" fxLayoutGap="10px">
         {{ element.amount}} NIX
       </div>
@@ -32,7 +32,7 @@
   </ng-container>
 
   <mat-header-row [fxShow]="display.header" *matHeaderRowDef="display.columns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: display.columns;"></mat-row>
+  <mat-row *matRowDef="let row; columns: display.columns;" (click)="showTransactionInModal(row)"></mat-row>
 </mat-table>
 
 <div *ngIf="transactionInfo.length == 0">

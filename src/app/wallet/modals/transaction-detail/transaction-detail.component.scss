@@ -1,0 +1,61 @@
+.processing-trans {
+
+    .divider[_ngcontent-c7] {
+      border-top: 1px solid #EAEAEA;
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+  
+    h5 {
+      display: inline;
+      color: #293246;
+      font-family: "Helvitica", sans-serif;
+      font-weight: 300;
+    }
+  
+    .modalcontent {
+      padding: 24px;
+    }
+  
+    .modaldetails {
+      padding: 24px;
+      background-color: #F8F8F8;
+    }
+  
+    .fright {
+      float: right;
+    }
+  
+    .fleft {
+      float: left;
+  
+    }
+  
+    .modalinput {
+      font-size: 15px;
+      padding-left: 12px;
+      height: 35px;
+      margin-bottom: 0px;
+      color: black;
+    }
+
+    .walletbtn {
+      border-radius: 5px;
+      background-color: #E0E3E7;
+      box-shadow: none;
+      font-size: 22px;
+      font-family: Helvitica, sans-serif;
+      font-weight: 300;
+      color: #4A4A4A;
+      height: 51px;
+      border: none;
+    }
+    
+    .amountsend {
+      margin-bottom: 10px;
+    }
+  
+    .donebtn {
+      padding: 40px 0px;
+    }    
+}
