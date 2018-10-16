@@ -233,6 +233,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
       walletType: walletType,
       balance: this.walletInfo.balance,
       amountInUSD: this.bitcoinprice.USD.price,
+      amountInEUR: this.balanceInEUR,
+      currency: this.currentCurrency,
       modalsService: this.modalsService
     };
 

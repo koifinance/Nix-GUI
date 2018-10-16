@@ -42,7 +42,9 @@ export class SendComponent implements OnInit, OnDestroy {
   faAddressBook: any = faAddressBook;
   balance: number;
   amountInUSD: number;
-  convertUSD:number=0;
+  amountInEUR: number;
+  convertUSD: number = 0;
+  convertEUR: number = 0;
   todaydate;
   addressLabel: string;
   isAddressSelected: boolean = false;
@@ -75,6 +77,7 @@ export class SendComponent implements OnInit, OnDestroy {
     this.data = data;
     this.balance = data.balance;
     this.amountInUSD = data.amountInUSD;
+    this.amountInEUR = data.amountInEUR;
   }
 
   // send for wallet
@@ -209,6 +212,7 @@ export class SendComponent implements OnInit, OnDestroy {
   public getSendingAmount(event) {
     if (event)  this.amount = event;
     this.convertUSD = this.amountInUSD * this.amount;
+    this.convertEUR = this.amountInEUR * this.amount;
     if (this.amount && this.sendToNix.address)  this.getFees();
     this.getTotalAmount();
   }
