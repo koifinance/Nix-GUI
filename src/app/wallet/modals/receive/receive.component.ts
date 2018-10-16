@@ -69,7 +69,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   setData(data: any) {
     this.data = data;
     this.balance = data.balance;
-    this.convertUSD = data.amountInUSD;
   }
 
   copyToClipBoard(): void {
