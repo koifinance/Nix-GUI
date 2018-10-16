@@ -1,0 +1,99 @@
+<div class="processing-trans">
+  <div class="modalcontent">
+    <h5 fxFlex="50">Transaction Detail</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="amountsend">
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Transaction ID</span>
+      </div>
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <p class="modalinput" fxFlex="75">{{data.txid}}</p>
+      </div>
+    </div>
+
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Confirmations</span>
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <p class="modalinput" fxFlex="75">{{data.confirmations}}</p>
+      </div>
+    </div>
+
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Category</span>
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <p class="modalinput" fxFlex="75">{{data.category}}</p>
+      </div>
+    </div>
+
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Label</span>
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <p class="modalinput" fxFlex="75">{{data.label}}</p>
+      </div>
+    </div>
+
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Amount</span>
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <p class="modalinput" fxFlex="75">{{data.amount}}</p>
+      </div>
+    </div>
+
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Time Received</span>
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <p class="modalinput" fxFlex="75">{{data.timereceived * 1000 | date:'medium'}}</p>
+      </div>
+    </div>
+
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Block Time</span>
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <p class="modalinput" fxFlex="75">{{data.blocktime * 1000 | date:'medium'}}</p>
+      </div>
+    </div>
+
+    <div _ngcontent-c7="" class="divider"></div>
+    <div class="amountsend">
+
+      <div class="recipientdtls" fxLayout="row">
+        <span class="recipient" fxFlex="70">Block Hash</span>
+      </div>
+
+      <div fxLayout.gt-md="row" fxLayoutGap="5px">
+        <p class="modalinput" fxFlex="75">{{data.blockhash}}</p>
+      </div>
+    </div>
+  </div>
+</div>
