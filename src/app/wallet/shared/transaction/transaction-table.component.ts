@@ -9,8 +9,14 @@ import { Transaction } from './transaction.model';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { FilterService } from '../../transactions/filter.service';
 import { RpcStateService } from '../../../core/core.module';
+import { ModalsService } from '../../modals/modals.service';
 import { ApiEndpoints, categories, message } from '../../business-model/enums';
-import { TransactionInfo, ITransactionInfo, IRecentTransactionInfo, RecentTransactionInfo } from '../../business-model/entities';
+import {
+  TransactionInfo,
+  ITransactionInfo,
+  IRecentTransactionInfo,
+  RecentTransactionInfo
+} from '../../business-model/entities';
 
 @Component({
   selector: 'transaction-table',
@@ -44,6 +50,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     public transactionService: TransactionService,
     private filterService: FilterService,
+    private modalService: ModalsService,
     private _rpcState: RpcStateService,
   ) {
   }
@@ -108,6 +115,11 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
       return faDollarSign;
     }
     return '';
+  }
+
+  public showTransactionInModal(row: any) {
+    row.forceOpen = true;
+    this.modalService.openSmall('transactionDetail', row);
   }
 
   // get all transaction
