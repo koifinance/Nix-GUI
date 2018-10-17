@@ -72,7 +72,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   copyToClipBoard(): void {
-    this.flashNotification.open(message.CopiedAddress);
+    this.flashNotification.open(message.CopiedAddress, 'info');
   }
 
   // receive nix to wallet

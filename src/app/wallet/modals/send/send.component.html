@@ -23,17 +23,17 @@
     <div class="sendto">
       <p>To</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" value="NXefjjohhdofhgij" [(ngModel)]="sendToNix.address" (input)="addressEdited()">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" [(ngModel)]="sendToNix.address" (onfocusout)="getFees()" (input)="addressEdited()" [disabled]="isAddressSelected">
         <span class="fa-icon">
           <fa-icon [icon]="faAddressBook"></fa-icon>
         </span>
 
         <mat-select [(ngModel)]="sendToNix.address" (change)="addressSelected()">
-          <mat-option *ngFor="let acc of accountData" value={{acc.address}}> {{acc.name}} </mat-option>
+          <mat-option *ngFor="let acc of accountData" value={{acc.address}} (click)="labelSelected(acc.name)"> {{acc.name}} </mat-option>
         </mat-select>
       </div>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address label" [(ngModel)]="addressLabel" [attr.disabled]="isAddressSelected">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address label" [(ngModel)]="addressLabel" (keyup)="labelChanged()">
       </div>
     </div>
 
