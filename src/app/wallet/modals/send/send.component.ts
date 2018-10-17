@@ -227,21 +227,23 @@ export class SendComponent implements OnInit, OnDestroy {
 
   // to get sending amount
   public getSendingAmount(event) {
-    if (event)  this.amount = parseInt(event, 10);
+    if (event)  this.amount = event;
     this.convertUSD = this.amountInUSD * this.amount;
     this.convertEUR = this.amountInEUR * this.amount;
     if (this.amount && this.sendToNix.address)  this.getFees();
-    this.getTotalAmount();
   }
   
   //to get fee
   getFees() {
-    this.walletServices.getFeeForAmout(this.amount, this.sendToNix.address).subscribe(res => {
-      this.fees = parseInt(res, 10) * 0.00000001;
-    }, err => {
-      this.flashNotification.open(err.message, 'err');
-      this.log.er(message.GetFeeForAmount, err)
-    })
+    if (this.amount && this.sendToNix.address) {
+      this.walletServices.getFeeForAmout(this.amount, this.sendToNix.address).subscribe(res => {
+        this.fees = parseInt(res, 10) * 0.00000001;
+        this.getTotalAmount();
+      }, err => {
+        this.flashNotification.open(err.message, 'err');
+        this.log.er(message.GetFeeForAmount, err)
+      })
+    }
   }
 
   //to get total amount
