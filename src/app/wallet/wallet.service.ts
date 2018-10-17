@@ -51,11 +51,11 @@ export class WalletService {
     return this.http.get(ApiEndpoints.GetBtc).map(response => response.json());  
   }
 
-   // get in EUR
-   public getInEUR (price : IBitcoinprice): Observable<any> {
+  // get in EUR
+  public getInEUR (price : IBitcoinprice): Observable<any> {
     return this.http.get(ApiEndpoints.GetEur).map(response => response.json());  
   }
-  
+
   // Send for wallet
   public SendToNix(wallet : IWalletSendToNix): Observable<any> {
     return this._rpc.call(ApiEndpoints.SendToAddress, [wallet.address, wallet.amount, '', '', wallet.subtractFeeFromAmount]);
@@ -76,7 +76,13 @@ export class WalletService {
     return this._rpc.call(ApiEndpoints.GetBalance).map(
       balance => balance);
   }
-
+  
+  // get blockchain info
+  public getBlockchainInfo (): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Getblockchaininfo).map(
+      info => info);
+  }
+  
   // get Tor status NIX
   public getTorstatus(): Observable<any> {
     return this._rpc.call(ApiEndpoints.Torstatus).map(
