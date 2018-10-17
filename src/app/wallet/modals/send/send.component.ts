@@ -137,7 +137,18 @@ export class SendComponent implements OnInit, OnDestroy {
   }
 
   addressEdited() {
-    this.isAddressSelected = null;
+    this.isAddressSelected = false;
+  }
+
+  labelSelected(label) {
+    this.addressLabel = label;
+  }
+
+  labelChanged() {
+    if (this.addressLabel == '') {
+      this.isAddressSelected = false;
+      this.sendToNix.address = '';
+    }
   }
 
 // validating input
@@ -175,6 +186,12 @@ export class SendComponent implements OnInit, OnDestroy {
   saveAddress() {
     if (!this.isAddressSelected) {
       this.walletServices.manageAddressbook('add', this.sendToNix.address, this.addressLabel).subscribe(res => {
+      }, error => {
+        this.flashNotification.open(error.message, 'err')
+        this.log.er(message.AddressAddedMessage, error)
+      });
+    } else if (this.isAddressSelected) {
+      this.walletServices.manageAddressbook('edit', this.sendToNix.address, this.addressLabel).subscribe(res => {
       }, error => {
         this.flashNotification.open(error.message, 'err')
         this.log.er(message.AddressAddedMessage, error)
@@ -222,7 +239,7 @@ export class SendComponent implements OnInit, OnDestroy {
     this.walletServices.getFeeForAmout(this.amount, this.sendToNix.address).subscribe(res => {
       this.fees = parseInt(res, 10) * 0.00000001;
     }, err => {
-      this.flashNotification.open(message.GetFeeForAmount, 'err');
+      this.flashNotification.open(err.message, 'err');
       this.log.er(message.GetFeeForAmount, err)
     })
   }
