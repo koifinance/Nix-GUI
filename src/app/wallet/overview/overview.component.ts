@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
 import { faBtc } from '@fortawesome/free-brands-svg-icons';
-import { MatSlideToggleChange } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { ModalsService } from '../modals/modals.service';
@@ -50,7 +49,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   walletInfo: IWalletInfo = new WalletInfo();
   private log: any = Log.create(`overview.component `);
   public status;
-  public torEnabled: boolean;
+  public torStatus: string;
   public currentCurrency: string;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   getNodeInfo: INodeinfo = new NodeInfo();
@@ -59,7 +58,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public monthEarn: number = 0;
   public node: number = 0;
   isActiveNodeCount = 0;
- 
+
   // lineChart
   public lineChartData: Array<any> = [
     // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
@@ -184,25 +183,14 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.walletServices.getTorstatus()
       .takeWhile(() => !this.destroyed)
       .subscribe(res => {
-        this.torEnabled = (res.indexOf("Enabled") > -1);
-      }, error => { 
+        const torEnabled = (res.indexOf("Enabled") > -1);
+        this.torStatus = torEnabled ? 'enabled' : 'disabled';
+      }, error => {
         this.flashNotification.open(error.message, 'err')
         this.log.error(error.message, error); 
     })
   }
-  
-  // Enable/disable tor status
-  private torToggled(event: MatSlideToggleChange) {
-    this.walletServices.enableTor(event.checked ? 'true' : 'false')
-      .takeWhile(() => !this.destroyed)
-      .subscribe(res => {
-        this.flashNotification.open(res, 'err')
-      }, error => { 
-        this.flashNotification.open(error.message, 'err')
-        this.log.error(error.message, error); 
-    })
-    
-  }
+
   // get node status
   private getnodestatus() {
     this._rpcState.observe(ApiEndpoints.Ghostnode)
