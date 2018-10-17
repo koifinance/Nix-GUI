@@ -23,7 +23,7 @@
     <div class="sendto">
       <p>To</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" [(ngModel)]="sendToNix.address" (input)="addressEdited()" [disabled]="isAddressSelected">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" [(ngModel)]="sendToNix.address" (onfocusout)="getFees()" (input)="addressEdited()" [disabled]="isAddressSelected">
         <span class="fa-icon">
           <fa-icon [icon]="faAddressBook"></fa-icon>
         </span>
