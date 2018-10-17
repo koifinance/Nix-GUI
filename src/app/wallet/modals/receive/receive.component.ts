@@ -136,6 +136,17 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     this.data.modalsService.openSmall('success', data);
   }
 
+  openShowQR(address) {
+    const data: any = {
+      forceOpen: true,
+      walletType: 'wallet',
+      address: address,
+      actionType: 'show'
+    };
+    this.data.modalsService.forceClose();
+    this.data.modalsService.openSmall('success', data);
+  }
+
   close(): void {
     this._dialogRef.close();
     // remove and destroy message
