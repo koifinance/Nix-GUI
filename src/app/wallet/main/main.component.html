@@ -60,7 +60,9 @@
         <div>Version: {{walletVersion}}</div>
         <div *ngIf="syncProgress !== 100">Syncing ....</div>
       </div>
-      <progress-bar class="progress-bar" [progress]="syncProgress"></progress-bar>
+      <div class="progress-bar-container" (click)="openSyncingWallet()">
+        <progress-bar class="progress-bar" [progress]="syncProgress"></progress-bar>
+      </div>
     </mat-list>
   </mat-drawer>
 
