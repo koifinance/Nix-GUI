@@ -106,6 +106,12 @@ export class WalletService {
       count => count);
   }
 
+  // get ghost node count
+  public getMyGhostnode(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Ghostnode, ['list-conf']).map(
+      count => count);
+  }
+
   // get the new address
   public getNewAddress(): Observable<any> {
     return this._rpc.call(ApiEndpoints.Getnewaddress).map(

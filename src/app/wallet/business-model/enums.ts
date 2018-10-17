@@ -44,7 +44,8 @@ export enum message {
   GetFeeForAmount = 'Failed to get fee for the amount!',
   ListTransactions = 'Failed to get the transactions!',
   UnGhostAmount = 'Failed to unghost the amount!',
-  GhostnodeListConf = 'Failed to get list of ghost nodes!'
+  GhostnodeListConf = 'Failed to get list of ghost nodes!',
+  GhostnodeList = 'Failed to get list of all ghost nodes!'
 }
 
 export enum ApiEndpoints {
@@ -74,6 +75,7 @@ export enum ApiEndpoints {
   Setaccount = 'setaccount',
   GhostnodeListConf = 'ghostnode list-conf',
   Ghostnode = 'ghostnode',
+  GhostnodeList = 'ghostnodelist',
   Torstatus  = 'torstatus',
   EnableTor  = 'enabletor',
   SaveCurrency = 'https://api.coinmarketcap.com/v2/ticker/2991',
