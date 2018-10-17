@@ -49,6 +49,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   walletInfo: IWalletInfo = new WalletInfo();
   private log: any = Log.create(`overview.component `);
   public status;
+  public currentBlock: number;
   public torStatus: string;
   public currentCurrency: string;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
@@ -104,6 +105,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    this.getBlockchainInfo();
     this.getTorstatus();
   }
 
@@ -178,6 +180,17 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.EURvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInEUR);
   }
 
+  // get blockchain status
+  private getBlockchainInfo() {
+    this.walletServices.getBlockchainInfo()
+      .takeWhile(() => !this.destroyed)
+      .subscribe(res => {
+        this.currentBlock = res.blocks;
+      }, error => {
+        this.log.error(error.message, error); 
+    })
+  }
+
   // get tor status
   private getTorstatus() {
     this.walletServices.getTorstatus()
@@ -186,7 +199,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
         const torEnabled = (res.indexOf("Enabled") > -1);
         this.torStatus = torEnabled ? 'enabled' : 'disabled';
       }, error => {
-        this.flashNotification.open(error.message, 'err')
         this.log.error(error.message, error); 
     })
   }
