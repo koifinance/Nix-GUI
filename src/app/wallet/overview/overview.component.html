@@ -29,7 +29,7 @@
             <button class="receive-btn" mat-raised-button (click)="openReceive('wallet')">
               <img src="./assets/icons/SVG/arrow-down-nix.svg" alt="Received"> Receive
             </button>
-            <button mat-raised-button class="dots-btn small" (click)="openSyncingWallet()">...</button>
+            <!-- <button mat-raised-button class="dots-btn small">...</button> -->
           </div>
         </div>
       </mat-card>
@@ -54,7 +54,7 @@
             <button class="receive-btn" mat-raised-button (click)="openReceive('vault')">
               <img src="./assets/icons/SVG/arrow-down-black.svg" alt="Received"> Deposit
             </button>
-            <button mat-raised-button class="dots-btn small">...</button>
+            <!-- <button mat-raised-button class="dots-btn small">...</button> -->
           </div>
         </div>
       </mat-card>
@@ -117,10 +117,16 @@
       </mat-card>
     </div>
     <div class="bottom-row" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="end" fxLayoutGap="5%" fxFlexOrder.lt-md="4">
-      <mat-slide-toggle class="toggle" (change)="torToggled($event)" [checked]="torEnabled">Enable Tor</mat-slide-toggle>
       <div class="wallet-status">
-        Wallet Status : {{walletInfo.encryptionstatus}}
+        Wallet Status: {{walletInfo.encryptionstatus}}
       </div>
+      <div class="wallet-status">
+        Current Block: {{currentBlock}}
+      </div>
+      <div class="wallet-status">
+        TOR networking: {{torStatus}}
+      </div>
+
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
