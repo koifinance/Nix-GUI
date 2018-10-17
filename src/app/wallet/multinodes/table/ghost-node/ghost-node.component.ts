@@ -2,6 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { faCircle as faCircleSolid,faCopy,faTimes,faFileAlt} from '@fortawesome/free-solid-svg-icons';
 import { faCircle,faEdit } from '@fortawesome/free-regular-svg-icons';
 import { ModalsService } from '../../../modals/modals.service';
+import { WalletService } from '../../../wallet.service';
+import { RpcStateService } from '../../../../core/core.module';
+import { ApiEndpoints, message } from '../../../business-model/enums';
+import { Log } from 'ng2-logger';
 
 export interface GhostElement {
   name: string;
@@ -10,22 +14,17 @@ export interface GhostElement {
   action1: string;
   action2: string;
   action3: string;
-
 }
 
-const ELEMENT_DATA: GhostElement[] = [
-  {name: 'Hydrogen', status: 'Starting-up', activefor: '00m',action1: "Detail", action2:"Edit", action3: "Cancel"},
-  {name: 'Hydrogen', status: 'Starting-up', activefor: '00m',action1: "Detail", action2:"Edit", action3: "Cancel"}
-
-];
 @Component({
   selector: 'app-ghost-node',
   templateUrl: './ghost-node.component.html',
   styleUrls: ['./ghost-node.component.scss']
 })
 export class GhostNodeComponent implements OnInit {
-  @Input() ghostNodes: Array<any>;
 
+  private destroyed: boolean = false;
+  private log: any = Log.create('Ghostnode.component');
   faCircle: any = faCircle;
   faFileAlt: any = faFileAlt;
   faTimes: any = faTimes;
@@ -33,11 +32,41 @@ export class GhostNodeComponent implements OnInit {
   faEdit: any = faEdit;
   faCircleSolid: any = faCircleSolid;
   displayedColumns = ["Name", "Status", "Active for","Action1","Action2","Action3"];
-  dataSource = ELEMENT_DATA;
-  constructor(private modalsService: ModalsService) { }
+  dataSource = [];
+  constructor(
+    private modalsService: ModalsService,
+    private walletServices: WalletService,
+    private _rpcState: RpcStateService) { }
 
   ngOnInit() {
-    this.dataSource = this.ghostNodes || this.dataSource;
+    this.getMyGhostNodes();
+  }
+
+  private getMyGhostNodes() {
+    const timeout = 60000;
+    // debugger
+    const _call = () => {
+      if (this.destroyed) {
+        // RpcState service has been destroyed, stop.
+        return;
+      }
+
+      this.walletServices.getMyGhostnode()
+        .subscribe(res => {
+          let nodes = [];
+          for (let node in res) {
+            nodes.push(res[node]);
+          }
+          this.dataSource = nodes;
+
+
+          setTimeout(_call, timeout);
+        }, error => {
+          this.log.error(message.bitcoinpriceMessage, error);
+        });
+    };
+
+    _call();
   }
 
   openViewNode() {
@@ -61,5 +90,9 @@ export class GhostNodeComponent implements OnInit {
       modalsService: this.modalsService
     };
     this.modalsService.openSmall('editNode', data);
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true;
   }
 }
