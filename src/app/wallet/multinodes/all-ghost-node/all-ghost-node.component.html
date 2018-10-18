@@ -1,0 +1,66 @@
+<mat-drawer-container fullscreen>
+  <mat-drawer-content class="content">
+    <div fxLayout="row">
+      <div class="back-button" fxFlex="15">
+        <img src="./assets/icons/SVG/arrow-left-md.svg" alt="Go back" (click)="goToGhostnodes()">
+        <div class="backbtn-name">Ghostnodes</div>
+      </div>
+      <div fxFlex="85">
+        <div class="header" fxLayout="row">
+
+          <div fxFlex="50" fxFlexOrder="1">
+            <h5 class="reward-title">All Ghostnodes</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="15"></div>
+      <div fxFlex="75">
+        <mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="Address">
+                <mat-header-cell *matHeaderCellDef class="matHeader">Address</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="matCell">{{element.IP}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Protocol">
+                <mat-header-cell *matHeaderCellDef class="matHeader">Protocol</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="matCell">
+                    {{element.protocol}}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Status">
+                <mat-header-cell *matHeaderCellDef class="matHeader">Status</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="matCell">
+                    {{element.status}}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Active">
+                <mat-header-cell *matHeaderCellDef class="matHeader">Active</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="matCell">
+                    {{element.activeseconds}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Last Seen">
+                <mat-header-cell *matHeaderCellDef class="matHeader">Last Seen</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="matCell">
+                    {{element.lastseen}}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Payee">
+                <mat-header-cell *matHeaderCellDef class="matHeader">Payee</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="matCell">
+                    {{element.payee}}
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
+      </div>
+
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
