@@ -92,7 +92,7 @@
       <mat-card class="item" fxFlex="63" fxFlexOrder.lt-md="1">
         <div class="recent-transactions">
           <p class="description">Recent Transactions</p>
-          <transaction-table [display]="{numTransactions: 3, columns: transactionColumns, header: false}"></transaction-table>
+          <transaction-table [recent]="true" [display]="{numTransactions: 3, columns: transactionColumns, header: false, recent: true}"></transaction-table>
           <div>
             <!-- <a class="link text-uppercase" routerLink="/transactions">
               No data to display
