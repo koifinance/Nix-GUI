@@ -112,9 +112,9 @@ export class NodesComponent implements OnInit, OnDestroy {
   stepTitle(): string {
     const step = this.step;
     if (step === 1) {
-      return 'Set-up Ghost node';
+      return 'Set-up Ghostnode';
     } else if (step === 2) {
-      return 'Transfer NIX to Ghost node';
+      return 'Transfer NIX to Ghostnode';
     }
     else if (step === 3) {
       return 'Set up Virtual Private Service (VPS)';

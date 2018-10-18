@@ -2,7 +2,7 @@ import { FAQ } from '../shared/faq.model';
 
 export const faq: Array<FAQ> = [
   {
-    question: 'What is a Ghost node?',
+    question: 'What is a Ghostnode?',
     answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat tristique cursus.`
   },
   {
