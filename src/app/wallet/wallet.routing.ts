@@ -11,6 +11,7 @@ import { VaultComponent } from './vault/vault.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { GhostComponent } from './ghost/ghost.component';
 import { MultinodesComponent } from './multinodes/multinodes.component';
+import { AllGhostNodeComponent } from './multinodes/all-ghost-node/all-ghost-node.component';
 import { RewardHistoryChartComponent } from './reward-history-chart/reward-history-chart.component';
 import { RewardHistoryTableComponent } from './reward-history-table/reward-history-table.component';
 import { SettingComponent } from './setting/setting/setting.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'reward-history-table', component: RewardHistoryTableComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-table' } },
   { path: 'reward-history-chart', component: RewardHistoryChartComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-chart' } },
   { path: 'overview/nix-price-chart', component: NixPriceChartComponent, data: { title: 'NIX price chart', page: 'nix-price-chart' } },
+  { path: 'multinodes/all-ghost-node', component: AllGhostNodeComponent, data: { title: 'All Ghostnodes', page: 'all-ghost-node' } },
   {
     path: 'main',
     component: MainComponent,
