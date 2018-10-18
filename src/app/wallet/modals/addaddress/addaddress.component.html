@@ -14,7 +14,7 @@
       <p class="htxt">Address</p>
       <div fxLayout.gt-md="row">
         <div class="custom-input-group amount-input">
-          <input class="input-group " placeholder="Destination address" [(ngModel)]="addAddress.address">
+          <input class="input-group " placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.modalData.type == 'receive'">
         </div>
       </div>
     </div>

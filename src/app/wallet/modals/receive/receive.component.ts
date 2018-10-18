@@ -72,7 +72,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   copyToClipBoard(): void {
-    this.flashNotification.open(message.CopiedAddress);
+    this.flashNotification.open(message.CopiedAddress, 'info');
   }
 
   // receive nix to wallet
@@ -131,6 +131,17 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       fee: this.fees,
       total: this.total,
       actionType: 'receive'
+    };
+    this.data.modalsService.forceClose();
+    this.data.modalsService.openSmall('success', data);
+  }
+
+  openShowQR(address) {
+    const data: any = {
+      forceOpen: true,
+      walletType: 'wallet',
+      address: address,
+      actionType: 'show'
     };
     this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
