@@ -13,8 +13,8 @@
           </div>
 
           <div fxLayout.gt-md="row" fxLayoutGap="5px">
-            <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" [(ngModel)]="item.address">
-            <button class="dotbtn" fxFlex="10">...</button>
+            <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" [(ngModel)]="item.address" disabled>
+            <button class="dotbtn" fxFlex="10" (click)="openShowQR(item.address)">...</button>
             <button class="copybtn" fxFlex="15" matTooltip="Copy address" ngxClipboard
             [cbContent]="item.address" (click)="copyToClipBoard()">Copy</button>
           </div>

@@ -44,7 +44,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   faArrowDown: any = faArrowDown;
   faBtc: any = faBtc;
   faq: Array<FAQ> = faq;
-  transactionColumns: string[] = ['date', 'category', 'confirmations', 'amount'];
+  transactionColumns: string[] = ['date', 'type', 'status', 'amount'];
   private destroyed: boolean = false;
   walletInfo: IWalletInfo = new WalletInfo();
   private log: any = Log.create(`overview.component `);
