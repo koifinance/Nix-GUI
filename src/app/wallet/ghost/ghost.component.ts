@@ -94,9 +94,9 @@ export class GhostComponent implements OnInit {
   stepTitle(): string {
     const step = this.step;
     if (step === 1) {
-      return 'Set-up Ghost node';
+      return 'Set-up Ghostnode';
     } else if (step === 2) {
-      return 'Transfer NIX to Ghost node';
+      return 'Transfer NIX to Ghostnode';
     }
     return 'Confirm your recovery phrase';
   }

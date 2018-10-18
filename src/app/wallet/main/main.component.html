@@ -26,7 +26,7 @@
       </a>
       <a class="sidebar-item-link" routerLinkActive="active" routerLink="./multi/nodes" (click)="routerLink='ghost node'">
         <mat-list-item class="sidebar-item">
-          <span class="text">Ghost Node</span>
+          <span class="text">Ghostnode</span>
         </mat-list-item>
       </a>
       
@@ -60,7 +60,9 @@
         <div>Version: {{walletVersion}}</div>
         <div *ngIf="syncProgress !== 100">Syncing ....</div>
       </div>
-      <progress-bar class="progress-bar" [progress]="syncProgress"></progress-bar>
+      <div class="progress-bar-container" (click)="openSyncingWallet()">
+        <progress-bar class="progress-bar" [progress]="syncProgress"></progress-bar>
+      </div>
     </mat-list>
   </mat-drawer>
 

@@ -19,7 +19,7 @@
     <div class="actions">
 
       <div fxLayout="row">
-        <mat-checkbox [(ngModel)]="termsChecked" class="termsCheck"></mat-checkbox>I understand and agree to the wallet Terms & Conditions
+        <mat-checkbox [(ngModel)]="termsChecked" class="termsCheck"></mat-checkbox>I understand and agree that if I lose this password, I will lose all of my funds associated with it. I am the sole owner.
       </div>
 
       <div *ngIf="showSidebarError" class="error">
@@ -27,7 +27,7 @@
       </div>
 
       <div fxLayout="row">
-        <button fxFlex="100" class="restore-btn" mat-raised-button (click)="encryptWallet()">
+        <button fxFlex="100" class="restore-btn" mat-raised-button (click)="encryptWallet()" [disabled]="! termsChecked">
           Encrypt Wallet
         </button>
       </div>
