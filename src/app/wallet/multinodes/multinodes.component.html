@@ -4,21 +4,21 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <page-header heading="Ghost Node" [navbar]="help"></page-header>
+    <page-header heading="GhostNode" [navbar]="help"></page-header>
     <p class="desc">
-      A Ghost node is the term used for NIX masternodes, which help secure the network by completing special tasks on the
+      A Ghostnode is the term used for NIX masternodes, which help secure the network by completing special tasks on the
       <br>blockchain and ensuring quick transactions. Node holders earn NIX for providing this service. 
       <a href="https://nixplatform.zendesk.com/hc/en-us/articles/360005044571-Setting-up-your-Ghost-Node" target="_blank">Learn more</a>
     </p>
     <!-- <div class="warning">
     <div class="desc1">
-        One or more of your Ghost nodes requires a new start. Trouble shooting guide
+        One or more of your Ghostnodes requires a new start. Trouble shooting guide
     </div>
     </div> -->
     <div class="card zdepth1 card1">
       <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="6">
         <div fxFlexOrder.lt-md="1" fxFlex="100">
-          <!-- <div fxLayout="row" class="label">NIX locked in Ghost nodes</div> -->
+          <!-- <div fxLayout="row" class="label">NIX locked in Ghostnodes</div> -->
           <div fxLayout="row" class="label">Overall balance</div>
           <div fxLayout="row" class="nix-row">
             <p class="nix1">{{walletInfo.balance}}
@@ -60,8 +60,8 @@
           </div>
         </div> -->
 
-        <div fxFlexOrder.lt-md="1" fxFlex="100">
-          <div fxLayout="row" class="label">Total ghostnodes</div>
+        <div fxFlexOrder.lt-md="1" fxFlex="100" class="ghostnodesContainer" (click)="showAllGhostnodes()">
+          <div fxLayout="row" class="label">Total Ghostnodes</div>
           <div fxLayout="row" class="nix-row">
             <p class="nix1"> {{ghostNodeCount}} ACTIVE NODES</p>
           </div>
@@ -82,9 +82,9 @@
         </div> -->
       </div>
     </div>
-    <h5 class="tableHead">My Ghost Nodes</h5>
+    <h5 class="tableHead">My Ghostnodes</h5>
     <div class="tableHead">
-      <app-ghost-node [ghostNodes]="ghostNodes"></app-ghost-node>
+      <app-ghost-node></app-ghost-node>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

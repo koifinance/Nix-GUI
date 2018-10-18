@@ -19,6 +19,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RestoreComponent } from './restore/restore.component';
 import { GhostComponent } from './ghost/ghost.component';
 import { MultinodesComponent } from './multinodes/multinodes.component';
+import { AllGhostNodeComponent } from './multinodes/all-ghost-node/all-ghost-node.component';
 import { RewardHistoryTableComponent } from './reward-history-table/reward-history-table.component';
 import { RewardHistoryChartComponent } from './reward-history-chart/reward-history-chart.component';
 import { UpdatesComponent } from './updates/updates.component';
@@ -53,6 +54,7 @@ import { ProgressBarModule } from 'angular-progress-bar';
     WelcomeComponent,
     GhostComponent,
     MultinodesComponent,
+    AllGhostNodeComponent,
     RewardHistoryTableComponent,
     RewardHistoryChartComponent,
 	  UpdatesComponent,

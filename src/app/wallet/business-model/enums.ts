@@ -36,6 +36,7 @@ export enum message {
   SaveCurrencyMessage = 'Failed to save currency',
   PasswordValidationMessage = 'Re-Entry password must be same to the new password',
   ChangePasswordMessage = 'Failed to change password',
+  CurrencyChangeMessage = 'Your settings have been saved',
   CopiedAddress = 'Address copied to clipboard',
   DepositMessage = 'Failed to deposit amount',
   PassphraseNotMatch = 'Password does not match. Please check if the password is correct!',
@@ -44,7 +45,8 @@ export enum message {
   GetFeeForAmount = 'Failed to get fee for the amount!',
   ListTransactions = 'Failed to get the transactions!',
   UnGhostAmount = 'Failed to unghost the amount!',
-  GhostnodeListConf = 'Failed to get list of ghost nodes!'
+  GhostnodeListConf = 'Failed to get list of Ghostnodes!',
+  GhostnodeList = 'Failed to get list of all Ghostnodes!'
 }
 
 export enum ApiEndpoints {
@@ -74,6 +76,7 @@ export enum ApiEndpoints {
   Setaccount = 'setaccount',
   GhostnodeListConf = 'ghostnode list-conf',
   Ghostnode = 'ghostnode',
+  GhostnodeList = 'ghostnodelist',
   Torstatus  = 'torstatus',
   EnableTor  = 'enabletor',
   SaveCurrency = 'https://api.coinmarketcap.com/v2/ticker/2991',
