@@ -15,6 +15,7 @@ export class SyncingWalletComponent implements OnInit {
   private log: any = Log.create(`SyncingWallet.component `);
   private destroyed: boolean = false;
   blockchaininfo: IGetblockchaininfo = new getblockchaininfo();
+  estimatedTime: String = '';
   constructor(private _rpcState: RpcStateService) { }
 
   ngOnInit() {
@@ -31,6 +32,17 @@ export class SyncingWalletComponent implements OnInit {
       .takeWhile(() => !this.destroyed)
       .subscribe(blockchaininfo => {
         this.blockchaininfo = new getblockchaininfo(blockchaininfo).toJSON();
+        let s: number = (1 - blockchaininfo.verificationprogress) * 100000;
+        let h: number = Math.floor(s / 3600);
+        let m = Math.round(s % 3600 / 60);
+        if (h == 0 && m == 0) {
+          this.estimatedTime = "few seconds";
+          return;
+        }
+
+        let hDisplay = h >= 0 ? h + (h == 1 ? " Hour and " : " Hours and ") : "";
+        let mDisplay = m >= 0 ? m + (m == 1 ? " Minute" : " Minutes") : "";
+        this.estimatedTime = hDisplay + mDisplay; 
       },
         error => this.log.error(message.walletMessage, error));
   }
