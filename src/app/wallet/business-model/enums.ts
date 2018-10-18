@@ -44,8 +44,8 @@ export enum message {
   GetFeeForAmount = 'Failed to get fee for the amount!',
   ListTransactions = 'Failed to get the transactions!',
   UnGhostAmount = 'Failed to unghost the amount!',
-  GhostnodeListConf = 'Failed to get list of ghost nodes!',
-  GhostnodeList = 'Failed to get list of all ghost nodes!'
+  GhostnodeListConf = 'Failed to get list of Ghostnodes!',
+  GhostnodeList = 'Failed to get list of all Ghostnodes!'
 }
 
 export enum ApiEndpoints {
