@@ -11,6 +11,7 @@ import { VaultComponent } from './vault/vault.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { GhostComponent } from './ghost/ghost.component';
 import { MultinodesComponent } from './multinodes/multinodes.component';
+import { AllGhostNodeComponent } from './multinodes/all-ghost-node/all-ghost-node.component';
 import { RewardHistoryChartComponent } from './reward-history-chart/reward-history-chart.component';
 import { RewardHistoryTableComponent } from './reward-history-table/reward-history-table.component';
 import { SettingComponent } from './setting/setting/setting.component';
@@ -29,9 +30,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'Login', page: 'login' } },
   { path: 'create', component: CreateComponent, data: { title: 'Create', page: 'create' } },
   // { path: 'restore', component: RestoreComponent, data: { title: 'Restore', page: 'restore' } },
-  { path: 'reward-history-table', component: RewardHistoryTableComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-table' } },
-  { path: 'reward-history-chart', component: RewardHistoryChartComponent, data: { title: 'Ghost Nodes reward history', page: 'reward-history-chart' } },
+  { path: 'reward-history-table', component: RewardHistoryTableComponent, data: { title: 'Ghostnodes reward history', page: 'reward-history-table' } },
+  { path: 'reward-history-chart', component: RewardHistoryChartComponent, data: { title: 'Ghostnodes reward history', page: 'reward-history-chart' } },
   { path: 'overview/nix-price-chart', component: NixPriceChartComponent, data: { title: 'NIX price chart', page: 'nix-price-chart' } },
+  { path: 'multinodes/all-ghost-node', component: AllGhostNodeComponent, data: { title: 'All Ghostnodes', page: 'all-ghost-node' } },
   {
     path: 'main',
     component: MainComponent,
@@ -41,8 +43,8 @@ const routes: Routes = [
       { path: 'overview', component: OverviewComponent, data: { title: 'Overview', page: 'overview' } },
       { path: 'vault', component: VaultComponent, data: { title: 'Ghost Vault', page: 'vault' } },
       { path: 'transactions', component: TransactionsComponent, data: { title: 'Transaction History', page: 'transactions' } },
-      { path: 'nodes', component: GhostComponent, data: { title: 'Ghost Nodes', page: 'nodes' } },
-      { path: 'ghost', component: NodesComponent, data: { title: 'Ghost Nodes', page: 'ghost' } },
+      { path: 'nodes', component: GhostComponent, data: { title: 'Ghostnodes', page: 'nodes' } },
+      { path: 'ghost', component: NodesComponent, data: { title: 'Ghostnodes', page: 'ghost' } },
       { path: 'multi/nodes', component: MultinodesComponent, data: { title: 'Muliti  Nodes', page: 'mulitinodes' } },
       { path: 'settings', component: SettingComponent, data: { title: 'Settings' } },
       { path: 'updates', component: UpdatesComponent, data: { title: 'Updates', page: 'updates' } },

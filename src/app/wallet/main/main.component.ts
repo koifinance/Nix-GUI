@@ -3,6 +3,7 @@ import { Log } from 'ng2-logger';
 import { RpcStateService } from '../../core/core.module';
 import { ApiEndpoints } from '../business-model/enums';
 import { RpcService } from '../../core/rpc/rpc.service';
+import { ModalsService } from '../modals/modals.service';
 
 @Component({
   selector: 'wallet-main',
@@ -18,7 +19,7 @@ export class MainComponent implements OnInit, OnDestroy {
   destroyed: boolean = false;
   syncProgress: number;
   walletVersion: string;
-  constructor(private _rpcState: RpcStateService, private _rpc: RpcService) {
+  constructor(private modalsService: ModalsService, private _rpcState: RpcStateService, private _rpc: RpcService) {
   }
 
   ngOnInit() {
@@ -39,6 +40,14 @@ export class MainComponent implements OnInit, OnDestroy {
       }
     )
 
+  }
+
+  openSyncingWallet() {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService
+    };
+    this.modalsService.openSmall('syncingWallet', data);
   }
 
   ngOnDestroy() {

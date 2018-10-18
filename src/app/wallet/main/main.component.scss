@@ -302,8 +302,12 @@ a {
   }
 }
 
-.progress-bar {
-  width: 100%;
+.progress-bar-container {
+  cursor: pointer;
+  
+  .progress-bar {
+    width: 100%;
+  }
 }
 
 .progress-bar-memo {

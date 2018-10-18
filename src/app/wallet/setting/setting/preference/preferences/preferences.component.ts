@@ -36,5 +36,6 @@ export class PreferencesComponent implements OnInit {
   // to save currency
   public save() {
     this.walletServices.saveCurrency(this.savecurrency);
+    this.flashNotification.open(message.CurrencyChangeMessage, 'info');
   }
 }

@@ -73,9 +73,12 @@ mat-drawer-content {
   }
 
   .actions {
+    .restore-btn:disabled {
+      background: #F4F4F5;
+    }
 
     .restore-btn {
-      background: #F4F4F5;
+      background: #00C1FF;
       border-radius: 5px;
       font-size: 15px;
       color: #4A4A4A;
