@@ -40,9 +40,10 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   private defaults: any = {
     header: true,
     numTransactions: 40,
-    columns: ['date', 'category', 'confirmations', 'amount'],
+    columns: ['Type', 'Amount', 'Address', 'Status', 'Date'],
     longDate: false,
     styleClass: '',
+    recent: false
   };
   // private transactionSubscription: Subscription;
   // private filterSubscription: Subscription;
@@ -57,10 +58,11 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.destroyed = false;
-    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000, ['*', 100]);
+    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 5000, ['*', 100]);
     // this._rpcState.registerStateCall(ApiEndpoints.GetTrasaction, 1000, [this.transactionAllNix.txid]);
     this.display = Object.assign({}, this.defaults, this.display);
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
+    this.log.d(this.display);
     this.transactionService.postConstructor(this.display.numTransactions);
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;

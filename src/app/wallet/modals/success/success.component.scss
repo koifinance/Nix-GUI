@@ -224,3 +224,22 @@
   }
 
 }
+
+.payment-info {
+  font-size: 14px;
+
+  > span {
+    font-weight: 700;
+  }
+
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #00A0C6;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
