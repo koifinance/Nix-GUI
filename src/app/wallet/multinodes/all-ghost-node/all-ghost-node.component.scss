@@ -1,0 +1,42 @@
+
+@import '../../shared/shared';
+mat-drawer {
+  padding: 37px 28px 10px;
+  background-color: $bg-white;
+  color: $text;
+  width: 25%;
+}
+
+mat-drawer-content {
+  overflow-y: auto !important;
+  width: 100%;
+}
+
+.content {
+
+  .back-button {
+    margin-left: 3.5em;
+
+    img {
+      cursor: pointer;
+      margin-top: 3em;
+    }
+
+    .caption {
+      color: #9B9B9B;
+      font-size: 14px;
+      margin-top: 15px;
+      padding-left: 15px;
+      text-transform: capitalize;
+    }
+  }
+}
+
+
+
+.mat-table .mat-header-row {
+    background: #f1f1f1;
+}
+.confirm-ok {
+    color: orange;
+  }

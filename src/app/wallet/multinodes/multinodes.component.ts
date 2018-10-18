@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FAQ } from '../shared/faq.model';
 import { faq } from './faq';
+import { Router } from '@angular/router';
 import { ModalsService } from '../modals/modals.service';
 import { WalletService } from '../wallet.service';
 import { Log } from 'ng2-logger';
@@ -25,7 +26,7 @@ export class MultinodesComponent implements OnInit {
   private log: any = Log.create('Multinodes.component');
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   walletInfo: IWalletInfo = new WalletInfo();
-  ghostNodes: Array<any> = [];
+  ghostNodes: Array<any>;
   USDwalletbalance: number;
   BTCwalletbalance: number;
   EURwalletbalance: number;
@@ -38,16 +39,14 @@ export class MultinodesComponent implements OnInit {
   constructor(
     private calculationService: CalculationsService,
     private modalsService: ModalsService,
+    private router: Router,
     private walletServices: WalletService,
     private _rpcState: RpcStateService) { }
 
   ngOnInit() {
-    this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 1000, ['count']);
-
     this.currentCurrency = this.walletServices.getCurrency();
     this.getBalance();
     this.getwalletinformation();
-    this.getGhostNodeList();
     this.getGhostNodeCount();
   }
 
@@ -100,14 +99,6 @@ export class MultinodesComponent implements OnInit {
       error => this.log.error('Failed to get balance, ', error));
   }
 
-  // get ghost node list
-  private getGhostNodeList() {
-    this.walletServices.ghostnodeListConf()
-      .subscribe(res => {
-        this.ghostNodes = res;
-      }, error => this.log.er(message.GhostnodeListConf, error))
-  }
-
   // get ghost node count
   private getGhostNodeCount() {
     this._rpcState.observe(ApiEndpoints.Ghostnode)
@@ -126,7 +117,10 @@ export class MultinodesComponent implements OnInit {
     this.modalsService.openxSmall('withdrawRewards', data);
   }
 
-  
+  showAllGhostnodes() {
+    this.router.navigate(['./multinodes/all-ghost-node']);
+  }
+
   ngOnDestroy() {
     this.destroyed = true;
   }
