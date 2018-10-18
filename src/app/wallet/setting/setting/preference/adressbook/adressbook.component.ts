@@ -44,10 +44,10 @@ export class AdressbookComponent implements OnInit {
       let sendAddresses = receivedInfo['send'];
       let allAddresses = [];
       for (let key in receiveAddresses) {
-        allAddresses.push({name: receiveAddresses[key], type: '', address: key, action: "Edit"});
+        allAddresses.push({name: receiveAddresses[key], type: 'receive', address: key, action: "Edit"});
       }
       for (let key in sendAddresses) {
-        allAddresses.push({name: sendAddresses[key], type: '', address: key, action: "Edit"});
+        allAddresses.push({name: sendAddresses[key], type: 'send', address: key, action: "Edit"});
       }
       this.dataSource.data = allAddresses;
     }, error => {
