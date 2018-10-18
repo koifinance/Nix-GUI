@@ -16,7 +16,7 @@ mat-table {
   mat-cell {
     color: $color-dark-grey;
     font-size: 14px;
-    overflow: inherit;
+    overflow: hidden;
   }
 
   .confirm-none {
@@ -42,6 +42,92 @@ mat-table {
   .day {
     letter-spacing: 2.3px;
   }
+
+  .amount {
+    font-weight: 600;
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+
+    .complete-status {
+      width: 9px;
+      height: 9px;
+      border: 1px solid rgb(14, 203, 193);
+      border-radius: 50% 50%;
+      background-color: rgb(14, 203, 193);
+    }
+
+    .processing-status {
+      width: 9px;
+      height: 9px;
+      border: 1px solid rgb(253, 225, 103);
+      border-radius: 50% 50%;
+      background-color: rgb(253, 225, 103);
+    }
+  }
+
+  .type {
+
+    > div {
+      display: flex;
+
+      > img {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .address {
+
+    > span {
+      font-weight: 600;
+    }
+  }
+
+  .date {
+
+    .recent-date {
+      text-transform: uppercase;
+      text-align: center;
+      display: block !important;
+    }
+  }
 }
 
+.mat-column-Type {
+  flex: 0 0 20%;
+}
 
+.mat-column-Amount {
+  flex: 0 0 13%;
+}
+
+.mat-column-Address {
+  flex: 0 0 37%;
+}
+
+.mat-column-Status {
+  flex: 0 0 15%;
+}
+
+.mat-column-Date {
+  flex: 0 0 15%;
+}
+
+.mat-column-type {
+  flex: 0 0 35%;
+}
+
+.mat-column-amount {
+  flex: 0 0 25%;
+}
+
+.mat-column-status {
+  flex: 0 0 25%;
+}
+
+.mat-column-date {
+  flex: 0 0 15%;
+}

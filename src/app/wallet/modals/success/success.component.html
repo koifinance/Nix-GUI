@@ -83,6 +83,33 @@
 
   </div>
 
+  <div *ngIf="data.actionType === 'show'" class="wallet">
+    <div class="modalcontent">
+      <h5>Request payment to {{data.address}}</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+
+      <div class="qrimage text-center">
+        <qr-code [value]="data.address" [size]="256"></qr-code>
+      </div>
+
+      <p class="payment-info"> Payment information </p>
+      <div class="payment-info">
+        <span>URI:&nbsp;</span><a>nix:{{data.address}}</a>
+      </div>
+
+      <div class="payment-info">
+        <span>Address:&nbsp;</span><span>{{data.address}}</span>
+      </div>
+
+      <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+        <button class="cancelbtn" fxFlex="45" (click)="BackToAddress('wallet')">Back to addresses</button>
+        <button class="sendbtn" fxFlex="45" (click)="close()">Cancel</button>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
 <div *ngIf="data.walletType === 'vault'" class="vault">
