@@ -35,6 +35,7 @@ export class MultinodesComponent implements OnInit {
   balanceInEUR: any;
   currentCurrency: string;
   ghostNodeCount: number;
+  roi: number;
 
   constructor(
     private calculationService: CalculationsService,
@@ -105,6 +106,8 @@ export class MultinodesComponent implements OnInit {
       .takeWhile(() => !this.destroyed)
       .subscribe(res => {
         this.ghostNodeCount = res;
+        this.roi = (262800 * 8.448) / (this.ghostNodeCount * 40000) * 100;
+        this.roi = Math.round(this.roi*100) / 100;
       },
         error => this.log.error(message.recentTransactionMessage, error));
   }
