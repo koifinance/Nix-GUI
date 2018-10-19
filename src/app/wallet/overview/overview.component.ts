@@ -59,6 +59,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public monthEarn: number = 0;
   public node: number = 0;
   isActiveNodeCount = 0;
+  enabledNodeCount = 0;
 
   // lineChart
   public lineChartData: Array<any> = [
@@ -212,6 +213,24 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.isActiveNodeCount = NodeInformations;
       },
         error => this.log.error(message.recentTransactionMessage, error));
+
+    const timeout = 1000;
+    const _call = () => {
+      if (this.destroyed) {
+        // RpcState service has been destroyed, stop.
+        return;
+      }
+
+      this.walletServices.ghostnodeEnabledCount()
+        .subscribe(count => {
+          this.enabledNodeCount = count;
+          setTimeout(_call, timeout);
+        }, error => {
+          this.log.error(message.bitcoinpriceMessage, error);
+        });
+    };
+
+    _call();
   }
 
   
