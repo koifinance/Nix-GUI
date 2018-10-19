@@ -21,7 +21,7 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
   private defaults: any = {
     header: true,
     numTransactions: 10,
-    columns: ['date', 'category', 'confirmations', 'amount'],
+    columns: ['Type', 'Amount', 'Address', 'Status', 'Date'],
     longDate: false,
     styleClass: '',
   };
