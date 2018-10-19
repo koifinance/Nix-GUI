@@ -143,7 +143,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       address: address,
       actionType: 'show'
     };
-    this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
   }
 

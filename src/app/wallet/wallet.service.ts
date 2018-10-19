@@ -94,19 +94,25 @@ export class WalletService {
     return this._rpc.call(ApiEndpoints.EnableTor, [enable]);
   }
 
-  // get ghost node List Conf for NIX
+  // get ghostnode List Conf for NIX
   public ghostnodeListConf(): Observable<any> {
     return this._rpc.call(ApiEndpoints.GhostnodeListConf).map(
       node => node);
   }
 
-  // get ghost node count
+  // get ghostnode count
   public ghostnodeCount(): Observable<any> {
     return this._rpc.call(ApiEndpoints.Ghostnode, ['count']).map(
       count => count);
   }
 
-  // get ghost node count
+  // get enabled ghostnode count
+  public ghostnodeEnabledCount(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Ghostnode, ['count', 'enabled']).map(
+      count => count);
+  }
+
+  // get ghostnode count
   public getMyGhostnode(): Observable<any> {
     return this._rpc.call(ApiEndpoints.Ghostnode, ['list-conf']).map(
       count => count);

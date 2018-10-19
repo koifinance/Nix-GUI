@@ -44,7 +44,6 @@ export class GhostNodeComponent implements OnInit {
 
   private getMyGhostNodes() {
     const timeout = 60000;
-    // debugger
     const _call = () => {
       if (this.destroyed) {
         // RpcState service has been destroyed, stop.
