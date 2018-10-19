@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Ng2CsvService } from 'ng2csv';
+import { MatDialog } from '@angular/material';
 import { Log } from 'ng2-logger';
 
 import { FilterService } from '../../transactions/filter.service';
