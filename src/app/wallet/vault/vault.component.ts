@@ -24,7 +24,7 @@ import { CalculationsService } from '../calculations.service';
 })
 export class VaultComponent implements OnInit, OnDestroy {
 
-  transactionColumns: string[] = ['date', 'category', 'confirmations', 'amount'];
+  transactionColumns: string[] = ['date', 'type', 'status', 'amount'];
   vaultInitialized: boolean = false;
   faq: Array<FAQ> = faq;
   private log: any = Log.create('vault.component');
