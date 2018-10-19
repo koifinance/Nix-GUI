@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Log } from 'ng2-logger';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { ApiEndpoints } from '../business-model/enums';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { RpcStateService } from '../../core/core.module';
 import { ModalsService } from '../modals/modals.service';
@@ -21,6 +23,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   termsChecked: boolean = false;
   showSidebarError: boolean = false;
   showContentError: boolean = false;
+  showSpinner: boolean = false;
   walletWizard: any = [
     {
       valid: (): boolean => true
@@ -52,6 +55,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private _rpcState: RpcStateService,
+    private spinner: NgxSpinnerService,
     private modalsService: ModalsService
   ) {
   }
@@ -74,8 +78,8 @@ export class CreateComponent implements OnInit, OnDestroy {
   encryptWallet() {
     if (this.walletWizard[1].valid()) {
       this.log.d('encrypt wallet')
-      this._rpcState.registerStateCall('encryptwallet', 1000, [this.walletNewPassword]);
-      this.goTo('main');
+      this._rpcState.registerStateCall(ApiEndpoints.Encryptwallet, 1000, [this.walletNewPassword]);
+      this.spinner.show();
     }
 
     this.showContentError = false;
