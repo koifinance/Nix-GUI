@@ -1,0 +1,144 @@
+@import "./src/assets/config.scss"; // import shared colors etc.
+
+.console-modal {
+	width: auto;
+    padding: 0;
+	// command input & button
+	.command-actions {
+		padding: 12px 24px;
+		border-top: 1px solid $bg-shadow;
+	}
+}
+
+.close-button {
+    border: 0 !important;
+    box-shadow: none !important;
+    padding-right: 24px;
+}
+
+.warn-text {
+	color: $color-alert;
+}
+
+.console-modal-form {
+	height: 570px;
+	font-family: $font;
+	overflow-y: scroll;
+	background: $bg;
+}
+
+input {
+    font-size: 15px;
+    padding-left: 12px;
+    height: 30px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 70%;
+}
+
+.content-modal {
+	max-height: none !important;
+	margin: 0 24px 24px;
+	padding: 10px 16px;
+	background: white;
+	border-bottom: 1px solid $bg-shadow;
+
+	// user input commands
+	&.input {
+		margin-bottom: 0;
+		border-bottom: 1px dashed $bg-shadow;
+		.time {
+			color: $text-muted;
+			font-size: 10px;
+			text-align: right;
+		}
+		.command {
+			font-weight: bold;
+		}
+	}
+}
+
+.text-format {
+	line-height: 1.3;
+	white-space: pre-wrap; // wrap long output lines
+	margin: 0;
+}
+
+.intro-text { // console welcome/warning text
+	background: $bg;
+	//margin-right: 15px;
+	padding: 10px 25px;
+}
+
+.container {
+    display: flex;
+    position: absolute;
+    top: 80px;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    .content {
+      width: 100%;
+      max-width: 560px;
+      margin: auto;
+      .section {
+        margin-bottom: 40px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .title { // content's title
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .subtitle { // "H2" subtitle
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .actions { // container for action buttons
+        text-align: center;
+        margin: 20px 0 30px;
+        &.text-left {
+          text-align: left;
+        }
+      }
+    }
+  }
+  
+  p {
+    font-size: 13px;
+    &.warning {
+      background: rgba($color-alert, 0.1);
+      padding: 15px 25px;
+      margin: 20px 0;
+      border-left: 3px solid $color-alert;
+      font-weight: 600;
+      .mat-icon {
+        color: $color-alert;
+        width: auto;
+        height: auto;
+        margin-right: 10px;
+      }
+    }
+    &.success {
+      background: rgba($color-success, 0.1);
+      padding: 15px 25px;
+      margin: 20px 0;
+      border-left: 3px solid $color-success;
+      font-weight: 600;
+      .mat-icon {
+        color: $color-success;
+        width: auto;
+        height: auto;
+        margin-right: 10px;
+      }
+    }
+  }
+  
+  small {
+    color: $text-muted;
+    font-size: 90%;
+  }
