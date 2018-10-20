@@ -22,6 +22,7 @@ export interface GhostElement {
   styleUrls: ['./ghost-node.component.scss']
 })
 export class GhostNodeComponent implements OnInit {
+  @Input() ghostNodes: Array<any>;
 
   private destroyed: boolean = false;
   private log: any = Log.create('Ghostnode.component');
@@ -39,33 +40,6 @@ export class GhostNodeComponent implements OnInit {
     private _rpcState: RpcStateService) { }
 
   ngOnInit() {
-    this.getMyGhostNodes();
-  }
-
-  private getMyGhostNodes() {
-    const timeout = 60000;
-    const _call = () => {
-      if (this.destroyed) {
-        // RpcState service has been destroyed, stop.
-        return;
-      }
-
-      this.walletServices.getMyGhostnode()
-        .subscribe(res => {
-          let nodes = [];
-          for (let node in res) {
-            nodes.push(res[node]);
-          }
-          this.dataSource = nodes;
-
-
-          setTimeout(_call, timeout);
-        }, error => {
-          this.log.error(message.bitcoinpriceMessage, error);
-        });
-    };
-
-    _call();
   }
 
   openViewNode() {
