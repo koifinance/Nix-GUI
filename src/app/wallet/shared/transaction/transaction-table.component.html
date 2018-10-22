@@ -4,14 +4,14 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
     <mat-cell class="type" *matCellDef="let element">
       <div *ngIf="element.category == 'send'">
-        <img *ngIf="element.is_ghosted" src="./assets/icons/SVG/arrow_right_circle.svg">
-        <img *ngIf="!element.is_ghosted" src="./assets/icons/SVG/arrow_up_circle.svg">
+        <img *ngIf="element.is_ghosted" src="./assets/icons/SVG/arrow-transfer-circle.svg">
+        <img *ngIf="!element.is_ghosted" src="./assets/icons/SVG/arrow-up-circle.svg">
         <p>{{ element.is_ghosted? 'Transferred from wallet' : 'Sent from wallet'}}</p>
       </div>
 
       <div *ngIf="element.category == 'receive'">
-        <img *ngIf="element.is_ghosted" src="./assets/icons/SVG/arrow_left_circle.svg">
-        <img *ngIf="!element.is_ghosted" src="./assets/icons/SVG/arrow_down_circle.svg">
+        <img *ngIf="element.is_ghosted" src="./assets/icons/SVG/arrow-transfer-circle.svg">
+        <img *ngIf="!element.is_ghosted" src="./assets/icons/SVG/arrow-down-circle.svg">
         <p>{{ element.is_ghosted? 'Transferred from vault' : 'Received'}}</p>
       </div>
     </mat-cell>
@@ -72,12 +72,12 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
     <mat-cell class="type" *matCellDef="let element">
       <div *ngIf="element.category == 'send'">
-        <img src="./assets/icons/SVG/arrow-up-nix.svg">
+        <img src="./assets/icons/SVG/arrow-up-circle.svg">
         <p>Sent NIX</p>
       </div>
 
       <div *ngIf="element.category == 'receive'">
-        <img src="./assets/icons/SVG/arrow-down-nix.svg">
+        <img src="./assets/icons/SVG/arrow-down-circle.svg">
         <p>Received NIX</p>
       </div>
     </mat-cell>
