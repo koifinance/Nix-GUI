@@ -30,7 +30,7 @@ export class NixPriceChartComponent implements OnInit {
   public lineChartData: Array<any> = [
     // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     // {data: [40, 19, 86, 27, 90], label: 'Series B'},
-    { data: [0,0.2,0.25,0.6, 0.3, 0.34, 0.29, 0.26],label: 'Bitcoin'}
+    { data: [0,0.2,0.25,0.6, 0.3, 0.34, 0.29, 0.26], label: 'NIX'}
   ];
   public lineChartLabels: Array<any> = ['Mar', 'Apr', 'May','Jun','Jul','Aug','Sep','Oct'];
   public lineChartOptions: any = {
@@ -49,13 +49,13 @@ export class NixPriceChartComponent implements OnInit {
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
 
-  constructor(private router: Router,private walletServices: WalletService,) {
-  
-   }
+  constructor(
+    private router: Router,
+    private walletServices: WalletService,) { }
 
   ngOnInit() {
     this.getBitcoinpriceinfo();
-    this.getHistoricalData();
+    this.getNIXChartData();
   }
 
   // events
@@ -65,6 +65,30 @@ export class NixPriceChartComponent implements OnInit {
  
   public chartHovered(e:any):void {
     console.log(e);
+  }
+
+  // get chart history of nix
+  public getNIXChartData() {
+    this.walletServices.getHistoricalData('vs_currency=usd&days=365').subscribe(res => {
+      let label = [''];
+      let price = [0];
+      const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Aug','Sep','Oct', 'Nov', 'Dec'];
+      res = JSON.parse(res.text());
+      res.prices.map(t => {
+        let date = new Date(t[0]);
+        if (date.getDate() == 1) {
+          label.push(monthName[date.getMonth()]);
+          price.push(t[1]);
+        } else {
+          label.push('');
+          price.push(t[1]);
+        }
+      });
+      this.log.d(label, price)
+      this.lineChartData[0].data = price;
+      this.lineChartLabels.length = 0;
+      this.lineChartLabels = label;
+    })
   }
 
 
@@ -80,16 +104,6 @@ export class NixPriceChartComponent implements OnInit {
       this.isPlusPercent = (this.bitcoinprice.USD.percent_change_24h >= 0);
     },
         error => this.log.error(message.bitcoinpriceMessage, error));
-  }
-
-  // fetch NIX historical data
-  private getHistoricalData() {
-    this.walletServices.getHistoricalData(this.getTodayDate()).subscribe(res => {
-      // this.log.d(res._body.toString());
-      // let soup = new JSSoup(res._body.toString());
-      // let table = soup.find('table', {'class': 'table'});
-      // this.log.d(table);
-    }, err => this.log.error(message.bitcoinpriceMessage, err))    
   }
 
   private getTodayDate() {

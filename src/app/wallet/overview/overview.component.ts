@@ -129,7 +129,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
         }
       });
       this.lineChartData[0].data = price;
-      this.log.d('====', this.lineChartData);
       this.lineChartLabels.length = 0;
       this.lineChartLabels = label;
     })
