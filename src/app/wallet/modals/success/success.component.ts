@@ -76,6 +76,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
         this.getNewAddress();
         if (this.validateInput()) {
           var result = this.walletServices.receiveNIXToWallet(this.setAccount).subscribe(res => {
+            this.data.parentRef.getReceivedNixToWallet(); // reload addresses in parent modal
             this.close();
           }, error => {
             this.flashNotification.open(message.ReceiveNIXtoWallet, 'err');
@@ -89,6 +90,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
     } else {
       if (this.validateInput()) {
         var result = this.walletServices.receiveNIXToWallet(this.setAccount).subscribe(res => {
+          this.data.parentRef.getReceivedNixToWallet(); // reload addresses in parent modal
           this.close();
         }, error => {
           this.flashNotification.open(message.ReceiveNIXtoWallet, 'err');
@@ -114,13 +116,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
 
   // back to address
   BackToAddress(walletType: string) {
-    const data: any = {
-      forceOpen: true,
-      walletType: walletType,
-      modalsService: this.modalsService
-    };
     this.modalsService.forceClose();
-    this.modalsService.openSmall('receive', data);
   }
 
   // done Deposit NIX to Ghost Vault
