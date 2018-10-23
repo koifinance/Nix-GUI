@@ -130,9 +130,9 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       amount: this.amount,
       fee: this.fees,
       total: this.total,
-      actionType: 'receive'
+      actionType: 'receive',
+      parentRef: this
     };
-    this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
   }
 
@@ -143,7 +143,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       address: address,
       actionType: 'show'
     };
-    this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
   }
 

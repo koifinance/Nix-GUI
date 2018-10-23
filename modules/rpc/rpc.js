@@ -9,7 +9,7 @@ const _options    = require('../options');
 const daemon      = require('../daemon/daemon');
 
 /* spyOnRpc will output all RPC calls being made */
-const spyOnRpc = false;
+const spyOnRpc = true;
 
 let HOSTNAME;
 let PORT;

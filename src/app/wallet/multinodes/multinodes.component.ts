@@ -27,14 +27,16 @@ export class MultinodesComponent implements OnInit {
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   walletInfo: IWalletInfo = new WalletInfo();
   ghostNodes: Array<any>;
-  USDwalletbalance: number;
-  BTCwalletbalance: number;
-  EURwalletbalance: number;
+  ghostNodeBalance: number;
+  USDghostnodebalance: number;
+  BTCghostnodebalance: number;
+  EURghostnodebalance: number;
   balanceInUSD: any;
   balanceInBTC: any;
   balanceInEUR: any;
   currentCurrency: string;
   ghostNodeCount: number;
+  roi: number;
 
   constructor(
     private calculationService: CalculationsService,
@@ -48,6 +50,7 @@ export class MultinodesComponent implements OnInit {
     this.getBalance();
     this.getwalletinformation();
     this.getGhostNodeCount();
+    this.getMyGhostNodes();
   }
 
  //get wallet informations
@@ -79,15 +82,15 @@ export class MultinodesComponent implements OnInit {
   }
 
   getBTCBalance() {
-    this.BTCwalletbalance = this.calculationService.getCovertedamount(this.walletInfo.balance,this.balanceInBTC);
+    this.BTCghostnodebalance = this.calculationService.getCovertedamount(this.ghostNodeBalance,this.balanceInBTC);
   }
 
   getUSDBalance() {
-    this.USDwalletbalance = this.calculationService.getCovertedamount(this.walletInfo.balance, this.balanceInUSD);
+    this.USDghostnodebalance = this.calculationService.getCovertedamount(this.ghostNodeBalance, this.balanceInUSD);
   }
 
   getEURBalance() {
-    this.EURwalletbalance = this.calculationService.getCovertedamount(this.walletInfo.balance, this.balanceInEUR);
+    this.EURghostnodebalance = this.calculationService.getCovertedamount(this.ghostNodeBalance, this.balanceInEUR);
   }
 
   // get balance
@@ -105,8 +108,36 @@ export class MultinodesComponent implements OnInit {
       .takeWhile(() => !this.destroyed)
       .subscribe(res => {
         this.ghostNodeCount = res;
+        this.roi = (262800 * 8.448) / (this.ghostNodeCount * 40000) * 100;
+        this.roi = Math.round(this.roi*100) / 100;
       },
         error => this.log.error(message.recentTransactionMessage, error));
+  }
+
+  private getMyGhostNodes() {
+    const timeout = 60000;
+    const _call = () => {
+      if (this.destroyed) {
+        // RpcState service has been destroyed, stop.
+        return;
+      }
+
+      this.walletServices.getMyGhostnode()
+        .subscribe(res => {
+          let nodes: Array<any> = [];
+          for (let node in res) {
+            nodes.push(res[node]);
+          }
+
+          this.ghostNodes = nodes;
+          this.ghostNodeBalance = 40000 * nodes.length;
+          setTimeout(_call, timeout);
+        }, error => {
+          this.log.error(message.bitcoinpriceMessage, error);
+        });
+    };
+
+    _call();
   }
 
   openWithDraw() {
