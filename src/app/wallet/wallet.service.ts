@@ -426,6 +426,6 @@ private send(tx: TransactionBuilder): Observable<any> {
 
   //get historical data
   public getHistoricalData(date: string): Observable<any> {
-    return this.http.get(ApiEndpoints.NIXHitoryUrl + date);
+    return this.http.request(ApiEndpoints.NIXHitoryUrl + date);
   }
 }
