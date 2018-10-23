@@ -194,7 +194,7 @@ export class TransactionService implements OnDestroy {
 
     // get all transaction
     public getallTransaction(transactions :TransactionInfo): Observable<any> {
-      return this.rpc.call(ApiEndpoints.GetTrasaction).map(
+      return this.rpc.call(ApiEndpoints.GetTransaction).map(
         transactions => transactions);
     }
 }

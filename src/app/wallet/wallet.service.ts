@@ -83,6 +83,12 @@ export class WalletService {
       info => info);
   }
   
+  // get staking info
+  public getStakingInfo (): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Getstakinginfo).map(
+      info => info);
+  }
+  
   // get Tor status NIX
   public getTorstatus(): Observable<any> {
     return this._rpc.call(ApiEndpoints.Torstatus).map(
@@ -91,6 +97,11 @@ export class WalletService {
 
   // Enable/disable Tor status NIX
   public enableTor(enable: string): Observable<any> {
+    return this._rpc.call(ApiEndpoints.EnableTor, [enable]);
+  }
+
+  // Enable/disable Staking status NIX
+  public enableStaking(enable: string): Observable<any> {
     return this._rpc.call(ApiEndpoints.EnableTor, [enable]);
   }
 
@@ -175,6 +186,12 @@ export class WalletService {
   public listReceivedByAccount(): Observable<any> {
     return this._rpc.call(ApiEndpoints.ListReceivedbyAddress);
   }
+  
+  // To lock wallet
+  public walletlock(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.WalletLock);
+  }
+
 
   private rpc_getParams() {
     if (typeOfAddresses.Send) {
@@ -219,7 +236,7 @@ export class WalletService {
 
   // get all transaction
   public getallTransaction(transactions :TransactionInfo): Observable<any> {
-    return this._rpc.call(ApiEndpoints.GetTrasaction,[transactions.txid]);
+    return this._rpc.call(ApiEndpoints.GetTransaction,[transactions.txid]);
   }
 
   // get all addresses in address book
