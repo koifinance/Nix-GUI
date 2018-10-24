@@ -1,0 +1,157 @@
+.desc {
+    text-align: left;
+    font-size: 15px;
+    margin: 0px 0px 48px 43px;
+  }
+
+
+  @import '../shared/shared';
+
+  .card {
+    display: inline-block;
+    margin: 8px;
+    padding: 12px 16px 16px 16px;
+    border-radius: 2px;
+    background-color: #FFF;
+    margin-left: 20px;
+    width: 260px;
+    height: 182px;
+  }
+  .card div {
+    display: inline-block;
+    vertical-align: text-top;
+    margin-top: 4px;
+  }
+  .zdepth1 {
+    z-index: 10;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);  /* Firefox 3.5 - 3.6 */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
+
+  a{
+      color: deepskyblue;
+  }
+
+  .value-label{
+    font-size: 42px;
+    color: $color-dark-grey;
+    letter-spacing: 0;
+    margin: 0;
+    font-weight: bold;
+  }
+  .divider1 {
+    border: 1px solid #bdbbbb ;
+    margin-bottom: 15px !important;
+    margin-top: 15px !important;
+    width : 223px;
+  }
+
+  .payout-label {
+    font-size: 15px;
+    color: #9b9b9b;
+    margin: 0px;
+
+    span {
+      color: #108eff;
+    }
+  }
+
+  .notif-label {
+    font-size: 14px;
+    color: #108eff;
+    margin: 0px;
+    font-weight: bold;
+    margin: 30px 0px 0px 60px;
+    
+    span {
+      color: #4a4a4a;
+    }
+  }
+
+  .tableHead{
+    margin-left: 45px;
+
+    &.section-label {
+      margin-top: 61px;
+    }
+  }
+
+  .card1{
+    margin-left: 45px;
+  }
+
+  .label {
+    font-size: 17px;
+    color: $color-dark-grey;
+    font-weight: 600;
+    padding-bottom: 35px;
+  }
+  .suffix-label {
+    font-size: 18px;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+
+  .mat-slide-toggle {
+    color: $color-dark-grey;
+    /deep/ .mat-slide-toggle-content {
+      font-size: 15px;
+    }
+  }
+
+  .divider {
+    border: 1px solid rgb(182, 38, 38);
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .ghostnodesContainer {
+    cursor: pointer;
+  }
+
+
+mat-table {
+  background: transparent;
+
+  mat-header-row {
+    border: none;
+    min-height: 40px;
+    background: $color-dark-white;
+  }
+
+  mat-header-cell {
+    color: black;
+  }
+
+  mat-row {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  mat-cell {
+    color: $color-dark-grey;
+    font-size: 14px;
+    overflow: hidden;
+  }
+}
+
+
+.mat-column-Amount {
+  flex: 0 0 15%;
+}
+
+.mat-column-Status {
+  flex: 0 0 10%;
+}
+
+.mat-column-Created {
+  flex: 0 0 20%;
+}
+
+.mat-column-Detail {
+  flex: 0 0 55%;
+}
+
+
+

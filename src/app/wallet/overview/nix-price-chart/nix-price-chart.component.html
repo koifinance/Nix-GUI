@@ -40,7 +40,8 @@
       <div fxFlex="75">
         <div fxLayout="row" fxLayoutGap="20px">
           <div fxFlex="15">
-            <span class="large-no">{{bitcoinprice.USD.price | currency:"USD":true}}</span>
+            <span class="large-no" *ngIf="currentCurrency == 'USD'">{{bitcoinprice.USD.price | currency:"USD":true}}</span>
+            <span class="large-no" *ngIf="currentCurrency == 'EUR'">{{bitcoinprice.EUR.price | currency:"EUR":true}}</span>
           </div>
           <div fxFlex="15">
             <div fxLayout="column" class="up-value">
@@ -54,25 +55,27 @@
           <div fxFlex="15">
             <div fxLayout="column" fxLayoutGap="2px">
               <span class="chart-feilds">MARKET CAP</span>
-              <span class="feilds-value">{{bitcoinprice.USD.market_cap | currency:"USD":true}}</span>
+              <span class="feilds-value" *ngIf="currentCurrency == 'USD'">{{bitcoinprice.USD.market_cap | currency:"USD":true}}</span>
+              <span class="feilds-value" *ngIf="currentCurrency == 'EUR'">{{bitcoinprice.EUR.market_cap | currency:"EUR":true}}</span>
             </div>
           </div>
           <div fxFlex="15">
             <div fxLayout="column" fxLayoutGap="2px">
               <span class="chart-feilds">LOW - HIGH (24H)</span>
-              <span class="feilds-value">$0.26 - $0.31</span>
+              <span class="feilds-value">{{currencySign}}0.26 - {{currencySign}}.31</span>
             </div>
           </div>
           <div fxFlex="15">
             <div fxLayout="column" fxLayoutGap="2px">
               <span class="chart-feilds">VOL (24H)</span>
-              <span class="feilds-value">{{bitcoinprice.USD.volume_24h | currency:"USD":true}}</span>
+              <span class="feilds-value" *ngIf="currentCurrency == 'USD'">{{bitcoinprice.USD.volume_24h | currency:"USD":true}}</span>
+              <span class="feilds-value" *ngIf="currentCurrency == 'EUR'">{{bitcoinprice.EUR.volume_24h | currency:"EUR":true}}</span>
             </div>
           </div>
           <div fxFlex="15">
             <div fxLayout="column" fxLayoutGap="2px">
               <span class="chart-feilds">CURRENT vs. MAX SUPPLY</span>
-              <span class="feilds-value">$ 5.8M - x.xM</span>
+              <span class="feilds-value">{{currencySign}}5.8M - {{currencySign}}x.xM</span>
             </div>
           </div>
         </div>
