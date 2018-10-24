@@ -28,10 +28,11 @@ export class NixPriceChartComponent implements OnInit {
 
   // lineChart
   public lineChartData: Array<any> = [
-    // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    // {data: [40, 19, 86, 27, 90], label: 'Series B'},
-    { data: [0,0.2,0.25,0.6, 0.3, 0.34, 0.29, 0.26], label: 'NIX'}
+    { data: [0, 0, 0, 0, 0, 0, 0, 0], label: 'NIX'}
   ];
+  public chart_currency: string = 'usd';
+  public chart_days: number = 365;
+  public marketData: any = {};
   public lineChartLabels: Array<any> = ['Mar', 'Apr', 'May','Jun','Jul','Aug','Sep','Oct'];
   public lineChartOptions: any = {
     responsive: true
@@ -54,8 +55,9 @@ export class NixPriceChartComponent implements OnInit {
     private walletServices: WalletService,) { }
 
   ngOnInit() {
-    this.getBitcoinpriceinfo();
-    this.getNIXChartData();
+    this.getBitcoinpriceInfo();
+    this.getNIXChartData('usd', 365);
+    this.getMarketInfo('usd');
   }
 
   // events
@@ -67,38 +69,62 @@ export class NixPriceChartComponent implements OnInit {
     console.log(e);
   }
 
+  public setDuration(day: number) {
+    this.chart_days = day;
+    this.getNIXChartData(this.chart_currency, day);
+  }
+
+  // get market data
+  public getMarketInfo(curency) {
+    this.walletServices.getMarketData(curency, 'nix-platform').subscribe(res => {
+      res = JSON.parse(res.text());
+      this.marketData = res[0];
+      this.log.d(this.marketData, res);
+    })
+  }
+
   // get chart history of nix
-  public getNIXChartData() {
-    this.walletServices.getHistoricalData('vs_currency=usd&days=365').subscribe(res => {
-      let label = [''];
-      let price = [0];
+  public getNIXChartData(curency, days) {
+    this.walletServices.getHistoricalData(curency, days).subscribe(res => {
+      let label = [];
+      let price = [];
       const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Aug','Sep','Oct', 'Nov', 'Dec'];
       res = JSON.parse(res.text());
+      this.log.d(res);
       res.prices.map(t => {
         let date = new Date(t[0]);
-        if (date.getDate() == 1) {
+        if (date.getDate() == 1 && monthName[date.getMonth()] !== label[label.length - 1] && date.getDate().toString() !== label[label.length - 1]) {
           label.push(monthName[date.getMonth()]);
           price.push(t[1]);
-        } else {
-          label.push('');
+        } else if (days > 31 && date.getDay() == 0 && date.getDate().toString() !== label[label.length - 1] && (monthName[date.getMonth()] !== label[label.length - 1] || label[label.length - 1] != '')){
+          label.push(date.getDate().toString());
+          price.push(t[1]);
+        } else if (days <= 31 && date.getDate().toString() !== label[label.length - 1] ){
+          label.push(date.getDate().toString());
           price.push(t[1]);
         }
       });
-      this.log.d(label, price)
+      this.log.d(label, price);
+      this.log.d(days, res.prices);
       this.lineChartData[0].data = price;
       this.lineChartLabels.length = 0;
       this.lineChartLabels = label;
     })
   }
 
+  // currency change
+  public onCurrencyChange() {
+    this.getNIXChartData(this.chart_currency, this.chart_days);
+    this.getMarketInfo(this.chart_currency);
+  }
 
   goToMain() {
       this.router.navigate(['./main/overview']);
   }
 
   // fetch bitcoin price
-  private getBitcoinpriceinfo() {
-    this.walletServices.getBitcoin(this.bitcoinpriceInfo)
+  private getBitcoinpriceInfo() {
+    this.walletServices.getInEUR(this.bitcoinpriceInfo)
     .subscribe(bitcoinpriceInfos => {
       this.bitcoinprice = bitcoinpriceInfos.data.quotes;
       this.isPlusPercent = (this.bitcoinprice.USD.percent_change_24h >= 0);

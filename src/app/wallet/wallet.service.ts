@@ -162,7 +162,7 @@ export class WalletService {
   }
 
   public getCurrency() {
-    this.log.d(localStorage.getItem('currency'))
+    if (!localStorage.getItem('currency')) return 'USD';
     return localStorage.getItem('currency');
   }
 
@@ -408,7 +408,12 @@ private send(tx: TransactionBuilder): Observable<any> {
   }
 
   //get historical data
-  public getHistoricalData(date: string): Observable<any> {
-    return this.http.request(ApiEndpoints.NIXHitoryUrl + date);
+  public getHistoricalData(vs_currency: string, days): Observable<any> {
+    return this.http.request(ApiEndpoints.NIXHitoryUrl + 'vs_currency=' + vs_currency + '&days=' + days);
+  }
+
+  //get market data
+  public getMarketData(vs_currency, ids): Observable<any> {
+    return this.http.request(ApiEndpoints.GetMarketInfo + 'vs_currency=' + vs_currency + '&ids=' + ids);
   }
 }
