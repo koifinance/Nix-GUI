@@ -116,7 +116,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   // get chart history of nix
   public getNIXChartData() {
-    this.walletServices.getHistoricalData('vs_currency=usd&days=365').subscribe(res => {
+    this.walletServices.getHistoricalData('usd', 365).subscribe(res => {
       let label = ['Jul'];
       let price = [0];
       const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Aug','Sep','Oct', 'Nov', 'Dec'];
@@ -124,7 +124,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
       res.prices.map(t => {
         let date = new Date(t[0]);
         if (date.getDate() == 1) {
-          label.push(monthName[date.getMonth()]);
+          label.push((date.getMonth() + 1).toString());
+          price.push(t[1]);
+        } else if (date.getDay() == 0){
+          label.push('');
           price.push(t[1]);
         }
       });
@@ -156,7 +159,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
             this.balanceInBTC = this.bitcoinprice.BTC.price;
             this.balanceInUSD = this.bitcoinprice.USD.price;
             this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
-          
+            this.log.d(this.balanceInUSD, this.currentCurrency);
+
             this.getBTCBalance();
             this.getUSDBalance();
             this.getBTCVaultBalance();
