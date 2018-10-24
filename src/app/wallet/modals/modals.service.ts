@@ -13,6 +13,7 @@ import { CancelNodeComponent } from './cancel-node/cancel-node.component';
 import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { PasswordchangeComponent } from './passwordchange/passwordchange.component';
+import { PasswordInputComponent } from './passwordinput/passwordinput.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AddaddressComponent } from './addaddress/addaddress.component';
 import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
@@ -35,6 +36,7 @@ export class ModalsService implements OnDestroy {
     withdrawRewards: WithdrawRewardsComponent,
     transaction: TransactionComponent,
     passwordChange : PasswordchangeComponent,
+    passwordInput : PasswordInputComponent,
     recoveryPharse : RecoveryComponent,
     newAddress : AddaddressComponent,
     syncingWallet: SyncingWalletComponent,

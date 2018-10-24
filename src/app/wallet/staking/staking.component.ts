@@ -32,12 +32,21 @@ export class StakingComponent implements OnInit {
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   walletInfo: IWalletInfo = new WalletInfo();
   stakingAmount: number;
+  unconfirmedBalance: number;
+  immatureBalance: number;
   isStaking: boolean = false;
   stakingInfo: any;
   nextTimeStr: string;
   lastSearchTime: Date;
   dataSource: MatTableDataSource<IRecentTransactionInfo>;
-
+  chartLabels: string[] = ['Staking', 'Immature', 'Unavailable'];
+  chartData: number[] = [0,0,0];
+  chartType: string = 'doughnut';
+  chartColors: Array<any> = [
+    {
+      backgroundColor: ['#0ecbc1', '#ffdd47', '#eaeaea']
+    }
+  ]
 
   constructor(
     private calculationService: CalculationsService,
@@ -58,7 +67,6 @@ export class StakingComponent implements OnInit {
 
   // get all transaction
   private getTransactions() {
-    
     this._rpcState.observe(ApiEndpoints.ListTransactions)
       .takeWhile(() => !this.destroyed)
       .subscribe(res => {
@@ -77,30 +85,14 @@ export class StakingComponent implements OnInit {
 
  //get wallet informations
   private getwalletinformation() {
-    // this._rpcState.observe(ApiEndpoints.GetWalletInfo)
-    //   .takeWhile(() => !this.destroyed)
-    //   .subscribe(walletInfo => {
-    //     this.walletInfo = new WalletInfo(walletInfo).toJSON();
-    //     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
-    //       .subscribe(bitcoinpriceInfos => {
-    //         let bitcoinprice = bitcoinpriceInfos.data.quotes;
-    //         this.balanceInBTC = bitcoinprice.BTC.price;
-    //         this.balanceInUSD = bitcoinprice.USD.price;
-          
-    //         this.getBTCBalance();
-    //         this.getUSDBalance();
-    //       }, error => this.log.error(message.bitcoinpriceMessage, error));
-
-    //     this.walletServices.getInEUR(this.bitcoinpriceInfo)
-    //       .subscribe(res => {
-
-    //         let tmp = res.data.quotes;
-    //         this.balanceInEUR = tmp.EUR.price;
-          
-    //         this.getEURBalance();
-    //       }, error => this.log.error(message.bitcoinpriceMessage, error));
-    //   },
-    //     error => this.log.error('Failed to get wallet information, ', error));
+    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(walletInfo => {
+        this.unconfirmedBalance = walletInfo.unconfirmed_balance;
+        this.immatureBalance = walletInfo.immature_balance;
+        this.drawOverviewChart();
+      },
+        error => this.log.error('Failed to get wallet information, ', error));
   }
 
   // get staking info
@@ -111,7 +103,6 @@ export class StakingComponent implements OnInit {
         this.stakingInfo = res;
         this.isStaking = res.staking==1;
         this.setupStakingInfo();
-
       },
       error => this.log.error('Failed to get staking info, ', error));
   }
@@ -125,36 +116,47 @@ export class StakingComponent implements OnInit {
     this.nextTimeStr = this.isStaking ? this.nextTimeStr : "N/A";
     this.lastSearchTime = new Date(this.stakingInfo.lastsearchtime * 1000);
 
+    this.drawOverviewChart();
     if (!this.isStaking) this.dataSource.data = null;
+  }
+
+  private drawOverviewChart() {
+    if (this.isStaking) {
+      this.chartData = [this.stakingAmount, this.immatureBalance, this.unconfirmedBalance];
+    } else {
+      this.chartData = [0, 0, 1];
+    }
   }
 
   // Enable/disable tor status
   stakingToggled(event: MatSlideToggleChange) {
     if (event.checked) {
-      this.walletServices.enableStaking(event.checked ? 'true' : 'false')
-        .takeWhile(() => !this.destroyed)
-        .subscribe(res => {
-          this.flashNotification.open(res, 'err')
-        }, error => { 
-          this.flashNotification.open(error.message, 'err')
-          this.log.error(error.message, error); 
-      })
+      this.openPassword();
     } else {
       this.walletServices.walletlock()
         .takeWhile(() => !this.destroyed)
         .subscribe(res => {
           this.isStaking = false;
           this.setupStakingInfo();
-          // debugger
-          // const _call = () => {
-          //   this.getStakingInformation();
-          // };
-          // setTimeout(_call, 2000);
         }, error => { 
           this.flashNotification.open(error.message, 'err')
           this.log.error(error.message, error); 
       })
     }
+  }
+
+  stakingEnabled() {
+    this.isStaking = true;
+    this.getStakingInformation();
+  }
+
+  openPassword() {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService,
+      parentRef: this
+    };    
+    this.modalsService.openSmall('passwordInput', data);
   }
 
   ngOnDestroy() {
