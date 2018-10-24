@@ -57,7 +57,7 @@ export enum ApiEndpoints {
   GetWalletInfo = 'getwalletinfo',
   ReceivedNix = 'getaddressesbyaccount',
   AddNode = 'addnode',
-  GetTrasaction = 'gettransaction',
+  GetTransaction = 'gettransaction',
   GetBalance = 'getbalance',
   AddressBook = 'manageaddressbook',
   ValidadeAddress = 'validateaddress',
@@ -73,6 +73,7 @@ export enum ApiEndpoints {
   NIXHitoryUrl = 'https://api.coingecko.com/api/v3/coins/nix-platform/market_chart?',
   GetMarketInfo = 'https://api.coingecko.com/api/v3/coins/markets?',
   Getblockchaininfo = 'getblockchaininfo',
+  Getstakinginfo = 'getstakinginfo',
   Getnewaddress = 'getnewaddress',
   Setaccount = 'setaccount',
   GhostnodeListConf = 'ghostnode list-conf',
@@ -92,4 +93,5 @@ export enum ApiEndpoints {
   GetAllAddresses = 'getalladdresses',
   ManageAddressbook = 'manageaddressbook',
   UnGhostAmount = 'unghostamount',
+  WalletLock = 'walletlock',
 }
