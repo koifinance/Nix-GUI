@@ -40,7 +40,7 @@ export class AllGhostNodeComponent implements OnInit {
     private _rpcState: RpcStateService) { }
 
   ngOnInit() {
-    this._rpcState.registerStateCall(ApiEndpoints.GhostnodeList, 60000, ['full']);
+    this._rpcState.registerStateCall(ApiEndpoints.GhostnodeList, 120000, ['full']);
     this.getAllGhostNodes();
   }
 
