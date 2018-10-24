@@ -19,6 +19,7 @@ export class NixPriceChartComponent implements OnInit {
   faCaretUp: any = faCaretUp;
   faCaretDown: any = faCaretDown;
   public bitcoinprice:any;
+  public bitcoinEURprice:any;
   isPlusPercent: boolean;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   private log: any = Log.create(`NixPriceChart.component `);
@@ -48,12 +49,16 @@ export class NixPriceChartComponent implements OnInit {
   ];
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
+  public currentCurrency: string;
+  public currencySign: string;
 
   constructor(
     private router: Router,
     private walletServices: WalletService,) { }
 
   ngOnInit() {
+    this.currentCurrency = this.walletServices.getCurrency();
+    this.currencySign = this.currentCurrency == 'USD' ? '$' : '€';
     this.getBitcoinpriceinfo();
     this.getNIXChartData();
   }
@@ -98,12 +103,17 @@ export class NixPriceChartComponent implements OnInit {
 
   // fetch bitcoin price
   private getBitcoinpriceinfo() {
-    this.walletServices.getBitcoin(this.bitcoinpriceInfo)
-    .subscribe(bitcoinpriceInfos => {
-      this.bitcoinprice = bitcoinpriceInfos.data.quotes;
-      this.isPlusPercent = (this.bitcoinprice.USD.percent_change_24h >= 0);
-    },
-        error => this.log.error(message.bitcoinpriceMessage, error));
+    this.walletServices.getInEUR(this.bitcoinpriceInfo)
+      .subscribe(bitcoinpriceInfos => {
+        this.bitcoinprice = bitcoinpriceInfos.data.quotes;
+        this.isPlusPercent = (this.bitcoinprice.USD.percent_change_24h >= 0);
+      },error => this.log.error(message.bitcoinpriceMessage, error));
+  }
+
+  // fetch NIX historical data
+  private getHistoricalData() {
+    this.walletServices.getHistoricalData(this.getTodayDate()).subscribe(res => {
+    }, err => this.log.error(message.bitcoinpriceMessage, err))    
   }
 
   private getTodayDate() {
