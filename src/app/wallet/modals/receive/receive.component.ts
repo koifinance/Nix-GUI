@@ -78,6 +78,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   // receive nix to wallet
   private getReceivedNixToWallet() {
     this.walletServices.listAccounts().subscribe(receivedInfo => {
+      this.receivedNixInfo.length = 0;
       for (let key in receivedInfo) {
         this.walletServices.getAddressesByAccount(key).subscribe(res => {
           this.receivedNixInfo.push({account: key, address: res[res.length - 1]});
@@ -107,7 +108,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
           this.log.er(message.DepositMessage, error)
         });
       }, err => {
-        this.flashNotification.open(message.PassphraseNotMatch);
+        this.flashNotification.open(message.PassphraseNotMatch, 'err');
         this.log.er(message.PassphraseNotMatch, err);
       });      
     }
@@ -124,15 +125,28 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   }
 
   openSuccess(walletType: string) {
-    const data: any = {
-      forceOpen: true,
-      walletType: walletType,
-      amount: this.amount,
-      fee: this.fees,
-      total: this.total,
-      actionType: 'receive',
-      parentRef: this
-    };
+    let data = {};
+    if (walletType == 'vault') {
+      data = {
+        forceOpen: true,
+        walletType: walletType,
+        amount: this.amount,
+        fee: this.fees,
+        total: this.total,
+        actionType: 'receive',
+      };
+    } else {
+      data = {
+        forceOpen: true,
+        walletType: walletType,
+        amount: this.amount,
+        fee: this.fees,
+        total: this.total,
+        actionType: 'receive',
+        parentRef: this
+      };
+    }
+    this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
   }
 
@@ -143,6 +157,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       address: address,
       actionType: 'show'
     };
+    this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
   }
 
