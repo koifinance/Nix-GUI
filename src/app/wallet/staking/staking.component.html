@@ -9,18 +9,20 @@
       Your wallet will automatically stake any of your transactions that were sent to a public address (i.e. ’N’ address) and are mature (have 501 confirmations from the network).<br>
       Your wallet must be on in order to stake, although you can choose to <u>stake with a VPS</u> instead.
     </p>
-
+<div fxLayout.gt-md="row" fxLayout.lt-md="column">
     <div class="card zdepth1 card1">
       <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
         <div fxFlexOrder.lt-md="1" fxFlex="100">
-          <div fxLayout="row" class="label">Amount staking</div>
+          <div fxLayout="row" class="label">
+            <img src="./assets/icons/SVG/circle-dollar.png"> Amount staking
+          </div>
           <div fxLayout="row" class="nix-row">
             <p class="value-label">{{stakingAmount | number: '.2'}}
               <span class="suffix-label">NIX</span>
             </p>
           </div>
           <div class="divider1"></div>
-          <div fxLayout="row"><!-- (change)="torToggled($event)" [checked]="torEnabled" -->
+          <div fxLayout="row">
             <mat-slide-toggle class="toggle" (change)="stakingToggled($event)" [checked]="isStaking">
               Staking: {{isStaking ? "ON" : "OFF"}}
             </mat-slide-toggle>
@@ -82,7 +84,7 @@
         </div>
       </div>
     </div>
-
+</div>
     <h5 class="tableHead section-label">Transactions being staked</h5>
     <div class="tableHead">
       <mat-table [dataSource]="dataSource">
@@ -127,5 +129,11 @@
         <span> in order to display staked transactions here</span>
       </p>
     </div>
+
+    <div fxLayout="row" class="tableHead optimize-div">
+      <!-- <img src="./assets/icons/SVG/circle-dollar.png"> -->
+      <!-- Optimize my staking -->
+    </div>
+
   </mat-drawer-content>
 </mat-drawer-container>
