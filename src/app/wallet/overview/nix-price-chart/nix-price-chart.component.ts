@@ -19,6 +19,7 @@ export class NixPriceChartComponent implements OnInit {
   faCaretUp: any = faCaretUp;
   faCaretDown: any = faCaretDown;
   public bitcoinprice:any;
+  public bitcoinEURprice:any;
   isPlusPercent: boolean;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   private log: any = Log.create(`NixPriceChart.component `);
@@ -49,6 +50,7 @@ export class NixPriceChartComponent implements OnInit {
   ];
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
+  public currentCurrency: string;
 
   constructor(
     private router: Router,
