@@ -50,22 +50,6 @@ mat-table {
   .status {
     display: flex;
     align-items: center;
-
-    .complete-status {
-      width: 9px;
-      height: 9px;
-      border: 1px solid rgb(14, 203, 193);
-      border-radius: 50% 50%;
-      background-color: rgb(14, 203, 193);
-    }
-
-    .processing-status {
-      width: 9px;
-      height: 9px;
-      border: 1px solid rgb(253, 225, 103);
-      border-radius: 50% 50%;
-      background-color: rgb(253, 225, 103);
-    }
   }
 
   .type {
