@@ -140,7 +140,11 @@ mat-drawer-content {
   margin-right: 40px;
   border-radius: 3px;
   padding: 10px 27px;
+
+  > div {
+    cursor: pointer;
   }
+}
 
 .chart-feilds {
   font-size: 10px;

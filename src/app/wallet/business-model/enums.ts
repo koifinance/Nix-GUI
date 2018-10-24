@@ -71,6 +71,7 @@ export enum ApiEndpoints {
   GetBtc = 'https://api.coinmarketcap.com/v2/ticker/2991/?convert=BTC',
   GetEur = 'https://api.coinmarketcap.com/v2/ticker/2991/?convert=EUR',
   NIXHitoryUrl = 'https://api.coingecko.com/api/v3/coins/nix-platform/market_chart?',
+  GetMarketInfo = 'https://api.coingecko.com/api/v3/coins/markets?',
   Getblockchaininfo = 'getblockchaininfo',
   Getnewaddress = 'getnewaddress',
   Setaccount = 'setaccount',
