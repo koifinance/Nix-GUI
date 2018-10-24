@@ -84,6 +84,15 @@ $color-staking-dark-gray: #4a4a4a;
     &.section-label {
       margin-top: 61px;
     }
+
+    &.optimize-div {
+      margin-top: 60px;
+      font-size: 14px;
+
+      img {
+        margin-right: 5px;
+      }
+    }
   }
 
   .card1{
@@ -95,6 +104,10 @@ $color-staking-dark-gray: #4a4a4a;
     color: $color-dark-grey;
     font-weight: 600;
     padding-bottom: 35px;
+
+    img {
+      margin-right: 5px;
+    }
   }
   .suffix-label {
     font-size: 18px;
