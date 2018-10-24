@@ -17,6 +17,7 @@ import { GhostNode1Component } from './ghost-node1/ghost-node1.component';
 import { CancelNodeComponent } from './cancel-node/cancel-node.component';
 import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.component';
 import { PasswordchangeComponent } from './passwordchange/passwordchange.component';
+import { PasswordInputComponent } from './passwordinput/passwordinput.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AddaddressComponent } from './addaddress/addaddress.component';
 import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
@@ -37,6 +38,7 @@ import { TransactionDetailComponent } from './transaction-detail/transaction-det
     TransactionComponent,
     WithdrawRewardsComponent,
     PasswordchangeComponent,
+    PasswordInputComponent,
     RecoveryComponent,
     AddaddressComponent,
     SyncingWalletComponent,

@@ -100,11 +100,6 @@ export class WalletService {
     return this._rpc.call(ApiEndpoints.EnableTor, [enable]);
   }
 
-  // Enable/disable Staking status NIX
-  public enableStaking(enable: string): Observable<any> {
-    return this._rpc.call(ApiEndpoints.EnableTor, [enable]);
-  }
-
   // get ghostnode List Conf for NIX
   public ghostnodeListConf(): Observable<any> {
     return this._rpc.call(ApiEndpoints.GhostnodeListConf).map(
@@ -259,6 +254,15 @@ export class WalletService {
     return this._rpc.call(ApiEndpoints.Encryptwallet, [encrypt.password])
   }
   
+  // Enable staking
+  public enableStaking(encrypt : IPassword): Observable<any>{
+    return this._rpc.call(ApiEndpoints.Walletpassphrase, [
+      encrypt.password,
+      0,
+      encrypt.stakeOnly
+    ])
+  } 
+
   // wallet pass phrase
   public walletpassphrase(encrypt : IPassword): Observable<any>{
     return this._rpc.call(ApiEndpoints.Walletpassphrase, [
@@ -426,6 +430,6 @@ private send(tx: TransactionBuilder): Observable<any> {
 
   //get historical data
   public getHistoricalData(date: string): Observable<any> {
-    return this.http.request(ApiEndpoints.NIXHitoryUrl + date);
+    return this.http.get(ApiEndpoints.NIXHitoryUrl + date);
   }
 }
