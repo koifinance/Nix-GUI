@@ -1,22 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { faCircle } from '@fortawesome/free-regular-svg-icons';
-import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
-import { faBtc } from '@fortawesome/free-brands-svg-icons';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Log } from 'ng2-logger';
 
 import { ModalsService } from '../modals/modals.service';
 import { FAQ } from '../shared/faq.model';
 import { faq } from './faq';
 import { Router } from '@angular/router';
-import { IWalletInfo, WalletInfo, IBitcoinprice, bitcoinprice, INodeinfo, NodeInfo, IRecentTransactionInfo, RecentTransactionInfo } from '../business-model/entities';
+import { IWalletInfo, WalletInfo, IBitcoinprice, bitcoinprice, INodeinfo, NodeInfo } from '../business-model/entities';
 import { WalletService } from '../wallet.service';
-import { TransactionBuilder } from '../business-model/entities';
 import { ApiEndpoints, categories, message } from '../business-model/enums';
 import { RpcStateService } from '../../core/core.module';
-import { Amount } from '../shared/util/utils';
-import { Log } from 'ng2-logger';
 import { CalculationsService } from '../calculations.service';
 import { SnackbarService } from '../../core/core.module';
+
+import { faBtc } from '@fortawesome/free-brands-svg-icons';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
+import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faQuestion, faSync } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'wallet-overview',
@@ -45,8 +44,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
   faBtc: any = faBtc;
   faq: Array<FAQ> = faq;
   transactionColumns: string[] = ['date', 'type', 'status', 'amount'];
-  private destroyed: boolean = false;
   walletInfo: IWalletInfo = new WalletInfo();
+  private destroyed: boolean = false;
   private log: any = Log.create(`overview.component `);
   public status;
   public currentBlock: number;
@@ -60,6 +59,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public node: number = 0;
   isActiveNodeCount = 0;
   enabledNodeCount = 0;
+  walletLoaded = false;
 
   // lineChart
   public lineChartData: Array<any> = [
@@ -95,18 +95,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.spinner.show();
     this.currentCurrency = this.walletServices.getCurrency();
-    this._rpcState.registerStateCall(ApiEndpoints.Torstatus, 1000, );
-    this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
-    this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 1000, ['count']);
+    this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 5000, ['count']);
 
     this.init();
     this.getNIXChartData();
     this.getnodestatus();
-  }
-
-  ngAfterViewInit() {
-    this.getBlockchainInfo();
     this.getTorstatus();
+    this.getBlockchainInfo();
   }
 
   // events
@@ -151,6 +146,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
+        if (!this.walletLoaded) {
+          this.walletLoaded = true;
+          this.getTorstatus();
+        }
         this.spinner.hide();
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
         this.walletServices.getBitcoin(this.bitcoinpriceInfo)
@@ -159,7 +158,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
             this.balanceInBTC = this.bitcoinprice.BTC.price;
             this.balanceInUSD = this.bitcoinprice.USD.price;
             this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
-            this.log.d(this.balanceInUSD, this.currentCurrency);
 
             this.getBTCBalance();
             this.getUSDBalance();
@@ -206,7 +204,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   // get blockchain status
   private getBlockchainInfo() {
-    this.walletServices.getBlockchainInfo()
+    this._rpcState.observe(ApiEndpoints.Getblockchaininfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(res => {
         this.currentBlock = res.blocks;
@@ -217,8 +215,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   // get tor status
   private getTorstatus() {
+    this.log.d('tor status', this.torStatus);
     this.walletServices.getTorstatus()
-      .takeWhile(() => !this.destroyed)
       .subscribe(res => {
         const torEnabled = (res.indexOf("Enabled") > -1);
         this.torStatus = torEnabled ? 'enabled' : 'disabled';
@@ -232,28 +230,15 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this._rpcState.observe(ApiEndpoints.Ghostnode)
       .takeWhile(() => !this.destroyed)
       .subscribe(NodeInformations => {
-        this.log.d('get node status')
         this.isActiveNodeCount = NodeInformations;
+        this.walletServices.ghostnodeEnabledCount()
+          .subscribe(count => {
+            this.enabledNodeCount = count;
+          }, err => {
+            this.log.error(err);
+          });
       },
-        error => this.log.error(message.recentTransactionMessage, error));
-
-    const timeout = 1000;
-    const _call = () => {
-      if (this.destroyed) {
-        // RpcState service has been destroyed, stop.
-        return;
-      }
-
-      this.walletServices.ghostnodeEnabledCount()
-        .subscribe(count => {
-          this.enabledNodeCount = count;
-          setTimeout(_call, timeout);
-        }, error => {
-          this.log.error(message.bitcoinpriceMessage, error);
-        });
-    };
-
-    _call();
+        error => this.log.error(error));
   }
 
   
