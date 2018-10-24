@@ -14,6 +14,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { VaultComponent } from './vault/vault.component';
 import { NodesComponent } from './nodes/node.component';
 import { TransactionsComponent } from './transactions/transaction.component';
+import { StakingComponent } from './staking/staking.component';
 import { CreateComponent } from './create/create.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RestoreComponent } from './restore/restore.component';
@@ -51,6 +52,7 @@ import { ConsoleComponent } from './setting/setting/preference/console/console.c
     NodesComponent,
     RestoreComponent,
     TransactionsComponent,
+    StakingComponent,
     VaultComponent,
     WelcomeComponent,
     GhostComponent,

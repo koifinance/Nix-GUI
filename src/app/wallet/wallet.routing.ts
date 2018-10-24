@@ -7,6 +7,7 @@ import { NodesComponent } from './nodes/node.component';
 import { OverviewComponent } from './overview/overview.component';
 import { RestoreComponent } from './restore/restore.component';
 import { TransactionsComponent } from './transactions/transaction.component';
+import { StakingComponent } from './staking/staking.component';
 import { VaultComponent } from './vault/vault.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { GhostComponent } from './ghost/ghost.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: 'overview', component: OverviewComponent, data: { title: 'Overview', page: 'overview' } },
       { path: 'vault', component: VaultComponent, data: { title: 'Ghost Vault', page: 'vault' } },
       { path: 'transactions', component: TransactionsComponent, data: { title: 'Transaction History', page: 'transactions' } },
+      { path: 'staking', component: StakingComponent, data: { title: 'Staking', page: 'staking' } },
       { path: 'nodes', component: GhostComponent, data: { title: 'Ghostnodes', page: 'nodes' } },
       { path: 'ghost', component: NodesComponent, data: { title: 'Ghostnodes', page: 'ghost' } },
       { path: 'multi/nodes', component: MultinodesComponent, data: { title: 'Muliti  Nodes', page: 'mulitinodes' } },
