@@ -14,7 +14,7 @@
       <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
         <div fxFlexOrder.lt-md="1" fxFlex="100">
           <div fxLayout="row" class="label">
-            <img src="./assets/icons/SVG/circle-dollar.png"> Amount staking
+            <img src="./assets/icons/SVG/circle-dollar.png">Amount staking
           </div>
           <div fxLayout="row" class="nix-row">
             <p class="value-label">{{stakingAmount | number: '.2'}}
@@ -22,10 +22,18 @@
             </p>
           </div>
           <div class="divider1"></div>
-          <div fxLayout="row">
-            <mat-slide-toggle class="toggle" (change)="stakingToggled($event)" [checked]="isStaking">
+          <div fxLayout="row" class="toggle-div">
+            <label class="switch">
+              <input #saveUserNameCheckBox
+                type="checkbox"
+                [checked]="isStaking"
+                (change)="stakingToggled($event)">
+              <span class="slider"></span>
+            </label>
+            <span class="toggle-text">Staking: {{isStaking ? "ON" : "OFF"}}</span>
+            <!-- <mat-slide-toggle class="toggle" (change)="stakingToggled($event)" [checked]="isStaking">
               Staking: {{isStaking ? "ON" : "OFF"}}
-            </mat-slide-toggle>
+            </mat-slide-toggle> -->
           </div>
         </div>
       </div>
@@ -36,12 +44,14 @@
         <div fxFlexOrder.lt-md="1" fxFlex="100" (click)="showAllGhostnodes()">
           <div fxLayout="row" class="label">Staking overview</div>
           <div fxLayout.gt-md="row" class="chart-div" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
-            <div fxFlexOrder.lt-md="1" fxFlex="50" >
+            <div fxFlexOrder.lt-md="1" fxFlex="50" class="">
               <canvas baseChart class="chart-canvas" 
                 width="130px" 
                 height="130px" 
                 [data]="chartData"
+                [labels]="chartLabels"
                 [colors]="chartColors"
+                [options]="chartOptions"
                 [chartType]="chartType" ></canvas>
             </div>
             <div fxFlexOrder.lt-md="2" fxFlex="50" >
@@ -130,9 +140,10 @@
       </p>
     </div>
 
-    <div fxLayout="row" class="tableHead optimize-div">
-      <!-- <img src="./assets/icons/SVG/circle-dollar.png"> -->
-      <!-- Optimize my staking -->
+    <div fxLayout="row" class="tableHead optimize-div" [ngClass]="isStaking ? 'stake-enabled': 'stake-disabled'">
+      <input *ngIf="isStaking" type="image" src="./assets/icons/SVG/staking_enabled.svg" />
+      <input *ngIf="!isStaking" type="image" src="./assets/icons/SVG/staking_disabled.svg" />
+      <p>Optimize my staking</p>
     </div>
 
   </mat-drawer-content>

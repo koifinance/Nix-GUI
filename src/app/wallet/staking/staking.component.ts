@@ -42,6 +42,7 @@ export class StakingComponent implements OnInit {
   chartLabels: string[] = ['Staking', 'Immature', 'Unavailable'];
   chartData: number[] = [0,0,0];
   chartType: string = 'doughnut';
+  chartOptions: any = { legend: { display: false }};
   chartColors: Array<any> = [
     {
       backgroundColor: ['#0ecbc1', '#ffdd47', '#eaeaea']
@@ -129,8 +130,9 @@ export class StakingComponent implements OnInit {
   }
 
   // Enable/disable tor status
-  stakingToggled(event: MatSlideToggleChange) {
-    if (event.checked) {
+  stakingToggled(e: any) {
+    if (e.srcElement.checked) {
+      e.srcElement.checked = false;
       this.openPassword();
     } else {
       this.walletServices.walletlock()
@@ -138,7 +140,7 @@ export class StakingComponent implements OnInit {
         .subscribe(res => {
           this.isStaking = false;
           this.setupStakingInfo();
-        }, error => { 
+        }, error => {
           this.flashNotification.open(error.message, 'err')
           this.log.error(error.message, error); 
       })
@@ -162,6 +164,4 @@ export class StakingComponent implements OnInit {
   ngOnDestroy() {
     this.destroyed = true;
   }
- 
-
 }
