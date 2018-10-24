@@ -1,10 +1,12 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { IRecentTransactionInfo, RecentTransactionInfo } from '../../business-model/entities';
-import { RpcStateService } from '../../../core/core.module';
-import { ApiEndpoints, categories, message } from '../../business-model/enums';
-import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { Log } from 'ng2-logger';
+
+import { IRecentTransactionInfo, RecentTransactionInfo } from '../../business-model/entities';
+import { RpcStateService, RpcService } from '../../../core/core.module';
+import { ApiEndpoints, categories, message } from '../../business-model/enums';
+import { ModalsService } from '../../modals/modals.service';
+import { faArrowDown, faArrowUp, faCircle as faCircleSolid, faDollarSign, faCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-ghost-vault-transaction',
@@ -13,14 +15,13 @@ import { Log } from 'ng2-logger';
 })
 export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
   @Input() display: any;
-  @Input() columns: string[];
-  @Input() numTransactions: number;
 
   dataSource: MatTableDataSource<IRecentTransactionInfo>;
+  private walletInfo: any = {};
   private destroyed: boolean;
   private defaults: any = {
     header: true,
-    numTransactions: 10,
+    numTransactions: 100,
     columns: ['Type', 'Amount', 'Address', 'Status', 'Date'],
     longDate: false,
     styleClass: '',
@@ -29,14 +30,17 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
   faCircle: any = faCircle;
   private log: any = Log.create('ghost-vault-transaction.component');
 
-  constructor(private _rpcState: RpcStateService,) { }
+  constructor(
+    private modalService: ModalsService,
+    private _rpcState: RpcStateService,
+    private _rpc: RpcService
+  ) { }
 
   ngOnInit() {
     this.destroyed = false;
-    this.log.d('ghost vault transaction');
-    this._rpcState.registerStateCall(ApiEndpoints.ListTransactions, 1000,['*', 100]);
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
+
     this.listTransaction();
   }
 
@@ -81,20 +85,32 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
     }
     return '';
   }
+
+  public showTransactionInModal(row: any) {
+    row.forceOpen = true;
+    this.modalService.openSmall('transactionDetail', row);
+  }
   
   // get recent transactions
   private listTransaction() {
-    this._rpcState.observe(ApiEndpoints.ListTransactions)
+    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
-      .subscribe(recentTransInfo => {
-        let res = recentTransInfo.filter(item => {
-          if (item.is_ghosted) return true;
-        });
-        
-        res = res.sort((a, b) => {return b.time - a.time});
-        this.dataSource.data = res;
-      },
-        error => this.log.error(message.recentTransactionMessage, error));
+      .subscribe(response => {
+
+        if (JSON.stringify(response) !== JSON.stringify(this.walletInfo)) {
+          this.walletInfo = response;
+          this._rpc.call(ApiEndpoints.ListTransactions, ['*', this.display.numTransactions])
+            .subscribe(recentTransInfo => {
+              let res = recentTransInfo.filter(item => {
+                if (item.is_ghosted) return true;
+              });
+              
+              res = res.sort((a, b) => {return b.time - a.time});
+              this.dataSource.data = res;
+            },
+              error => this.log.error(message.recentTransactionMessage, error));
+        }
+      }, err => this.log.error(message.walletMessage, err));
   }
   
   ngOnDestroy(): void {
