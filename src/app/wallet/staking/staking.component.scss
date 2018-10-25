@@ -18,12 +18,12 @@ $color-staking-dark-gray: #4a4a4a;
   .card {
     display: inline-block;
     margin: 8px;
-    padding: 12px 20px 20px 20px;
+    padding: 30px 12px 30px 30px;
     border-radius: 2px;
     background-color: #FFF;
     margin-left: 20px;
-    width: 260px;
-    height: 190px;
+    width: 250px;
+    height: 200px;
   }
   .card div {
     display: inline-block;
@@ -48,6 +48,11 @@ $color-staking-dark-gray: #4a4a4a;
     margin: 0;
     font-weight: bold;
   }
+
+  .nix-row {
+    margin-left: 7px !important;
+  }
+
   .divider1 {
     border: 1px solid #bdbbbb ;
     margin-bottom: 15px !important;
@@ -87,11 +92,19 @@ $color-staking-dark-gray: #4a4a4a;
 
     &.optimize-div {
       margin-top: 60px;
+      margin-bottom: 20px;
       font-size: 14px;
 
-      img {
-        margin-right: 5px;
+      input {
+        margin-right: 10px;
       }
+    }
+
+    &.stake-enabled {
+      color: $color-staking-dark-gray;
+    }
+    &.stake-disabled {
+      color: #9b9b9b;
     }
   }
 
@@ -114,13 +127,80 @@ $color-staking-dark-gray: #4a4a4a;
     letter-spacing: 0;
   }
 
-  .mat-slide-toggle {
+  .toggle-div {
+    align-items: center;
+    margin-top: 7px;
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
+      margin-right: 11px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 1px;
+      background-color: $color-staking-dark-gray;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 22px;
+      left: 3px;
+      bottom: 3px;
+      border-radius: 1px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #0ecbc1;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #0ecbc1;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(20px);
+      -ms-transform: translateX(20px);
+      transform: translateX(20px);
+    }
+
+    .toggle-text {
+      color: $color-dark-grey;
+      font-size: 15px;
+      font-weight: normal;
+    }
+  }
+
+  /*.mat-slide-toggle {
     color: $color-dark-grey;
     /deep/ .mat-slide-toggle-content {
       font-size: 15px;
       font-weight: normal;
     }
-  }
+  }*/
 
   .divider {
     border: 1px solid rgb(182, 38, 38);
@@ -130,10 +210,14 @@ $color-staking-dark-gray: #4a4a4a;
 
   .chart-div {
     margin-top: -20px !important;
+
+    .chart-canvas {
+      margin-top: 16px;
+    }
   }
 
   .chart-label-div {
-    margin: 10px 10px !important;
+    margin: 10px 0px 0px 20px !important;
 
     p {
       font-weight: normal;
