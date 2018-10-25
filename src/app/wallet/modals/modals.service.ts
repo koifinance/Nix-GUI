@@ -14,6 +14,7 @@ import { WithdrawRewardsComponent } from './withdraw-rewards/withdraw-rewards.co
 import { TransactionComponent } from './transaction/transaction.component';
 import { PasswordchangeComponent } from './passwordchange/passwordchange.component';
 import { PasswordInputComponent } from './passwordinput/passwordinput.component';
+import { OptimizeStakingComponent } from './optimize-staking/optimize-staking.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AddaddressComponent } from './addaddress/addaddress.component';
 import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.component';
@@ -37,6 +38,7 @@ export class ModalsService implements OnDestroy {
     transaction: TransactionComponent,
     passwordChange : PasswordchangeComponent,
     passwordInput : PasswordInputComponent,
+    optimizeStaking : OptimizeStakingComponent,
     recoveryPharse : RecoveryComponent,
     newAddress : AddaddressComponent,
     syncingWallet: SyncingWalletComponent,
