@@ -161,6 +161,14 @@ export class StakingComponent implements OnInit {
     this.modalsService.openSmall('passwordInput', data);
   }
 
+  openOptimizeStaking() {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService
+    };    
+    this.modalsService.openSmall('optimizeStaking', data);
+  }
+
   ngOnDestroy() {
     this.destroyed = true;
   }

@@ -141,8 +141,8 @@
     </div>
 
     <div fxLayout="row" class="tableHead optimize-div" [ngClass]="isStaking ? 'stake-enabled': 'stake-disabled'">
-      <input *ngIf="isStaking" type="image" src="./assets/icons/SVG/staking_enabled.svg" />
-      <input *ngIf="!isStaking" type="image" src="./assets/icons/SVG/staking_disabled.svg" />
+      <input *ngIf="isStaking" type="image" src="./assets/icons/SVG/staking_enabled.svg" (click)="openOptimizeStaking()" />
+      <input *ngIf="!isStaking" type="image" src="./assets/icons/SVG/staking_disabled.svg" disabled />
       <p>Optimize my staking</p>
     </div>
 
