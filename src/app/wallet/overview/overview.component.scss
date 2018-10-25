@@ -29,6 +29,7 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
       align-items: center;
     }
   }
+
   .balance-row {
 
     .item {
@@ -59,7 +60,7 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
       &.anon {
 
         .send-btn {
-          background-image: linear-gradient(-45deg, #13006D 0%, #6F00F5 100%);
+          background-color: $color;
           border-radius: 5px;
           font-weight: 300;
           color: $color-white;
@@ -242,6 +243,7 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
 
       .number {
         color: $text;
+        font-weight: 200;
       }
 
       .light {
@@ -290,6 +292,7 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
   }
 
 }
+
 .small-chart {
   // border: 1px solid;
   margin-top: 15px;
@@ -299,6 +302,7 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
   padding: 10px;
   cursor: pointer;
 }
+
 table {
   width: 100%;
 }
