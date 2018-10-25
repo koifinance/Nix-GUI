@@ -1,3 +1,3 @@
-<div class="text-content">
-    <mat-slide-toggle class="toggle" (change)="torToggled($event)" [checked]="torEnabled">Enable Tor</mat-slide-toggle>
+<div class="text-content margin-right-15px">
+    <mat-slide-toggle class="toggle" (change)="torToggled($event)" [checked]="torEnabled">{{torEnabled ? 'Tor enabled':'Tor not enabled'}}</mat-slide-toggle>
 </div>
