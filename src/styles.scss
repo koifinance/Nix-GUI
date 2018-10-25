@@ -878,25 +878,39 @@ mat-drawer-content::-webkit-scrollbar {
 }
 
 .chart-box{
-height: 450px;
-text-align: center;
-font-size: 30px;
-// border: 2px solid;
+  height: 450px;
+  text-align: center;
+  font-size: 30px;
+  // border: 2px solid;
 }
+
 .reward-title{
   margin-left: -43px;
 }
+
 .backbtn-name{
   margin-top: 10px;
 }
+
+.progress-outer {
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
 .progress-inner {
   background: -moz-linear-gradient(left, #342fc8 0%, #10bffd 100%) !important; /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #342fc8 0%,#10bffd 100%) !important; /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #342fc8 0%,#10bffd 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  border: none !important;
+  font-size: 11px;
+  border-radius: 0 !important;
 }
+
 .simple-notification-wrapper {
   z-index: 2000 !important;
 }
+
 .simple-notification {
 
   .sn-content {
@@ -908,4 +922,8 @@ font-size: 30px;
 .app-blue-button {
   background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
   color: white;
+}
+
+.cdk-overlay-dark-backdrop {
+  background-image: linear-gradient(58deg, rgba(60, 23, 191, 0.9), rgba(0, 193, 255, 0.9)) !important;
 }

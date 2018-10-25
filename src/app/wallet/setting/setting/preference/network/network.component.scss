@@ -1,10 +1,40 @@
 @import './src/assets/config';
 
-.text-content{
-  margin-left: 5px;
-  margin-top: 35px;
+.saveMap1 {
+    margin-top: 35px;
+    margin-bottom: 5px;
+  }
+  .divider {
+    border-top: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .sendbtn {
+    background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 300;
+    height: 39px;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+
+  .cancelbtn {
+    border-radius: 5px;
+    background-color: #E0E3E7;
+    box-shadow: none;
+    font-size: 16px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 300;
+    color: #4A4A4A;
+    height: 39px;
+    margin-right: 680px;
+    margin-top: 15px;
+  }
 
   /deep/ .mat-slide-toggle-content {
     font-family: $font;
   }
-}
