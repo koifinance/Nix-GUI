@@ -35,6 +35,7 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   faCircle: any = faCircle;
 
   private walletInfo: any = null;
+  private filterCategory: string;
   private log: any = Log.create('transaction-table.component');
   private destroyed: boolean;
   private defaults: any = {
@@ -131,12 +132,12 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
       .takeWhile(() => !this.destroyed)
       .subscribe(response => {
       
-        if (JSON.stringify(response) !== JSON.stringify(this.walletInfo)) {
+        if (JSON.stringify(response) !== JSON.stringify(this.walletInfo) || this.filterCategory !== this.filter.category) {
           this.walletInfo = response;
+          this.filterCategory = this.filter.category;
           this._rpc.call(ApiEndpoints.ListTransactions, ['*', this.display.numTransactions])
-          .subscribe(recentTransInfo => {    
-            this.log.d(recentTransInfo);
-
+          .subscribe(recentTransInfo => {
+            
             if (this.filter) {
               recentTransInfo = recentTransInfo.filter(item => {
                 if (item.category !== this.filter.category && this.filter.category !== 'all') return false;
