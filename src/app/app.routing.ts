@@ -10,5 +10,5 @@ const routes: Routes = [
   { path: 'wallet', loadChildren: () => WalletModule }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules});
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {useHash: true, preloadingStrategy: PreloadAllModules});
 
