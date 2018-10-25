@@ -5,24 +5,40 @@
   </mat-drawer>
 
   <mat-drawer-content class="updates">    
-      <div class="header" fxLayout="row">
-          <div fxFlex="50" fxFlexOrder="1">
-            <h5></h5>
-          </div>
-        </div>
+    <div class="header" fxLayout="row">
+      <div fxFlex="50" fxFlexOrder="1">
+        <h5></h5>
+      </div>
+    </div>
     <div class="updates-content" fxLayout="column">
       <img class="updates-img" src="./assets/icons/SVG/verified.svg">
       <p class="updates-description">You have the latest version of the wallet installed</p>
     </div>
-    <div class="updates-content">     
+    <div class="version-content">
       <div class="updates-version" fxLayout="row">
-        <div fxFlex="120px">
+        <div fxFlex="150px">
           <p><b>Wallet version: </b></p>
         </div>
         <div fxFlex="70px">
           <p>v 1.0.0</p>
         </div>
         <a href="https://github.com/NixPlatform" target="_blank"><div class="version-link" fxFlex="200px">(view on Github)</div></a>
+      </div>
+      <div class="updates-version" fxLayout="row">
+        <div fxFlex="150px">
+          <p><b>GUI wallet version: </b></p>
+        </div>
+        <div fxFlex="70px">
+          <p>v 1.0.0</p>
+        </div>
+      </div>
+      <div class="updates-version" fxLayout="row">
+        <div fxFlex="150px">
+          <p><b>Daemon version: </b></p>
+        </div>
+        <div fxFlex="70px">
+          <p>v {{daemonVersion}}</p>
+        </div>
       </div>
     </div>
 
