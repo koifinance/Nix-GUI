@@ -111,8 +111,8 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
     <mat-cell class="date" *matCellDef="let element">
       <div class="recent-date">
-        <span>{{element.time * 1000 | date: 'LLL'}}</span><br/>
-        <span style="font-size: 17px; letter-spacing: 4px">{{element.time * 1000 | date: 'dd'}}</span>
+        <span>{{element.time * 1000 | date: 'dd MMM yy'}}</span><br/>
+        <span style="font-size: 12px;">{{element.time * 1000 | date: 'HH:MM'}}</span>
       </div>
     </mat-cell>
   </ng-container>
