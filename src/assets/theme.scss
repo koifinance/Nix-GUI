@@ -191,6 +191,16 @@ mat-card {
       }
     }
   }
+
+  &.sidebar-bottom-items {
+    .mat-list-item {
+      height: 42px;
+
+      .mat-list-item-content {
+        padding: 0 10px;
+      }
+    }
+  }
 }
 
 .icon-input { // input with icon (eg. Search in Address Book)

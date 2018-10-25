@@ -70,10 +70,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
     responsive: true
   };
   public lineChartColors: Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
+    {
+      backgroundColor: 'rgba(16, 124, 216, 0.3)',
+      borderColor: 'rgba(16, 124, 216, 0.5)',
+      pointBackgroundColor: 'rgba(16, 124, 216, 0.1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
@@ -111,18 +111,14 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   // get chart history of nix
   public getNIXChartData() {
-    this.walletServices.getHistoricalData('usd', 365).subscribe(res => {
-      let label = ['Jul'];
-      let price = [0];
-      const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Aug','Sep','Oct', 'Nov', 'Dec'];
+    this.walletServices.getHistoricalData('usd', 7).subscribe(res => {
+      let label = [];
+      let price = [];
       res = JSON.parse(res.text());
       res.prices.map(t => {
         let date = new Date(t[0]);
-        if (date.getDate() == 1) {
-          label.push((date.getMonth() + 1).toString());
-          price.push(t[1]);
-        } else if (date.getDay() == 0){
-          label.push('');
+        if (label[label.length - 1] != date.getDate().toString()) {
+          label.push(date.getDate().toString());
           price.push(t[1]);
         }
       });
@@ -132,13 +128,22 @@ export class OverviewComponent implements OnInit, OnDestroy {
     })
   }
 
+  public getInteger(num) {
+    return Math.floor(num).toString();
+  }
+
+  public getFranction(num) {
+    return parseInt(parseFloat(num).toString().split('.')[1], 10);
+  }
+
   public chartHovered(e: any): void {
     console.log(e);
   }
 
   //refresh the overview screen(price)
   public refresh() {
-    this.init();
+    this.ngOnInit();
+    this.flashNotification.open('Page has been refreshed', 'info');
   }
 
   //get wallet informations
