@@ -41,6 +41,7 @@ export class NetworkComponent implements OnInit {
     this.walletServices.enableTor(event.checked ? 'true' : 'false')
       .takeWhile(() => !this.destroyed)
       .subscribe(res => {
+        this.torEnabled = event.checked;
         this.flashNotification.open(res, 'err')
       }, error => { 
         this.flashNotification.open(error.message, 'err')
