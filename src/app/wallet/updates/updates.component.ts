@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RpcStateService } from '../../core/core.module';
 import { ApiEndpoints } from '../business-model/enums';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-updates',
@@ -9,6 +10,8 @@ import { ApiEndpoints } from '../business-model/enums';
   styleUrls: ['./updates.component.scss']
 })
 export class UpdatesComponent implements OnInit {
+
+  guiVersion: string = environment.version;
   destroyed: boolean = false;
   daemonVersion: string;
 
