@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
   }
 
   downloadHistory() {
+    this.log.d(this.overview);
     this._rpc.call(ApiEndpoints.ListTransactions).subscribe(res => {
       let data = [];
       data = res.map(a => {
