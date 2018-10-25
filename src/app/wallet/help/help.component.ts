@@ -13,5 +13,10 @@ export class HelpComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  onCardClick(url: string) {
+  	window.open(url, '_blank');
   }
 }
