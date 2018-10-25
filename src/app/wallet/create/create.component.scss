@@ -78,10 +78,10 @@ mat-drawer-content {
     }
 
     .restore-btn {
-      background: #00C1FF;
+      background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
+      color: white;
       border-radius: 5px;
       font-size: 15px;
-      color: #4A4A4A;
       text-align: center;
       font-weight: 300;
       box-shadow: none;
