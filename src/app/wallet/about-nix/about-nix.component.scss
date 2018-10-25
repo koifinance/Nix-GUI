@@ -1,26 +1,22 @@
 .updates {
     padding: 0 35px;    
     color: black;
+    font-size: 16px;
 
     .updates-content {
         margin-top: 30px;
-        font-family: "Lato", sans-serif !important;
     }
     .updates-img {
         width: 70px;
         height: 70px;
     }
-    .updates-description {
-        font-size: 16px;
-        font-family: "Lato", sans-serif !important;
-    }
-    .updates-version {
-        font-size: 14px;
-    }
     .version-link {
         color: #30c2ff;
         margin-top: -10px;
         cursor: pointer;
+    }
+    a {
+      text-decoration: none;
     }
 }
 
@@ -34,7 +30,6 @@
 .update-wallet-btn {
   color: white;
   border-radius: 5px;
-  font-family: Helvitica, sans-serif;
   font-weight: 300;
   width: 200px !important;
   height: 40px !important;
