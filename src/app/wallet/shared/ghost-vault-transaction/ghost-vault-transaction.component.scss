@@ -1,11 +1,16 @@
 @import '../shared';
 
 mat-table {
+  font-family: $font;
   background: transparent;
 
   mat-header-row {
     border: none;
     min-height: 40px;
+  }
+
+  mat-header-cell {
+    font-size: 14px;
   }
 
   mat-row {
@@ -74,7 +79,7 @@ mat-table {
       display: flex;
 
       > img {
-        margin-right: 5px;
+        margin-right: 20px;
       }
     }
   }
