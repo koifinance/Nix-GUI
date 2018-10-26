@@ -5,86 +5,42 @@
 
   <mat-drawer-content>
     <page-header heading="GhostNode" [navbar]="help"></page-header>
+    <div class="ghostnode">
     <p class="desc">
       A Ghostnode is the term used for NIX masternodes, which help secure the network by completing special tasks on the
       <br>blockchain and ensuring quick transactions. Node holders earn NIX for providing this service. 
       <a href="https://nixplatform.zendesk.com/hc/en-us/articles/360005044571-Setting-up-your-Ghost-Node" target="_blank">Learn more</a>
     </p>
-    <!-- <div class="warning">
-    <div class="desc1">
-        One or more of your Ghostnodes requires a new start. Trouble shooting guide
-    </div>
-    </div> -->
-    <div class="card zdepth1 card1">
-      <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="6">
-        <div fxFlexOrder.lt-md="1" fxFlex="100">
-          <!-- <div fxLayout="row" class="label">NIX locked in Ghostnodes</div> -->
-          <div fxLayout="row" class="label">Overall balance</div>
-          <div fxLayout="row" class="nix-row">
-            <p class="nix1">{{ghostNodeBalance | number}}
-              <span class="suffix-label">NIX</span>
-              </p>
-          </div>
-          <div class="divider1"></div>
-          <div fxLayout="row" class="btc">
-            <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCghostnodebalance | number: '.4'}} BTC ({{USDghostnodebalance | currency : 'USD' : 'symbol'}})</span>
-            <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCghostnodebalance | number: '.4'}} BTC ({{EURghostnodebalance | currency : 'EUR' : 'symbol'}})</span>
-          </div>
-        </div>
-        <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="30px" fxLayoutAlign="space-around center">
 
-          <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
-            <!-- <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" >
-            <div class="icon-text" fxLayoutAlign="center">SET-UP NEW NODE</div> -->
-          </div>
-          <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
-            <!-- <img class="cursor-pointer" src="./assets/icons/SVG/cancel.svg" alt="Deposit" fxFlex="100" >
-            <div class="icon-text" fxLayoutAlign="center">CANCEL A NODE</div> -->
-          </div>
-        </div>
-      </div>
+
+    <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="row" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
+      <mat-card fxFlexOrder.lt-md="1" fxFlex="50" class="balance-card">
+        <!-- <div class="balance"> -->
+        <p class="description">Overall balance</p>
+        <span class="number big">{{ ghostNodeBalance }}</span>
+        <span class="medium"> NIX</span>
+        <div class="divider"></div>
+        <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCghostnodebalance | number: '.4'}} BTC ({{USDghostnodebalance | currency : 'USD' : 'symbol'}})</span>
+        <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCghostnodebalance | number: '.4'}} BTC ({{EURghostnodebalance | currency : 'EUR' : 'symbol'}})</span>
+        <!-- </div> -->
+      </mat-card>
+
+      <mat-card fxFlexOrder.lt-md="1" fxFlex="50" class="balance-card">
+        <!-- <div class="balance"> -->
+        <p class="description">Total Ghostnodes</p>
+        <span class="number big">{{ ghostNodeCount }}</span>
+        <span class="medium"> ACTIVE NODES</span>
+        <div class="divider"></div>
+        <span class="number small">
+        ROI: {{roi}}%</span>
+        <!-- </div> -->
+      </mat-card>
     </div>
 
-    <div class="card zdepth1 card2">
-      <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
-        <!-- <div fxFlexOrder.lt-md="1" fxFlex="100">
-          <div fxLayout="row" class="label">Available node rewards</div>
-          <div fxLayout="row" class="nix-row">
-            <p class="nix1">+ {{walletInfo.balance}}
-              <span class="suffix-label">NIX</span>
-              <p>
-          </div>
-          <div class="divider1" fxFlex="80"></div>
-          <div fxLayout="row" class="btc">
-            <a href="reward-history-table">View reward history</a>
-          </div>
-        </div> -->
-
-        <div fxFlexOrder.lt-md="1" fxFlex="100" class="ghostnodesContainer" (click)="showAllGhostnodes()">
-          <div fxLayout="row" class="label">Total Ghostnodes</div>
-          <div fxLayout="row" class="nix-row">
-            <p class="nix1"> {{ghostNodeCount}} ACTIVE NODES</p>
-          </div>
-          <div class="divider1" fxFlex="80"></div>
-          <div fxLayout="row" class="btc">
-            <span>ROI: {{roi}}%</span>
-          </div>
-        </div>
-
-
-        <!-- <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="50" fxLayoutGap="150px" fxLayoutAlign="space-around center">
-
-          <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
-            <img class="cursor-pointer1" src="./assets/icons/SVG/arrow-up-nix.svg" alt="Deposit" fxFlex="100" (click)="openWithDraw()">
-            <div class="icon-text" fxLayoutAlign="center">WITHDRAW REWARDS</div>
-          </div>
-
-        </div> -->
-      </div>
-    </div>
     <h5 class="tableHead">My Ghostnodes</h5>
-    <div class="tableHead">
+    <div class="">
       <app-ghost-node [ghostNodes]="ghostNodes"></app-ghost-node>
+    </div>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
