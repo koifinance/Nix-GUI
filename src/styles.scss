@@ -930,3 +930,9 @@ mat-drawer-content::-webkit-scrollbar {
 .cdk-overlay-dark-backdrop {
   background-image: linear-gradient(58deg, rgba(60, 23, 191, 0.9), rgba(0, 193, 255, 0.9)) !important;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
