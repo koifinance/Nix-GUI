@@ -3,23 +3,26 @@
     color: black;
 
     .updates-content {
-        margin-top: 30px;
-        font-family: "Nunito", sans-serif !important;
+      margin-top: 30px;
+      align-items: center;
+    }
+    .version-content {
+      font-size: 16px;
+      margin-top: 20px;
     }
     .updates-img {
-        width: 70px;
-        height: 70px;
+      width: 70px;
+      height: 70px;
     }
     .updates-description {
-        font-size: 16px;
-        font-family: "Nunito", sans-serif !important;
+      font-size: 16px;
     }
     .updates-version {
-        font-size: 14px;
+      
     }
     .version-link {
-        color: #30c2ff;
-        margin-top: 13px;
+      color: #30c2ff;
+      margin-top: 13px;
     }
 }
 
