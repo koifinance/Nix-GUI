@@ -8,7 +8,7 @@
         <span class="recipient" fxFlex="70">Transaction ID</span>
       </div>
       <div fxLayout.gt-md="row" fxLayoutGap="5px">
-        <p class="modalinput" fxFlex="75">{{data.txid}}</p>
+        <a class="modalinput" fxFlex="75" target="_blank" [attr.href]="'https://blockchain.nixplatform.io/tx/' + data.txid">{{data.txid}}</a>
       </div>
     </div>
 
