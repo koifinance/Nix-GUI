@@ -58,7 +58,7 @@
   }
 
   .transdetail {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .transtotal {
@@ -104,7 +104,7 @@
   //   font-size: 12px;
   //   color: #adaaaa;
   position: fixed;
-  margin-left: 338px;
+  margin-left: 100px;
   margin-top: 12px;
   font-size: 12px;
   color: #adaaaa;
@@ -141,4 +141,18 @@
   margin-top: 10px;
   right: 64px;
   opacity: 0;
+}
+
+.password-toggle {
+  font-size: 11px;
+  color: $color-grey;
+  margin-top: -5px;
+
+  fa-icon {
+    margin-right: 5px;
+  }
+
+  .mat-button {
+    padding-left: 0;
+  }
 }
