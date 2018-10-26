@@ -96,6 +96,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.spinner.show();
     this.currentCurrency = this.walletServices.getCurrency();
     this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 5000, ['count']);
+    this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
 
     this.init();
     this.getNIXChartData();
