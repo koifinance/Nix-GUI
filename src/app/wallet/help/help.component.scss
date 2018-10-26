@@ -12,7 +12,11 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
     margin-top: 35px;
   }
   .help-card{
-    margin-bottom: 2em;    
+    margin-bottom: 2em;
+
+    mat-card {
+      cursor: pointer;
+    }
   }
   .balance-row{
     // margin-top: 3em;
@@ -23,6 +27,7 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
       box-shadow: unset !important;
       min-height: 220px;
       padding-left: 40px;
+      padding-right: 40px;
     }
   }    
 
@@ -30,7 +35,7 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
 
         .description {
           color: $text;
-          font-size: 12px !important;
+          font-size: 14px !important;
           margin-bottom: 20px;
           font-family: "Nunito", sans-serif !important;
         }                       
