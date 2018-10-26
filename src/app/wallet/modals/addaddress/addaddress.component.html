@@ -1,6 +1,6 @@
 <div class="processing-trans">
   <div class="modalcontent">
-    <h5 fxFlex="50">{{ editMode ? 'Edit address' : 'Add new address' }}</h5>
+    <h5 fxFlex="50">{{ data.type != 'add' ? 'Edit address' : 'Add new address' }}</h5>
     <div _ngcontent-c7="" class="divider"></div>
     <div class="amountsend">
       <p class="htxt">Name</p>
@@ -14,7 +14,7 @@
       <p class="htxt">Address</p>
       <div fxLayout.gt-md="row">
         <div class="custom-input-group amount-input">
-          <input class="input-group " placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.modalData.type == 'receive'">
+          <input class="input-group " placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
         </div>
       </div>
     </div>
