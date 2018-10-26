@@ -16,7 +16,7 @@
         </span>
       </div>
       <div fxLayout.gt-md="row">
-        <div style="color:#b2b2b2" fxFlex="80">Available: {{balance}} NIX</div>
+        <div style="color:#b2b2b2; cursor: pointer;" fxFlex="80" (click)="setAmount()">Available: {{balance}} NIX</div>
       </div>
     </div>
 
