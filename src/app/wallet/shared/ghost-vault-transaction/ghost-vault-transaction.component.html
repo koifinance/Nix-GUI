@@ -4,12 +4,12 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
     <mat-cell class="type" *matCellDef="let element">
       <div *ngIf="element.category == 'send'">
-        <img src="./assets/icons/SVG/arrow-up-nix.svg">
+        <img src="./assets/icons/SVG/arrow-sent_white.svg">
         <p>Sent NIX</p>
       </div>
 
       <div *ngIf="element.category == 'receive'">
-        <img src="./assets/icons/SVG/arrow-down-nix.svg">
+        <img src="./assets/icons/SVG/arrow-received_white.svg">
         <p>Received NIX</p>
       </div>
     </mat-cell>
@@ -42,10 +42,11 @@
   <ng-container matColumnDef="date" cdkColumnDef="date">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
     <mat-cell class="date" *matCellDef="let element">
-      <div class="recent-date">
+      {{element.time * 1000 | date: 'dd MMM yyyy HH:mm'}}
+      <!-- <div class="recent-date">
         <span>{{element.time * 1000 | date: 'LLL'}}</span><br/>
         <span style="font-size: 17px; letter-spacing: 4px">{{element.time * 1000 | date: 'dd'}}</span>
-      </div>
+      </div> -->
     </mat-cell>
   </ng-container>
 
