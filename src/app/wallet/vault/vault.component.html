@@ -1,25 +1,22 @@
-<div *ngIf="!vaultInitialized" class="vault-init">
+<mat-drawer-container *ngIf="!vaultInitialized" class="">
+  <mat-drawer-content class="vault-init">
+    <div class="content-div">
+      <p class="title-text">
+        Ghost vault
+      </p>
+      <p class="heading-text">
+        Think of your vault as a secret swiss bank account that only you know about.
+      </p>
+      <p class="content-text">
+        Move or send NIX to your Ghost vault in order to anonymise it. The longer that NIX is held in your Ghost vault, the more anonymous it becomes.
+      </p>
+      <button fxLayoutAlign="center" class="create-btn" mat-raised-button (click)="createVault()">
+        Unlock Ghost vault
+      </button>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
 
- <div class="image" fxLayoutAlign="center">
-    <img src="./assets/icons/SVG/ghost.svg" alt="Ghost" fxFlex="100" fxLayoutAlign="center">
-  </div> 
-
-  <p fxLayout="row" fxLayoutAlign="center">
-    Move or send NIX to your Ghost vault in order to anonymise it. Think of your vault as a secret swiss bank account
-    that only you know about.
-  </p>
-
-  <p fxLayout="row" fxLayoutAlign="center">
-    The longer that NIX is held in your Ghost vault, the more anonymous
-    it becomes.
-  </p>
-
-  <div fxLayout="row" fxLayoutAlign="center">
-    <button fxLayoutAlign="center" class="create-btn" mat-raised-button (click)="createVault()">
-      Enter Ghost Vault
-    </button>
-  </div>
-</div>
 
 <mat-drawer-container *ngIf="vaultInitialized">
 

@@ -65,8 +65,8 @@ export class PasswordInputComponent implements OnInit {
   close(): void {
     this._dialogRef.close();
     // remove and destroy message
-    this.modalContainer.remove();
-    this.modal.destroy();
+    // this.modalContainer.remove();
+    // this.modal.destroy();
   }
 
   togglePassword() {

@@ -122,10 +122,21 @@ export class StakingComponent implements OnInit {
   }
 
   private drawOverviewChart() {
+    let newChartData: number[] = [0,0,0];
     if (this.isStaking) {
-      this.chartData = [this.stakingAmount, this.immatureBalance, this.unconfirmedBalance];
+      newChartData = [this.stakingAmount, this.immatureBalance, this.unconfirmedBalance];
     } else {
-      this.chartData = [0, 0, 1];
+      newChartData = [0, 0, 1];
+    }
+    if (newChartData.length == this.chartData.length) {
+      for (let i = 0; i < newChartData.length; i++) {
+        if (newChartData[i] != this.chartData[i]) {
+          this.chartData = newChartData;
+          return;
+        }
+      }
+    } else {
+      this.chartData = newChartData;
     }
   }
 
