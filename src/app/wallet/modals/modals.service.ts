@@ -78,9 +78,7 @@ export class ModalsService implements OnDestroy {
    */
   open(modal: string, panelClass: string, data?: any): void {
     const dialogRef = this._dialog.open(ModalsComponent, {
-      disableClose: true,
-      width: '100%',
-      height: '100%',
+      disableClose: false,
       panelClass: panelClass,
       data: data
     });

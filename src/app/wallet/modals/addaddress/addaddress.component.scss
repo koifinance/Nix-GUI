@@ -117,7 +117,6 @@
 
 
   .password-toggle {
-    margin-left: 10px;
     font-size: 11px;
     color: $color-grey;
     margin-top: -5px;
@@ -132,7 +131,7 @@
   }
 
   .copybtn {
-    background-color: #108eff;
+    background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);;
     color: white;
     font-size: 14px;
     border-radius: 5px;
