@@ -25,7 +25,7 @@ import { CalculationsService } from '../calculations.service';
 export class VaultComponent implements OnInit, OnDestroy {
 
   transactionColumns: string[] = ['date', 'type', 'status', 'amount'];
-  vaultInitialized: boolean = true;
+  vaultInitialized: boolean = false;
   faq: Array<FAQ> = faq;
   private log: any = Log.create('vault.component');
   private destroyed: boolean = false;
@@ -55,6 +55,8 @@ export class VaultComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    const storedState = localStorage.getItem('vaultInitialized');
+    this.vaultInitialized = storedState == 'set';
     this.currentCurrency =  this.walletServices.getCurrency();
     this.initialized();
     this.getwalletinformation();
@@ -140,8 +142,8 @@ export class VaultComponent implements OnInit, OnDestroy {
   }
 
   createVault() {
-    // set rpc state variable `ui:vaultInitialized` after success
     this.vaultInitialized = true;
+    localStorage.setItem('vaultInitialized', 'set');
   }
 
   // get bitcoin price

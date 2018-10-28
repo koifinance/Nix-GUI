@@ -5,9 +5,7 @@
     <div class="amountsend">
       <p class="htxt">Name</p>
       <div fxLayout.gt-md="row">
-        <div class="custom-input-group amount-input">
-          <input class="input-group size" placeholder="Please enter a name for this address" [(ngModel)]="addAddress.account">
-        </div>
+        <input class="modalinput" fxFlex="100" placeholder="Please enter a name for this address" [(ngModel)]="addAddress.account">
       </div>
     </div>
     <div class="amountsend">
@@ -20,8 +18,8 @@
     </div>
     
     <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-      <button class="cancelbtn" fxFlex="40" (click)="cancel()">Cancel</button>
-      <button class="sendbtn" fxFlex="40" (click)="save()">Save</button>
+      <button class="modal-cancel-button" fxFlex="40" (click)="cancel()">Cancel</button>
+      <button class="modal-ok-button" fxFlex="40" (click)="save()">Save</button>
     </div>
   </div>
 </div>
