@@ -133,17 +133,14 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(response => {
-
-        this.log.d('========');
-        this.log.d(this.filter, response);
       
         if (JSON.stringify(response) !== JSON.stringify(this.walletInfo) || (JSON.stringify(this.filter) !== JSON.stringify(this.filterCategory)) ) {
           this.walletInfo = response;
+          this.filterCategory = this.filter;
           this._rpc.call(ApiEndpoints.ListTransactions, ['*', this.display.numTransactions])
           .subscribe(recentTransInfo => {
 
             if (this.filter) {
-              this.filterCategory = this.filter;
               recentTransInfo = recentTransInfo.filter(item => {
                 if (item.category !== this.filter.category && this.filter.category !== 'all') return false;
                 if (this.filter.amountFilter === 'gt' && Math.abs(item.amount) <= Number(this.filter.amountFilterValue)) return false;
