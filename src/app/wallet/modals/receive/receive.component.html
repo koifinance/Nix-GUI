@@ -24,8 +24,8 @@
     </div>
 
     <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-      <button class="cancelbtn" fxFlex="40" (click)="close()">Cancel</button>
-      <button class="sendbtn" fxFlex="40" (click)="openSuccess('wallet')">New address</button>
+      <button class="modal-cancel-button" fxFlex="40" (click)="close()">Cancel</button>
+      <button class="modal-ok-button" fxFlex="40" (click)="openSuccess('wallet')">New address</button>
     </div>
   </div>
 
@@ -91,8 +91,8 @@
   </div>
 
   <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
-    <button class="cancelbtn" fxFlex="40" (click)="close()">Cancel</button>
-    <button class="sendbtn" fxFlex="40" (click)="depositSuccess()">Deposit to Vault</button>
+    <button class="modal-cancel-button" fxFlex="40" (click)="close()">Cancel</button>
+    <button class="modal-ok-button" fxFlex="40" (click)="depositSuccess()">Deposit to Vault</button>
   </div>
 </div>
 
