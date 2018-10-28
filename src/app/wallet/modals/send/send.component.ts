@@ -80,6 +80,10 @@ export class SendComponent implements OnInit, OnDestroy {
     this.amountInEUR = data.amountInEUR;
   }
 
+  setAmount() {
+    this.sendToNix.amount = parseFloat(this.balance.toString());
+  }
+
   // send for wallet
   sendData() {
     if(this.validateInput()) {

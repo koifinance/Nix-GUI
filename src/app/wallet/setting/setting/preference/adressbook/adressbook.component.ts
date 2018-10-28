@@ -58,7 +58,8 @@ export class AdressbookComponent implements OnInit {
 
   openAddress() {
     const data: any = {
-      forceOpen: true,      
+      forceOpen: true,
+      type: 'add',
       modalsService: this.modalsService,
       parentRef: this
     };
@@ -67,7 +68,8 @@ export class AdressbookComponent implements OnInit {
 
   edit(element) {
     const data: any = {
-      forceOpen: true,      
+      forceOpen: true,
+      type: element.type,
       modalsService: this.modalsService,
       modalData: element,
       parentRef: this

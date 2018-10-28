@@ -28,6 +28,7 @@ export class AddaddressComponent implements OnInit {
   ngOnInit() {
     const modalData = this.data.modalData;
     this.editMode = !(!modalData);
+    this.log.d(this.data);
     if (this.editMode) {
       this.addAddress.address = modalData.address;
       this.addAddress.account = modalData.name;
