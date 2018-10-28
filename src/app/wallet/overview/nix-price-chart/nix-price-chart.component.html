@@ -90,12 +90,12 @@
           </div>
           <div fxFlex="15">
             <div fxLayout="column" fxLayoutGap="2px">
-              <span class="chart-feilds">TOTAL SUPPLY</span>
+              <span class="chart-feilds">CIRCULATING SUPPLY</span>
               <span class="feilds-value" *ngIf="chart_currency == 'usd'">
-                {{bitcoinprice.USD.price * marketData.total_supply | currency:"USD":'symbol'}}
+                {{bitcoinprice.USD.price * marketData.circulating_supply | currency:"USD":'symbol'}}
               </span>
               <span class="feilds-value" *ngIf="chart_currency == 'eur'">
-                {{bitcoinprice.EUR.price * marketData.total_supply | currency:"EUR":'symbol'}}
+                {{bitcoinprice.EUR.price * marketData.circulating_supply | currency:"EUR":'symbol'}}
               </span>
             </div>
           </div>

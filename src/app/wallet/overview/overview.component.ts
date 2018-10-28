@@ -96,7 +96,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.spinner.show();
     this.currentCurrency = this.walletServices.getCurrency();
     this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 5000, ['count']);
-    this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 1000);
+    this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 2000);
 
     this.init();
     this.getNIXChartData();
@@ -134,6 +134,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   public getFranction(num) {
+    if (!parseFloat(num).toString().split('.')[1]) return '0000';
     return parseInt(parseFloat(num).toString().split('.')[1], 10);
   }
 
