@@ -43,19 +43,8 @@ export class MultinodesComponent implements OnInit {
     private modalsService: ModalsService,
     private router: Router,
     private walletServices: WalletService,
-    private _rpcState: RpcStateService) { }
-
-  ngOnInit() {
-    this.currentCurrency = this.walletServices.getCurrency();
-    this.getBalance();
-    this.getwalletinformation();
-    this.getGhostNodeCount();
-    this.getMyGhostNodes();
-  }
-
- //get wallet informations
-  private getwalletinformation() {
-    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+    private _rpcState: RpcStateService) {
+      this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
@@ -79,6 +68,13 @@ export class MultinodesComponent implements OnInit {
           }, error => this.log.error(message.bitcoinpriceMessage, error));
       },
         error => this.log.error('Failed to get wallet information, ', error));
+    }
+
+  ngOnInit() {
+    this.currentCurrency = this.walletServices.getCurrency();
+    this.getBalance();
+    this.getGhostNodeCount();
+    this.getMyGhostNodes();
   }
 
   getBTCBalance() {

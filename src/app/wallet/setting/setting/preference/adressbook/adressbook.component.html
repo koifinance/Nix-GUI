@@ -13,7 +13,7 @@
 
         <ng-container matColumnDef="Address">
             <mat-header-cell *matHeaderCellDef class="matHeader">Address</mat-header-cell>
-            <mat-cell  *matCellDef="let element" class="address">
+            <mat-cell  *matCellDef="let element" class="address" ngxClipboard [cbContent]="element.address" (click)="copyToClipboard(element.address)">
                 {{element.address}}
             </mat-cell>
             
