@@ -90,13 +90,46 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private flashNotification: SnackbarService,
     private spinner: NgxSpinnerService,
     private _rpcState: RpcStateService
-  ) { }
+  ) {
+    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(walletInfo => {
+        if (!this.walletLoaded) {
+          this.walletLoaded = true;
+          this.getTorstatus();
+        }
+        this.spinner.hide();
+        this.walletInfo = new WalletInfo(walletInfo).toJSON();
+        this.walletServices.getBitcoin(this.bitcoinpriceInfo)
+          .subscribe(bitcoinpriceInfos => {
+            this.bitcoinprice = bitcoinpriceInfos.data.quotes;
+            this.balanceInBTC = this.bitcoinprice.BTC.price;
+            this.balanceInUSD = this.bitcoinprice.USD.price;
+            this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
+
+            this.getBTCBalance();
+            this.getUSDBalance();
+            this.getBTCVaultBalance();
+            this.getUSDVaultBalance();
+          }, error => this.log.error(message.bitcoinpriceMessage, error));
+
+        this.walletServices.getInEUR(this.bitcoinpriceInfo)
+          .subscribe(res => {
+
+            let tmp = res.data.quotes;
+            this.balanceInEUR = tmp.EUR.price;
+          
+            this.getEURBalance();
+            this.getEURVaultBalance();
+          }, error => this.log.error(message.bitcoinpriceMessage, error));
+      },
+        error => this.log.error(message.walletMessage, error));
+  }
 
   ngOnInit() {
     this.spinner.show();
     this.currentCurrency = this.walletServices.getCurrency();
     this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 5000, ['count']);
-    this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 2000);
 
     this.init();
     this.getNIXChartData();
@@ -150,39 +183,39 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   //get wallet informations
   private init() {
-    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
-      .takeWhile(() => !this.destroyed)
-      .subscribe(walletInfo => {
-        if (!this.walletLoaded) {
-          this.walletLoaded = true;
-          this.getTorstatus();
-        }
-        this.spinner.hide();
-        this.walletInfo = new WalletInfo(walletInfo).toJSON();
-        this.walletServices.getBitcoin(this.bitcoinpriceInfo)
-          .subscribe(bitcoinpriceInfos => {
-            this.bitcoinprice = bitcoinpriceInfos.data.quotes;
-            this.balanceInBTC = this.bitcoinprice.BTC.price;
-            this.balanceInUSD = this.bitcoinprice.USD.price;
-            this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
+    // this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+    //   .takeWhile(() => !this.destroyed)
+    //   .subscribe(walletInfo => {
+    //     if (!this.walletLoaded) {
+    //       this.walletLoaded = true;
+    //       this.getTorstatus();
+    //     }
+    //     this.spinner.hide();
+    //     this.walletInfo = new WalletInfo(walletInfo).toJSON();
+    //     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
+    //       .subscribe(bitcoinpriceInfos => {
+    //         this.bitcoinprice = bitcoinpriceInfos.data.quotes;
+    //         this.balanceInBTC = this.bitcoinprice.BTC.price;
+    //         this.balanceInUSD = this.bitcoinprice.USD.price;
+    //         this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
 
-            this.getBTCBalance();
-            this.getUSDBalance();
-            this.getBTCVaultBalance();
-            this.getUSDVaultBalance();
-          }, error => this.log.error(message.bitcoinpriceMessage, error));
+    //         this.getBTCBalance();
+    //         this.getUSDBalance();
+    //         this.getBTCVaultBalance();
+    //         this.getUSDVaultBalance();
+    //       }, error => this.log.error(message.bitcoinpriceMessage, error));
 
-        this.walletServices.getInEUR(this.bitcoinpriceInfo)
-          .subscribe(res => {
+    //     this.walletServices.getInEUR(this.bitcoinpriceInfo)
+    //       .subscribe(res => {
 
-            let tmp = res.data.quotes;
-            this.balanceInEUR = tmp.EUR.price;
+    //         let tmp = res.data.quotes;
+    //         this.balanceInEUR = tmp.EUR.price;
           
-            this.getEURBalance();
-            this.getEURVaultBalance();
-          }, error => this.log.error(message.bitcoinpriceMessage, error));
-      },
-        error => this.log.error(message.walletMessage, error));
+    //         this.getEURBalance();
+    //         this.getEURVaultBalance();
+    //       }, error => this.log.error(message.bitcoinpriceMessage, error));
+    //   },
+    //     error => this.log.error(message.walletMessage, error));
   }
 
   getBTCBalance() {
