@@ -16,8 +16,12 @@ import {
   IWalletInfo,
   IRecentTransactionInfo,
   IBitcoinprice,
-  bitcoinprice
+  bitcoinprice,
+  IPassword,
+  encryptpassword
 } from '../business-model/entities';
+
+
 @Component({
   selector: 'app-staking',
   templateUrl: './staking.component.html',
@@ -153,17 +157,29 @@ export class StakingComponent implements OnInit {
     }
   }
 
-  stakingEnabled() {
+  passwordEntered(passphrase: IPassword) {
     this.isStaking = true;
     this.getStakingInformation();
+    // debugger
+    // this.walletServices.enableStaking(passphrase).subscribe(res => {
+    //   this.stakingEnabled();
+    // }, error => {
+    //   this.flashNotification.open(error.message, 'err')
+    //   this.log.er(message.ChangePasswordMessage, error)
+    // });
+  }
+
+  stakingEnabled() {
+    
   }
 
   openPassword() {
     const data: any = {
       forceOpen: true,
       modalsService: this.modalsService,
-      parentRef: this
-    };    
+      parentRef: this,
+      forStaking: true
+    };
     this.modalsService.openSmall('passwordInput', data);
   }
 

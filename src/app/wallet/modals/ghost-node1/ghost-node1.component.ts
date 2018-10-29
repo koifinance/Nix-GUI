@@ -8,6 +8,7 @@ import { MatDialogRef } from '@angular/material';
 })
 export class GhostNode1Component implements OnInit, OnDestroy {
   data: any;
+  ghostnode: any;
   private modalContainer: ViewContainerRef;
   private destroyed: boolean = false;
   modal: ComponentRef<Component>;
@@ -20,7 +21,16 @@ export class GhostNode1Component implements OnInit, OnDestroy {
 
   setData(data: any) {
     this.data = data;
+    this.ghostnode = data.ghostnode;
+    if (this.ghostnode.lastSeen != 'N/A') {
+      let lsDate = new Date(this.ghostnode.lastSeen * 1000);
+      this.ghostnode.lastSeenDate = lsDate.toISOString(); //this.ghostnode.lastSeen * 1000,   .toISOString().split('T')[0]
+    } else {
+      this.ghostnode.lastSeenDate = 'N/A';
+    }
+    // debugger
   }
+
   close(): void {
     this._dialogRef.close();
     // remove and destroy message
