@@ -34,14 +34,31 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
     private modalService: ModalsService,
     private _rpcState: RpcStateService,
     private _rpc: RpcService
-  ) { }
+  ) {
+    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(response => {
+
+        if (JSON.stringify(response) !== JSON.stringify(this.walletInfo)) {
+          this.walletInfo = response;
+          this._rpc.call(ApiEndpoints.ListTransactions, ['*', 100])
+            .subscribe(recentTransInfo => {
+              let res = recentTransInfo.filter(item => {
+                if (item.is_ghosted) return true;
+              });
+              
+              res = res.sort((a, b) => {return b.time - a.time});
+              this.dataSource.data = res;
+            },
+              error => this.log.error(message.recentTransactionMessage, error));
+        }
+      }, err => this.log.error(message.walletMessage, err));
+  }
 
   ngOnInit() {
     this.destroyed = false;
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
-
-    this.listTransaction();
   }
 
   public getConfirmationsStyle(confirmations: number): string {
@@ -89,28 +106,6 @@ export class GhostVaultTransactionComponent implements OnInit, OnDestroy {
   public showTransactionInModal(row: any) {
     row.forceOpen = true;
     this.modalService.openSmall('transactionDetail', row);
-  }
-  
-  // get recent transactions
-  private listTransaction() {
-    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
-      .takeWhile(() => !this.destroyed)
-      .subscribe(response => {
-
-        if (JSON.stringify(response) !== JSON.stringify(this.walletInfo)) {
-          this.walletInfo = response;
-          this._rpc.call(ApiEndpoints.ListTransactions, ['*', this.display.numTransactions])
-            .subscribe(recentTransInfo => {
-              let res = recentTransInfo.filter(item => {
-                if (item.is_ghosted) return true;
-              });
-              
-              res = res.sort((a, b) => {return b.time - a.time});
-              this.dataSource.data = res;
-            },
-              error => this.log.error(message.recentTransactionMessage, error));
-        }
-      }, err => this.log.error(message.walletMessage, err));
   }
   
   ngOnDestroy(): void {
