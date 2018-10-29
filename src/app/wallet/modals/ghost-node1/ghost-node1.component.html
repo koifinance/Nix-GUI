@@ -1,78 +1,37 @@
 <div class="viewNode">
   <div class="modalcontent">
-    <h5 fxFlex="50">Ghostnode 1</h5>
-    <div _ngcontent-c7="" class="divider"></div>
-    <!-- <div class="amountsend"> -->
-
-    <!-- <div class="recipientdtls" fxLayout="row">
-          <span class="recipient" fxFlex="70">VPS public IP address</span>  
-        </div>
-  
-        <div fxLayout.gt-md="row" fxLayoutGap="5px">
-          <input class="modalinput" matInput fxFlex="75" placeholder="Enter value"
-                 value="8255">          
-        </div>
-   -->
-    <mat-form-field>
-      <input matInput placeholder="VPS public IP address" value="8255">
-    </mat-form-field>
-    <!-- </div> -->
-
+    <h5 fxFlex="50">{{ghostnode.alias}}</h5>
     <div _ngcontent-c7="" class="divider"></div>
 
     <mat-form-field>
-      <input matInput placeholder="Last seen" value="dd Month YYYY">
-    </mat-form-field>
-    <!-- <div class="recipientdtls" fxLayout="row">
-        <span class="recipient" fxFlex="70">Last seen</span>
-      </div>
-      <div fxLayout.gt-md="row" fxLayoutGap="5px">
-        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" value="dd Month YYYY">
-      </div> -->
-
-
-    <div _ngcontent-c7="" class="divider"></div>
-
-    <mat-form-field>
-      <input matInput placeholder="address for node reward payments" value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
+      <input matInput placeholder="VPS public IP address" [(ngModel)]="ghostnode.address">
     </mat-form-field>
 
-    <!-- <div class="recipientdtls" fxLayout="row">
-        <span class="recipient" fxFlex="70">address for node reward payments</span>
-      </div>
+    <div _ngcontent-c7="" class="divider"></div>
 
-      <div fxLayout.gt-md="row" fxLayoutGap="5px">
-        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" value="ZXJj8n3CtYegbFeWgs94sk4FQGtAUE12GG">
-      </div> -->
+    <mat-form-field>
+      <input matInput placeholder="Last seen" [(ngModel)]="ghostnode.lastSeenDate" >
+    </mat-form-field>
+
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <mat-form-field>
+      <input matInput placeholder="Address for node reward payments" [(ngModel)]="ghostnode.paymentAddress">
+    </mat-form-field>
 
 
     <div _ngcontent-c7="" class="divider"></div>
 
     <mat-form-field>
-      <input matInput placeholder="Node key" value="FeWgs94sk4FQGtAUE12G">
+      <input matInput placeholder="Node key" [(ngModel)]="ghostnode.privateKey">
       <button class="copybtn">Copy</button>
     </mat-form-field>
-    <!-- <div class="recipientdtls" fxLayout="row">
-        <span class="recipient" fxFlex="70">Node key</span>
-      </div>
-
-      <div fxLayout.gt-md="row" fxLayoutGap="5px">
-        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" value="FeWgs94sk4FQGtAUE12G">
-        <button class="copybtn" fxFlex="15">Copy</button>
-      </div> -->
 
     <div _ngcontent-c7="" class="divider"></div>
 
     <mat-form-field>
-      <input type="tel" matInput placeholder="Protocol" value="90046">
+      <input type="tel" matInput placeholder="Protocol"  [(ngModel)]="ghostnode.protocolVersion">
     </mat-form-field>
-    <!-- <div class="recipientdtls" fxLayout="row">
-        <span class="recipient" fxFlex="70">Protocol</span>
-      </div>
-
-      <div fxLayout.gt-md="row" fxLayoutGap="5px">
-        <input class="modalinput" matInput fxFlex="75" placeholder="Enter value" value="90046">
-      </div> -->
 
     <div _ngcontent-c7="" class="divider"></div>
 
