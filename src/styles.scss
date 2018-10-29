@@ -933,11 +933,11 @@ mat-drawer-content::-webkit-scrollbar {
 
 .modal-ok-button {
   background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
-  color: white;
+  color: white !important;
   width: 100%;
   border-radius: 5px;
-  font-family: $font;
-  font-weight: 300;
+  font-family: $font !important;
+  font-weight: 300 !important;
   height: 40px;
   font-size: 14px;
   border: none;
@@ -948,8 +948,8 @@ mat-drawer-content::-webkit-scrollbar {
   background-color: #E0E3E7;
   box-shadow: none;
   font-family: $font;
-  font-weight: 300;
-  color: #4A4A4A;
+  font-weight: 300 !important;
+  color: #4A4A4A !important;
   width: 165px !important;
   font-size: 14px;
   height: 40px !important;

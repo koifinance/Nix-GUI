@@ -15,15 +15,14 @@
 
     <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="row" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
       <mat-card fxFlexOrder.lt-md="1" fxFlex="50" class="balance-card">
-        <!-- <div class="balance"> -->
         <p class="description">Overall balance</p>
         <span class="number big">{{ ghostNodeBalance }}</span>
         <span class="medium"> NIX</span>
         <div class="divider"></div>
         <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCghostnodebalance | number: '.4'}} BTC ({{USDghostnodebalance | currency : 'USD' : 'symbol'}})</span>
         <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCghostnodebalance | number: '.4'}} BTC ({{EURghostnodebalance | currency : 'EUR' : 'symbol'}})</span>
-        <!-- </div> -->
       </mat-card>
+
 
       <mat-card fxFlexOrder.lt-md="1" fxFlex="50" class="balance-card" (click)="showAllGhostnodes()">
         <!-- <div class="balance"> -->
@@ -33,7 +32,6 @@
         <div class="divider"></div>
         <span class="number small">
         ROI: {{roi}}%</span>
-        <!-- </div> -->
       </mat-card>
     </div>
 
