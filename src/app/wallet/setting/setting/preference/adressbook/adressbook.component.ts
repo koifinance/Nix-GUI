@@ -78,6 +78,10 @@ export class AdressbookComponent implements OnInit {
     this.modalsService.openSmall('newAddress', data);
   }
 
+  copyToClipboard(address): void {
+    this.flashNotification.open(address + 'has been copied to clipboard.', 'info');
+  }
+
   delete(element) {
     this.walletServices.manageAddressbook('del', element.address).subscribe(res => {
         this.getAllAddresses();
