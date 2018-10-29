@@ -28,6 +28,7 @@ export class PasswordInputComponent implements OnInit {
   modal: ComponentRef<Component>;
   passphrase:string;
   data: any;
+  title: string;
 
   constructor(private walletServices: WalletService,
     private flashNotification: SnackbarService,public _dialogRef: MatDialogRef<PasswordInputComponent>) { }
@@ -37,6 +38,11 @@ export class PasswordInputComponent implements OnInit {
 
   setData(data: any) {
     this.data = data;
+    if (this.data.forStaking) {
+      this.title = "Unlock wallet for staking";
+    } else {
+      this.title = "Unlock wallet";
+    }
   }
 
   validatePassword(): boolean {

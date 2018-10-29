@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, ComponentRef, ViewContainerRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { RpcStateService, SnackbarService } from '../../../core/core.module';
+import { message } from '../../business-model/enums';
 
 @Component({
   selector: 'app-ghost-node1',
@@ -13,7 +15,8 @@ export class GhostNode1Component implements OnInit, OnDestroy {
   private destroyed: boolean = false;
   modal: ComponentRef<Component>;
 
-  constructor(public _dialogRef: MatDialogRef<GhostNode1Component>) {
+  constructor(public _dialogRef: MatDialogRef<GhostNode1Component>,
+    private flashNotification: SnackbarService ) {
   }
 
   ngOnInit() {
@@ -29,6 +32,10 @@ export class GhostNode1Component implements OnInit, OnDestroy {
       this.ghostnode.lastSeenDate = 'N/A';
     }
     // debugger
+  }
+
+  copy() {
+    this.flashNotification.open(message.CopiedAddress, 'info');
   }
 
   close(): void {
