@@ -52,26 +52,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     private walletServices: WalletService,
     private calculationsService: CalculationsService,
   ) {
-  }
-
-  ngOnInit() {
-    const storedState = localStorage.getItem('vaultInitialized');
-    this.vaultInitialized = storedState == 'set';
-    this.currentCurrency =  this.walletServices.getCurrency();
-    this.initialized();
-    this.getwalletinformation();
-    this.getBitcoinpriceinfo();
-
-  }
-
-  private initialized() {
-    this._rpcState.observe('ui:vaultInitialized')
-      .takeWhile(() => !this.destroyed)
-      .subscribe(status => this.vaultInitialized = status);
-  }
-
-  // to get wallet information for vault
-  private getwalletinformation() {
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
@@ -95,14 +75,19 @@ export class VaultComponent implements OnInit, OnDestroy {
       }, error => this.log.error(message.bitcoinpriceMessage, error));
   }
 
-  // open(modal: string) {
-  //   const data: any = {
-  //     forceOpen: true,
-  //     walletType: 'vault',
-  //     modalsService: this.modalsService
-  //   };
-  //   this.modalsService.openSmall(modal, data);
-  // }
+  ngOnInit() {
+    const storedState = localStorage.getItem('vaultInitialized');
+    this.vaultInitialized = storedState == 'set';
+    this.currentCurrency =  this.walletServices.getCurrency();
+    this.initialized();
+    this.getBitcoinpriceinfo();
+  }
+
+  private initialized() {
+    this._rpcState.observe('ui:vaultInitialized')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(status => this.vaultInitialized = status);
+  }
 
   // to open the receive vault-deposit modal
   openDeposit(walletType: string) {
