@@ -54,10 +54,13 @@ export class PasswordchangeComponent implements OnInit {
     this.log.d(this.changePassword, this.reEntryPassword, this.validatePassword());
     if (this.validatePassword()) {
       var result = this.walletServices.changepassword(this.changePassword).subscribe(res => {
-        this.flashNotification.open(message.PassphraseChanged, 'info')
+        this.flashNotification.open(message.PassphraseChanged, 'info');
         this.close();
+        setTimeout(() => {
+          this.walletServices.stop();
+        }, 3000);
       }, error => {
-        this.flashNotification.open(message.ChangePasswordMessage, 'err')
+        this.flashNotification.open(message.ChangePasswordMessage, 'err');
         this.log.er(message.ChangePasswordMessage, error)
       });
     }
@@ -65,9 +68,6 @@ export class PasswordchangeComponent implements OnInit {
 
   close(): void {
     this._dialogRef.close();
-    // remove and destroy message
-    this.modalContainer.remove();
-    this.modal.destroy();
   }
 
   togglePassword() {
