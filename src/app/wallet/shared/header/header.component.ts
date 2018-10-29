@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
   downloadHistory() {
     this.log.d(this.overview);
     this._rpc.call(ApiEndpoints.ListTransactions).subscribe(res => {
-      let data = [];
+      let data = ['Date Category Confirmations Address Amount'];
       data = res.map(a => {
         let date = new Date(a.time * 1000);
         let hours = date.getHours();
@@ -52,10 +52,17 @@ export class HeaderComponent implements OnInit {
                 Date: dd.substr(-2) + '/' + mm.substr(-2) + '/' + yyyy + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2),
                 Category: a.category,
                 Confirmations: a.confirmations,
+                Address: a.address,
                 Amount: a.amount
               }
       });
-      this.ng2Csv.download(data, 'filename.csv');
+
+      let currentDate = new Date();
+      let yyyy = currentDate.getFullYear();
+      let mm = "0" + currentDate.getMonth();
+      let dd = "0" + currentDate.getDay();
+
+      this.ng2Csv.download(data, dd.substr(-2) + '-' + mm.substr(-2) + '-' + yyyy + '.csv');
     }, error => {
       this.log.d(message.ListTransactions, error);
     })
