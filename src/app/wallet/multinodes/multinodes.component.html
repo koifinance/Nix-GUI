@@ -25,7 +25,7 @@
         <!-- </div> -->
       </mat-card>
 
-      <mat-card fxFlexOrder.lt-md="1" fxFlex="50" class="balance-card">
+      <mat-card fxFlexOrder.lt-md="1" fxFlex="50" class="balance-card" (click)="showAllGhostnodes()">
         <!-- <div class="balance"> -->
         <p class="description">Total Ghostnodes</p>
         <span class="number big">{{ ghostNodeCount }}</span>
