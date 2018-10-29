@@ -66,6 +66,7 @@ export class GhostNodeComponent implements OnInit {
       forceOpen: true,
       modalsService: this.modalsService,
       parentRef: this,
+      title: "Start Ghostnode",
       forStaking: false
     };
     this.modalsService.openSmall('passwordInput', data);
