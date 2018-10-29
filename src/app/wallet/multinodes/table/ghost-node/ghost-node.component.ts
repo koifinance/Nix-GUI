@@ -38,7 +38,7 @@ export class GhostNodeComponent implements OnInit {
   faEdit: any = faEdit;
   faCircleSolid: any = faCircleSolid;
   faCaretSquareRight: any = faCaretSquareRight;
-  displayedColumns = ["Name", "Status", "Active for", "Detail", "Start"];
+  displayedColumns = ["Name", "Status", "Detail", "Start"];
   dataSource = [];
   currentNode: any;
 
