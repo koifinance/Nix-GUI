@@ -38,10 +38,9 @@ export class PasswordInputComponent implements OnInit {
 
   setData(data: any) {
     this.data = data;
-    if (this.data.forStaking) {
-      this.title = "Unlock wallet for staking";
-    } else {
-      this.title = "Unlock wallet";
+    this.title = "Unlock wallet for staking";
+    if (this.data.title) {
+      this.title = this.data.title;
     }
   }
 
