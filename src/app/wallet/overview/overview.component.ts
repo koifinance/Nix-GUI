@@ -91,6 +91,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService,
     private _rpcState: RpcStateService
   ) {
+    this.spinner.show();
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {
@@ -127,11 +128,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.spinner.show();
     this.currentCurrency = this.walletServices.getCurrency();
     this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 5000, ['count']);
 
-    this.init();
     this.getNIXChartData();
     this.getnodestatus();
     this.getTorstatus();
@@ -179,43 +178,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public refresh() {
     this.ngOnInit();
     this.flashNotification.open('Page has been refreshed', 'info');
-  }
-
-  //get wallet informations
-  private init() {
-    // this._rpcState.observe(ApiEndpoints.GetWalletInfo)
-    //   .takeWhile(() => !this.destroyed)
-    //   .subscribe(walletInfo => {
-    //     if (!this.walletLoaded) {
-    //       this.walletLoaded = true;
-    //       this.getTorstatus();
-    //     }
-    //     this.spinner.hide();
-    //     this.walletInfo = new WalletInfo(walletInfo).toJSON();
-    //     this.walletServices.getBitcoin(this.bitcoinpriceInfo)
-    //       .subscribe(bitcoinpriceInfos => {
-    //         this.bitcoinprice = bitcoinpriceInfos.data.quotes;
-    //         this.balanceInBTC = this.bitcoinprice.BTC.price;
-    //         this.balanceInUSD = this.bitcoinprice.USD.price;
-    //         this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
-
-    //         this.getBTCBalance();
-    //         this.getUSDBalance();
-    //         this.getBTCVaultBalance();
-    //         this.getUSDVaultBalance();
-    //       }, error => this.log.error(message.bitcoinpriceMessage, error));
-
-    //     this.walletServices.getInEUR(this.bitcoinpriceInfo)
-    //       .subscribe(res => {
-
-    //         let tmp = res.data.quotes;
-    //         this.balanceInEUR = tmp.EUR.price;
-          
-    //         this.getEURBalance();
-    //         this.getEURVaultBalance();
-    //       }, error => this.log.error(message.bitcoinpriceMessage, error));
-    //   },
-    //     error => this.log.error(message.walletMessage, error));
   }
 
   getBTCBalance() {

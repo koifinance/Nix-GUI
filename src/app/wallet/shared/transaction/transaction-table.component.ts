@@ -56,80 +56,12 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
     private _rpcState: RpcStateService,
     private _rpc: RpcService
   ) {
-  }
-
-  ngOnInit() {
-    this._rpcState.registerStateCall(ApiEndpoints.GetWalletInfo, 2000);
-
     this.destroyed = false;
     this.display = Object.assign({}, this.defaults, this.display);
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
     this.log.d(this.display);
     this.transactionService.postConstructor(this.display.numTransactions);
-    this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
-    this.dataSource.data = null;
-
-    this.listTransaction();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed = true;
-  }
-
-  public getConfirmationsStyle(confirmations: number): string {
-    if (confirmations < 0) {
-      return 'confirm-error';
-    } else if (confirmations <= 1) {
-      return 'confirm-none';
-    } else {
-      return 'confirm-ok';
-    }
-  }
-
-  public getConfirmationsText(confirmations: number): string {
-    if (confirmations < 0) {
-      return 'Error';
-    } else if (confirmations <= 1) {
-      return 'Processing';
-    } else {
-      return 'Complete';
-    }
-  }
-
-  public getCategoryText(category: string, currency: string): string {
-    if (categories.Send) {
-      return `Sent ${currency}`;
-    } else if (categories.Receive) {
-      return `Received ${currency}`;
-    } else if (categories.Node) {
-      return `Node Earnings`;
-    }
-    return '';
-  }
-
-  public getCategoryIconStyle(category: string): any {
-    if (categories.Send) {
-      return faArrowUp;
-    } else if (categories.Receive) {
-      return faArrowDown;
-    } else if (categories.Node) {
-      return faDollarSign;
-    }
-    return '';
-  }
-
-  public showTransactionInModal(row: any) {
-    row.forceOpen = true;
-    this.modalService.openSmall('transactionDetail', row);
-  }
-
-  // get recent transactions
-  private listTransaction() {
-
+    
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(response => {
@@ -188,4 +120,70 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
         }
     }, err => this.log.error(message.walletMessage, err));
   }
+
+  ngOnInit() {
+    this.destroyed = false;
+    this.display = Object.assign({}, this.defaults, this.display);
+    this.log.d(`number of transactions per page ${this.display.numTransactions}`);
+    this.log.d(this.display);
+    this.transactionService.postConstructor(this.display.numTransactions);
+    this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
+    this.dataSource.data = null;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
+  }
+
+  public getConfirmationsStyle(confirmations: number): string {
+    if (confirmations < 0) {
+      return 'confirm-error';
+    } else if (confirmations <= 1) {
+      return 'confirm-none';
+    } else {
+      return 'confirm-ok';
+    }
+  }
+
+  public getConfirmationsText(confirmations: number): string {
+    if (confirmations < 0) {
+      return 'Error';
+    } else if (confirmations <= 1) {
+      return 'Processing';
+    } else {
+      return 'Complete';
+    }
+  }
+
+  public getCategoryText(category: string, currency: string): string {
+    if (categories.Send) {
+      return `Sent ${currency}`;
+    } else if (categories.Receive) {
+      return `Received ${currency}`;
+    } else if (categories.Node) {
+      return `Node Earnings`;
+    }
+    return '';
+  }
+
+  public getCategoryIconStyle(category: string): any {
+    if (categories.Send) {
+      return faArrowUp;
+    } else if (categories.Receive) {
+      return faArrowDown;
+    } else if (categories.Node) {
+      return faDollarSign;
+    }
+    return '';
+  }
+
+  public showTransactionInModal(row: any) {
+    row.forceOpen = true;
+    this.modalService.openSmall('transactionDetail', row);
+  }
+
 }
