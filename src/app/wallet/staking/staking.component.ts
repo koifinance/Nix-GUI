@@ -50,19 +50,26 @@ export class StakingComponent implements OnInit {
   ]
 
   constructor(
-    private calculationService: CalculationsService,
     private modalsService: ModalsService,
     private router: Router,
     private walletServices: WalletService,
     private _rpcState: RpcStateService,
-    private flashNotification: SnackbarService) { }
+    private flashNotification: SnackbarService) {
+      this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(walletInfo => {
+        this.unconfirmedBalance = walletInfo.unconfirmed_balance;
+        this.immatureBalance = walletInfo.immature_balance;
+        this.drawOverviewChart();
+      },
+        error => this.log.error('Failed to get wallet information, ', error));
+    }
 
   ngOnInit() {
     this.destroyed = false;
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
     this.getStakingInformation();
-    this.getwalletinformation();
     this.getTransactions();
   }
 
@@ -82,18 +89,6 @@ export class StakingComponent implements OnInit {
         this.dataSource.data = sortedTrans;
       },
         error => this.log.error(message.transactionMessage, error));
-  }
-
- //get wallet informations
-  private getwalletinformation() {
-    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
-      .takeWhile(() => !this.destroyed)
-      .subscribe(walletInfo => {
-        this.unconfirmedBalance = walletInfo.unconfirmed_balance;
-        this.immatureBalance = walletInfo.immature_balance;
-        this.drawOverviewChart();
-      },
-        error => this.log.error('Failed to get wallet information, ', error));
   }
 
   // get staking info
