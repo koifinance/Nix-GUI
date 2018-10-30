@@ -40,7 +40,7 @@ export enum message {
   CopiedAddress = 'The address has been copied to clipboard',
   DepositMessage = 'Failed to deposit amount',
   PassphraseNotMatch = 'Password does not match. Please check if the password is correct!',
-  PassphraseChanged = 'Passphrase was successfully changed!',
+  PassphraseChanged = 'Passphrase was successfully changed! Please restart the wallet after it is closed',
   GetAllAddresses = 'Failed to get address book addresses',
   GetFeeForAmount = 'Failed to get fee for the amount!',
   ListTransactions = 'Failed to get the transactions!',
@@ -94,4 +94,5 @@ export enum ApiEndpoints {
   ManageAddressbook = 'manageaddressbook',
   UnGhostAmount = 'unghostamount',
   WalletLock = 'walletlock',
+  StopNixd = 'stop'
 }

@@ -305,7 +305,12 @@ export class WalletService {
     .subscribe(
       response => success(response),
       error => Array(24).fill('error'));
-}
+  }
+
+  //stop the nixd
+  stop(): void {
+    this._rpc.call(ApiEndpoints.StopNixd);
+  }
 
 
 validateWord(word: string): boolean {
