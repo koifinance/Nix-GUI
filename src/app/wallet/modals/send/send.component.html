@@ -117,7 +117,7 @@
           <fa-icon [icon]="faAddressBook"></fa-icon>
         </span>
 
-        <mat-select [(ngModel)]="sendToNix.address">
+        <mat-select [(ngModel)]="sendToNix.address" (change)="addressSelected()">
           <mat-option *ngFor="let acc of accountData" value={{acc.address}}> {{acc.name}} </mat-option>
         </mat-select>
       </div>
