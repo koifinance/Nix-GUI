@@ -40,6 +40,15 @@
 
   }
 
+  .mat-raised-button {
+    font-family: $font;
+  }
+
+  /deep/ .mat-form-field-infix {
+    width: 500px;
+    display: flex;
+  }
+
   .sendbtn {
     background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);;
     color: white;
@@ -64,17 +73,14 @@
   }
 
   .copybtn {
-    background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);;
+    background-image: linear-gradient(45deg, #3C17BF 0%, #00C1FF 100%);
     color: white;
     font-size: 10px;
     border-radius: 5px;
     border: none;
     float: right;
-    margin-right: -300px;
-    margin-top: -27px;
     padding: 7px;
     width: 50px;
-
   }
 
 }
