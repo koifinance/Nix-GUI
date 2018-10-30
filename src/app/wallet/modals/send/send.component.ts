@@ -214,10 +214,10 @@ export class SendComponent implements OnInit, OnDestroy {
       address: this.sendToNix.address
     };
 
-    // if (walletType == 'vault' && actionType == 'send') {
-    //   data.amount = this.data.balance;
-    //   data.total = this.data.balance;
-    // }
+    if (walletType == 'vault' && actionType == 'send') {
+      data.amount = this.amount;
+      data.total = this.amount;
+    }
     this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
   }
