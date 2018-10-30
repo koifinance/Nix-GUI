@@ -83,6 +83,10 @@ input {
   margin-top: 5px;
 }
 
+.margin-top-15px {
+  margin-top: 15px;
+}
+
 .margin-top-20px {
   margin-top: 20px;
 }
@@ -878,6 +882,15 @@ a {
 }
 mat-drawer-content::-webkit-scrollbar {
   width: 0px;
+}
+
+.mat-table {
+  max-height: 630px;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
 }
 
 .chart-box{
