@@ -28,6 +28,7 @@ export class PasswordInputComponent implements OnInit {
   modal: ComponentRef<Component>;
   passphrase:string;
   data: any;
+  title: string;
 
   constructor(private walletServices: WalletService,
     private flashNotification: SnackbarService,public _dialogRef: MatDialogRef<PasswordInputComponent>) { }
@@ -37,6 +38,10 @@ export class PasswordInputComponent implements OnInit {
 
   setData(data: any) {
     this.data = data;
+    this.title = "Unlock wallet for staking";
+    if (this.data.title) {
+      this.title = this.data.title;
+    }
   }
 
   validatePassword(): boolean {
@@ -49,17 +54,33 @@ export class PasswordInputComponent implements OnInit {
 
   save() {
     if (this.validatePassword()) {
-      let walletPasspharse: IPassword = new encryptpassword();
-      walletPasspharse.password = this.passphrase;
-      walletPasspharse.stakeOnly = true;
-      this.walletServices.enableStaking(walletPasspharse).subscribe(res => {
-        this.data.parentRef.stakingEnabled();
+      let walletPassphrase: IPassword = new encryptpassword();
+      walletPassphrase.password = this.passphrase;
+      walletPassphrase.stakeOnly = this.data.forStaking;
+      this.walletServices.walletpassphrase(walletPassphrase).subscribe(res => {
+        this.data.parentRef.passwordEntered(walletPassphrase);
         this.close();
       }, error => {
         this.flashNotification.open(error.message, 'err')
         this.log.er(message.ChangePasswordMessage, error)
       });
+
+
+
     }
+
+    // if (this.validatePassword()) {
+    //   let walletPasspharse: IPassword = new encryptpassword();
+    //   walletPasspharse.password = this.passphrase;
+    //   walletPasspharse.stakeOnly = true;
+    //   this.walletServices.enableStaking(walletPasspharse).subscribe(res => {
+    //     this.data.parentRef.stakingEnabled();
+    //     this.close();
+    //   }, error => {
+    //     this.flashNotification.open(error.message, 'err')
+    //     this.log.er(message.ChangePasswordMessage, error)
+    //   });
+    // }
   }
 
   close(): void {

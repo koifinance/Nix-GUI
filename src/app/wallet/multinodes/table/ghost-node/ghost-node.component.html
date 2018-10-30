@@ -10,20 +10,27 @@
             {{element.status}}
         </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="Active for">
+    <!-- <ng-container matColumnDef="Active for">
         <mat-header-cell *matHeaderCellDef class="matHeader">Active</mat-header-cell>
         <mat-cell *matCellDef="let element" class="matCell">
             {{element.activefor}}
         </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="Action1">
+    </ng-container> -->
+    <ng-container matColumnDef="Detail">
         <mat-header-cell *matHeaderCellDef class="matHeader"></mat-header-cell>
-        <mat-cell *matCellDef="let element" class="matCell1" (click)="openViewNode()">
+        <mat-cell *matCellDef="let element" class="matCell1" (click)="openDetail(element)">
             <fa-icon [icon]="faFileAlt"></fa-icon>
             {{element.action1}}
         </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="Action2">
+    <ng-container matColumnDef="Start">
+        <mat-header-cell *matHeaderCellDef class="matHeader"></mat-header-cell>
+        <mat-cell *matCellDef="let element" class="matCell1" (click)="startNode(element)">
+            <fa-icon [icon]="faCaretSquareRight"></fa-icon>
+            
+        </mat-cell>
+    </ng-container>
+<!--     <ng-container matColumnDef="Action2">
         <mat-header-cell *matHeaderCellDef class="matHeader"></mat-header-cell>
         <mat-cell *matCellDef="let element" class="matCell1"  (click)="openEdit()">
             <fa-icon [icon]="faEdit"></fa-icon>
@@ -36,7 +43,7 @@
             <fa-icon [icon]="faTimes"></fa-icon>
             {{element.action3}}
         </mat-cell>
-    </ng-container>
+    </ng-container> -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
