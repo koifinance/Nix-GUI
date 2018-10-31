@@ -111,6 +111,8 @@
 
     .mat-header-row {
       background: $color-dark-white;
+      position: sticky;
+      top: 0;
     }
 
     .mat-header-cell, .mat-cell {
