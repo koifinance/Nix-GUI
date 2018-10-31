@@ -125,14 +125,25 @@ export class OverviewComponent implements OnInit, OnDestroy {
           }, error => this.log.error(message.bitcoinpriceMessage, error));
       },
         error => this.log.error(message.walletMessage, error));
+
+    this._rpcState.observe(ApiEndpoints.Ghostnode)
+    .takeWhile(() => !this.destroyed)
+    .subscribe(NodeInformations => {
+      this.isActiveNodeCount = NodeInformations;
+      this.walletServices.ghostnodeEnabledCount()
+        .subscribe(count => {
+          this.enabledNodeCount = count;
+        }, err => {
+          this.log.error(err);
+        });
+    },
+      error => this.log.error(error));
   }
 
   ngOnInit() {
     this.currentCurrency = this.walletServices.getCurrency();
-    this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 5000, ['count']);
 
     this.getNIXChartData();
-    this.getnodestatus();
     this.getTorstatus();
     this.getBlockchainInfo();
   }
@@ -226,23 +237,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.log.error(error.message, error); 
     })
   }
-
-  // get node status
-  private getnodestatus() {
-    this._rpcState.observe(ApiEndpoints.Ghostnode)
-      .takeWhile(() => !this.destroyed)
-      .subscribe(NodeInformations => {
-        this.isActiveNodeCount = NodeInformations;
-        this.walletServices.ghostnodeEnabledCount()
-          .subscribe(count => {
-            this.enabledNodeCount = count;
-          }, err => {
-            this.log.error(err);
-          });
-      },
-        error => this.log.error(error));
-  }
-
   
   goToChart() {
     this.router.navigate(['./overview/nix-price-chart']);
