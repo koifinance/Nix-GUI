@@ -5,6 +5,9 @@ mat-table {
   background: transparent;
 
   mat-header-row {
+    background-color: #242424!important;
+    position: sticky;
+    top: 0;
     border: none;
     min-height: 40px;
   }
