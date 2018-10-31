@@ -36,6 +36,8 @@ mat-drawer-content {
 
 .mat-table .mat-header-row {
     background: #f1f1f1;
+    position: sticky;
+    top: 0;
 }
 .confirm-ok {
     color: orange;
