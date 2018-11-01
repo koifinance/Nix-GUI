@@ -126,6 +126,19 @@ export class OverviewComponent implements OnInit, OnDestroy {
           }, error => this.log.error(message.bitcoinpriceMessage, error));
       },
         error => this.log.error(message.walletMessage, error));
+
+    this._rpcState.observe(ApiEndpoints.Ghostnode)
+    .takeWhile(() => !this.destroyed)
+    .subscribe(NodeInformations => {
+      this.isActiveNodeCount = NodeInformations;
+      this.walletServices.ghostnodeEnabledCount()
+        .subscribe(count => {
+          this.enabledNodeCount = count;
+        }, err => {
+          this.log.error(err);
+        });
+    },
+      error => this.log.error(error));
   }
 
   ngOnInit() {
@@ -134,7 +147,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this._rpcState.registerStateCall(ApiEndpoints.GetNetworkInfo, 5000);
 
     this.getNIXChartData();
-    this.getnodestatus();
     this.getTorstatus();
     this.getBlockchainInfo();
     this.getConnections();
