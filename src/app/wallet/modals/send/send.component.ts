@@ -121,7 +121,11 @@ export class SendComponent implements OnInit, OnDestroy {
         if (this.data.walletType === 'withdraw') unghostInfo.address = null;
 
         this.walletServices.unghostAmount(unghostInfo).subscribe(res => {
-          this.openSuccess('vault', 'send');
+          if (res.includes(':')) {
+            this.flashNotification.open(res, 'info');
+          } else {
+            this.openSuccess('vault', 'send');
+          }
         },
           error => {
             this.flashNotification.open(message.SendAmountToVaultMessage, 'err');
@@ -214,10 +218,10 @@ export class SendComponent implements OnInit, OnDestroy {
       address: this.sendToNix.address
     };
 
-    // if (walletType == 'vault' && actionType == 'send') {
-    //   data.amount = this.data.balance;
-    //   data.total = this.data.balance;
-    // }
+    if (walletType == 'vault' && actionType == 'send') {
+      data.amount = this.amount;
+      data.total = this.amount;
+    }
     this.data.modalsService.forceClose();
     this.data.modalsService.openSmall('success', data);
   }
