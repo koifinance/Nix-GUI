@@ -81,7 +81,8 @@ export class ConsoleComponent implements OnInit, AfterViewChecked {
       this.scrollToBottom();
     } else {
       const erroMessage = (error.message) ? error.message : 'Method not found';
-      this.snackbar.open(erroMessage);
+      this.snackbar.open(erroMessage, 'err');
+      this.command = '';
     }
   }
 
