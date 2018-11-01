@@ -24,6 +24,7 @@ export class RpcStateService extends StateService implements OnDestroy {
     this.registerStateCall('getblockchaininfo', 5000);
     this.registerStateCall('getnetworkinfo', 10000);
     this.registerStateCall('getstakinginfo', 10000);
+    this.registerStateCall('ghostnode', 5000, ['count']);
 
     // TODO: get rid of these
     this.walletLockedState();
