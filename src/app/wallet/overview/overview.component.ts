@@ -49,6 +49,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   private log: any = Log.create(`overview.component `);
   public status;
   public currentBlock: number;
+  public connections: number;
   public torStatus: string;
   public currentCurrency: string;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
@@ -142,10 +143,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentCurrency = this.walletServices.getCurrency();
+    this._rpcState.registerStateCall(ApiEndpoints.Ghostnode, 5000, ['count']);
+    this._rpcState.registerStateCall(ApiEndpoints.GetNetworkInfo, 5000);
 
     this.getNIXChartData();
     this.getTorstatus();
     this.getBlockchainInfo();
+    this.getConnections();
   }
 
   // events
@@ -236,6 +240,32 @@ export class OverviewComponent implements OnInit, OnDestroy {
       }, error => {
         this.log.error(error.message, error); 
     })
+  }
+
+  // get node status
+  private getnodestatus() {
+    this._rpcState.observe(ApiEndpoints.Ghostnode)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(NodeInformations => {
+        this.isActiveNodeCount = NodeInformations;
+        this.walletServices.ghostnodeEnabledCount()
+          .subscribe(count => {
+            this.enabledNodeCount = count;
+          }, err => {
+            this.log.error(err);
+          });
+      },
+        error => this.log.error(error));
+  }
+
+  // get connections
+  private getConnections() {
+    this._rpcState.observe(ApiEndpoints.GetNetworkInfo)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(info => {
+        this.connections = info.connections;
+      },
+        error => this.log.error(error));
   }
   
   goToChart() {
