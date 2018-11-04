@@ -12,7 +12,7 @@
 ### What is NIX?
 ---
 
-NIX is a digital currency that combines Atomic Swaps/Smart Contracts and privacy using our unique, innovative Ghost Protocol to provide the world with a truly anonymous and decentralized transfer of assets for the cross-chain era
+NIX is a multi-layered privacy currency which utilizes an interoperable platform model to fuel privacy focused decentralized applications (dApps).
 
 ### Key Features
 ---
