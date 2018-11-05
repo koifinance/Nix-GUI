@@ -32,6 +32,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.removeItem('walletInfo');
+    localStorage.removeItem('transactionlist');
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .subscribe(walletInfo => {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();

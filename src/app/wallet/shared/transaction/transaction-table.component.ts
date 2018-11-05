@@ -51,7 +51,6 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(
     public transactionService: TransactionService,
-    private filterService: FilterService,
     private modalService: ModalsService,
     private _rpcState: RpcStateService,
     private _rpc: RpcService
@@ -61,74 +60,113 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
     this.log.d(`number of transactions per page ${this.display.numTransactions}`);
     this.log.d(this.display);
     this.transactionService.postConstructor(this.display.numTransactions);
+    this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
+    this.dataSource.data = null;
     
-    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
-      .takeWhile(() => !this.destroyed)
-      .subscribe(response => {
+    // this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+    //   .takeWhile(() => !this.destroyed)
+    //   .subscribe(response => {
+
+    //     this.walletInfo = JSON.parse(localStorage.getItem('walletInfo'));
+    //     this.log.d(JSON.stringify(response) === JSON.stringify(this.walletInfo));
+    //     this.log.d(JSON.parse(localStorage.getItem('transactionlist')));
+    //     this.log.d(JSON.stringify(this.filter) === JSON.stringify(this.filterCategory));
       
-        if (JSON.stringify(response) !== JSON.stringify(this.walletInfo) || (JSON.stringify(this.filter) !== JSON.stringify(this.filterCategory)) ) {
-          this.walletInfo = response;
-          this.filterCategory = this.filter;
-          this._rpc.call(ApiEndpoints.ListTransactions, ['*', this.display.numTransactions])
-          .subscribe(recentTransInfo => {
+    //     if (JSON.stringify(response) !== JSON.stringify(this.walletInfo) || (JSON.stringify(this.filter) !== JSON.stringify(this.filterCategory)) ) {
+    //       localStorage.setItem('walletInfo', JSON.stringify(response));
+    //       this.filterCategory = this.filter;
 
-            if (this.filter) {
-              recentTransInfo = recentTransInfo.filter(item => {
-                if (item.category !== this.filter.category && this.filter.category !== 'all') return false;
-                if (this.filter.amountFilter === 'gt' && Math.abs(item.amount) <= Number(this.filter.amountFilterValue)) return false;
-                if (this.filter.amountFilter === 'lt' && Math.abs(item.amount) >= Number(this.filter.amountFilterValue)) return false;
-                if (this.filter.amountFilter === 'eq' && Math.abs(item.amount) !== Number(this.filter.amountFilterValue)) return false;
+    //       if (JSON.stringify(response) !== JSON.stringify(this.walletInfo) || !JSON.parse(localStorage.getItem('transactionlist'))) {
+    //         this._rpc.call(ApiEndpoints.ListTransactions, ['*', 100])
+    //         .subscribe(recentTransInfo => {
 
-                const today = new Date();
-                const txDate = new Date(item.time * 1000);
-                let result = true;
-                switch (this.filter.dateFilter) {
-                  case 'week': {
-                    today.setDate(today.getDate() - 7);
-                    result = txDate >= today;
-                    break;
-                  }
-                  case 'month': {
-                    today.setMonth(today.getMonth() - 1);
-                    result = txDate >= today;
-                    break;
-                  }
-                  case 'threemo': {
-                    today.setMonth(today.getMonth() - 3);
-                    result = txDate >= today;
-                    break;
-                  }
-                  case 'sixmo': {
-                    today.setMonth(today.getMonth() - 6);
-                    result = txDate >= today;
-                    break;
-                  }
-                  default: {
-                    result = true;
-                    break;
-                  }
-                }
-                return result;
-              });
-            }
+    //           localStorage.setItem('transactionlist', JSON.stringify(recentTransInfo));
+    //           this.filterTransaction(recentTransInfo, this.filter);
+    //         },
+    //           error => this.log.error(message.recentTransactionMessage, error));
+    //       } else {
+    //         this.filterTransaction(JSON.parse(localStorage.getItem('transactionlist')), this.filter);
+    //       }
+    //     }
+    // }, err => this.log.error(message.walletMessage, err));
+  }
 
-            const sortedTransInfo = recentTransInfo.sort((t1, t2) => t2.time - t1.time);
-            this.transactionInfo = sortedTransInfo.slice(0, this.display.numTransactions);
-            this.dataSource.data = sortedTransInfo.slice(0, this.display.numTransactions);
-          },
-            error => this.log.error(message.recentTransactionMessage, error));
+  filterTransaction(recentTransInfo, filter) {
+
+    if (filter) {
+      recentTransInfo = recentTransInfo.filter(item => {
+        if (item.category !== filter.category && filter.category !== 'all') return false;
+        if (filter.amountFilter === 'gt' && Math.abs(item.amount) <= Number(filter.amountFilterValue)) return false;
+        if (filter.amountFilter === 'lt' && Math.abs(item.amount) >= Number(filter.amountFilterValue)) return false;
+        if (filter.amountFilter === 'eq' && Math.abs(item.amount) !== Number(filter.amountFilterValue)) return false;
+
+        const today = new Date();
+        const txDate = new Date(item.time * 1000);
+        let result = true;
+        switch (filter.dateFilter) {
+          case 'week': {
+            today.setDate(today.getDate() - 7);
+            result = txDate >= today;
+            break;
+          }
+          case 'month': {
+            today.setMonth(today.getMonth() - 1);
+            result = txDate >= today;
+            break;
+          }
+          case 'threemo': {
+            today.setMonth(today.getMonth() - 3);
+            result = txDate >= today;
+            break;
+          }
+          case 'sixmo': {
+            today.setMonth(today.getMonth() - 6);
+            result = txDate >= today;
+            break;
+          }
+          default: {
+            result = true;
+            break;
+          }
         }
-    }, err => this.log.error(message.walletMessage, err));
+        return result;
+      });
+    }
+
+    recentTransInfo = recentTransInfo.reverse();
+    this.transactionInfo = recentTransInfo.slice(0, this.display.numTransactions);
+    this.dataSource.data = recentTransInfo.slice(0, this.display.numTransactions);
   }
 
   ngOnInit() {
     this.destroyed = false;
     this.display = Object.assign({}, this.defaults, this.display);
-    this.log.d(`number of transactions per page ${this.display.numTransactions}`);
-    this.log.d(this.display);
     this.transactionService.postConstructor(this.display.numTransactions);
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
+
+    this._rpcState.observe(ApiEndpoints.GetWalletInfo)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(response => {
+        
+        this.walletInfo = JSON.parse(localStorage.getItem('walletInfo'));
+      
+        if (JSON.stringify(response) !== JSON.stringify(this.walletInfo) || (JSON.stringify(this.filter) !== JSON.stringify(this.filterCategory)) ) {
+          localStorage.setItem('walletInfo', JSON.stringify(response));
+          this.filterCategory = this.filter;
+
+          if (JSON.stringify(response) !== JSON.stringify(this.walletInfo) || !JSON.parse(localStorage.getItem('transactionlist'))) {
+            this._rpc.call(ApiEndpoints.ListTransactions, ['*', 100])
+            .subscribe(recentTransInfo => {
+              localStorage.setItem('transactionlist', JSON.stringify(recentTransInfo));
+              this.filterTransaction(recentTransInfo, this.filter);
+            },
+              error => this.log.error(message.recentTransactionMessage, error));
+          } else {
+            this.filterTransaction(JSON.parse(localStorage.getItem('transactionlist')), this.filter);
+          }
+        }
+    }, err => this.log.error(message.walletMessage, err));
   }
 
   ngOnChanges(changes: SimpleChanges) {
