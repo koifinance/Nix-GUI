@@ -11,9 +11,7 @@
     <div class="amountsend">
       <p class="htxt">Address</p>
       <div fxLayout.gt-md="row">
-        <div class="custom-input-group amount-input">
-          <input class="input-group " placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
-        </div>
+        <input class="modalinput" fxFlex="100" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
       </div>
     </div>
     
