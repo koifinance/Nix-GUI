@@ -273,7 +273,7 @@ export class WalletService {
   public walletpassphrase(encrypt : IPassword): Observable<any>{
     return this._rpc.call(ApiEndpoints.Walletpassphrase, [
       encrypt.password,
-      this.unlockTimeout,
+      encrypt.stakeOnly ? 0 : this.unlockTimeout,
       encrypt.stakeOnly
     ])
   } 
