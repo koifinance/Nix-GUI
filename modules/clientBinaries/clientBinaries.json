@@ -6,8 +6,8 @@
         "linux": {
           "x64": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.1.0/nix_core_x86_64_linux_gnu_2_0_3.zip",
-              "type": "zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.1.0/nix-2.1.0-x86_64-linux-gnu.tar.gz",
+              "type": "tar",
               "sha256": "",
               "bin": "nix-2.1.0/bin/nixd"
             },
