@@ -3,6 +3,7 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const menu          = electron.Menu;
 const path          = require('path');
 const fs            = require('fs');
 const url           = require('url');
@@ -53,6 +54,26 @@ app.on('ready', () => {
   options = _options.parse();
   initMainWindow();
   init.start(mainWindow);
+
+  // Create the Application's main menu
+  let template = [{
+      label: "Application",
+      submenu: [
+          { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+      ]}, {
+      label: "Edit",
+      submenu: [
+          { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+          { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+          { type: "separator" },
+          { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+          { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+          { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+          { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+      ]}
+  ];
+
+  menu.setApplicationMenu(menu.buildFromTemplate(template));
 });
 
 // Quit when all windows are closed.
