@@ -41,6 +41,7 @@ export enum message {
   DepositMessage = 'Failed to deposit amount',
   PassphraseNotMatch = 'Password does not match. Please check if the password is correct!',
   PassphraseChanged = 'Passphrase was successfully changed! Please restart the wallet after it is closed',
+  WalletEncrypted = 'Nix Core will shut down now due to password/wallet encryption',
   GetAllAddresses = 'Failed to get address book addresses',
   GetFeeForAmount = 'Failed to get fee for the amount!',
   ListTransactions = 'Failed to get the transactions!',
