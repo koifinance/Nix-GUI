@@ -170,7 +170,9 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-
+    if (JSON.stringify(changes.filter.currentValue) !== JSON.stringify(changes.filter.previousValue)) {
+      this.filterTransaction(JSON.parse(localStorage.getItem('transactionlist')), changes.filter.currentValue);
+    }
   }
 
   ngOnDestroy(): void {
