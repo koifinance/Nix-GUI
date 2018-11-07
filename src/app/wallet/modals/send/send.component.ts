@@ -235,7 +235,11 @@ export class SendComponent implements OnInit, OnDestroy {
 
   // to get sending amount
   public getSendingAmount(event) {
-    if (event)  this.amount = event;
+    if (event) {
+      this.amount = event;
+    } else {
+      this.amount = 0;
+    }
     this.convertUSD = this.amountInUSD * this.amount;
     this.convertEUR = this.amountInEUR * this.amount;
     if (this.amount && this.sendToNix.address)  this.getFees();
