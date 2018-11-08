@@ -63,7 +63,7 @@
   </ng-container>
 
   <mat-header-row [fxShow]="display.header" *matHeaderRowDef="display.columns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: display.columns;" (click)="showTransactionInModal(row)"></mat-row>
+  <mat-row *matRowDef="let row; columns: display.columns;" class="transaction-row" (click)="showTransactionInModal(row)"></mat-row>
 </mat-table>
 
 <mat-table [dataSource]="dataSource" *ngIf="display.recent">

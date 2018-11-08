@@ -11,12 +11,25 @@ mat-table {
   mat-row {
     margin-bottom: 15px;
     margin-top: 15px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   mat-cell {
     color: $color-dark-grey;
     font-size: 14px;
     overflow: hidden;
+  }
+
+  .transaction-row {
+    transition: background-color 0.5s ease;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.1) !important;
+    }
   }
 
   .confirm-none {

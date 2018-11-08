@@ -12,19 +12,23 @@
   /*margin-left: 43px;*/
 }
 
+.balance-card {
+    
+  &:hover {
+    cursor: pointer !important;
+  }
+}
 
 mat-card {
   color: $text;
   font-family: $font;
-
-  .balance-card {
-
-  }
+  
   .description {
     font-size: 16px;
     margin-bottom: 25px;
     margin-top: 5px;
   }
+
   .big {
     font-size: 24px;
     @media screen and (min-width: 1500px) {
