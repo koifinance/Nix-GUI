@@ -6,6 +6,7 @@ import { ApiEndpoints } from '../business-model/enums';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { RpcStateService } from '../../core/core.module';
+import { RpcService } from '../../core/core.module';
 import { SnackbarService } from '../../core/core.module';
 import { ModalsService } from '../modals/modals.service';
 import { message } from '../business-model/enums';
@@ -56,6 +57,7 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private _rpc: RpcService,
     private _rpcState: RpcStateService,
     private spinner: NgxSpinnerService,
     private modalsService: ModalsService,
@@ -82,7 +84,13 @@ export class CreateComponent implements OnInit, OnDestroy {
     if (this.walletWizard[1].valid()) {
       this.flashNotification.open(message.WalletEncrypted, 'info');
       setTimeout(() => {
-        this._rpcState.registerStateCall(ApiEndpoints.Encryptwallet, 1000, [this.walletNewPassword]);
+        this._rpc.call(ApiEndpoints.Encryptwallet, [this.walletNewPassword])
+          .subscribe(res => {
+            this.spinner.show()
+            this._rpc.call('restart-daemon').subscribe(() => {
+              this.goTo('main');
+            });
+          })
       }, 3000);      
     }
 
