@@ -13,7 +13,7 @@ const rpc = require('../rpc/rpc');
 
 let options;
 
-const BINARY_URL = 'https://raw.githubusercontent.com/NixPlatform/Nix-GUI/master/modules/clientBinaries/clientBinaries.json?token=ATRw3yrnnKsN_Gh3xrJ07eDW5XGlkufiks5b155QwA%3D%3D';
+const BINARY_URL = 'https://raw.githubusercontent.com/NixPlatform/Nix-GUI/master/modules/clientBinaries/clientBinaries.json';
 
 //const ALLOWED_DOWNLOAD_URLS_REGEX = new RegExp('*', 'i');
 
