@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     localStorage.removeItem('walletInfo');
+    localStorage.removeItem('blockchainInfo');
     localStorage.removeItem('transactionlist');
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .subscribe(walletInfo => {

@@ -12,6 +12,14 @@ mat-drawer-content {
   width: 100%;
 }
 
+mat-row {
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+}
 .content {
 
   .back-button {
