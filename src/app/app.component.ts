@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
       .subscribe(walletInfo => {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
         if (this.walletInfo.encryptionstatus === 'Unencrypted') {
-          this.loadString = "Wallet will now close to finish encrypting the wallet";
+          // this.loadString = "Wallet will now close to finish encrypting the wallet";
           this.router.navigate([`/create`]);
         }
       }, error => this.log.er(message.walletMessage, error));    
