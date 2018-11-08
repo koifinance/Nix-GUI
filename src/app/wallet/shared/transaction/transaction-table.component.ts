@@ -34,7 +34,8 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
   faCircleSolid: any = faCircleSolid;
   faCircle: any = faCircle;
 
-  private walletInfo: any = null;
+  private blockchainInfo: number;
+  private walletInfo: any = {};
   private filterCategory: any = {};
   private log: any = Log.create('transaction-table.component');
   private destroyed: boolean;
@@ -145,6 +146,25 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
 
+    this._rpcState.observe(ApiEndpoints.Getblockchaininfo)
+      .takeWhile(() => !this.destroyed)
+      .subscribe(response => {
+        
+        this.blockchainInfo = JSON.parse(localStorage.getItem('blockchainInfo'));
+      
+        if (response.blocks !== this.blockchainInfo && response.verificationprogress === 1) {
+          localStorage.setItem('blockchainInfo', JSON.stringify(response.blocks));
+          this.filterCategory = this.filter;
+
+          this._rpc.call(ApiEndpoints.ListTransactions, ['*', 100])
+            .subscribe(recentTransInfo => {
+              localStorage.setItem('transactionlist', JSON.stringify(recentTransInfo));
+              this.filterTransaction(recentTransInfo, this.filter);
+            },
+              error => this.log.error(message.recentTransactionMessage, error));
+        }
+    }, err => this.log.error(message.walletMessage, err));
+
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(response => {
@@ -157,11 +177,11 @@ export class TransactionTableComponent implements OnInit, OnDestroy, OnChanges {
 
           if (JSON.stringify(response) !== JSON.stringify(this.walletInfo) || !JSON.parse(localStorage.getItem('transactionlist'))) {
             this._rpc.call(ApiEndpoints.ListTransactions, ['*', 100])
-            .subscribe(recentTransInfo => {
-              localStorage.setItem('transactionlist', JSON.stringify(recentTransInfo));
-              this.filterTransaction(recentTransInfo, this.filter);
-            },
-              error => this.log.error(message.recentTransactionMessage, error));
+              .subscribe(recentTransInfo => {
+                localStorage.setItem('transactionlist', JSON.stringify(recentTransInfo));
+                this.filterTransaction(recentTransInfo, this.filter);
+              },
+                error => this.log.error(message.recentTransactionMessage, error));
           } else {
             this.filterTransaction(JSON.parse(localStorage.getItem('transactionlist')), this.filter);
           }
