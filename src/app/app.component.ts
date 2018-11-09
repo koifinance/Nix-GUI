@@ -33,12 +33,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     localStorage.removeItem('walletInfo');
+    localStorage.removeItem('blockchainInfo');
     localStorage.removeItem('transactionlist');
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .subscribe(walletInfo => {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
         if (this.walletInfo.encryptionstatus === 'Unencrypted') {
-          this.loadString = "Wallet will now close to finish encrypting the wallet";
+          // this.loadString = "Wallet will now close to finish encrypting the wallet";
           this.router.navigate([`/create`]);
         }
       }, error => this.log.er(message.walletMessage, error));    
