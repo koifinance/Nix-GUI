@@ -104,7 +104,7 @@
       ]
     },
     "linux": {
-      "maintainer": "particl contributors <hello@particl.io>",
+      "maintainer": "nix contributors",
       "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
       "target": [
         {
