@@ -1,16 +1,17 @@
 <div *ngIf="data.walletType === 'wallet'" class="wallet">
-
-  <div class="modalcontent">
+  <div class="modalheader">
     <h5 fxFlex="50">Send NIX</h5>
     <div _ngcontent-c7="" class="divider"></div>
+  </div>
 
+  <div class="modalcontent">
     <div class="amountsend">
       <p>Amount to Send</p>
-      <div fxLayout.gt-md="row">
+      <div fxLayout.gt-md="row" class="send-div">
         <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" value="400" (ngModelChange)="getSendingAmount($event)"
           [(ngModel)]="sendToNix.amount">
-        <span class="input-text" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
-        <span class="input-text" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
+        <span class="input-text currency-label" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
+        <span class="input-text currency-label" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
         <span class="input-end-text">
           NIX
         </span>
@@ -22,7 +23,7 @@
 
     <div class="sendto">
       <p>To</p>
-      <div fxLayout.gt-md="row">
+      <div fxLayout.gt-md="row" class="address-div">
         <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" [(ngModel)]="sendToNix.address" (onfocusout)="getFees()" (keyup)="getFees()" (input)="addressEdited()" [disabled]="isAddressSelected">
         <span class="fa-icon">
           <fa-icon [icon]="faAddressBook"></fa-icon>
@@ -91,18 +92,18 @@
 </div>
 
 <div *ngIf="data.walletType === 'vault'" class="vault">
-
-  <div class="modalcontent">
+  <div class="modalheader">
     <h5 fxFlex="50">Send from Ghost Vault</h5>
     <div _ngcontent-c7="" class="divider"></div>
-
+  </div>
+  <div class="modalcontent">
     <div class="amountsend">
       <p>Amount to Send</p>
-      <div fxLayout.gt-md="row">
+      <div fxLayout.gt-md="row" class="send-div">
         <input class="modalinput" type="number" step="1" matInput fxFlex="100" placeholder="Enter value" value="data.balance" (ngModelChange)="getSendingAmount($event)"
           [(ngModel)]="sendToNix.amount" onkeypress="return (event.chaCode == 8 || event.charCode == 0 || event.charCode ==13) ? null : event.charCode >= 48 && event.charCode <= 57">
-        <span class="input-text" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
-        <span class="input-text" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
+        <span class="input-text currency-label" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
+        <span class="input-text currency-label" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
         <span class="input-end-text">
           NIX
         </span>
@@ -111,7 +112,7 @@
 
     <div class="sendto">
       <p>To</p>
-      <div fxLayout.gt-md="row">
+      <div fxLayout.gt-md="row" class="address-div">
         <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" value="NXefjjohhdofhgij" [(ngModel)]="sendToNix.address">
         <span class="fa-icon">
           <fa-icon [icon]="faAddressBook"></fa-icon>
@@ -172,18 +173,18 @@
 </div>
 
 <div *ngIf="data.walletType === 'withdraw'" class="vault">
-
-  <div class="modalcontent">
+  <div class="modalheader">
     <h5 fxFlex="50">Withdraw NIX</h5>
     <div _ngcontent-c7="" class="divider"></div>
-
+  </div>
+  <div class="modalcontent">
     <div class="amountsend">
       <p>Amount to Withdraw</p>
-      <div fxLayout.gt-md="row">
+      <div fxLayout.gt-md="row" class="send-div">
         <input class="modalinput" type="number" step="1" matInput fxFlex="100" placeholder="Enter value" value="data.balance" (ngModelChange)="getSendingAmount($event)"
           [(ngModel)]="sendToNix.amount" onkeypress="return (event.chaCode == 8 || event.charCode == 0 || event.charCode ==13) ? null : event.charCode >= 48 && event.charCode <= 57">
-        <span class="input-text" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
-        <span class="input-text" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
+        <span class="input-text currency-label" dir="rtl" *ngIf="data.currency == 'USD'">({{convertUSD |  currency : 'USD' : 'symbol'}})</span>
+        <span class="input-text currency-label" dir="rtl" *ngIf="data.currency == 'EUR'">({{convertEUR |  currency : 'EUR' : 'symbol'}})</span>
         <span class="input-end-text">
           NIX
         </span>
