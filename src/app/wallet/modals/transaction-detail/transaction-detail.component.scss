@@ -15,6 +15,12 @@
   
     .modalcontent {
       padding: 24px;
+      
+      .content-div {
+        max-height: 625px;
+        height: 75vh;
+        overflow: auto;
+      }
     }
   
     .modaldetails {

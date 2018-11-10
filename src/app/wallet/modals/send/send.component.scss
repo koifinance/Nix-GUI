@@ -12,6 +12,10 @@
   .amountsend {
     margin-bottom: 20px;
     font-size: 14px;
+
+    .send-div {
+      position: relative;
+    }
   }
  
   .saveaddress {
@@ -29,18 +33,26 @@
 
   .divider[_ngcontent-c7] {
     border-top: 1px solid #EAEAEA;
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     margin-top: 15px;
   }
 
   h5 {
     display: inline;
     color: #4a4a4a;
-    font-family: "Roboto", sans-serif;
+  }
+
+  .modalheader {
+    padding: 24px;
+    padding-bottom: 0px;
   }
 
   .modalcontent {
     padding: 24px;
+    padding-top: 0px;
+    max-height: 450px;
+    height: 50vh;
+    overflow: auto;
   }
 
   .modaldetails {
@@ -72,16 +84,32 @@
     padding: 40px 24px;
   }  
 
-  .amountsend {
-    margin-bottom: 20px;
-  }
-
   .lbltotal {
     font-size: 15px;
   }
 
 .sendto {
   font-size: 14px;
+
+  .address-div {
+    position: relative;
+
+    .fa-icon { 
+      position: absolute;
+      top: 9px;
+      margin-right: -36px;
+      right: 42px;
+      font-size: 16px;
+    }
+    mat-select {
+      width: 0;
+      outline: 0;
+      position: absolute;
+      margin-top: 10px;
+      right: 22px;
+      opacity: 0;
+    }
+  }
 }
 
 .input-text{
@@ -96,6 +124,10 @@
   margin-top: 12px;
   font-size: 12px;
   color: #adaaaa;
+
+  &.currency-label {
+    position: absolute;
+  }
 }
 
 .input-end-text{
@@ -104,22 +136,7 @@
   margin-right: -36px;
   left: -50px;
 }
-.fa-icon { 
-  position: relative;
-  top: 9px;
-  margin-right: -36px;
-  left: -37px;
-  font-size: 16px;
-}
 
-.mat-select {
-  width: 0;
-  outline: 0;
-  position: absolute;
-  margin-top: 10px;
-  right: 64px;
-  opacity: 0;
-}
 
 .password-toggle {
   font-size: 11px;

@@ -141,7 +141,7 @@ export class SendComponent implements OnInit, OnDestroy {
   addressSelected() {
     this.isAddressSelected = true;
     this.addressLabel = '';
-    this.getSendingAmount(null);
+    this.getSendingAmount(this.amount);
   }
 
   addressEdited() {
@@ -239,6 +239,8 @@ export class SendComponent implements OnInit, OnDestroy {
       this.amount = event;
     } else {
       this.amount = 0;
+      this.fees = 0;
+      this.total = 0;
     }
     this.convertUSD = this.amountInUSD * this.amount;
     this.convertEUR = this.amountInEUR * this.amount;
