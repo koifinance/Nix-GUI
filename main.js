@@ -206,16 +206,12 @@ function initMainWindow() {
   });
 
   // trigger autoupdate check
-  if (!isDev) {
-    log.info('Running in production');
-    autoUpdater.checkForUpdates();
+  autoUpdater.checkForUpdates();
 
-    setInterval(() => {
-      autoUpdater.checkForUpdates();
-    }, 600 * 1000)
-  } else {
-    log.info('Running in development');
-  }
+  setInterval(() => {
+    autoUpdater.checkForUpdates();
+  }, 600 * 1000)
+
 }
 
 /*
