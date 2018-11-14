@@ -2,8 +2,10 @@
 /* electron */
 const electron = require('electron');
 const app = electron.app;
+const { autoUpdater } = require('electron-updater');
 const BrowserWindow = electron.BrowserWindow;
 const menu          = electron.Menu;
+const dialog        = electron.dialog;
 const path          = require('path');
 const fs            = require('fs');
 const url           = require('url');
@@ -11,6 +13,13 @@ const platform      = require('os').platform();
 const rxIpc         = require('rx-ipc-electron/lib/main').default;
 const Observable    = require('rxjs/Observable').Observable;
 const log           = require('electron-log');
+const isDev         = require('electron-is-dev');
+
+// require('update-electron-app')({
+//   repo: 'NixPlatform/nix-gui-private',
+//   updateInterval: '5 minutes',
+//   logger: require('electron-log')
+// })
 
 /* make userDataPath if it doesn't exist yet */
 const userDataPath = app.getPath('userData');
@@ -39,6 +48,45 @@ let mainWindow;
 let tray;
 let options;
 let openDevTools = false;
+
+//-------------------------------------------------------------------
+// Auto updates
+//-------------------------------------------------------------------
+const sendStatusToWindow = (text) => {
+  log.info(text);
+};
+
+autoUpdater.on('checking-for-update', () => {
+  sendStatusToWindow('Checking for update...');
+});
+autoUpdater.on('update-available', info => {
+  sendStatusToWindow('Update available.');
+});
+autoUpdater.on('update-not-available', info => {
+  sendStatusToWindow('Update not available.');
+});
+autoUpdater.on('error', err => {
+  sendStatusToWindow(`Error in auto-updater: ${err.toString()}`);
+});
+autoUpdater.on('download-progress', progressObj => {
+  sendStatusToWindow(
+    `Download speed: ${progressObj.bytesPerSecond} - Downloaded ${progressObj.percent}% (${progressObj.transferred} + '/' + ${progressObj.total} + )`
+  );
+});
+autoUpdater.on('update-downloaded', info => {
+  sendStatusToWindow('Update downloaded; will install now');
+});
+
+autoUpdater.on('update-downloaded', info => {
+  // Wait 5 seconds, then quit and install
+  // In your application, you don't need to wait 500 ms.
+  // You could call autoUpdater.quitAndInstall(); immediately
+  electron.dialog.showMessageBox({
+    message: 'New version is released. Please update your desktop wallet.'
+  }, res => {
+    autoUpdater.quitAndInstall();
+  })
+});
 
 if (process.argv.includes('-opendevtools'))
   openDevTools = true;
@@ -156,6 +204,18 @@ function initMainWindow() {
     // when you should delete the corresponding element.
     mainWindow = null
   });
+
+  // trigger autoupdate check
+  if (!isDev) {
+    log.info('Running in production');
+    autoUpdater.checkForUpdates();
+
+    setInterval(() => {
+      autoUpdater.checkForUpdates();
+    }, 600 * 1000)
+  } else {
+    log.info('Running in development');
+  }
 }
 
 /*
