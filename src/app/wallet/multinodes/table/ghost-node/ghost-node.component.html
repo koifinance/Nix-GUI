@@ -18,16 +18,15 @@
     </ng-container> -->
     <ng-container matColumnDef="Detail">
         <mat-header-cell *matHeaderCellDef class="matHeader">Ghostnode Info</mat-header-cell>
-        <mat-cell *matCellDef="let element" class="matCell1" (click)="openDetail(element)">
-            <fa-icon [icon]="faFileAlt"></fa-icon>
+        <mat-cell *matCellDef="let element">
+            <fa-icon [icon]="faFileAlt" class="matCell1" (click)="openDetail(element)"></fa-icon>
             {{element.action1}}
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="Start">
         <mat-header-cell *matHeaderCellDef class="matHeader">Start Ghostnode</mat-header-cell>
-        <mat-cell *matCellDef="let element" class="matCell1" (click)="startNode(element)">
-            <fa-icon [icon]="faCaretSquareRight"></fa-icon>
-            
+        <mat-cell *matCellDef="let element" class="matCell1">
+            <fa-icon [icon]="faCaretSquareRight" class="matCell1" (click)="startNode(element)"></fa-icon>
         </mat-cell>
     </ng-container>
 <!--     <ng-container matColumnDef="Action2">

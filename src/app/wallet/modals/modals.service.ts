@@ -21,6 +21,7 @@ import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.componen
 import { RestoreWalletComponent } from './restore-wallet/restore-wallet.component';
 import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
+import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-info-input.component';
 
 @Injectable()
 export class ModalsService implements OnDestroy {
@@ -44,7 +45,8 @@ export class ModalsService implements OnDestroy {
     syncingWallet: SyncingWalletComponent,
     restoreWallet: RestoreWalletComponent,
     createWallet: CreateWalletComponent,
-    transactionDetail: TransactionDetailComponent
+    transactionDetail: TransactionDetailComponent,
+    ghostnodeInfoInput: GhostnodeInfoInputComponent
   };
   private message: Subject<any> = new Subject<any>();
   private progress: Subject<Number> = new Subject<Number>();

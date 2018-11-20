@@ -25,6 +25,7 @@ import { SyncingWalletComponent } from './syncing-wallet/syncing-wallet.componen
 import { RestoreWalletComponent } from './restore-wallet/restore-wallet.component';
 import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
+import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-info-input.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TransactionDetailComponent } from './transaction-detail/transaction-det
     SyncingWalletComponent,
     RestoreWalletComponent,
     CreateWalletComponent,
-    TransactionDetailComponent
+    TransactionDetailComponent,
+    GhostnodeInfoInputComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +77,8 @@ import { TransactionDetailComponent } from './transaction-detail/transaction-det
     SyncingWalletComponent,
     RestoreWalletComponent,
     CreateWalletComponent,
-    TransactionDetailComponent
+    TransactionDetailComponent,
+    GhostnodeInfoInputComponent
   ]
 })
 export class ModalsModule {
