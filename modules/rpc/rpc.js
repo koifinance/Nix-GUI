@@ -156,6 +156,85 @@ function initIpcListener() {
     return Observable.create(observer => {
       if (['restart-daemon'].includes(method)) {
         daemon.restart(() => observer.next(true));
+      } else if (['start-ghostnode'].includes(method)) {
+        const BINARY_URL = 'https://raw.githubusercontent.com/NixPlatform/Nix-GUI/master/modules/clientBinaries/clientBinaries.json';
+
+        let ssh = require('ssh2');
+        let command     = "";
+        let pwSent      = false;
+        let sudosu      = false;
+        let password    = ' ';
+        let Client = require('ssh2').Client;
+        let commands    = [
+          "nix-cli stop",
+          "wget https://github.com/NixPlatform/NixCore/releases/download/v2.1.1/nix-2.1.1-x86_64-linux-gnu.tar.gz;",
+          "tar -xvzf nix-2.1.1-x86_64-linux-gnu.tar.gz;",
+          "chmod +x -R nix-2.1.1;",
+          "cp ./nix-2.1.1/bin/nixd /bin",
+          "cp ./nix-2.1.1/bin/nix-cli /bin",
+          "nixd -ghostnode=1 -externalip=" + params[0] + " -ghostnodeprivkey=" + params[2]
+        ];
+
+        let conn = new Client();
+        conn.on('ready', () => {
+          console.log('Connection :: ready');
+          conn.shell( (err, stream) => {
+            if (err) console.log('-------------------------', err);
+            stream.on('close', () => {
+              console.log('Stream :: close');
+              conn.end();
+            }).on('data', (data) => {
+        
+            //handle sudo password prompt
+            if (command.indexOf("sudo") !== -1 && !pwSent) {
+              //if sudo su has been sent a data event is triggered but the first event is not the password prompt
+              //this will ignore the first event and only respond when the prompt is asking for the password
+              if (command.indexOf("sudo su") > -1) {
+                  sudosu = true;
+              }
+              if (data.indexOf(":") >= data.length - 2) {
+                  pwSent = true;
+                  stream.write(password + '\n');
+              }
+            } else {
+              //detect the right condition to send the next command
+              let dataLength = data.length;
+              if (dataLength > 2 && (data.indexOf("$") >= dataLength - 2 || data.indexOf("#") >= dataLength - 2 )) {
+      
+                if (commands.length > 0) {
+                  command = commands.shift();
+                  stream.write(command + '\n');
+                  console.log('==============COMMAND===============', command);
+                } else {
+                  //sudo su requires two exit commands to close the session
+                  if (sudosu) {
+                    sudosu = false;
+                    stream.write('exit\n');
+                  } else {
+                    stream.end();
+                  }
+                }
+              } else {
+                console.log('STDOUT: ' + data);
+              }
+            }
+          }).stderr.on('data', function(data) {
+            console.log('STDERR: ' + data);
+          });
+        
+          //first command
+          command = commands.shift();
+          stream.write( command + '\n' );
+        
+          });
+        }).connect({
+          host: params[0],
+          port: 22,
+          username: 'root',
+          password: params[1],
+          tryKeyboard: true,
+          readyTimeout: 10000
+        });
       } else {
         exports.call(method, params, (error, response) => {
           try {
