@@ -69,7 +69,7 @@ export class GhostNodeComponent implements OnInit {
       title: "Start Ghostnode",
       forStaking: false
     };
-    this.modalsService.openSmall('passwordInput', data);
+    this.modalsService.openSmall('ghostnodeInfoInput', data);
   }
 
   // being called from modal

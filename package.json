@@ -4,6 +4,10 @@
   "license": "GPL-2.0",
   "description": "NIX Platform - cross chain asset transfer with full anonymity",
   "homepage": "https://nixplatform.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NixPlatform/Nix-GUI.git"
+  },
   "keywords": [
     "nix wallet",
     "angular2",
@@ -45,6 +49,9 @@
   "productName": "NIX Wallet",
   "build": {
     "electronVersion": "1.7.12",
+    "electronDownload": {
+      "verifyChecksum": false
+    },
     "appId": "io.nix.wallet",
     "directories": {
       "buildResources": "resources",
@@ -60,6 +67,7 @@
     "mac": {
       "artifactName": "${name}-${version}-${os}.${ext}",
       "category": "public.app-category.wallet",
+      "publish": "github",
       "target": [
         "dmg",
         "zip"
@@ -86,6 +94,7 @@
     },
     "win": {
       "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
+      "publish": "github",
       "target": [
         {
           "target": "nsis",
@@ -106,6 +115,7 @@
     "linux": {
       "maintainer": "nix contributors",
       "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
+      "publish": "github",
       "target": [
         {
           "target": "deb",
@@ -162,9 +172,12 @@
     "bluebird": "^3.4.7",
     "buffered-spawn": "^3.3.2",
     "chart.js": "^2.7.2",
+    "child_process": "^1.0.2",
     "cli-progress": "^1.7.0",
     "core-js": "^2.4.1",
+    "electron-is-dev": "^1.0.1",
     "electron-log": "^2.2.14",
+    "electron-updater": "^2.18.2",
     "file-saver": "^2.0.0-rc.3",
     "got": "^8.1.0",
     "hammerjs": "^2.0.8",
@@ -181,6 +194,7 @@
     "open-sans-all": "^0.1.3",
     "rx-ipc-electron": "^0.1.2",
     "rxjs": "^5.5.10",
+    "ssh2": "^0.6.1",
     "tmp": "^0.0.33",
     "zone.js": "^0.8.20"
   },
@@ -189,7 +203,7 @@
     "@angular/compiler-cli": "^5.2.10",
     "@compodoc/compodoc": "^1.0.7",
     "@types/jasmine": "^2.8.6",
-    "@types/node": "^9.6.12",
+    "@types/node": "^10.12.9",
     "checksum": "^0.1.1",
     "codelyzer": "^4.1.0",
     "coveralls": "^3.0.0",

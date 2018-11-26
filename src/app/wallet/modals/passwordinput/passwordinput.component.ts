@@ -30,8 +30,10 @@ export class PasswordInputComponent implements OnInit {
   data: any;
   title: string;
 
-  constructor(private walletServices: WalletService,
-    private flashNotification: SnackbarService,public _dialogRef: MatDialogRef<PasswordInputComponent>) { }
+  constructor(
+    private walletServices: WalletService,
+    private flashNotification: SnackbarService,
+    public _dialogRef: MatDialogRef<PasswordInputComponent>) { }
 
   ngOnInit() {
   }

@@ -23,8 +23,10 @@ export class PasswordchangeComponent implements OnInit {
   private modalContainer: ViewContainerRef;
   modal: ComponentRef<Component>;
   
-  constructor(private walletServices: WalletService,
-    private flashNotification: SnackbarService,public _dialogRef: MatDialogRef<PasswordchangeComponent>) { }
+  constructor(
+    private walletServices: WalletService,
+    private flashNotification: SnackbarService,
+    public _dialogRef: MatDialogRef<PasswordchangeComponent>) { }
 
   ngOnInit() {
   }

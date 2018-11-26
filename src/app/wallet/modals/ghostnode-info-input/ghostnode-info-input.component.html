@@ -1,0 +1,32 @@
+<div class="processing-trans">
+  <div class="modalcontent">
+    <h5 fxFlex="50">Start Ghostnode</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+
+    <div class="item">
+      <p class="htxt">IP Address</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" placeholder="Enter IP address" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.ip_address">
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="htxt">Password</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" placeholder="Enter password" fxFlex="100" [type]="'password'" [(ngModel)]="ghostnodeInfo.password">
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="htxt">GhostNode Key</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" placeholder="Enter ghostnode key" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.ghostnode_key">
+      </div>
+    </div>
+
+    <div class="confirm buttons" fxLayout="row" fxLayoutAlign="space-between">
+      <button class="modal-cancel-button" fxFlex="40" (click)="close()">Cancel</button>
+      <button class="modal-ok-button" fxFlex="40" (click)="start()">OK</button>
+    </div>
+  </div>
+</div>
