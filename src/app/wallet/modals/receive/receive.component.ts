@@ -77,15 +77,11 @@ export class ReceiveComponent implements OnInit, OnDestroy {
 
   // receive nix to wallet
   private getReceivedNixToWallet() {
-    this.walletServices.listAccounts().subscribe(receivedInfo => {
+    this.walletServices.getAllAddresses().subscribe(receivedInfo => {
       this.receivedNixInfo.length = 0;
-      for (let key in receivedInfo) {
-        this.walletServices.getAddressesByAccount(key).subscribe(res => {
-          this.receivedNixInfo.push({account: key, address: res[res.length - 1]});
-        }, err => {
-          this.flashNotification.open(message.ReceiveNIXtoWallet, 'err');
-          this.log.er(message.ReceiveNIXtoWallet, err)
-        })
+      this.log.d(receivedInfo.recieve);
+      for (let key in receivedInfo.receive) {
+        this.receivedNixInfo.push({account: receivedInfo.receive[key], address: key});
       }
     }, error => {
       this.flashNotification.open(message.ReceiveNIXtoWallet, 'err');
