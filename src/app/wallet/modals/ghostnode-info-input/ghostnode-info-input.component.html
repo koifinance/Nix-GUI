@@ -24,6 +24,27 @@
       </div>
     </div>
 
+    <div class="item">
+      <p class="htxt">AliasName</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" placeholder="Enter aliasname" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.aliasName">
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="htxt">TransactionHash</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" placeholder="Enter transaction hash" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.transactionHash">
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="htxt">TransactionOutput</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" placeholder="Enter transaction output" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.transactionOutput">
+      </div>
+    </div>
+
     <div class="confirm buttons" fxLayout="row" fxLayoutAlign="space-between">
       <button class="modal-cancel-button" fxFlex="40" (click)="close()">Cancel</button>
       <button class="modal-ok-button" fxFlex="40" (click)="start()">OK</button>

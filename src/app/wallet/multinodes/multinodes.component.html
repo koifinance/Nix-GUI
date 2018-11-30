@@ -14,13 +14,27 @@
 
 
     <div class="balance-row" fxLayout.gt-md="row" fxLayout.lt-md="row" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
-      <mat-card fxFlexOrder.lt-md="1" fxFlex="50">
-        <p class="description">Overall balance</p>
-        <span class="number big">{{ ghostNodeBalance }}</span>
-        <span class="medium"> NIX</span>
-        <div class="divider"></div>
-        <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCghostnodebalance | number: '.4'}} BTC ({{USDghostnodebalance | currency : 'USD' : 'symbol'}})</span>
-        <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCghostnodebalance | number: '.4'}} BTC ({{EURghostnodebalance | currency : 'EUR' : 'symbol'}})</span>
+      <mat-card fxFlexOrder.lt-md="1" fxLayout.gt-md="row" fxFlex="50">
+        <div fxFlexOrder.lt-md="1" fxFlex="70">
+          <p class="description">Overall balance</p>
+          <span class="number big">{{ ghostNodeBalance }}</span>
+          <span class="medium"> NIX</span>
+          <div class="divider"></div>
+          <div fxLayout="row" class="btc">
+            <span class="number small" *ngIf="currentCurrency == 'USD'">{{BTCghostnodebalance | number: '.4'}} BTC ({{USDghostnodebalance | currency : 'USD' : 'symbol'}})</span>
+            <span class="number small" *ngIf="currentCurrency == 'EUR'">{{BTCghostnodebalance | number: '.4'}} BTC ({{EURghostnodebalance | currency : 'EUR' : 'symbol'}})</span>
+          </div>
+        </div>
+        <div class="actions" fxLayout.gt-md="row" fxLayout.lt-md="column" fxFlexOrder.lt-md="3" fxFlex="30" fxLayoutGap="30px" fxLayoutAlign="space-around center">
+          <div fxFlexOrder="1" fxFlex="60" fxLayout="column" fxLayoutAlign=" center">
+            <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" fxFlex="100" style="width: 56px" (click)="setupNewNode()">
+            <div class="icon-text text-center" fxLayoutAlign="center" style="margin-top: 20px">SET-UP NEW NODE</div>
+          </div>
+          <!-- <div fxFlexOrder="1" fxFlex="33" fxLayout="column" fxLayoutAlign=" center">
+            <img class="cursor-pointer" src="./assets/icons/SVG/cancel.svg" alt="Deposit" fxFlex="100" >
+            <div class="icon-text" fxLayoutAlign="center">CANCEL A NODE</div>
+          </div> -->
+        </div>
       </mat-card>
 
 

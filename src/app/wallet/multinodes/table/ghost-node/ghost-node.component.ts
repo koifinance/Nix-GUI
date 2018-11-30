@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faCircle as faCircleSolid,faCopy,faTimes,faFileAlt, faCaretSquareRight} from '@fortawesome/free-solid-svg-icons';
+import { faCircle as faCircleSolid,faCopy,faTimes,faFileAlt, faCaretSquareRight, faWrench} from '@fortawesome/free-solid-svg-icons';
 import { faCircle,faEdit } from '@fortawesome/free-regular-svg-icons';
 import { ModalsService } from '../../../modals/modals.service';
 import { WalletService } from '../../../wallet.service';
@@ -38,7 +38,8 @@ export class GhostNodeComponent implements OnInit {
   faEdit: any = faEdit;
   faCircleSolid: any = faCircleSolid;
   faCaretSquareRight: any = faCaretSquareRight;
-  displayedColumns = ["Name", "Status", "Detail", "Start"];
+  faWrench: any = faWrench;
+  displayedColumns = ["Name", "Status", "Detail", "Start", "Update"];
   dataSource = [];
   currentNode: any;
 
@@ -66,10 +67,24 @@ export class GhostNodeComponent implements OnInit {
       forceOpen: true,
       modalsService: this.modalsService,
       parentRef: this,
-      title: "Start Ghostnode",
+      address: node.address,
+      title: 'Start Ghostnode',
       forStaking: false
     };
-    this.modalsService.openSmall('ghostnodeInfoInput', data);
+    this.modalsService.openSmall('passwordInput', data);
+  }
+
+  updateNIX(node: any) {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService,
+      address: node.address,
+      aliasName: node.alias,
+      title: 'Update NIX Version',
+      rpcCommand: 'update-nix-version',
+      forStaking: false
+    };
+    this.modalsService.openSmall('vpsPassword', data);
   }
 
   // being called from modal

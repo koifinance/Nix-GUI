@@ -22,6 +22,7 @@ import { RestoreWalletComponent } from './restore-wallet/restore-wallet.componen
 import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
 import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-info-input.component';
+import { VpsPasswordComponent } from './vps-password/vps-password.component';
 
 @Injectable()
 export class ModalsService implements OnDestroy {
@@ -46,7 +47,8 @@ export class ModalsService implements OnDestroy {
     restoreWallet: RestoreWalletComponent,
     createWallet: CreateWalletComponent,
     transactionDetail: TransactionDetailComponent,
-    ghostnodeInfoInput: GhostnodeInfoInputComponent
+    ghostnodeInfoInput: GhostnodeInfoInputComponent,
+    vpsPassword: VpsPasswordComponent  
   };
   private message: Subject<any> = new Subject<any>();
   private progress: Subject<Number> = new Subject<Number>();

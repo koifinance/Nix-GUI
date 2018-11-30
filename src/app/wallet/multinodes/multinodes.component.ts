@@ -148,6 +148,17 @@ export class MultinodesComponent implements OnInit {
     this.modalsService.openxSmall('withdrawRewards', data);
   }
 
+  setupNewNode(node: any) {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService,
+      parentRef: this,
+      title: "Start Ghostnode",
+      forStaking: false
+    };
+    this.modalsService.openSmall('ghostnodeInfoInput', data);
+  }
+
   showAllGhostnodes() {
     this.router.navigate(['./multinodes/all-ghost-node']);
   }
@@ -155,6 +166,5 @@ export class MultinodesComponent implements OnInit {
   ngOnDestroy() {
     this.destroyed = true;
   }
- 
 
 }

@@ -26,6 +26,7 @@ import { RestoreWalletComponent } from './restore-wallet/restore-wallet.componen
 import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
 import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-info-input.component';
+import { VpsPasswordComponent } from './vps-password/vps-password.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-in
     RestoreWalletComponent,
     CreateWalletComponent,
     TransactionDetailComponent,
-    GhostnodeInfoInputComponent
+    GhostnodeInfoInputComponent,
+    VpsPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +80,8 @@ import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-in
     RestoreWalletComponent,
     CreateWalletComponent,
     TransactionDetailComponent,
-    GhostnodeInfoInputComponent
+    GhostnodeInfoInputComponent,
+    VpsPasswordComponent
   ]
 })
 export class ModalsModule {
