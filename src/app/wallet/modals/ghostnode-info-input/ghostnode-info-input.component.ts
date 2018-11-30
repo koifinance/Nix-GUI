@@ -22,7 +22,10 @@ export class GhostnodeInfoInputComponent implements OnInit {
     this.ghostnodeInfo = {
       ip_address: '',
       password: '',
-      ghostnode_key: ''
+      ghostnode_key: '',
+      aliasName: '',
+      transactionHash: '',
+      transactionOutput: ''
     }
   }
 
@@ -40,7 +43,13 @@ export class GhostnodeInfoInputComponent implements OnInit {
   start(): void {
     if (this.isValid()) {
       this.log.d(this.ghostnodeInfo);
-      this._rpc.call('start-ghostnode', [this.ghostnodeInfo.ip_address, this.ghostnodeInfo.password, this.ghostnodeInfo.ghostnode_key]).subscribe(res => {
+      this._rpc.call('setup-new-ghostnode', [
+        this.ghostnodeInfo.ip_address,
+        this.ghostnodeInfo.password,
+        this.ghostnodeInfo.ghostnode_key,
+        this.ghostnodeInfo.aliasName,
+        this.ghostnodeInfo.transactionHash,
+        this.ghostnodeInfo.transactionOutput]).subscribe(res => {
       }, err => {});
       this.close();
     }

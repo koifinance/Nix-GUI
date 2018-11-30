@@ -23,11 +23,11 @@
 }
 
 .mat-column-Name {
-  flex: 0 0 25%;
+  flex: 0 0 20%;
 }
 
 .mat-column-Status {
-  flex: 0 0 45%;
+  flex: 0 0 35%;
 }
 
 .mat-column-Detail {
@@ -35,5 +35,9 @@
 }
 
 .mat-column-Start {
+  flex: 0 0 15%;
+}
+
+.mat-column-Update {
   flex: 0 0 15%;
 }

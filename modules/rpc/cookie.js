@@ -114,3 +114,4 @@ function getAuth(options) {
 }
 
 exports.getAuth = getAuth;
+exports.findCookiePath = findCookiePath;

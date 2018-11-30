@@ -38,7 +38,7 @@ export class GhostNodeComponent implements OnInit {
   faEdit: any = faEdit;
   faCircleSolid: any = faCircleSolid;
   faCaretSquareRight: any = faCaretSquareRight;
-  displayedColumns = ["Name", "Status", "Detail", "Start"];
+  displayedColumns = ["Name", "Status", "Detail", "Start", "Update"];
   dataSource = [];
   currentNode: any;
 
@@ -66,10 +66,24 @@ export class GhostNodeComponent implements OnInit {
       forceOpen: true,
       modalsService: this.modalsService,
       parentRef: this,
-      title: "Start Ghostnode",
+      address: node.address,
+      title: 'Start Ghostnode',
       forStaking: false
     };
-    this.modalsService.openSmall('ghostnodeInfoInput', data);
+    this.modalsService.openSmall('passwordInput', data);
+  }
+
+  updateNIX(node: any) {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService,
+      address: node.address,
+      aliasName: node.alias,
+      title: 'Update NIX Version',
+      rpcCommand: 'update-nix-version',
+      forStaking: false
+    };
+    this.modalsService.openSmall('vpsPassword', data);
   }
 
   // being called from modal
