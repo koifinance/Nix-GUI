@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faCircle as faCircleSolid,faCopy,faTimes,faFileAlt, faCaretSquareRight} from '@fortawesome/free-solid-svg-icons';
+import { faCircle as faCircleSolid,faCopy,faTimes,faFileAlt, faCaretSquareRight, faWrench} from '@fortawesome/free-solid-svg-icons';
 import { faCircle,faEdit } from '@fortawesome/free-regular-svg-icons';
 import { ModalsService } from '../../../modals/modals.service';
 import { WalletService } from '../../../wallet.service';
@@ -38,6 +38,7 @@ export class GhostNodeComponent implements OnInit {
   faEdit: any = faEdit;
   faCircleSolid: any = faCircleSolid;
   faCaretSquareRight: any = faCaretSquareRight;
+  faWrench: any = faWrench;
   displayedColumns = ["Name", "Status", "Detail", "Start", "Update"];
   dataSource = [];
   currentNode: any;
