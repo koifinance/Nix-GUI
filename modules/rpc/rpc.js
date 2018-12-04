@@ -174,6 +174,7 @@ function initIpcListener() {
             `cp ./nix-${version}/bin/nixd /bin`,
             `cp ./nix-${version}/bin/nix-cli /bin`,
             `nixd -ghostnode=1 -externalip=${params[0]}:6214 -ghostnodeprivkey=${params[2]} -daemon`,
+            `nix-cli getwalletinfo`
           ];
           runCommands('setup-new-ghostnode', commands, params);
           fs.appendFile(cookie.findCookiePath() + '/ghostnode.conf', `\n${params[3]} ${params[0]}:6214 ${params[2]} ${params[4]} ${params[5]}`, err => {
@@ -237,6 +238,7 @@ function runCommands(name, commands, params) {
   let password    = ' ';
   let Client = require('ssh2').Client;
   let conn = new Client();
+  let nix_server = false;
 
   conn.on('ready', () => {
     console.log('Connection :: ready');
@@ -277,8 +279,9 @@ function runCommands(name, commands, params) {
             }
           }
         } else {
-          console.log('STDOUT: ' + data);
-          if (data == 'NIX server starting') {
+          console.log('STDOUT: (' + command + ') -----\n' + data);
+          if (data == 'NIX server starting')  nix_server = true;
+          if (nix_server && command == commands[commands.length - 1] && data.length > 10 && !data.includes('error')) {
             let message;
             if (name == 'start-ghostnode') {
               message = 'Your ghostnode has been successfully started.'
