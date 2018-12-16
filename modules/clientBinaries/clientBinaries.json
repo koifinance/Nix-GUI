@@ -1,12 +1,12 @@
 {
   "clients": {
     "nixd": {
-      "version": "2.2.0.0",
+      "version": "2.2.0.1",
       "platforms": {
         "linux": {
           "x64": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.2.0/nix-2.2.0-x86_64-linux-gnu.tar.gz",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.2.0.1/nix-2.2.0-x86_64-linux-gnu.tar.gz",
               "type": "tar",
               "sha256": "",
               "bin": "nix-2.2.0/bin/nixd"
@@ -19,7 +19,7 @@
                 ],
                 "output": [
                   "NIX Core Daemon",
-                  "2.2.0.0"
+                  "2.2.0.1"
                 ]
               }
             }
@@ -28,7 +28,7 @@
         "mac": {
           "x64": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.2.0/nix-2.2.0-osx64.tar.gz",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.2.0.1/nix-2.2.0-osx64.tar.gz",
               "type": "tar",
               "sha256": "",
               "bin": "nix-2.2.0/bin/nixd"
@@ -41,7 +41,7 @@
                 ],
                 "output": [
                   "NIX Core Daemon",
-                  "2.2.0.0"
+                  "2.2.0.1"
                 ]
               }
             }
@@ -50,7 +50,7 @@
         "win": {
           "ia32": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.2.0/nix-2.2.0-win32.zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.2.0.1/nix-2.2.0-win32.zip",
               "type": "zip",
               "sha256": "",
               "bin": "nix-2.2.0/bin/nixd.exe"
@@ -63,14 +63,14 @@
                 ],
                 "output": [
                   "NIX Core Daemon",
-                  "2.2.0.0"
+                  "2.2.0.1"
                 ]
               }
             }
           },
           "x64": {
             "download": {
-              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.2.0/nix-2.2.0-win64.zip",
+              "url": "https://github.com/NixPlatform/NixCore/releases/download/v2.2.0.1/nix-2.2.0-win64.zip",
               "type": "zip",
               "sha256": "",
               "bin": "nix-2.2.0/bin/nixd.exe"
@@ -83,7 +83,7 @@
                 ],
                 "output": [
                   "NIX Core Daemon",
-                  "2.2.0.0"
+                  "2.2.0.1"
                 ]
               }
             }
