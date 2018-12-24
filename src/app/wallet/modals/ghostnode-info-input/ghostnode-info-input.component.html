@@ -18,13 +18,6 @@
     </div>
 
     <div class="item">
-      <p class="htxt">GhostNode Key</p>
-      <div fxLayout.gt-md="row">
-        <input class="modalinput" placeholder="Enter ghostnode key" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.ghostnode_key">
-      </div>
-    </div>
-
-    <div class="item">
       <p class="htxt">AliasName</p>
       <div fxLayout.gt-md="row">
         <input class="modalinput" placeholder="Enter aliasname" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.aliasName">
@@ -34,14 +27,10 @@
     <div class="item">
       <p class="htxt">TransactionHash</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" placeholder="Enter transaction hash" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.transactionHash">
-      </div>
-    </div>
-
-    <div class="item">
-      <p class="htxt">TransactionOutput</p>
-      <div fxLayout.gt-md="row">
-        <input class="modalinput" placeholder="Enter transaction output" fxFlex="100" [type]="'text'" [(ngModel)]="ghostnodeInfo.transactionOutput">
+        <select class="modalinput" fxFlex="100" [(ngModel)]="ghostnodeInfo.transactionHash">
+          <option value="">Select TransactionHash</option>
+          <option *ngFor="let item of objectKeys(ghostnodeOutput)" [value]="item">{{item}}</option>
+        </select>
       </div>
     </div>
 

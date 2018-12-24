@@ -36,6 +36,20 @@
     margin-bottom: 0px;
     border-radius: 5px;
     background-color: #ffffff;
+
+    &:first-child option{
+      color: gray !important;
+    }
+
+    > option {
+      font-size: 15px;
+      padding-left: 12px;
+      height: 35px;
+      border: 1px solid #CBCBCB;
+      margin-bottom: 0px;
+      border-radius: 5px;
+      background-color: #ffffff;
+    }
   }
 
   .item {

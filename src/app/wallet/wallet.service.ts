@@ -106,6 +106,11 @@ export class WalletService {
       node => node);
   }
 
+  // generate ghostnode key
+  public ghostnodeKey(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Ghostnode, ['genkey']);
+  }
+
   // get ghostnode count
   public ghostnodeCount(): Observable<any> {
     return this._rpc.call(ApiEndpoints.Ghostnode, ['count']).map(
@@ -122,6 +127,11 @@ export class WalletService {
   public getMyGhostnode(): Observable<any> {
     return this._rpc.call(ApiEndpoints.Ghostnode, ['list-conf']).map(
       count => count);
+  }
+
+  // get ghostnode outputs
+  public ghostnodeOutputs(): Observable<any> {
+    return this._rpc.call(ApiEndpoints.Ghostnode, ['outputs']);
   }
 
   // start a ghostnode
