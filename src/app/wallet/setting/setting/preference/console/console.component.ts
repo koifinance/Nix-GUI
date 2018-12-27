@@ -49,16 +49,28 @@ export class ConsoleComponent implements OnInit, AfterViewChecked {
     this.waitingForRPC = false;
     this.commandHistory.push(this.command);
     this.historyCount = this.commandHistory.length;
-    const params = this.command.trim().split(' ')
+    let params:any[] = this.command.trim().split(' ')
                     .filter(cmd => cmd.trim() !== '');
 
-    // if (params.length > 0) {
-    //     params.splice(1, 0, ''); // TODO: Add wallet name here for multiwallet
-    // }
+    for (let i = 0; i < params.length; i += 1) {
+      let cmd = params[i]
+
+      if (cmd === 'true') {
+        params[i] = true
+      } else if (cmd === 'false') {
+        params[i] = false
+      } else if (cmd.indexOf('\"') >= 0) {
+        params[i] = cmd.replace(/\"/g, '')
+      } else if (cmd.indexOf('\'') >= 0) {
+        params[i] = cmd.replace(/\'/g, '')
+      } else if (!isNaN(cmd)) {
+        params[i] = Number(cmd)
+      }
+    }
 
     this.log.d(params);
 
-    this._rpc.call(params.shift(), params)
+    this._rpc.call(params[0], params.slice(1))
       .subscribe(
         response => this.formatSuccessResponse(response),
         error => this.formatErrorResponse(error));

@@ -186,6 +186,8 @@ function initMainWindow() {
     }));
   }
 
+  mainWindow.openDevTools();
+
   // Open the DevTools.
   if (openDevTools || options.devtools) {
     mainWindow.webContents.openDevTools()
