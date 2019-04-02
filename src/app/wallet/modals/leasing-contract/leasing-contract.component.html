@@ -1,0 +1,49 @@
+<div class="processing-trans">
+  <div class="modalcontent">
+    <h5 fxFlex="50">New leasing contract</h5>
+    <div _ngcontent-c7="" class="divider"></div>
+    <p class="subtitle">You need to provide the specific contract details for the leased 
+      staking provider that you have chosen. Some providers can be found  via the&nbsp;
+      <a>NIX Marketplace</a>
+    </p>
+    <div class="amountsend">
+      <p class="htxt">LPos provider details</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" fxFlex="100" placeholder="LPos provider details" [(ngModel)]="addAddress.account">
+      </div>
+    </div>
+    <div class="amountsend">
+      <p class="htxt">Contract description</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" fxFlex="100" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
+      </div>
+    </div>
+
+    <div class="amountsend">
+      <p class="htxt">Address that coin will be leased to for staking</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" fxFlex="100" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
+      </div>
+    </div>
+
+    <div class="amountsend">
+      <p class="htxt">LPoS provider's fee</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" fxFlex="60" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
+      </div>
+      <span class="subtitle"> E.g. 5.5 would be a 5.5% fee</span>
+    </div>
+
+    <div class="amountsend">
+      <p class="htxt">Address for LPoS provider's fee</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" fxFlex="100" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
+      </div>
+    </div>
+    
+    <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+      <button class="modal-cancel-button" fxFlex="40" (click)="cancel()">Cancel</button>
+      <button class="modal-ok-button" fxFlex="40" (click)="save()">Next</button>
+    </div>
+  </div>
+</div>

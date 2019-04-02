@@ -5,145 +5,224 @@
 
   <mat-drawer-content>
     <page-header heading="Staking" [navbar]="help"></page-header>
-    <p class="desc">
-      Your wallet will automatically stake any of your transactions that were sent to a public address (i.e. ’N’ address) and are mature (have 501 confirmations from the network).<br>
-      Your wallet must be on in order to stake, although you can choose to <u>stake with a VPS</u> instead.
-    </p>
-<div fxLayout.gt-md="row" fxLayout.lt-md="column">
-    <div class="card zdepth1 card1">
-      <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
-        <div fxFlexOrder.lt-md="1" fxFlex="100">
-          <div fxLayout="row" class="label">
-            <img src="./assets/icons/SVG/circle-dollar.png">Amount staking
-          </div>
-          <div fxLayout="row" class="nix-row">
-            <p class="value-label">{{stakingAmount | number: '.2'}}
-              <span class="suffix-label">NIX</span>
-            </p>
-          </div>
-          <div class="divider1"></div>
-          <div fxLayout="row" class="toggle-div">
-            <label class="switch">
-              <input #saveUserNameCheckBox
-                type="checkbox"
-                [checked]="isStaking"
-                (change)="stakingToggled($event)">
-              <span class="slider"></span>
-            </label>
-            <span class="toggle-text">Staking: {{isStaking ? "ON" : "OFF"}}</span>
-            <!-- <mat-slide-toggle class="toggle" (change)="stakingToggled($event)" [checked]="isStaking">
-              Staking: {{isStaking ? "ON" : "OFF"}}
-            </mat-slide-toggle> -->
-          </div>
-        </div>
-      </div>
+    <div class="staking__header">
+      <mat-tab-group (selectedTabChange)="setCategory($event)">
+        <mat-tab label="In-wallet staking"></mat-tab>
+        <mat-tab label="Leased staking"></mat-tab>
+      </mat-tab-group>
     </div>
 
-    <div class="card zdepth1">
-      <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
-        <div fxFlexOrder.lt-md="1" fxFlex="100" (click)="showAllGhostnodes()">
-          <div fxLayout="row" class="label">Staking overview</div>
-          <div fxLayout.gt-md="row" class="chart-div" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
-            <div fxFlexOrder.lt-md="1" fxFlex="50" class="">
-              <canvas baseChart class="chart-canvas" 
-                width="130px" 
-                height="130px" 
-                [data]="chartData"
-                [labels]="chartLabels"
-                [colors]="chartColors"
-                [options]="chartOptions"
-                [chartType]="chartType" ></canvas>
+    <div *ngIf="toggleInfo == 1">
+      <p class="desc">
+        Staking with your own wallet only works while it is open and online - however, NIX also allows you to 
+        stake your coins with 3rd party staking providers via a ‘lease’ (called LPoS). These LPoS providers will 
+        stake the coins on your behalf (for a small fee of any rewards). This way you can earn rewards via that 
+        provider’s staking service, even if your own wallet is offline. The 3rd party can only stake on your behalf,  
+        so the funds remain in your control and you can cancel at any time. <a>Find a staking provider</a>
+      </p>
+      <div class="card__leased-staking" fxLayout.gt-md="row" fxLayout.lt-md="column">
+        <div>
+          <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
+            <div fxFlexOrder.lt-md="1" fxFlex="100">
+              <div fxLayout="row" class="label">
+                <img src="./assets/icons/SVG/circle-dollar.png">Staked via provider
+              </div>
+              <div fxLayout="row" class="nix-row">
+                <p class="value-label">{{stakingAmount | number: '.2'}}
+                  <span class="suffix-label">NIX</span>
+                </p>
+              </div>
+              <div class="divider1"></div>
+              <p>0.0003 BTC ($123)</p>
             </div>
-            <div fxFlexOrder.lt-md="2" fxFlex="50" >
-              <div fxLayout="column" class="chart-label-div">
-                <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px" fxFlexOrder.lt-md="1" fxFlex="50">
-                  <div class="chart-label chart-indicator1"></div>
-                  <p>Staking</p>
+          </div>
+        </div>
+        <div fxFlexOrder="1" fxFlex="60" fxLayout="column" fxLayoutAlign="center center">
+          <img class="cursor-pointer" src="./assets/icons/SVG/plus1.svg" alt="Deposit" style="width: 56px" (click)="newLeaseContract()">
+          <div class="icon-text text-center" fxLayoutAlign="center" style="max-width:100px; margin-top: 20px;">NEW LEASING CONTRACT</div>
+        </div>
+      </div>
+      <!-- <h5 class="tableHead section-label">Leased staking contracts</h5>
+      <div class="tableHead">
+        <mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="Amount" cdkColumnDef="Amount">
+            <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cell-amount">
+              {{element.amount}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Status">
+            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cell-status">
+              <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px">
+                <div class="complete-status"></div>
+                <p>Staked</p>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Created">
+            <mat-header-cell *matHeaderCellDef>Created</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="matCell">
+              {{element.created | date:'dd MMM yyyy HH:mm'}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Detail">
+            <mat-header-cell *matHeaderCellDef>Transaction details</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cell-tx">
+              {{element.txid}}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="transactionColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: transactionColumns"></mat-row>
+        </mat-table>
+      </div> -->
+    </div>
+
+    <div *ngIf="toggleInfo == 0">
+      <p class="desc">
+        Your wallet will automatically stake any of your transactions that were sent to a public address (i.e. ’N’ address) and are mature (have 501 confirmations from the network).<br>
+        Your wallet must be on in order to stake, although you can choose to <u>stake with a VPS</u> instead.
+      </p>
+      <div fxLayout.gt-md="row" fxLayout.lt-md="column">
+        <div class="card zdepth1 card1">
+          <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
+            <div fxFlexOrder.lt-md="1" fxFlex="100">
+              <div fxLayout="row" class="label">
+                <img src="./assets/icons/SVG/circle-dollar.png">Amount staking
+              </div>
+              <div fxLayout="row" class="nix-row">
+                <p class="value-label">{{stakingAmount | number: '.2'}}
+                  <span class="suffix-label">NIX</span>
+                </p>
+              </div>
+              <div class="divider1"></div>
+              <div fxLayout="row" class="toggle-div">
+                <label class="switch">
+                  <input #saveUserNameCheckBox
+                    type="checkbox"
+                    [checked]="isStaking"
+                    (change)="stakingToggled($event)">
+                  <span class="slider"></span>
+                </label>
+                <span class="toggle-text">Staking: {{isStaking ? "ON" : "OFF"}}</span>
+                <!-- <mat-slide-toggle class="toggle" (change)="stakingToggled($event)" [checked]="isStaking">
+                  Staking: {{isStaking ? "ON" : "OFF"}}
+                </mat-slide-toggle> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card zdepth1">
+          <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
+            <div fxFlexOrder.lt-md="1" fxFlex="100" (click)="showAllGhostnodes()">
+              <div fxLayout="row" class="label">Staking overview</div>
+              <div fxLayout.gt-md="row" class="chart-div" fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="3%" fxFlexOrder.lt-md="3">
+                <div fxFlexOrder.lt-md="1" fxFlex="50" class="">
+                  <canvas baseChart class="chart-canvas" 
+                    width="130px" 
+                    height="130px" 
+                    [data]="chartData"
+                    [labels]="chartLabels"
+                    [colors]="chartColors"
+                    [options]="chartOptions"
+                    [chartType]="chartType" ></canvas>
                 </div>
-                <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px" fxFlexOrder.lt-md="2" fxFlex="50" >
-                  <div class="chart-label chart-indicator2"></div>
-                  <p>Immature</p>
-                </div>
-                <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px" fxFlexOrder.lt-md="2" fxFlex="50" >
-                  <div class="chart-label chart-indicator3"></div>
-                  <p>Unavailable</p>
+                <div fxFlexOrder.lt-md="2" fxFlex="50" >
+                  <div fxLayout="column" class="chart-label-div">
+                    <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px" fxFlexOrder.lt-md="1" fxFlex="50">
+                      <div class="chart-label chart-indicator1"></div>
+                      <p>Staking</p>
+                    </div>
+                    <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px" fxFlexOrder.lt-md="2" fxFlex="50" >
+                      <div class="chart-label chart-indicator2"></div>
+                      <p>Immature</p>
+                    </div>
+                    <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px" fxFlexOrder.lt-md="2" fxFlex="50" >
+                      <div class="chart-label chart-indicator3"></div>
+                      <p>Unavailable</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="card zdepth1">
-      <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
-        <div fxFlexOrder.lt-md="1" fxFlex="100">
-          <div fxLayout="row" class="label">Time to next payout</div>
-          <div fxLayout="row" class="nix-row">
-            <p class="value-label">{{nextTimeStr}}
-              <span class="suffix-label" *ngIf="isStaking"> hours</span>
-              <span class="suffix-label" *ngIf="!isStaking"> You are not staking</span>
-            </p>
-          </div>
-          <div class="divider1"></div>
-          <div fxLayout="row">
-            <p class="payout-label" *ngIf="isStaking">Last payout:
-              <span>{{lastSearchTime | date:'dd MMM yyyy HH:mm'}}</span>
-            </p>
+        <div class="card zdepth1">
+          <div class="balance" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="center start" fxFlexOrder.lt-md="3">
+            <div fxFlexOrder.lt-md="1" fxFlex="100">
+              <div fxLayout="row" class="label">Time to next payout</div>
+              <div fxLayout="row" class="nix-row">
+                <p class="value-label">{{nextTimeStr}}
+                  <span class="suffix-label" *ngIf="isStaking"> hours</span>
+                  <span class="suffix-label" *ngIf="!isStaking"> You are not staking</span>
+                </p>
+              </div>
+              <div class="divider1"></div>
+              <div fxLayout="row">
+                <p class="payout-label" *ngIf="isStaking">Last payout:
+                  <span>{{lastSearchTime | date:'dd MMM yyyy HH:mm'}}</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-</div>
-    <h5 class="tableHead section-label">Transactions being staked</h5>
-    <div class="tableHead">
-      <mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="Amount" cdkColumnDef="Amount">
-          <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
-          <mat-cell *matCellDef="let element" class="cell-amount">
-            {{element.amount}}
-          </mat-cell>
-        </ng-container>
+      <h5 class="tableHead section-label">Transactions being staked</h5>
+      <div class="tableHead">
+        <mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="Amount" cdkColumnDef="Amount">
+            <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cell-amount">
+              {{element.amount}}
+            </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="Status">
-          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-          <mat-cell *matCellDef="let element" class="cell-status">
-            <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px">
-              <div class="complete-status"></div>
-              <p>Staked</p>
-            </div>
-          </mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="Status">
+            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cell-status">
+              <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px">
+                <div class="complete-status"></div>
+                <p>Staked</p>
+              </div>
+            </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="Created">
-          <mat-header-cell *matHeaderCellDef>Created</mat-header-cell>
-          <mat-cell *matCellDef="let element" class="matCell">
-            {{element.created | date:'dd MMM yyyy HH:mm'}}
-          </mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="Created">
+            <mat-header-cell *matHeaderCellDef>Created</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="matCell">
+              {{element.created | date:'dd MMM yyyy HH:mm'}}
+            </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="Detail">
-          <mat-header-cell *matHeaderCellDef>Transaction details</mat-header-cell>
-          <mat-cell *matCellDef="let element" class="cell-tx">
-            {{element.txid}}
-          </mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="Detail">
+            <mat-header-cell *matHeaderCellDef>Transaction details</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cell-tx">
+              {{element.txid}}
+            </mat-cell>
+          </ng-container>
 
-        <mat-header-row *matHeaderRowDef="transactionColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: transactionColumns"></mat-row>
-      </mat-table>
-    </div>
+          <mat-header-row *matHeaderRowDef="transactionColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: transactionColumns"></mat-row>
+        </mat-table>
+      </div>
 
-    <div fxLayout="row">
-      <p class="notif-label" *ngIf="!isStaking">Enable staking
-        <span> in order to display staked transactions here</span>
-      </p>
-    </div>
+      <div fxLayout="row">
+        <p class="notif-label" *ngIf="!isStaking">Enable staking
+          <span> in order to display staked transactions here</span>
+        </p>
+      </div>
 
-    <div fxLayout="row" class="tableHead optimize-div" [ngClass]="isStaking ? 'stake-enabled': 'stake-disabled'">
-      <input *ngIf="isStaking" type="image" src="./assets/icons/SVG/staking_enabled.svg" (click)="openOptimizeStaking()" />
-      <input *ngIf="!isStaking" type="image" src="./assets/icons/SVG/staking_disabled.svg" disabled />
-      <p>Optimize my staking</p>
+      <div fxLayout="row" class="tableHead optimize-div" [ngClass]="isStaking ? 'stake-enabled': 'stake-disabled'">
+        <input *ngIf="isStaking" type="image" src="./assets/icons/SVG/staking_enabled.svg" (click)="openOptimizeStaking()" />
+        <input *ngIf="!isStaking" type="image" src="./assets/icons/SVG/staking_disabled.svg" disabled />
+        <p>Optimize my staking</p>
+      </div>
     </div>
 
   </mat-drawer-content>

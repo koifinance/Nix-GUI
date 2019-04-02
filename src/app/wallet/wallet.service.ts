@@ -286,6 +286,7 @@ export class WalletService {
   
   // unghost amount address
   public unghostAmount(info : IUnGhostAmount): Observable<any> {
+    console.log(info);
     if (info.address) {
       return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount, info.address]);
     }

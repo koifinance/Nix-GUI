@@ -92,7 +92,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService,
     private _rpcState: RpcStateService
   ) {
-    this.spinner.show();
+    // this.spinner.show();
     this._rpcState.observe(ApiEndpoints.GetWalletInfo)
       .takeWhile(() => !this.destroyed)
       .subscribe(walletInfo => {

@@ -95,5 +95,6 @@ export enum ApiEndpoints {
   ManageAddressbook = 'manageaddressbook',
   UnGhostAmount = 'unghostamount',
   WalletLock = 'walletlock',
-  StopNixd = 'stop'
+  StopNixd = 'stop',
+  LeaseStaking = 'leasestaking'
 }

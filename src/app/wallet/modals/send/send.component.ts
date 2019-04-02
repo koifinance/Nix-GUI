@@ -53,6 +53,7 @@ export class SendComponent implements OnInit, OnDestroy {
   faEyeSlash: any = faEyeSlash;
   faEye: any = faEye;
   accountData: Array<any> = [];
+  unghostToMyWallet: boolean = false;
 
   constructor(
     private walletServices: WalletService,
@@ -62,11 +63,12 @@ export class SendComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.unghostToMyWallet = true;
     this.walletServices.getAllAddresses().subscribe(res => {
+      console.log(res);
       for (let key in res.send) {
         this.accountData.push({address: key, name: res.send[key]});
       }
-      this.accountData.length -= 1;
     }, error => {
       this.flashNotification.open(message.GetAllAddresses, 'err');
       this.log.err(message.GetAllAddresses, error);
@@ -118,7 +120,7 @@ export class SendComponent implements OnInit, OnDestroy {
         let unghostInfo: IUnGhostAmount = new UnGhostAmount();
         unghostInfo.address = this.sendToNix.address;
         unghostInfo.amount = this.sendToNix.amount || this.data.balances;
-        if (this.data.walletType === 'withdraw') unghostInfo.address = null;
+        // if (this.data.walletType === 'withdraw') unghostInfo.address = null;
 
         this.walletServices.unghostAmount(unghostInfo).subscribe(res => {
           if (res.includes(':')) {

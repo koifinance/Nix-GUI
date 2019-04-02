@@ -373,10 +373,10 @@ input {
 
   .xsmall-dialog {
     .mat-dialog-container {
-      height: 580px;
+      height: auto;
       width: 450px;
       border-radius: 5px;
-      overflow: hidden;
+      // overflow: hidden;
     }
 }
 

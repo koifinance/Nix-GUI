@@ -33,6 +33,7 @@ export class StakingComponent implements OnInit {
   private destroyed: boolean = false;
   transactionColumns: string[] = ['Amount', 'Status', 'Created', 'Detail'];
   private log: any = Log.create('Staking.component');
+  toggleInfo: number;
   bitcoinpriceInfo: IBitcoinprice = new bitcoinprice();
   walletInfo: IWalletInfo = new WalletInfo();
   stakingAmount: number;
@@ -70,6 +71,7 @@ export class StakingComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.toggleInfo = 1;
     this.destroyed = false;
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
@@ -171,6 +173,18 @@ export class StakingComponent implements OnInit {
 
   stakingEnabled() {
     
+  }
+
+  setCategory(event) {
+    this.toggleInfo = event.index;
+  }
+
+  newLeaseContract() {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService,
+    };
+    this.modalsService.openxSmall('leasingAmount', data);
   }
 
   openPassword() {

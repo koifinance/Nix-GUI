@@ -1,0 +1,18 @@
+<div class="processing-trans">
+    <div class="modalcontent">
+      <h5 fxFlex="50">Leasing amount</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+      <div class="amountsend">
+        <p class="htxt">Amount you want to stake</p>
+        <div fxLayout.gt-md="row" class="modalinput__after">
+          <input class="modalinput" fxFlex="100" placeholder="LPos provider details" [(ngModel)]="addAddress.account">
+        </div>
+        <span class="subtitle">Available: 6,000.01 NIX</span>
+      </div>
+      
+      <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
+        <button class="modal-cancel-button" fxFlex="40" (click)="cancel()">Cancel</button>
+        <button class="modal-ok-button" fxFlex="40" (click)="save()">Create contract</button>
+      </div>
+    </div>
+  </div>
