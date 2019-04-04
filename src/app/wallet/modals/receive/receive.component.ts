@@ -16,6 +16,7 @@ import { Log } from 'ng2-logger';
 import { CalculationsService } from '../../calculations.service';
 import { WalletService } from '../../wallet.service';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { ClipboardService } from '../../../../../node_modules/ngx-clipboard';
 
 @Component({
   selector: 'app-receive',
@@ -40,6 +41,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   convertUSD: number = 0;
   convertEUR: number = 0;
   walletPassword: string;
+  ghostKey: string;
   showPassword: boolean = false;
   faEyeSlash: any = faEyeSlash;
   faEye: any = faEye;
@@ -48,22 +50,14 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     public _dialogRef: MatDialogRef<ReceiveComponent>,
     private calculationsService: CalculationsService,
     private _rpcState: RpcStateService,
+    private _clipboardService: ClipboardService,
     private flashNotification: SnackbarService,
     private walletServices: WalletService) {
   }
 
   ngOnInit() {
-    // this.receivedNixInfo = new RecieveNixToWallet();
-    // this.receivedNixInfo.account = 'jhon';
-    // this.receivedNixInfo.addresses = [];
-    // //for testing purpose
-    // this.receivedNixInfo.addresses[0] = 'NW7N8YjBruoTzrLy1GVVvH2p4FnL46mhYZ-test';
-    // this.receivedNixInfo.addresses[1] = 'NNqe34X87ckw6UNHrhRJdUakPYxRNZQSaw';
-    // this.receivedNixInfo.addresses[2] = 'NdqXnS2TLHFLUA3LmQQmMqYQ2biA5jg71z';
-    // //initiate the call
-    // this._rpcState.registerStateCall(ApiEndpoints.ReceivedNix, 1000);
-    // //receive the data
     this.getReceivedNixToWallet();
+    this.generateGhostKey();
   }
 
   setData(data: any) {
@@ -71,8 +65,12 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     this.balance = data.balance;
   }
 
-  copyToClipBoard(): void {
-    this.flashNotification.open(message.CopiedAddress, 'info');
+  copyToClipBoard(ghostkey = null): void {
+    if (ghostkey) {
+      this.flashNotification.open(ghostkey + ' has been copied to clipboard.', 'info');
+    } else {
+      this.flashNotification.open(message.CopiedAddress, 'info');
+    }
   }
 
   // receive nix to wallet
@@ -189,6 +187,26 @@ export class ReceiveComponent implements OnInit, OnDestroy {
 
   passwordLabelText(): string {
     return this.showPassword ? 'Hide' : 'Show';
+  }
+
+  onShareGhostKey() {
+
+  }
+
+  generateGhostKey() {
+    let walletPasspharse: IPassword = new encryptpassword();
+    walletPasspharse.password = this.walletPassword;
+    walletPasspharse.stakeOnly = false;
+    this.walletServices.walletpassphrase(walletPasspharse).subscribe(res => {
+      this.walletServices.getPubCoinPack(Math.floor(Math.random() * 5) + 1).subscribe(res => {
+        this.ghostKey = res[0];
+      }, err => {
+        this.log.er(message.ReceiveNIXtoWallet, err);
+        this.flashNotification.open(err, 'err');
+      });
+    }, err => {
+      this.flashNotification.open(message.PassphraseNotMatch, 'err');
+    })
   }
 
   ngOnDestroy() {

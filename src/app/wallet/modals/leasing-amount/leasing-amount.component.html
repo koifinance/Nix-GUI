@@ -5,14 +5,27 @@
       <div class="amountsend">
         <p class="htxt">Amount you want to stake</p>
         <div fxLayout.gt-md="row" class="modalinput__after">
-          <input class="modalinput" fxFlex="100" placeholder="LPos provider details" [(ngModel)]="addAddress.account">
+          <input class="modalinput" fxFlex="100" placeholder="LPos provider details" [(ngModel)]="leaseContract.amount">
         </div>
-        <span class="subtitle">Available: 6,000.01 NIX</span>
+        <span class="subtitle">Available: {{walletInfo.balance}} NIX</span>
+      </div>
+
+      <div class="amountsend">
+        <p class="htxt">Enter password</p>
+        <div fxLayout.gt-md="row">
+          <input class="modalinput" placeholder="Enter password" fxFlex="100" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passphrase">
+        </div>
+      </div>
+      <div class="password-toggle">
+        <button mat-button (click)="togglePassword()">
+          <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+          {{ passwordLabelText() }} password
+        </button>
       </div>
       
       <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
         <button class="modal-cancel-button" fxFlex="40" (click)="cancel()">Cancel</button>
-        <button class="modal-ok-button" fxFlex="40" (click)="save()">Create contract</button>
+        <button class="modal-ok-button" fxFlex="40" (click)="createContract()">Create contract</button>
       </div>
     </div>
   </div>

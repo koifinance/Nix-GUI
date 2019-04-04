@@ -9,27 +9,28 @@
     <div class="amountsend">
       <p class="htxt">LPos provider details</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" fxFlex="100" placeholder="LPos provider details" [(ngModel)]="addAddress.account">
+        <input class="modalinput" fxFlex="100" placeholder="LPos provider details">
       </div>
     </div>
+    
     <div class="amountsend">
-      <p class="htxt">Contract description</p>
+      <p class="htxt">Address that coin will be leased to for staking</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" fxFlex="100" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
+        <input class="modalinput" fxFlex="100" placeholder="Reward address" [(ngModel)]="leaseContract.leaseAddress">
       </div>
     </div>
 
     <div class="amountsend">
-      <p class="htxt">Address that coin will be leased to for staking</p>
+      <p class="htxt">Contract description</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" fxFlex="100" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
+        <input class="modalinput" fxFlex="100" placeholder="Contract description" [(ngModel)]="leaseContract.label" >
       </div>
     </div>
 
     <div class="amountsend">
       <p class="htxt">LPoS provider's fee</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" fxFlex="60" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
+        <input class="modalinput" fxFlex="60" placeholder="Contract Fee" [(ngModel)]="leaseContract.feePercent">
       </div>
       <span class="subtitle"> E.g. 5.5 would be a 5.5% fee</span>
     </div>
@@ -37,13 +38,13 @@
     <div class="amountsend">
       <p class="htxt">Address for LPoS provider's fee</p>
       <div fxLayout.gt-md="row">
-        <input class="modalinput" fxFlex="100" placeholder="Destination address" [(ngModel)]="addAddress.address" [disabled]="data.type == 'receive'">
+        <input class="modalinput" fxFlex="100" placeholder="Destination address" [(ngModel)]="leaseContract.rewardAddress">
       </div>
     </div>
     
     <div class="send buttons" fxLayout="row" fxLayoutAlign="space-between">
       <button class="modal-cancel-button" fxFlex="40" (click)="cancel()">Cancel</button>
-      <button class="modal-ok-button" fxFlex="40" (click)="save()">Next</button>
+      <button class="modal-ok-button" fxFlex="40" (click)="next()">Next</button>
     </div>
   </div>
 </div>

@@ -96,3 +96,46 @@
   </div>
 </div>
 
+<div *ngIf="data.walletType === 'anonymouse'" class="vault">
+    <div class="modalcontent">
+      <h5 fxFlex="50">Receive NIX anonymously</h5>
+      <div _ngcontent-c7="" class="divider"></div>
+
+      <p class="subtitle">
+        The ‘ghost key’ below can be used to receive NIX completely anonymously, 
+        via an untraceable off-chain transaction. Each ghost key can only be used 
+        once however, so you will need to generate a new one for each transaction.
+      </p>
+
+      <div class="qrimage text-center" *ngIf="ghostKey">
+        <qr-code [value]="ghostKey" [size]="300"></qr-code>
+      </div>
+  
+      <div class="amountsend">
+        <p>Ghost key address</p>
+        <div fxLayout.gt-md="row" fxLayoutAlign="space-between">
+          <input class="modalinput" type="text" matInput fxFlex="65" [(ngModel)]="ghostKey" disabled>
+          <button class="modal-button" ngxClipboard [cbContent]="ghostkey" (click)='copyToClipBoard(ghostKey)' fxFlex="16"> Copy </button>
+          <button class="modal-button" (click)='onShareGhostKey()' fxFlex="16"> Share </button>
+        </div>
+      </div>
+
+      <div class="amountsend">
+        <p>Type the password to confirm</p>
+        <div fxLayout.gt-md="row">
+          <input class="modalinput" matInput fxFlex="100" [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword" required>
+        </div>
+
+        <div class="password-toggle">
+          <button mat-button (click)="togglePassword()">
+            <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+            {{ passwordLabelText() }} password
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ghostkey buttons" fxLayout="row" fxLayoutAlign="center">
+      <button class="modal-ok-button" fxFlex="90" (click)="generateGhostKey()">Generate another ghost key</button>
+    </div>
+  </div>

@@ -100,7 +100,7 @@ export class VaultComponent implements OnInit, OnDestroy {
       currency: this.currentCurrency,
       modalsService: this.modalsService
     };
-    this.modalsService.openSmall('receive', data);
+    this.modalsService.openxSmall('receive', data);
   }
 
   // to open the send vault modal
@@ -112,7 +112,7 @@ export class VaultComponent implements OnInit, OnDestroy {
       amountInUSD: this.bitcoinprice.USD.price,
       modalsService: this.modalsService
     };
-    this.modalsService.openSmall('send', data);
+    this.modalsService.openxSmall('send', data);
   }
 
   // to open the withdraw NIX to wallet
@@ -123,7 +123,16 @@ export class VaultComponent implements OnInit, OnDestroy {
       walletType: walletType,
       modalsService: this.modalsService
     };
-    this.modalsService.openSmall('send', data);
+    this.modalsService.openxSmall('send', data);
+  }
+
+  // to open send anonymously
+  openAnonymously() {
+    const data: any = {
+      forceOpen: true,
+      walletType: 'anonymouse',
+    };
+    this.modalsService.openxSmall('receive', data);
   }
 
   createVault() {

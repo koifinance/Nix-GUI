@@ -12,7 +12,7 @@ import { ISetAccount, SetAccount, IPassword, encryptpassword } from '../../busin
   styleUrls: ['./leasing-contract.component.scss']
 })
 export class LeasingContractComponent implements OnInit {
-  addAddress: ISetAccount = new SetAccount();
+  leaseContract: any;
   walletPass: IPassword = new encryptpassword();
   editMode: boolean;
   private log: any = Log.create('leasing-contract.component');
@@ -22,30 +22,36 @@ export class LeasingContractComponent implements OnInit {
     private flashNotification: SnackbarService, 
     private dialogRef: MatDialogRef<LeasingContractComponent>, 
     @Inject(MAT_DIALOG_DATA) private data) { 
-
+    this.leaseContract = {
+      leaseAddress: '',
+      amount: 0,
+      label: '',
+      feePercent: 0,
+      rewardAddress: ''
+    }
   }
  
   ngOnInit() {
-    const modalData = this.data.modalData;
-    this.editMode = !(!modalData);
     this.log.d(this.data);
-    if (this.editMode) {
-      this.addAddress.address = modalData.address;
-      this.addAddress.account = modalData.name;
+    this.leaseContract = {
+      leaseAddress: '',
+      amount: 0,
+      label: '',
+      feePercent: 0,
+      rewardAddress: ''
     }
   }
 
-  save() {
-    const action = this.editMode ? 'edit' : 'add';
-    const parent = this.data.parentRef;
-    this.walletServices.manageAddressbook(action, this.addAddress.address, this.addAddress.account).subscribe(res => {
-        parent.getAllAddresses();
-        this.dialogRef.close();
-      }, error => {
-        const msg = this.editMode ? message.AddressEditedMessage : message.AddressAddedMessage;
-        this.flashNotification.open(error.message, 'err')
-        this.log.er(msg, error)
-    });
+  next() {
+    if (this.leaseContract.leaseAddress !== '') {
+      const data: any = {
+        forceOpen: true,
+        ...this.leaseContract,
+        modalsService: this.data.modalsService,
+      };
+      this.data.modalsService.forceClose();
+      this.data.modalsService.openxSmall('leasingAmount', data);
+    }
   }
 
   cancel() {

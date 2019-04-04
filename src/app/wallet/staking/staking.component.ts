@@ -71,7 +71,7 @@ export class StakingComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.toggleInfo = 1;
+    this.toggleInfo = 0;
     this.destroyed = false;
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
@@ -184,7 +184,7 @@ export class StakingComponent implements OnInit {
       forceOpen: true,
       modalsService: this.modalsService,
     };
-    this.modalsService.openxSmall('leasingAmount', data);
+    this.modalsService.openxSmall('leasingContract', data);
   }
 
   openPassword() {

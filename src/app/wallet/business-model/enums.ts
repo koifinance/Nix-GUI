@@ -47,7 +47,8 @@ export enum message {
   ListTransactions = 'Failed to get the transactions!',
   UnGhostAmount = 'Failed to unghost the amount!',
   GhostnodeListConf = 'Failed to get list of Ghostnodes!',
-  GhostnodeList = 'Failed to get list of all Ghostnodes!'
+  GhostnodeList = 'Failed to get list of all Ghostnodes!',
+  LeaseContract = 'Failed to Lease the NIX!'
 }
 
 export enum ApiEndpoints {
@@ -96,5 +97,6 @@ export enum ApiEndpoints {
   UnGhostAmount = 'unghostamount',
   WalletLock = 'walletlock',
   StopNixd = 'stop',
-  LeaseStaking = 'leasestaking'
+  LeaseStaking = 'leasestaking',
+  GetPubCoinPack = 'getpubcoinpack'
 }

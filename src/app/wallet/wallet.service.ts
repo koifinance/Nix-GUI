@@ -435,9 +435,19 @@ private send(tx: TransactionBuilder): Observable<any> {
     }
   }
 
-// to deposit amount
+  // to deposit amount
   public amountDeposit(deposit : IDepostAmount): Observable<any> {
     return this._rpc.call(ApiEndpoints.GhostAmount, [deposit.amount]);
+  }
+
+  //leasestaking
+  public leaseStaking(leaseToAddress, amount, label = '', feePercent = '', rewardAddress = ''): Observable<any> {
+    return this._rpc.call(ApiEndpoints.LeaseStaking, [leaseToAddress, amount, label, feePercent, rewardAddress]);
+  }
+
+  //getpubcoinpack
+  public getPubCoinPack(amount = 10) {
+    return this._rpc.call(ApiEndpoints.GetPubCoinPack, [amount]);
   }
 
   //get historical data
@@ -449,4 +459,5 @@ private send(tx: TransactionBuilder): Observable<any> {
   public getMarketData(vs_currency, ids): Observable<any> {
     return this.http.request(ApiEndpoints.GetMarketInfo + 'vs_currency=' + vs_currency + '&ids=' + ids);
   }
+
 }
