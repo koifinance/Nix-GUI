@@ -197,16 +197,12 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     let walletPasspharse: IPassword = new encryptpassword();
     walletPasspharse.password = this.walletPassword;
     walletPasspharse.stakeOnly = false;
-    this.walletServices.walletpassphrase(walletPasspharse).subscribe(res => {
-      this.walletServices.getPubCoinPack().subscribe(res => {
-        this.ghostKey = res[0];
-      }, err => {
-        this.log.er(message.ReceiveNIXtoWallet, err);
-        this.flashNotification.open(err, 'err');
-      });
+    this.walletServices.getPubCoinPack().subscribe(res => {
+      this.ghostKey = res[0];
     }, err => {
-      this.flashNotification.open(message.PassphraseNotMatch, 'err');
-    })
+      this.log.er(message.ReceiveNIXtoWallet, err);
+      this.flashNotification.open(err, 'err');
+    });
   }
 
   ngOnDestroy() {

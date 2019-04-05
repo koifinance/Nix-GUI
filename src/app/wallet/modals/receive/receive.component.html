@@ -119,20 +119,6 @@
           <button class="modal-button" (click)='onShareGhostKey()' fxFlex="16"> Share </button>
         </div>
       </div>
-
-      <div class="amountsend">
-        <p>Type the password to confirm</p>
-        <div fxLayout.gt-md="row">
-          <input class="modalinput" matInput fxFlex="100" [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword" required>
-        </div>
-
-        <div class="password-toggle">
-          <button mat-button (click)="togglePassword()">
-            <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
-            {{ passwordLabelText() }} password
-          </button>
-        </div>
-      </div>
     </div>
 
     <div class="ghostkey buttons" fxLayout="row" fxLayoutAlign="center">
