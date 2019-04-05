@@ -98,5 +98,7 @@ export enum ApiEndpoints {
   WalletLock = 'walletlock',
   StopNixd = 'stop',
   LeaseStaking = 'leasestaking',
-  GetPubCoinPack = 'getpubcoinpack'
+  GetPubCoinPack = 'getpubcoinpack',
+  GetLeaseStakingList = 'getleasestakinglist',
+  CancelStakingContract = 'cancelstakingcontract'
 }

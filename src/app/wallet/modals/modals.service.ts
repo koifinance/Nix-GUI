@@ -25,6 +25,7 @@ import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-in
 import { VpsPasswordComponent } from './vps-password/vps-password.component';
 import { LeasingContractComponent } from './leasing-contract/leasing-contract.component';
 import { LeasingAmountComponent } from './leasing-amount/leasing-amount.component';
+import { StakingDetailComponent } from './staking-detail/staking-detail.component';
 
 @Injectable()
 export class ModalsService implements OnDestroy {
@@ -52,7 +53,8 @@ export class ModalsService implements OnDestroy {
     ghostnodeInfoInput: GhostnodeInfoInputComponent,
     vpsPassword: VpsPasswordComponent,
     leasingContract: LeasingContractComponent,
-    leasingAmount: LeasingAmountComponent
+    leasingAmount: LeasingAmountComponent,
+    stakingDetail: StakingDetailComponent
   };
   private message: Subject<any> = new Subject<any>();
   private progress: Subject<Number> = new Subject<Number>();

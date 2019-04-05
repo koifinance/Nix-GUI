@@ -58,16 +58,23 @@ export class PasswordInputComponent implements OnInit {
     if (this.validatePassword()) {
       let walletPassphrase: IPassword = new encryptpassword();
       walletPassphrase.password = this.passphrase;
-      walletPassphrase.stakeOnly = this.data.forStaking;
+      walletPassphrase.stakeOnly = this.data.forStaking || false;
       this.walletServices.walletpassphrase(walletPassphrase).subscribe(res => {
-        this.data.parentRef.passwordEntered(walletPassphrase);
-        this.close();
+        if (this.data.txhash != undefined) {
+          this.walletServices.cancelStaking(this.data.txhash, this.data.txIndex, this.data.txAmount).subscribe(response => {
+            this.close()
+          }, err => {
+            this.close();
+            console.log(err);
+          });
+        } else {
+          this.data.parentRef.passwordEntered(walletPassphrase);
+          this.close();
+        }
       }, error => {
         this.flashNotification.open(error.message, 'err')
         this.log.er(message.ChangePasswordMessage, error)
       });
-
-
 
     }
 

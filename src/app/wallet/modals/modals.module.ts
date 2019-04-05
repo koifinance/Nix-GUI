@@ -29,6 +29,7 @@ import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-in
 import { VpsPasswordComponent } from './vps-password/vps-password.component';
 import { LeasingContractComponent } from './leasing-contract/leasing-contract.component';
 import { LeasingAmountComponent } from './leasing-amount/leasing-amount.component';
+import { StakingDetailComponent } from './staking-detail/staking-detail.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { LeasingAmountComponent } from './leasing-amount/leasing-amount.componen
     GhostnodeInfoInputComponent,
     VpsPasswordComponent,
     LeasingContractComponent,
-    LeasingAmountComponent
+    LeasingAmountComponent,
+    StakingDetailComponent
   ],
   imports: [
     CommonModule,
@@ -87,7 +89,8 @@ import { LeasingAmountComponent } from './leasing-amount/leasing-amount.componen
     GhostnodeInfoInputComponent,
     VpsPasswordComponent,
     LeasingContractComponent,
-    LeasingAmountComponent
+    LeasingAmountComponent,
+    StakingDetailComponent
   ]
 })
 export class ModalsModule {

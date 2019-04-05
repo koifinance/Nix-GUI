@@ -28,7 +28,7 @@
                 <img src="./assets/icons/SVG/circle-dollar.png">Staked via provider
               </div>
               <div fxLayout="row" class="nix-row">
-                <p class="value-label">{{stakingAmount | number: '.2'}}
+                <p class="value-label">{{totalLeaseStaked | number: '.2'}}
                   <span class="suffix-label">NIX</span>
                 </p>
               </div>
@@ -42,44 +42,48 @@
           <div class="icon-text text-center" fxLayoutAlign="center" style="max-width:100px; margin-top: 20px;">NEW LEASING CONTRACT</div>
         </div>
       </div>
-      <!-- <h5 class="tableHead section-label">Leased staking contracts</h5>
+      <h5 class="tableHead section-label">Leased staking contracts</h5>
       <div class="tableHead">
-        <mat-table [dataSource]="dataSource">
+        <mat-table [dataSource]="leasestakingSource">
           <ng-container matColumnDef="Amount" cdkColumnDef="Amount">
             <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
             <mat-cell *matCellDef="let element" class="cell-amount">
-              {{element.amount}}
+              {{element.amount / 100000000}}
             </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="Status">
-            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-            <mat-cell *matCellDef="let element" class="cell-status">
-              <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px">
-                <div class="complete-status"></div>
-                <p>Staked</p>
-              </div>
+          <ng-container matColumnDef="Address">
+            <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cell-lease-address">
+              {{element.lease_address}}
             </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="Created">
-            <mat-header-cell *matHeaderCellDef>Created</mat-header-cell>
-            <mat-cell *matCellDef="let element" class="matCell">
-              {{element.created | date:'dd MMM yyyy HH:mm'}}
+          <ng-container matColumnDef="Fee">
+            <mat-header-cell *matHeaderCellDef>Fee</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="cell-fee">
+              {{element.fee | number: '.2'}}%
             </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="Detail">
-            <mat-header-cell *matHeaderCellDef>Transaction details</mat-header-cell>
-            <mat-cell *matCellDef="let element" class="cell-tx">
-              {{element.txid}}
+          <ng-container matColumnDef="Detail2">
+            <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="matCell" style="cursor: pointer;" (click)="openLpos(element)">
+              <fa-icon [icon]="faDetail"></fa-icon> Detail
             </mat-cell>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="transactionColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: transactionColumns"></mat-row>
+          <ng-container matColumnDef="Cancel">
+            <mat-header-cell *matHeaderCellDef>Cancel</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="matCell" style="cursor: pointer;" (click)="cancelLpos(element)">
+              <fa-icon [icon]="faTimes"></fa-icon>  Cancel
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="leaseStakingColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: leaseStakingColumns"></mat-row>
         </mat-table>
-      </div> -->
+      </div>
     </div>
 
     <div *ngIf="toggleInfo == 0">
@@ -185,7 +189,7 @@
 
           <ng-container matColumnDef="Status">
             <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-            <mat-cell *matCellDef="let element" class="cell-status">
+            <mat-cell class="cell-status">
               <div class="cell-status-content" fxLayout="row" fxLayoutGap="11px">
                 <div class="complete-status"></div>
                 <p>Staked</p>

@@ -273,7 +273,7 @@ export class WalletService {
   public walletpassphrase(encrypt : IPassword): Observable<any>{
     return this._rpc.call(ApiEndpoints.Walletpassphrase, [
       encrypt.password,
-      encrypt.stakeOnly ? 0 : this.unlockTimeout,
+      encrypt.stakeOnly == true ? 0 : this.unlockTimeout,
       encrypt.stakeOnly
     ])
   } 
@@ -446,8 +446,18 @@ private send(tx: TransactionBuilder): Observable<any> {
   }
 
   //getpubcoinpack
-  public getPubCoinPack(amount = 10) {
-    return this._rpc.call(ApiEndpoints.GetPubCoinPack, [amount]);
+  public getPubCoinPack() {
+    return this._rpc.call(ApiEndpoints.GetPubCoinPack);
+  }
+
+  //cancelstaking
+  public cancelStaking(txhash, txIndex, txAmount) {
+    return this._rpc.call(ApiEndpoints.CancelStakingContract, [txhash, txIndex, txAmount])
+  }
+
+  //getleasestakinglist
+  public getLeaseStakingList() {
+    return this._rpc.call(ApiEndpoints.GetLeaseStakingList);
   }
 
   //get historical data

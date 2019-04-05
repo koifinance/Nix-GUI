@@ -198,7 +198,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
     walletPasspharse.password = this.walletPassword;
     walletPasspharse.stakeOnly = false;
     this.walletServices.walletpassphrase(walletPasspharse).subscribe(res => {
-      this.walletServices.getPubCoinPack(Math.floor(Math.random() * 5) + 1).subscribe(res => {
+      this.walletServices.getPubCoinPack().subscribe(res => {
         this.ghostKey = res[0];
       }, err => {
         this.log.er(message.ReceiveNIXtoWallet, err);

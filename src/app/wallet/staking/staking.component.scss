@@ -339,7 +339,12 @@ mat-table {
 .mat-column-Amount {
   flex: 0 0 15%;
 }
-
+.mat-column-Address {
+  flex: 0 0 35%;
+}
+.mat-column-Fee {
+  flex: 0 0 15%;
+}
 .mat-column-Status {
   flex: 0 0 10%;
 }

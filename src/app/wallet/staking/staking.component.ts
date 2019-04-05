@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material';
+import { faTimes, faAlignLeft } from '@fortawesome/free-solid-svg-icons';
 import { FAQ } from '../shared/faq.model';
 import { faq } from './faq';
 import { Router } from '@angular/router';
@@ -20,6 +21,7 @@ import {
   IPassword,
   encryptpassword
 } from '../business-model/entities';
+import { Observable } from '../../../../node_modules/rxjs';
 
 
 @Component({
@@ -30,7 +32,10 @@ import {
 
 export class StakingComponent implements OnInit {
   faq: Array<FAQ> = faq;
+  faTimes: any = faTimes;
+  faDetail: any = faAlignLeft;
   private destroyed: boolean = false;
+  leaseStakingColumns: string[] = ['Amount', 'Address', 'Fee', 'Detail2', 'Cancel'];
   transactionColumns: string[] = ['Amount', 'Status', 'Created', 'Detail'];
   private log: any = Log.create('Staking.component');
   toggleInfo: number;
@@ -44,6 +49,8 @@ export class StakingComponent implements OnInit {
   nextTimeStr: string;
   lastSearchTime: Date;
   dataSource: MatTableDataSource<IRecentTransactionInfo>;
+  leasestakingSource: MatTableDataSource<IRecentTransactionInfo>;
+  totalLeaseStaked: number = 0;
   chartLabels: string[] = ['Staking', 'Immature', 'Unavailable'];
   chartData: number[] = [0,0,0];
   chartType: string = 'doughnut';
@@ -75,8 +82,12 @@ export class StakingComponent implements OnInit {
     this.destroyed = false;
     this.dataSource = new MatTableDataSource<IRecentTransactionInfo>();
     this.dataSource.data = null;
+    this.leasestakingSource = new MatTableDataSource<IRecentTransactionInfo>();
+    this.leasestakingSource.data = null;
     this.getStakingInformation();
     this.getTransactions();
+    this.getLeaseStakingList();
+    Observable.interval(5000).takeWhile(() => !this.destroyed).subscribe(() => this.getLeaseStakingList());
   }
 
   // get all transaction
@@ -93,6 +104,25 @@ export class StakingComponent implements OnInit {
           el.created = new Date(el.time * 1000);
         });
         this.dataSource.data = sortedTrans;
+      },
+        error => this.log.error(message.transactionMessage, error));
+  }
+
+  // get all leasestaking transactions
+  private getLeaseStakingList() {
+    let amount = 0;
+    this.walletServices.getLeaseStakingList()
+      .takeWhile(() => !this.destroyed)
+      .subscribe(res => {
+        let sortedTrans = [];
+        for (let key in res) {
+          if (res.hasOwnProperty(key)) {
+            sortedTrans.push(res[key]);
+            amount = amount + res[key].amount / 100000000;
+          }
+        }
+        if (this.totalLeaseStaked !== amount) this.totalLeaseStaked = amount;
+        this.leasestakingSource.data = sortedTrans;
       },
         error => this.log.error(message.transactionMessage, error));
   }
@@ -139,6 +169,22 @@ export class StakingComponent implements OnInit {
     } else {
       this.chartData = newChartData;
     }
+  }
+
+  openLpos(element) {
+    this.modalsService.openxSmall('stakingDetail', element)
+  }
+
+  cancelLpos(element) {
+    const data: any = {
+      forceOpen: true,
+      modalsService: this.modalsService,
+      txhash: element.tx_hash,
+      txIndex: element.tx_index,
+      txAmount: element.amount / 100000000
+    };
+
+    this.modalsService.openxSmall('passwordInput', data);
   }
 
   // Enable/disable tor status
