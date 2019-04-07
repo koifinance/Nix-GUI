@@ -28,6 +28,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   data: any;
   receivedNixInfo: Array<any> = [];
   depositToVault: IDepostAmount = new DepostAmount();
+  ghostKey: string;
 
   public amount: number = 0;
   public fees: number = 0;;
@@ -41,7 +42,6 @@ export class ReceiveComponent implements OnInit, OnDestroy {
   convertUSD: number = 0;
   convertEUR: number = 0;
   walletPassword: string;
-  ghostKey: string;
   showPassword: boolean = false;
   faEyeSlash: any = faEyeSlash;
   faEye: any = faEye;
@@ -95,7 +95,7 @@ export class ReceiveComponent implements OnInit, OnDestroy {
       walletPasspharse.stakeOnly = false;
 
       this.walletServices.walletpassphrase(walletPasspharse).subscribe(res => {
-        this.walletServices.amountDeposit(this.depositToVault).subscribe(res => {
+        this.walletServices.amountDeposit(this.depositToVault, this.ghostKey).subscribe(res => {
           this.openSuccess('vault');
         }, error => {
           this.flashNotification.open(message.DepositMessage, 'err');

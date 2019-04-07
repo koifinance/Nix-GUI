@@ -18,7 +18,7 @@
         stake your coins with 3rd party staking providers via a ‘lease’ (called LPoS). These LPoS providers will 
         stake the coins on your behalf (for a small fee of any rewards). This way you can earn rewards via that 
         provider’s staking service, even if your own wallet is offline. The 3rd party can only stake on your behalf,  
-        so the funds remain in your control and you can cancel at any time. <a>Find a staking provider</a>
+        so the funds remain in your control and you can cancel at any time. <a href="https://nixplatform.io/marketplace" target="_blank">Find a staking provider</a>
       </p>
       <div class="card__leased-staking" fxLayout.gt-md="row" fxLayout.lt-md="column">
         <div>
@@ -33,7 +33,7 @@
                 </p>
               </div>
               <div class="divider1"></div>
-              <p>0.0003 BTC ($123)</p>
+              <p>{{BTCwalletbalance}} BTC (${{USDwalletbalance}})</p>
             </div>
           </div>
         </div>
@@ -222,11 +222,11 @@
         </p>
       </div>
 
-      <div fxLayout="row" class="tableHead optimize-div" [ngClass]="isStaking ? 'stake-enabled': 'stake-disabled'">
+      <!-- <div fxLayout="row" class="tableHead optimize-div" [ngClass]="isStaking ? 'stake-enabled': 'stake-disabled'">
         <input *ngIf="isStaking" type="image" src="./assets/icons/SVG/staking_enabled.svg" (click)="openOptimizeStaking()" />
         <input *ngIf="!isStaking" type="image" src="./assets/icons/SVG/staking_disabled.svg" disabled />
         <p>Optimize my staking</p>
-      </div>
+      </div> -->
     </div>
 
   </mat-drawer-content>

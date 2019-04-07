@@ -44,6 +44,10 @@ export class StakingComponent implements OnInit {
   stakingAmount: number;
   unconfirmedBalance: number;
   immatureBalance: number;
+  balanceInBTC: number;
+  balanceInUSD: number;
+  BTCwalletbalance: number;
+  USDwalletbalance: number;
   isStaking: boolean = false;
   stakingInfo: any;
   nextTimeStr: string;
@@ -62,6 +66,7 @@ export class StakingComponent implements OnInit {
   ]
 
   constructor(
+    private calculationService : CalculationsService,
     private modalsService: ModalsService,
     private router: Router,
     private walletServices: WalletService,
@@ -123,6 +128,14 @@ export class StakingComponent implements OnInit {
         }
         if (this.totalLeaseStaked !== amount) this.totalLeaseStaked = amount;
         this.leasestakingSource.data = sortedTrans;
+
+        this.walletServices.getBitcoin(this.bitcoinpriceInfo)
+          .subscribe(bitcoinpriceInfos => {
+            this.balanceInBTC = bitcoinpriceInfos.data.quotes.BTC.price;
+            this.balanceInUSD = bitcoinpriceInfos.data.quotes.USD.price;
+            this.BTCwalletbalance = this.calculationService.getCovertedamount(this.totalLeaseStaked,this.balanceInBTC);
+            this.USDwalletbalance = this.calculationService.getCovertedamount(this.totalLeaseStaked,this.balanceInUSD);
+          }, error => this.log.error(message.bitcoinpriceMessage, error));
       },
         error => this.log.error(message.transactionMessage, error));
   }
@@ -172,7 +185,8 @@ export class StakingComponent implements OnInit {
   }
 
   openLpos(element) {
-    this.modalsService.openxSmall('stakingDetail', element)
+    console.log(element, '====');
+    this.modalsService.openxSmall('stakingDetail', {...element, forceOpen: true, modalsService: this.modalsService})
   }
 
   cancelLpos(element) {

@@ -285,10 +285,12 @@ export class WalletService {
   }
   
   // unghost amount address
-  public unghostAmount(info : IUnGhostAmount): Observable<any> {
+  public unghostAmount(info : IUnGhostAmount, ghostkey): Observable<any> {
     console.log(info);
     if (info.address) {
       return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount, info.address]);
+    } else if (ghostkey) {
+      return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount, ghostkey]);
     }
     return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount])
   }
@@ -436,8 +438,8 @@ private send(tx: TransactionBuilder): Observable<any> {
   }
 
   // to deposit amount
-  public amountDeposit(deposit : IDepostAmount): Observable<any> {
-    return this._rpc.call(ApiEndpoints.GhostAmount, [deposit.amount]);
+  public amountDeposit(deposit : IDepostAmount, ghostkey = ''): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GhostAmount, [deposit.amount, ghostkey]);
   }
 
   //leasestaking

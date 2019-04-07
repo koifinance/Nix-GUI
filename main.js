@@ -187,9 +187,9 @@ function initMainWindow() {
   }
 
   // Open the DevTools.
-  if (openDevTools || options.devtools) {
+  // if (openDevTools || options.devtools) {
     mainWindow.webContents.openDevTools()
-  }
+  // }
 
   // handle external URIs
   mainWindow.webContents.on('new-window', (event, url) => {

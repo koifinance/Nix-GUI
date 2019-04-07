@@ -49,6 +49,12 @@
         <div style="color:#b2b2b2" fxFlex="80">Available: {{balance}} NIX</div>
       </div>
 
+      <p>Enter a ghost key (optional)</p>
+      <div fxLayout.gt-md="row">
+        <input class="modalinput" type="number" matInput fxFlex="100" placeholder="Enter value" (ngModelChange)="getSendingAmount($event)"
+          [(ngModel)]="ghostKey" onkeypress="return (event.chaCode == 8 || event.charCode == 0 || event.charCode ==13) ? null : event.charCode >= 48 && event.charCode <= 57">
+      </div>
+
       <p>Type the password to confirm the transaction</p>
       <div fxLayout.gt-md="row">
         <input class="modalinput" matInput fxFlex="100" [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" [(ngModel)]="walletPassword" required>
@@ -114,14 +120,14 @@
       <div class="amountsend">
         <p>Ghost key address</p>
         <div fxLayout.gt-md="row" fxLayoutAlign="space-between">
-          <input class="modalinput" type="text" matInput fxFlex="65" [(ngModel)]="ghostKey" disabled>
-          <button class="modal-button" ngxClipboard [cbContent]="ghostkey" (click)='copyToClipBoard(ghostKey)' fxFlex="16"> Copy </button>
-          <button class="modal-button" (click)='onShareGhostKey()' fxFlex="16"> Share </button>
+          <input class="modalinput" type="text" matInput fxFlex="80" [(ngModel)]="ghostKey" readonly>
+          <button class="modal-button" ngxClipboard [cbContent]="ghostKey" (click)='copyToClipBoard(ghostKey)' fxFlex="16"> Copy </button>
+          <!-- <button class="modal-button" (click)='onShareGhostKey()' fxFlex="16"> Share </button> -->
         </div>
       </div>
     </div>
 
-    <div class="ghostkey buttons" fxLayout="row" fxLayoutAlign="center">
+    <!-- <div class="ghostkey buttons" fxLayout="row" fxLayoutAlign="center">
       <button class="modal-ok-button" fxFlex="90" (click)="generateGhostKey()">Generate another ghost key</button>
-    </div>
+    </div> -->
   </div>

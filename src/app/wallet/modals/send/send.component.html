@@ -180,13 +180,15 @@
   <div class="modalcontent">
     <div class="unghost-options">
       <p>To</p>
-      <input type="radio" name="unghost-mywallet" id="unghost-mywallet" [checked]="unghostToMyWallet == true"/>
-      <label (click)="unghostToMyWallet = true">Un-ghost back to my wallet</label><br/>
-      <input type="radio" name="unghost-other" id="unghost-other" [checked]="unghostToMyWallet == false" />
-      <label (click)="unghostToMyWallet = false">Send to another address</label><br/>
+      <input type="radio" name="unghost-mywallet" id="unghost-mywallet" [checked]="unghostToMyWallet == 1"/>
+      <label (click)="unghostToMyWallet = 1">Un-ghost back to my wallet</label><br/>
+      <input type="radio" name="unghost-other" id="unghost-other" [checked]="unghostToMyWallet == 0" />
+      <label (click)="unghostToMyWallet = 0">Send to another address</label><br/>
+      <input type="radio" name="unghost-other" id="unghost-other" [checked]="unghostToMyWallet == 2" />
+      <label (click)="unghostToMyWallet = 2">Send to ghost key</label><br/>
     </div>
 
-    <div class="sendto" *ngIf="!unghostToMyWallet">
+    <div class="sendto" *ngIf="unghostToMyWallet == 0">
       <p>Address</p>
       <div fxLayout.gt-md="row" class="address-div">
         <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" value="NXefjjohhdofhgij" [(ngModel)]="sendToNix.address">
@@ -197,6 +199,13 @@
         <mat-select [(ngModel)]="sendToNix.address" (change)="addressSelected()">
           <mat-option *ngFor="let acc of accountData" value={{acc.address}}> {{acc.name}} </mat-option>
         </mat-select>
+      </div>
+    </div>
+
+    <div class="sendto" *ngIf="unghostToMyWallet == 2">
+      <p>Ghost Key</p>
+      <div fxLayout.gt-md="row" class="address-div">
+        <input class="modalinput" matInput fxFlex="100" placeholder="Enter address" value="NXefjjohhdofhgij" [(ngModel)]="ghostKey">
       </div>
     </div>
 
