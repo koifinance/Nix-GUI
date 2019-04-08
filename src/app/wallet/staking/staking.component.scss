@@ -7,6 +7,10 @@ $color-staking-dark-gray: #4a4a4a;
   font-weight: 600;
 }
 
+.staking__body {
+  padding-right: 35px;
+}
+
 .staking__header {
   margin: 0 35px;
 
@@ -340,7 +344,7 @@ mat-table {
   flex: 0 0 15%;
 }
 .mat-column-Address {
-  flex: 0 0 35%;
+  flex: 0 0 45%;
 }
 .mat-column-Fee {
   flex: 0 0 15%;

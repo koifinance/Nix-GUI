@@ -185,17 +185,17 @@ export class StakingComponent implements OnInit {
   }
 
   openLpos(element) {
-    console.log(element, '====');
     this.modalsService.openxSmall('stakingDetail', {...element, forceOpen: true, modalsService: this.modalsService})
   }
 
   cancelLpos(element) {
     const data: any = {
+      title: 'Are you sure you want to cancel this contract?',
       forceOpen: true,
       modalsService: this.modalsService,
       txhash: element.tx_hash,
       txIndex: element.tx_index,
-      txAmount: element.amount / 100000000
+      txAmount: element.amount / 100000000,
     };
 
     this.modalsService.openxSmall('passwordInput', data);

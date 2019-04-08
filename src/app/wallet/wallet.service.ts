@@ -33,7 +33,7 @@ export class WalletService {
   log: any = Log.create('send.service');
   txCount: number = 0;
   private addressCount: number = 0;
-  unlockTimeout: number = 60;
+  unlockTimeout: number = 5;
   private validWords: string[];
   private _listners = new Subject<any>();
 
