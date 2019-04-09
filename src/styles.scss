@@ -956,6 +956,18 @@ mat-drawer-content::-webkit-scrollbar {
   border: none;
 }
 
+.modal-button {
+  background-color: #108eff;
+  color: white !important;
+  width: 100%;
+  border-radius: 5px;
+  font-family: $font !important;
+  font-weight: 300 !important;
+  height: 40px;
+  font-size: 14px;
+  border: none;
+}
+
 .modal-cancel-button {
   border-radius: 5px;
   background-color: #E0E3E7;

@@ -33,7 +33,7 @@ export class WalletService {
   log: any = Log.create('send.service');
   txCount: number = 0;
   private addressCount: number = 0;
-  unlockTimeout: number = 60;
+  unlockTimeout: number = 5;
   private validWords: string[];
   private _listners = new Subject<any>();
 
@@ -273,7 +273,7 @@ export class WalletService {
   public walletpassphrase(encrypt : IPassword): Observable<any>{
     return this._rpc.call(ApiEndpoints.Walletpassphrase, [
       encrypt.password,
-      encrypt.stakeOnly ? 0 : this.unlockTimeout,
+      encrypt.stakeOnly == true ? 0 : this.unlockTimeout,
       encrypt.stakeOnly
     ])
   } 
@@ -285,9 +285,12 @@ export class WalletService {
   }
   
   // unghost amount address
-  public unghostAmount(info : IUnGhostAmount): Observable<any> {
+  public unghostAmount(info : IUnGhostAmount, ghostkey): Observable<any> {
+    console.log(info);
     if (info.address) {
       return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount, info.address]);
+    } else if (ghostkey) {
+      return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount, ghostkey]);
     }
     return this._rpc.call(ApiEndpoints.UnGhostAmount, [info.amount])
   }
@@ -434,9 +437,29 @@ private send(tx: TransactionBuilder): Observable<any> {
     }
   }
 
-// to deposit amount
-  public amountDeposit(deposit : IDepostAmount): Observable<any> {
-    return this._rpc.call(ApiEndpoints.GhostAmount, [deposit.amount]);
+  // to deposit amount
+  public amountDeposit(deposit : IDepostAmount, ghostkey = ''): Observable<any> {
+    return this._rpc.call(ApiEndpoints.GhostAmount, [deposit.amount, ghostkey]);
+  }
+
+  //leasestaking
+  public leaseStaking(leaseToAddress, amount, label = '', feePercent = '', rewardAddress = ''): Observable<any> {
+    return this._rpc.call(ApiEndpoints.LeaseStaking, [leaseToAddress, amount, label, feePercent, rewardAddress]);
+  }
+
+  //getpubcoinpack
+  public getPubCoinPack() {
+    return this._rpc.call(ApiEndpoints.GetPubCoinPack);
+  }
+
+  //cancelstaking
+  public cancelStaking(txhash, txIndex, txAmount) {
+    return this._rpc.call(ApiEndpoints.CancelStakingContract, [txhash, txIndex, txAmount])
+  }
+
+  //getleasestakinglist
+  public getLeaseStakingList() {
+    return this._rpc.call(ApiEndpoints.GetLeaseStakingList);
   }
 
   //get historical data
@@ -448,4 +471,10 @@ private send(tx: TransactionBuilder): Observable<any> {
   public getMarketData(vs_currency, ids): Observable<any> {
     return this.http.request(ApiEndpoints.GetMarketInfo + 'vs_currency=' + vs_currency + '&ids=' + ids);
   }
+
+  //get gui latest version
+  public getGUIVersion(): Observable<any> {
+    return this.http.request('https://github.com/NixPlatform/Nix-GUI/releases/latest');
+  }
+
 }

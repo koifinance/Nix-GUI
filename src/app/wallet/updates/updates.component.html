@@ -11,8 +11,11 @@
       </div>
     </div>
     <div class="updates-content" fxLayout="column">
-      <img class="updates-img" src="./assets/icons/SVG/verified.svg">
-      <p class="updates-description">You have the latest version of the wallet installed</p>
+      <img class="updates-img" *ngIf="updated" src="./assets/icons/SVG/verified.svg">
+      <fa-icon [icon]="faTimesCircle" *ngIf="!updated" class="updates-not"></fa-icon>
+
+      <p class="updates-description" *ngIf="updated">You have the latest version of the wallet installed</p>
+      <p class="updates-description" *ngIf="!updated">There is a new update available for download</p>
     </div>
     <div class="version-content">
       <div class="updates-version" fxLayout="row">
@@ -22,7 +25,7 @@
         <div fxFlex="70px">
           <p>v {{guiVersion}}</p>
         </div>
-        <a href="https://github.com/NixPlatform" target="_blank"><div class="version-link" fxFlex="200px">(view on Github)</div></a>
+        <a href="https://github.com/NixPlatform/Nix-GUI/releases/latest" target="_blank"><div class="version-link" fxFlex="200px">(view on Github)</div></a>
       </div>
       
       <div class="updates-version" fxLayout="row">

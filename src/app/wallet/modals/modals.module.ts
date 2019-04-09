@@ -27,6 +27,9 @@ import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
 import { GhostnodeInfoInputComponent } from './ghostnode-info-input/ghostnode-info-input.component';
 import { VpsPasswordComponent } from './vps-password/vps-password.component';
+import { LeasingContractComponent } from './leasing-contract/leasing-contract.component';
+import { LeasingAmountComponent } from './leasing-amount/leasing-amount.component';
+import { StakingDetailComponent } from './staking-detail/staking-detail.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { VpsPasswordComponent } from './vps-password/vps-password.component';
     CreateWalletComponent,
     TransactionDetailComponent,
     GhostnodeInfoInputComponent,
-    VpsPasswordComponent
+    VpsPasswordComponent,
+    LeasingContractComponent,
+    LeasingAmountComponent,
+    StakingDetailComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +87,10 @@ import { VpsPasswordComponent } from './vps-password/vps-password.component';
     CreateWalletComponent,
     TransactionDetailComponent,
     GhostnodeInfoInputComponent,
-    VpsPasswordComponent
+    VpsPasswordComponent,
+    LeasingContractComponent,
+    LeasingAmountComponent,
+    StakingDetailComponent
   ]
 })
 export class ModalsModule {

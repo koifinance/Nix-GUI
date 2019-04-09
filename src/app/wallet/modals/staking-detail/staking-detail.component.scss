@@ -1,0 +1,40 @@
+.processing-trans {
+
+    .divider[_ngcontent-c7] {
+      border-top: 1px solid #EAEAEA;
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+  
+    .modalcontent {
+      padding: 24px;
+      
+      .content-div {
+        max-height: 625px;
+        height: 75vh;
+        overflow: auto;
+      }
+    }
+
+    h5 {
+        display: inline;
+        color: #293246;
+        font-family: "Nunito", sans-serif;
+        font-weight: 300;
+    }
+  
+    .modaldetails {
+      padding: 24px;
+      padding-top: 0;
+      background-color: #F8F8F8;
+    }
+  
+    p {
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    span {
+        color: gray;
+    }
+}
