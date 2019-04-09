@@ -66,7 +66,7 @@
           {{ passwordLabelText() }} password
         </button>
       </div>
-    </div>    
+    </div>
 
   </div>
 
@@ -108,15 +108,15 @@
       <div _ngcontent-c7="" class="divider"></div>
 
       <p class="subtitle">
-        The ‘ghost key’ below can be used to receive NIX completely anonymously, 
-        via an untraceable off-chain transaction. Each ghost key can only be used 
-        once however, so you will need to generate a new one for each transaction.
+        The ‘ghost key’ below can be used to receive NIX completely anonymously,
+        via an untraceable on-chain transaction. Each ghost key can only be used
+        once; however, a new one will be generated when the wallet detects the current one has been used.
       </p>
 
       <div class="qrimage text-center" *ngIf="ghostKey">
         <qr-code [value]="ghostKey" [size]="300"></qr-code>
       </div>
-  
+
       <div class="amountsend">
         <p>Ghost key address</p>
         <div fxLayout.gt-md="row" fxLayoutAlign="space-between">
