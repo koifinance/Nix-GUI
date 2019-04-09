@@ -458,4 +458,9 @@ private send(tx: TransactionBuilder): Observable<any> {
   public getMarketData(vs_currency, ids): Observable<any> {
     return this.http.request(ApiEndpoints.GetMarketInfo + 'vs_currency=' + vs_currency + '&ids=' + ids);
   }
+
+  //get gui latest version
+  public getGUIVersion(): Observable<any> {
+    return this.http.request('https://github.com/NixPlatform/Nix-GUI/releases/latest');
+  }
 }

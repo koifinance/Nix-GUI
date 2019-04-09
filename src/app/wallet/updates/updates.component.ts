@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { RpcStateService } from '../../core/core.module';
 import { ApiEndpoints } from '../business-model/enums';
 import { environment } from '../../../environments/environment';
+import { WalletService } from '../wallet.service';
 
 @Component({
   selector: 'app-updates',
@@ -14,8 +17,14 @@ export class UpdatesComponent implements OnInit {
   guiVersion: string = environment.version;
   destroyed: boolean = false;
   daemonVersion: string;
+  updated: boolean = true;
+  faTimesCircle: any = faTimesCircle;
 
-  constructor(private _rpcState: RpcStateService,private router: Router) { }
+  constructor(
+    private _rpcState: RpcStateService,
+    private router: Router,
+    private walletService: WalletService
+  ) { }
 
   ngOnInit() {
   	this._rpcState.observe(ApiEndpoints.GetNetworkInfo).takeWhile(() => !this.destroyed)
@@ -25,7 +34,15 @@ export class UpdatesComponent implements OnInit {
       }, error => {
         // this.log.d(error, 'err');
       }
-    )
+    );
+    this.walletService.getGUIVersion().subscribe(res => {
+      let splitted = res.url.split('/');
+      let version = splitted[splitted.length - 1];
+      if (version.charAt(0) == 'v') version = version.substr(1);
+      if (version.localeCompare(this.guiVersion) == 1) {
+        this.updated = false;
+      }
+    })
   }
   GoToDownlod() {
     this.router.navigate(['./main/downloading-updates']);
