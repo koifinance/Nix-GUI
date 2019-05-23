@@ -1,7 +1,13 @@
 @import '../shared';
 
 .header {
+  margin-top: 25px;
   padding: 0 30px;
+
+  &__title {
+    font-weight: 700;
+    font-size: 28px;
+  }
 }
 
 .sidebar {
