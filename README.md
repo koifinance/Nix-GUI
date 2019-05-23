@@ -52,7 +52,7 @@ This repository is the user interface that works in combination with [`Nix Core`
 * Download + Install [git](https://git-scm.com/)
 
 ```bash
-git clone https://github.com/nixcore/nix-gui
+git clone https://github.com/nixcore/Nix-GUI
 cd nix-gui
 yarn install
 ```
