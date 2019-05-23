@@ -90,8 +90,8 @@ export class CreateComponent implements OnInit, OnDestroy {
             this._rpc.call('restart-daemon').subscribe(() => {
               this.goTo('main');
             });
-          })
-      }, 3000);      
+          });
+      }, 3000);
     }
 
     this.showContentError = false;
