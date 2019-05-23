@@ -1,6 +1,7 @@
 @import '../shared';
 
 mat-table {
+  font-family: "Nunito", sans-serif;
   background: transparent;
 
   mat-header-row {
@@ -9,9 +10,6 @@ mat-table {
   }
 
   mat-row {
-    margin-bottom: 15px;
-    margin-top: 15px;
-
     &:hover {
       cursor: pointer;
     }
@@ -73,7 +71,7 @@ mat-table {
 
       > img {
         width: 25px;
-        margin-right: 20px;
+        margin-right: 16px;
       }
     }
   }
@@ -87,11 +85,24 @@ mat-table {
 
   .date {
     color: $color-grey;
-    
+
     .recent-date {
-      width: 60%;
-      text-align: center;
       display: block !important;
+    }
+
+    .recent-date__month,
+    .recent-date__day {
+      display: block;
+    }
+
+    .recent-date__month {
+      text-transform: uppercase;
+      color: $text;
+    }
+
+    .recent-date__day {
+      font-size: 20px;
+      color: $text;
     }
   }
 }
@@ -116,18 +127,18 @@ mat-table {
   flex: 0 0 15%;
 }
 
+.mat-column-date {
+  flex: 0 0 12%;
+}
+
 .mat-column-type {
-  flex: 0 0 36%;
+  flex: 0 0 40%;
 }
 
 .mat-column-amount {
-  flex: 0 0 22%;
+  flex: 0 0 26%;
 }
 
 .mat-column-status {
   flex: 0 0 22%;
-}
-
-.mat-column-date {
-  flex: 0 0 20%;
 }

@@ -16,7 +16,7 @@
       </div>
     </mat-cell>
   </ng-container>
-  
+
 
   <ng-container matColumnDef="Amount" cdkColumnDef="Amount">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
@@ -24,7 +24,7 @@
       {{ element.amount | number}} NIX
     </mat-cell>
   </ng-container>
-  
+
   <ng-container matColumnDef="Address" cdkColumnDef="Address">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
     <mat-cell class="address" *matCellDef="let element">
@@ -82,7 +82,7 @@
       </div>
     </mat-cell>
   </ng-container>
-  
+
 
   <ng-container matColumnDef="amount" cdkColumnDef="amount">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
@@ -111,8 +111,8 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
     <mat-cell class="date" *matCellDef="let element">
       <div class="recent-date">
-        <span>{{element.time * 1000 | date: 'dd MMM yy'}}</span><br/>
-        <span style="font-size: 12px;">{{element.time * 1000 | date: 'HH:mm'}}</span>
+        <span class="recent-date__month">{{element.time * 1000 | date: 'MMM'}}</span>
+        <span class="recent-date__day">{{element.time * 1000 | date: 'dd'}}</span>
       </div>
     </mat-cell>
   </ng-container>

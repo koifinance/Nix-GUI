@@ -34,7 +34,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   balanceInUSD: any;
   balanceInBTC: any;
   balanceInEUR: any;
-  
+
   faCircle: any = faCircle;
   faQuestion: any = faQuestion;
   faSync: any = faSync;
@@ -105,9 +105,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.walletServices.getBitcoin(this.bitcoinpriceInfo)
           .subscribe(bitcoinpriceInfos => {
             this.bitcoinprice = bitcoinpriceInfos.data.quotes;
-            this.balanceInBTC = this.bitcoinprice.BTC.price;
+            this.balanceInBTC = this.bitcoinprice.BTC.price.toFixed(8);
             this.balanceInUSD = this.bitcoinprice.USD.price;
-            this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h
+            this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h;
 
             this.getBTCBalance();
             this.getUSDBalance();
@@ -120,7 +120,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
             let tmp = res.data.quotes;
             this.balanceInEUR = tmp.EUR.price;
-          
+
             this.getEURBalance();
             this.getEURVaultBalance();
           }, error => this.log.error(message.bitcoinpriceMessage, error));
@@ -177,19 +177,19 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   public getInteger(num) {
-    return Math.floor(num).toString();
+    return Math.floor(num).toLocaleString('en-US', {minimumFractionDigits: 0});
   }
 
   public getFranction(num) {
     if (!parseFloat(num).toString().split('.')[1]) return '0000';
-    return parseInt(parseFloat(num).toString().split('.')[1], 10);
+    return parseInt(parseFloat(num).toString().split('.')[1].substring(0, 4), 10);
   }
 
   public chartHovered(e: any): void {
     console.log(e);
   }
 
-  //refresh the overview screen(price)
+  // refresh the overview screen(price)
   public refresh() {
     this.ngOnInit();
     this.flashNotification.open('Page has been refreshed', 'info');
@@ -211,7 +211,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.BTCvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInBTC);
   }
 
-  getUSDVaultBalance() {    
+  getUSDVaultBalance() {
     this.USDvaultbalance = this.calculationsService.getCovertedamount(this.walletInfo.ghost_vault, this.balanceInUSD);
   }
 
@@ -226,7 +226,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         this.currentBlock = res.blocks;
       }, error => {
-        this.log.error(error.message, error); 
+        this.log.error(error.message, error);
     })
   }
 
@@ -238,7 +238,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
         const torEnabled = (res.indexOf("Enabled") > -1);
         this.torStatus = torEnabled ? 'enabled' : 'disabled';
       }, error => {
-        this.log.error(error.message, error); 
+        this.log.error(error.message, error);
     })
   }
 
@@ -267,7 +267,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
       },
         error => this.log.error(error));
   }
-  
+
   goToChart() {
     this.router.navigate(['./overview/nix-price-chart']);
   }
@@ -292,7 +292,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     };
 
     if (walletType == 'vault') data.balance = this.walletInfo.ghost_vault;
-    
+
     this.modalsService.openSmall('send', data);
   }
 
