@@ -85,7 +85,7 @@ export enum ApiEndpoints {
   EnableTor  = 'enabletor',
   SaveCurrency = 'https://api.coinmarketcap.com/v2/ticker/2991',
   GetPriceinfo = 'getpriceinfo',
-  GhostAmount = 'ghostamount',
+  GhostAmount = 'ghostamountv2',
   ListReceivedbyAddress = 'listreceivedbyaddress',
   GetAccountAddress = 'getaccountaddress',
   ListAccounts = 'listaccounts',
@@ -94,11 +94,11 @@ export enum ApiEndpoints {
   GetNetworkInfo = 'getnetworkinfo',
   GetAllAddresses = 'getalladdresses',
   ManageAddressbook = 'manageaddressbook',
-  UnGhostAmount = 'unghostamount',
+  UnGhostAmount = 'unghostamountv2',
   WalletLock = 'walletlock',
   StopNixd = 'stop',
   LeaseStaking = 'leasestaking',
-  GetPubCoinPack = 'getpubcoinpack',
+  GetPubCoinPack = 'getpubcoinpackv2',
   GetLeaseStakingList = 'getleasestakinglist',
   CancelStakingContract = 'cancelstakingcontract'
 }
