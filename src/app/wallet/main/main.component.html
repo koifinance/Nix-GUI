@@ -1,6 +1,6 @@
 <mat-drawer-container fullscreen>
 
-  <mat-drawer #sidenav mode="side" opened="true" disableClose="true" [ngClass]="routerLink === 'ghost vault' ? 'sidebar-ghost-vault' : 'sidebar'">
+  <mat-drawer #sidenav mode="side" opened="true" disableClose="true" [ngClass]="routerLink === 'ghost vault' ? 'sidebar sidebar--ghost' : 'sidebar'">
 
     <div class="logo-area">
       <div class="logo">
@@ -34,7 +34,7 @@
           <span class="text">Ghostnode</span>
         </mat-list-item>
       </a>
-      
+
     </mat-list>
 
     <mat-list class="sidebar-bottom-items">
@@ -42,12 +42,12 @@
         <mat-list-item class="sidebar-item">
           <span class="text">Help</span>
         </mat-list-item>
-      </a>     
+      </a>
       <a class="sidebar-item-link" routerLinkActive="active" routerLink="./settings" (click)="routerLink='settings'">
         <mat-list-item class="sidebar-item">
           <span class="text">Settings</span>
         </mat-list-item>
-      </a> 
+      </a>
       <a class="sidebar-item-link" routerLinkActive="active" routerLink="./updates" (click)="routerLink='updates'">
         <mat-list-item class="sidebar-item">
           <span class="text">Updates</span>
@@ -57,7 +57,7 @@
         <mat-list-item class="sidebar-item">
           <span class="text">About NIX</span>
         </mat-list-item>
-      </a>      
+      </a>
     </mat-list>
 
     <mat-list class="progress-wrapper">
