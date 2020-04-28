@@ -54,7 +54,7 @@ $card-radius: 10px; // default border-radius for cards
 }
 
 @mixin primary-gradient() {
-  @include gradient(60deg, #2b1fd3 0%, #00c1ff 100%);
+  @include gradient(60deg, #3919BA 0%, #00c1ff 100%);
 }
 
 @mixin secondary-gradient() {

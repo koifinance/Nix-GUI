@@ -4,7 +4,7 @@ var fs = require('fs');
 var releasesURL = "https://github.com/NixPlatform/NixCore/releases";
 
 var signaturesURL = "https://api.github.com/repos/nixplatform/gitian.sigs/contents";
-var maintainer = “mattt21”;
+var maintainer = "mattt21";
 
 /*
  * Filters a hash file to find this asset's hash

@@ -6,295 +6,147 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
 
 .overview {
   padding: 0 35px;
-
-  .balance-row, .content-row {
-    margin-top: 3em;
-    margin-bottom: 1em;
-
-    .item {
-      border-radius: $card-radius;
-      box-shadow: 0 3px 1px -2px $grey-20-opacity, 0 2px 2px 0 $grey-14-opacity, 0 1px 5px 0 $grey-12-opacity !important;
-      min-height: 300px;
-      padding-left: 25px;
-    }
-  }
-
-  .bottom-row {
-    margin-top: 3em;
-    margin-bottom: 1em;
-    margin-right: 20px;
-
-    .wallet-status {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  .balance-row {
-
-    .item {
-
-      &.total {
-        @include primary-gradient;
-
-        .send-btn {
-          border-radius: 5px;
-          font-weight: 300;
-        }
-
-        .receive-btn {
-          background: rgba(0, 0, 0, 0.14);
-          color: $color-white;
-          border-radius: 5px;
-          font-weight: 300;
-        }
-
-        .dots-btn {
-          background: rgba(0, 0, 0, 0.14);
-          color: $color-white;
-          border-radius: 5px;
-          font-weight: 300;
-        }
-      }
-
-      &.anon {
-
-        .send-btn {
-          background-color: $color;
-          border-radius: 5px;
-          font-weight: 300;
-          color: $color-white;
-        }
-
-        .receive-btn {
-          background: #F4F4F5;
-          color: black;
-          border-radius: 3px;
-          font-weight: 300;
-
-        }
-
-        .dots-btn {
-          background: #F4F4F5;
-          color: black;
-          border-radius: 3px;
-          font-weight: 300;
-        }
-      }
-
-      .balance {
-        //color: #293246;
-
-        .description {
-          color: $text;
-          font-size: 16px;
-          margin-bottom: 25px;
-          margin-top: 5px;
-        }
-
-        .number {
-          color: $text;
-        }
-
-        .point {
-          color: $text;
-        }
-
-        .big {
-          font-size: 24px;
-          @media screen and (min-width: 1500px) {
-            font-size: 28px;
-          }
-        }
-
-        .medium {
-          font-size: 13px;
-          @media screen and (min-width: 1500px) {
-            font-size: 15px;
-          }
-        }
-
-        .small {
-          font-size: 11px;
-          @media screen and (min-width: 1500px) {
-            font-size: 13px;
-          }
-        }
-
-        .divider {
-          border-top: 1px solid darken($color-light-grey, 5%);
-          margin-bottom: 15px;
-          margin-top: 15px;
-        }
-
-        .mat-raised-button {
-          line-height: 34px;
-          //min-width: 60px;
-
-          &.small {
-            min-width: 40px;
-          }
-        }
-      }
-
-      .price {
-
-        .description {
-          color: $text;
-          font-size: 16px;
-          margin-bottom: 25px;
-          margin-top: 5px;
-        }
-
-        .number {
-          color: $text;
-        }
-
-        .point {
-          color: $text-muted;
-        }
-
-        .big {
-          font-size: 24px;
-          @media screen and (min-width: 1500px) {
-            font-size: 28px;
-          }
-        }
-
-        .small {
-          font-size: 11px;
-          @media screen and (min-width: 1500px) {
-            font-size: 13px;
-          }
-        }
-
-        .divider {
-          border-top: 1px solid darken($color-light-grey, 5%);
-          margin-bottom: 15px;
-          margin-top: 15px;
-        }
-
-        .plus-percent {
-          color: green;
-        }
-
-        .minus-percent {
-          color: red;
-        }
-      }
-    }
-  }
-
-  .content-row {
-
-    .recent-transactions {
-      margin-left: 10px;
-      //padding-top: 5px;
-
-      .description {
-        color: $text;
-        font-size: 16px;
-        margin-bottom: 20px;
-        //margin-top: 6px;
-      }
-
-      ::ng-deep.mat-table {
-
-        .mat-header-row, .mat-row {
-          padding: 0;
-        }
-
-        .mat-row {
-          border: none;
-        }
-
-        .date {
-          display: list-item;
-          list-style-type: none;
-        }
-
-        .month {
-          font-size: 12px;
-        }
-
-        .day {
-          color: #9B9B9B;
-          //color: $text-muted;
-          font-size: 17px;
-        }
-      }
-
-      .link {
-        color: $text-muted;
-        font-size: 11px;
-        text-decoration: none;
-      }
-    }
-
-    .node-status {
-      //padding-top: 5px;
-
-      .description {
-        color: $text;
-        font-size: 16px;
-        margin-bottom: 20px;
-        //margin-top: 6px;
-      }
-
-      .number {
-        color: $text;
-        font-weight: 200;
-      }
-
-      .light {
-        color: $text-muted;
-      }
-
-      .big {
-        font-size: 24px;
-        @media screen and (min-width: 1500px) {
-          font-size: 28px;
-        }
-      }
-
-      .medium {
-        font-size: 15px;
-        @media screen and (min-width: 1500px) {
-          font-size: 18px;
-        }
-      }
-
-      .small {
-        font-size: 11px;
-        @media screen and (min-width: 1500px) {
-          font-size: 13px;
-        }
-      }
-
-      .text {
-        text-transform: uppercase;
-      }
-
-      .divider {
-        border-top: 1px solid darken($color-light-grey, 5%);
-        margin-bottom: 15px;
-        margin-top: 15px;
-      }
-
-      .confirm-ok {
-        color: $color-secondary;
-      }
-
-      fa-icon {
-        margin-right: 10px;
-      }
-    }
-  }
-
 }
 
-.small-chart {
-  // border: 1px solid;
+.overview-item {
+  font-family: "Nunito", sans-serif;
+  border-radius: $card-radius;
+  box-shadow: 0 3px 1px -2px $grey-20-opacity, 0 2px 2px 0 $grey-14-opacity, 0 1px 5px 0 $grey-12-opacity !important;
+  min-height: 320px;
+  padding-left: 25px;
+}
+
+.overview-item--small {
+  min-height: 286px;
+}
+
+.overview-item--bg {
+  @include primary-gradient;
+}
+
+
+.l-overview-row {
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+}
+
+.l-overview-row--bottom {
+  margin-top: 3em;
+  margin-bottom: 1em;
+  margin-right: 20px;
+}
+
+.overview-box {
+  color: $text;
+}
+
+.overview-box--bg {
+  color: $color-white;
+}
+
+.overview-box__description {
+  margin-top: 16px !important; // because of specificity coming from ng-mat-card component
+  margin-bottom: 20px;
+  color: $text;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.overview-box--bg .overview-box__description {
+  color: $color-white;
+}
+
+.overview-box__number-wrapper {
+  display: inline-block;
+}
+
+.overview-box__number,
+.overview-box__currency {
+  font-size: 16px;
+}
+
+.overview-box__number {
+  margin: 0;
+}
+
+.overview-box__number--small {
+  font-size: 13px;
+}
+
+.overview-box__number--big {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.overview-box__number--grey {
+  color: $color-grey;
+}
+
+.overview-box__number--negative {
+  color: red;
+}
+
+.overview-box__number--positive {
+  color: green;
+}
+
+.overview-box__text {
+  font-size: 20px;
+}
+
+.overview-box__text--confirm {
+  display: inline-block;
+  color: $color-secondary;
+}
+
+.overview-box__currency {
+  color: $color-grey;
+}
+
+.overview-box__currency--bg {
+  color: $color-white;
+}
+
+.overview-box__divider {
+  border-top: 1px solid darken($color-light-grey, 5%);
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.overview-box__divider--bg {
+  border-top-color: $color-white;
+}
+
+.overview-box__btn {
+  line-height: 34px;
+  font-weight: 500;
+  color: $text;
+  border-radius: 5px;
+  background-color: $color-mid-grey;
+  padding: 0 12px;
+  margin-right: 12px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    color: $color-white;
+    background-color: #6300E4;
+  }
+}
+
+.overview-box__btn--bg {
+  color: $color-white;
+  background-color: $color;
+
+  &:hover {
+    color: $text;
+    background-color: $color-white;
+  }
+}
+
+.overview-box__small-chart {
   margin-top: 15px;
   height: 65px;
   text-align: center;
@@ -303,6 +155,53 @@ $grey-20-opacity: rgba(0, 0, 0, .2);
   cursor: pointer;
 }
 
+.overview-box__wallet-status {
+  display: flex;
+  align-items: center;
+}
+
+.overview-box__status {
+  margin-top: 8px;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+
+.overview-box__status-icon {
+  width: 9px;
+  height: 9px;
+  border: 1px solid #0ecbc1;
+  border-radius: 50%;
+  background-color: #0ecbc1;
+  margin-right: 10px;
+}
+
+.overview-box__transactions {
+  margin-right: 12px;
+
+  ::ng-deep.mat-table {
+    .mat-header-row, .mat-row {
+      padding: 0;
+    }
+
+    .mat-row {
+      border: none;
+    }
+
+    .mat-column-amount {
+      text-align: right;
+    }
+  }
+}
+
 table {
   width: 100%;
+}
+
+fa-icon {
+  margin-right: 10px;
+}
+
+.mat-raised-button:not([class*=mat-elevation-z]) {
+  box-shadow: none;
 }

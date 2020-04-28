@@ -22,7 +22,7 @@ export enum categories {
 export enum message {
   walletMessage = 'Failed to get wallet information',
   recentTransactionMessage = 'Failed to get recent transaction',
-  transactionMessage = 'Failed to get transaction', 
+  transactionMessage = 'Failed to get transaction',
   bitcoinpriceMessage  = 'Failed to get bit coin price',
   AddressAddedMessage = 'Failed to add address!',
   AddressEditedMessage = 'Failed to edit address!',
