@@ -181,7 +181,7 @@
     "file-saver": "^2.0.0-rc.3",
     "got": "^8.1.0",
     "hammerjs": "^2.0.8",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.13",
     "lodash.get": "^4.4.2",
     "lodash.isempty": "^4.4.0",
     "lodash.values": "^4.3.0",
