@@ -104,10 +104,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.walletInfo = new WalletInfo(walletInfo).toJSON();
         this.walletServices.getBitcoin(this.bitcoinpriceInfo)
           .subscribe(bitcoinpriceInfos => {
-            this.bitcoinprice = bitcoinpriceInfos.data.quotes;
-            this.balanceInBTC = this.bitcoinprice.BTC.price.toFixed(8);
-            this.balanceInUSD = this.bitcoinprice.USD.price;
-            this.NIXpercentage = this.bitcoinprice.USD.percent_change_24h;
+            this.bitcoinprice = bitcoinpriceInfos['nix-platform'];
+            this.balanceInBTC = this.bitcoinprice.btc.toFixed(8);
+            this.balanceInUSD = this.bitcoinprice.usd;
+            this.NIXpercentage = this.bitcoinprice.usd_24h_change.toFixed(6);
 
             this.getBTCBalance();
             this.getUSDBalance();
@@ -118,8 +118,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.walletServices.getInEUR(this.bitcoinpriceInfo)
           .subscribe(res => {
 
-            let tmp = res.data.quotes;
-            this.balanceInEUR = tmp.EUR.price;
+            let tmp = res['nix-platform'];
+            this.balanceInEUR = tmp.eur;
 
             this.getEURBalance();
             this.getEURVaultBalance();
@@ -285,7 +285,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
       forceOpen: true,
       walletType: walletType,
       balance: this.walletInfo.balance,
-      amountInUSD: this.bitcoinprice.USD.price,
+      amountInUSD: this.bitcoinprice.usd,
       amountInEUR: this.balanceInEUR,
       currency: this.currentCurrency,
       modalsService: this.modalsService

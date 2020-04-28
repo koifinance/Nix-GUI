@@ -1,6 +1,6 @@
 {
   "name": "nix-wallet",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "GPL-2.0",
   "description": "NIX Platform - cross chain asset transfer with full anonymity",
   "homepage": "https://nixplatform.io",

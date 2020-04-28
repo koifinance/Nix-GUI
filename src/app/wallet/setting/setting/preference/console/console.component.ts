@@ -52,13 +52,19 @@ export class ConsoleComponent implements OnInit, AfterViewChecked {
     const params = this.command.trim().split(' ')
                     .filter(cmd => cmd.trim() !== '');
 
-    // if (params.length > 0) {
-    //     params.splice(1, 0, ''); // TODO: Add wallet name here for multiwallet
-    // }
+    var newParams = []
+    for(let i = 0; i < params.length; i++){
+      if(params[i] == 'true' || params[i] == 'false')
+        newParams.push(params[i] == "true");
+      else if(!isNaN(params[i] as any))
+        newParams.push(parseFloat(params[i]))
+      else
+        newParams.push(params[i])
+    }
 
-    this.log.d(params);
+    this.log.d(newParams);
 
-    this._rpc.call(params.shift(), params)
+    this._rpc.call(newParams.shift(), newParams)
       .subscribe(
         response => this.formatSuccessResponse(response),
         error => this.formatErrorResponse(error));
