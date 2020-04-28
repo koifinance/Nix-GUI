@@ -50,6 +50,6 @@ export class UpdatesComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.destroyed = true;   
+    this.destroyed = true;
   }
 }
