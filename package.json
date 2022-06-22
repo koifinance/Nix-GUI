@@ -179,7 +179,7 @@
     "electron-log": "^2.2.14",
     "electron-updater": "^2.18.2",
     "file-saver": "^2.0.0-rc.3",
-    "got": "^8.1.0",
+    "got": "^11.8.5",
     "hammerjs": "^2.0.8",
     "lodash": "^4.17.13",
     "lodash.get": "^4.4.2",
